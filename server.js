@@ -1,18 +1,18 @@
 const express = require('express')
-const app = express()
+const server = express()
 const port = process.env.NODE_ENV === 'production' ? process.env.PORT : 3001
 const bodyParser = require('body-parser')
 
-app.use(bodyParser.json())
+server.use(bodyParser.json())
 
 const items = []
 
-app.get('/api/items', function (req, res) {
+server.get('/api/items', function (req, res) {
   res.send(items)
 })
 
 var failCount = 0
-app.post('/api/items', function (req, res) {
+server.post('/api/items', function (req, res) {
   failCount++
   var shouldFail = false
   if (failCount === 3) {
@@ -34,6 +34,6 @@ app.post('/api/items', function (req, res) {
   }, 1000)
 })
 
-app.listen(port, function () {
+server.listen(port, function () {
   console.log('Running server on port ' + port)
 })

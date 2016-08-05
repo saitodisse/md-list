@@ -2,7 +2,7 @@ import Inferno from 'inferno'
 import {connect} from 'cerebral-view-inferno'
 
 export default connect({
-  items: 'app.items'
+  items: 'listApp.items'
 },
   function Items(props) {
     return (

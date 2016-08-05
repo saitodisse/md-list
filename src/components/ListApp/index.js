@@ -4,14 +4,14 @@ import {connect} from 'cerebral-view-inferno'
 import Items from '../Items'
 
 export default connect({
-  newItemTitle: 'app.newItemTitle',
-  isSaving: 'app.isSaving',
-  error: 'app.error'
+  newItemTitle: 'listApp.newItemTitle',
+  isSaving: 'listApp.isSaving',
+  error: 'listApp.error'
 }, {
-  newItemTitleSubmitted: 'app.newItemTitleSubmitted',
-  newItemTitleChanged: 'app.newItemTitleChanged'
+  newItemTitleSubmitted: 'listApp.newItemTitleSubmitted',
+  newItemTitleChanged: 'listApp.newItemTitleChanged'
 },
-  class App extends Component {
+  class ListApp extends Component {
     componentDidUpdate(prevProps) {
       if (prevProps.isSaving && !this.props.isSaving) {
         this.input.focus()

@@ -9,12 +9,12 @@ export default [
   // to the items list
   addItem,
   // We empty out the input
-  set('state:app.newItemTitle', ''),
+  set('state:listApp.newItemTitle', ''),
   // We set the app is saving mode to
   // disable the input
-  set('state:app.isSaving', true),
+  set('state:listApp.isSaving', true),
   // We reset the error
-  set('state:app.error', null),
+  set('state:listApp.error', null),
   // We post the item to the server
   postItem, {
     success: [
@@ -27,10 +27,10 @@ export default [
       // failed
       removeFailedItem,
       // We set an error to display
-      set('state:app.error', 'Adding item failed on server, removing it')
+      set('state:listApp.error', 'Adding item failed on server, removing it')
     ]
   },
   // The app goes back into normal state,
   // enabling the input again
-  set('state:app.isSaving', false)
+  set('state:listApp.isSaving', false)
 ]

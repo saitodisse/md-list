@@ -2,16 +2,20 @@ import {Controller} from 'cerebral'
 import Model from 'cerebral/models/immutable'
 import Devtools from 'cerebral-module-devtools'
 import Http from 'cerebral-module-http'
-import App from './modules/App'
+import ListApp from './modules/ListApp'
 
 const controller = Controller(Model({}))
 
 controller.addModules({
-  app: App,
+  // app namespace
+  listApp: ListApp,
 
+  // service
   http: Http({
     baseUrl: '/api'
   }),
+
+  // plug-in
   devtools: Devtools()
 })
 
