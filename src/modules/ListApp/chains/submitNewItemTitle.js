@@ -1,8 +1,10 @@
-import {set} from 'cerebral/operators'
+import {set, delay} from 'cerebral/operators'
 import addItem from '../actions/addItem.js'
 import postItem from '../actions/postItem.js'
 import removeFailedItem from '../actions/removeFailedItem.js'
 import updateItem from '../actions/updateItem.js'
+import updateItemIsNew from '../actions/updateItemIsNew.js'
+import updateItemRemoveIsNew from '../actions/updateItemRemoveIsNew.js'
 
 export default [
   // First we optimistically add the item
@@ -15,12 +17,18 @@ export default [
   set('state:listApp.isSaving', true),
   // We reset the error
   set('state:listApp.error', null),
+  // Set item as a new item
+  updateItemIsNew,
   // We post the item to the server
   postItem, {
     success: [
       // We merge in the ID returned
       // from the server
-      updateItem
+      updateItem,
+      // The item is not new anymore
+      ...delay(1000, [
+        updateItemRemoveIsNew
+      ])
     ],
     error: [
       // We remove the item since it

@@ -9,7 +9,9 @@ export default connect({
       <ul>
         {props.items.map((item, index) => (
           <li key={index}>
-            {item.title}
+            {item.id && <span>[{item.id}]</span>}
+            <span> {item.title}</span>
+            <span> {item.$isNew && '(New)'}</span>
           </li>
         ))}
       </ul>
