@@ -15,7 +15,7 @@ var failCount = 0
 server.post('/api/items', function (req, res) {
   failCount++
   var shouldFail = false
-  if (failCount === 3) {
+  if (failCount === 8) {
     shouldFail = true
     failCount = 0
   }
@@ -31,7 +31,7 @@ server.post('/api/items', function (req, res) {
       items.unshift(item)
       res.send(item)
     }
-  }, 1000)
+  }, 250)
 })
 
 server.listen(port, function () {

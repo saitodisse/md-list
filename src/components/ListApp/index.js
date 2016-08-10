@@ -2,6 +2,7 @@ import Inferno from 'inferno'
 import Component from 'inferno-component'
 import {connect} from 'cerebral-view-inferno'
 import Items from '../Items'
+import styles from './styles';
 
 export default connect({
   newItemTitle: 'listApp.newItemTitle',
@@ -29,21 +30,25 @@ export default connect({
     render() {
       return (
         <div>
-          <form onSubmit={event => this.onFormSubmit(event)}>
+          <h1 style={styles.header}>
+            List Add
+          </h1>
+          <form
+            style={styles.container}
+            onSubmit={event => this.onFormSubmit(event)}
+          >
             <input
               autoFocus
               type="text"
+              style={this.props.error ? styles.inputError : styles.input}
               onAttached={node => this.input = node}
               disabled={this.props.isSaving}
               value={this.props.newItemTitle}
               onInput={event => this.onInputChange(event)}
             />
-            {
-              this.props.error ?
-                <span style={{color: 'red', paddingLeft: '10px'}}>{this.props.error}</span>
-              :
-                null
-            }
+            <div style={styles.error}>
+              {this.props.error}
+            </div>
           </form>
           <Items />
         </div>
