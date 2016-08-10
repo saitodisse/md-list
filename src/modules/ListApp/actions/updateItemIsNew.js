@@ -1,6 +1,7 @@
 function updateItemIsNew({state, output, services}) {
-  const item = state.get('listApp.items')[0]
-  state.merge(`listApp.items.0`, {...item, $isNew: true});
+  const lastIndex = state.get('listApp.items').length - 1;
+  const item = state.get('listApp.items')[lastIndex]
+  state.merge(`listApp.items.${lastIndex}`, {...item, $isNew: true});
 }
 
 export default updateItemIsNew;

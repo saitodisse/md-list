@@ -1,5 +1,6 @@
 function updateItem({input, state}) {
-  state.merge('listApp.items.0', input.result)
+  const lastIndex = state.get('listApp.items').length - 1;
+  state.merge(`listApp.items.${lastIndex}`, input.result)
 }
 
 export default updateItem;

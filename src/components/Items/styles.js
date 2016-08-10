@@ -2,12 +2,12 @@ export default {
 
   itemsContainer: {
     display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: 'row-reverse',
+    flexWrap: 'wrap-reverse',
     alignItems: 'left',
     marginTop: 20,
-    justifyContent: 'space-around',
-    // justifyContent: 'space-between',
+    // justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     border: '1px solid #E3E3E3',
   },
 

@@ -1,4 +1,8 @@
 # cerebral-website-tutorial
 The tutorial app for the Cerebral website
 
-The master branch of this project does not container anything. Please look at the specific branches for each view layer implementation of the same app.
+# TODO
+
+- [ ] [styles] make items to align to the right
+- [ ] [signals] allow to enter new value even before server response
+- [ ] [validation] do not permit blank values

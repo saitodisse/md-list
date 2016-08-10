@@ -1,5 +1,5 @@
 function postItem({state, output, services}) {
-  const item = state.get('listApp.items')[0]
+  const item = state.get('listApp.items')[state.get('listApp.items').length - 1]
 
   services.http.post('/items', item)
     .then(output.success)
