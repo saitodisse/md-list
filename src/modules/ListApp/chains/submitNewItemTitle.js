@@ -25,10 +25,6 @@ export default [
       // We merge in the ID returned
       // from the server
       updateItem,
-      // The item is not new anymore
-      ...delay(1000, [
-        updateItemRemoveIsNew
-      ])
     ],
     error: [
       // We remove the item since it
@@ -40,5 +36,9 @@ export default [
   },
   // The app goes back into normal state,
   // enabling the input again
-  set('state:listApp.isSaving', false)
+  set('state:listApp.isSaving', false),
+  // The item is not new anymore
+  ...delay(1000, [
+    updateItemRemoveIsNew
+  ]),
 ]
