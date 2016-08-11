@@ -14,11 +14,13 @@ export default connect({
   newItemTitleChanged: 'listApp.newItemTitleChanged'
 },
   class ListApp extends Component {
+
     componentDidUpdate(prevProps) {
       if (prevProps.isSaving && !this.props.isSaving) {
         this.input.focus();
       }
     }
+
     onFormSubmit(event) {
       event.preventDefault();
       const value = R.trim(this.props.newItemTitle);
@@ -26,11 +28,13 @@ export default connect({
         this.props.newItemTitleSubmitted();
       }
     }
+
     onInputChange(event) {
       this.props.newItemTitleChanged({
         title: event.target.value
       });
     }
+
     render() {
       return (
         <div>
@@ -46,7 +50,7 @@ export default connect({
               type="text"
               style={this.props.error ? styles.inputError : styles.input}
               onAttached={node => {this.input = node;}}
-              disabled={this.props.isSaving}
+              // disabled={this.props.isSaving}
               value={this.props.newItemTitle}
               onInput={event => this.onInputChange(event)}
             />
@@ -60,5 +64,6 @@ export default connect({
         </div>
       );
     }
+
   }
 );
