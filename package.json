@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "client": "webpack-dev-server",
-    "server": "json-server --watch server/db.json --routes server/routes.json -p 3001",
+    "server": "node server/server.js",
     "build": "webpack --config webpack.config.production.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,8 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/cerebral/cerebral-website-tutorial-next.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Julio Makdisse Saito",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/cerebral/cerebral-website-tutorial-next/issues"
   },

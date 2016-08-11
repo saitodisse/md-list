@@ -6,9 +6,10 @@ import R from 'ramda';
 export default connect(props => ({
   item: `listApp.items.${props.itemId}`,
 }),
-  function User(props) {
+  function Item(props) {
     // check if item exists
     if (!R.pathOr(false, ['item'], props)) {
+      /**/console.error('\n%% ERROR item null \n');/* -debug- */
       return null;
     }
 
@@ -25,7 +26,7 @@ export default connect(props => ({
             style={styles.removeButton}
             onClick={() => signals.removeItemClicked({id: props.item.id})}
           >
-            remove
+            X
           </button>
         </div>
 

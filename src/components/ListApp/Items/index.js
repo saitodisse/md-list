@@ -12,7 +12,7 @@ export default connect({
     return (
       <div style={styles.itemsContainer}>
         {props.listKeys.map((itemId) => (
-          <Item {...this.props} itemId={itemId} />
+          <Item {...this.props} key={itemId} itemId={itemId} />
         ))}
       </div>
     );

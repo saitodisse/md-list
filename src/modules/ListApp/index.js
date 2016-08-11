@@ -2,6 +2,7 @@ import changeNewItemTitle from './chains/changeNewItemTitle';
 import submitNewItemTitle from './chains/submitNewItemTitle';
 import getDataFromServer from './chains/getDataFromServer';
 import removeItem from './chains/removeItem';
+import removeAllItems from './chains/removeAllItems';
 
 export default module => {
   module.addState({
@@ -19,5 +20,6 @@ export default module => {
     newItemTitleSubmitted: submitNewItemTitle,
     pageLoaded: getDataFromServer,
     removeItemClicked: removeItem,
+    removeAllItemsClicked: removeAllItems,
   });
 };

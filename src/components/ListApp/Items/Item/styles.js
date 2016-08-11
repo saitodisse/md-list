@@ -19,10 +19,13 @@ export default {
     fontSize: 12,
   },
   removeButton: {
-    border: '1px solid #E3E3E3',
     alignSelf: 'flex-end',
-    color: '#666',
+    cursor: 'pointer',
+    padding: 0,
+    paddingLeft: 3,
+    paddingRight: 3,
     fontSize: 12,
+    color: '#a55',
   },
 
 

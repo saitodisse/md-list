@@ -14,6 +14,7 @@ export default connect({
   newItemTitleChanged: 'listApp.newItemTitleChanged',
   pageLoaded: 'listApp.pageLoaded',
   removeItemClicked: 'listApp.removeItemClicked',
+  removeAllItemsClicked: 'listApp.removeAllItemsClicked',
 },
   class ListApp extends Component {
 
@@ -81,8 +82,16 @@ export default connect({
             {this.props.error}
           </div>
 
-
           <Items {...this.props}/>
+
+          <div style={styles.actionsContainer}>
+            <button
+              style={styles.actionsContainerButton}
+              onClick={this.props.removeAllItemsClicked}
+            >
+              remove all
+            </button>
+          </div>
 
         </div>
       );
