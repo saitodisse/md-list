@@ -1,6 +1,6 @@
 // import R from 'ramda';
 
-function removeItemFromServer({input, state, output, services}) {
+function removeItemFromServer({input, output, services}) {
   // const itemPath = `listApp.items.${input.id}`;
   // const item = state.get(itemPath);
   services.http.delete(`/items/${input.id}`)

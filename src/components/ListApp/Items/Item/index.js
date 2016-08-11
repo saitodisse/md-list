@@ -4,13 +4,15 @@ import styles from './styles';
 import R from 'ramda';
 
 export default connect(props => ({
-  item: `listApp.items.${props.itemId}`
+  item: `listApp.items.${props.itemId}`,
 }),
   function User(props) {
     // check if item exists
     if (!R.pathOr(false, ['item'], props)) {
       return null;
     }
+
+    const signals = props.signals.listApp;
 
     return (
       <div style={styles.itemContainer}>
@@ -21,7 +23,7 @@ export default connect(props => ({
           </div>
           <button
             style={styles.removeButton}
-            onClick={() => this.props.removeItemClicked(props.item.id)}
+            onClick={() => signals.removeItemClicked({id: props.item.id})}
           >
             remove
           </button>

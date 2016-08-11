@@ -7,6 +7,7 @@ The tutorial app for the Cerebral website
 ```sh
 # # json server
 # #  - http://localhost:3001/
+$ mv server/db-example.json server/db.json
 $ npm run server
 
 # # cerebral app
@@ -23,6 +24,6 @@ $ npm run client
 - [x] [validation] do not permit blank values
 - [x] [item] do not render item if is null
 - [x] [server] add a json server
-- [ ] [signals] delete item from server
+- [x] [signals] delete item from server
 - [ ] [signals] delete all items from server
 - [ ] [signals] update item from server

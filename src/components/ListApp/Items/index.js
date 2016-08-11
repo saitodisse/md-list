@@ -1,8 +1,8 @@
 import Inferno from 'inferno';
 import {connect} from 'cerebral-view-inferno';
 import styles from './styles';
-import itemsListComputed from '../../computed/itemsListComputed';
-import Item from '../Item';
+import itemsListComputed from '../../../computed/itemsListComputed';
+import Item from './Item';
 
 export default connect({
   items: 'listApp.items',
@@ -12,7 +12,7 @@ export default connect({
     return (
       <div style={styles.itemsContainer}>
         {props.listKeys.map((itemId) => (
-          <Item itemId={itemId} />
+          <Item {...this.props} itemId={itemId} />
         ))}
       </div>
     );

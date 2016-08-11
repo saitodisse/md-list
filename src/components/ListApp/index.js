@@ -1,7 +1,7 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
 import {connect} from 'cerebral-view-inferno';
-import Items from '../Items';
+import Items from './Items';
 import styles from './styles';
 import R from 'ramda';
 
@@ -82,7 +82,7 @@ export default connect({
           </div>
 
 
-          <Items />
+          <Items {...this.props}/>
 
         </div>
       );
