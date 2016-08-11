@@ -17,9 +17,9 @@ export default connect(props => ({
         <div style={styles.id}>
           {props.item.id && props.item.id.substring(0, 5)}
         </div>
-        <div style={styles.value}>
-          <span> {props.item.title}</span>
-        </div>
+        <pre style={styles.value}>
+          {props.item.title}
+        </pre>
         <div style={styles.isNew}>
           <span> {props.item.$isNew ? '(New)' : '(Old)'}</span>
         </div>

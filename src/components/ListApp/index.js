@@ -21,8 +21,13 @@ export default connect({
       }
     }
 
-    onFormSubmit(event) {
-      event.preventDefault();
+    _OnTextKeyDown = (event) => {
+      if (event.keyCode === 13 && event.ctrlKey) {
+        this._OnSubmit();
+      }
+    }
+
+    _OnSubmit = () => {
       const value = R.trim(this.props.newItemTitle);
       if (!R.isEmpty(value)) {
         this.props.newItemTitleSubmitted();
@@ -37,27 +42,33 @@ export default connect({
 
     render() {
       return (
-        <div>
+        <div style={styles.container}>
           <h1 style={styles.header}>
             List Add
           </h1>
-          <form
-            style={styles.container}
-            onSubmit={event => this.onFormSubmit(event)}
-          >
-            <input
+
+          <div style={styles.textContainer}>
+            <textarea
+              style={this.props.error ? styles.inputError : styles.input}
               autoFocus
               type="text"
-              style={this.props.error ? styles.inputError : styles.input}
               onAttached={node => {this.input = node;}}
               // disabled={this.props.isSaving}
               value={this.props.newItemTitle}
               onInput={event => this.onInputChange(event)}
+              onKeyDown={this._OnTextKeyDown}
             />
-            <div style={styles.error}>
-              {this.props.error}
-            </div>
-          </form>
+            <button
+              style={styles.button}
+              onClick={this._OnSubmit}
+            >
+              Send
+            </button>
+          </div>
+          <div style={styles.error}>
+            {this.props.error}
+          </div>
+
 
           <Items />
 

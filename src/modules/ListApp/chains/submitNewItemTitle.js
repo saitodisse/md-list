@@ -29,7 +29,7 @@ export default [
       // enabling the input again
       set('state:listApp.isSaving', false),
       // The item is not new anymore
-      ...delay(1000, [
+      ...delay(3000, [
         updateItemRemoveIsNew
       ]),
     ],

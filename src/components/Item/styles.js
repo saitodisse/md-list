@@ -1,27 +1,15 @@
 export default {
 
-  itemsContainer: {
-    display: 'flex',
-    flexDirection: 'row-reverse',
-    flexWrap: 'wrap-reverse',
-    alignItems: 'left',
-    marginTop: 20,
-    // justifyContent: 'space-around',
-    justifyContent: 'flex-start',
-    border: '1px solid #E3E3E3',
-  },
-
   item: {
     flex: '0 1 auto',
     flexDirection: 'row',
+    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
     // textAlign: 'center',
     // alignItems: 'center',
     // justifyContent: 'center',
     // padding: 20,
     border: '1px solid #E3E3E3',
-    margin: '10px 5px 10px 10px',
-    width: 100,
-    height: 100,
+    marginTop: 10,
   },
 
   id: {
@@ -33,14 +21,21 @@ export default {
   },
 
   value: {
-    flex: '0 1 auto',
-    textAlign: 'center',
-    flexGrow: 2,
-    marginTop: 40,
+    // textAlign: 'flex-start',
+    overflow: 'auto',
+    // width: '90%',
+    marginTop: 25,
+    marginBottom: 0,
     alignSelf: 'center',
-    // justifyContent: 'center',
-    // border: '1px solid #E3E3E3',
-    fontSize: 22,
+    marginLeft: 15,
+    marginRight: 30,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    // wordWrap: 'break-word',
+    // whiteSpace: 'pre-wrap',
+    maxWidth: 770,
+    fontSize: 18,
   },
 
   isNew: {
@@ -52,7 +47,8 @@ export default {
     // alignSelf: 'flex-end',
     // border: '1px solid #E3E3E3',
     color: '#666',
-    marginTop: 16,
+    // marginTop: 16,
+    marginBottom: 3,
     marginRight: 4,
     fontSize: 12,
   },
