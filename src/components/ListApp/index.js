@@ -3,6 +3,7 @@ import Component from 'inferno-component';
 import {connect} from 'cerebral-view-inferno';
 import Items from '../Items';
 import styles from './styles';
+import R from 'ramda';
 
 export default connect({
   newItemTitle: 'listApp.newItemTitle',
@@ -20,7 +21,10 @@ export default connect({
     }
     onFormSubmit(event) {
       event.preventDefault();
-      this.props.newItemTitleSubmitted();
+      const value = R.trim(this.props.newItemTitle);
+      if (!R.isEmpty(value)) {
+        this.props.newItemTitleSubmitted();
+      }
     }
     onInputChange(event) {
       this.props.newItemTitleChanged({

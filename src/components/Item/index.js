@@ -9,7 +9,7 @@ export default connect(props => ({
     return (
       <div style={styles.item}>
         <div style={styles.id}>
-          {props.item.id && props.item.id}
+          {props.item.id && props.item.id.substring(0, 5)}
         </div>
         <div style={styles.value}>
           <span> {props.item.title}</span>
