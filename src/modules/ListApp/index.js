@@ -1,8 +1,7 @@
-import changeNewItemTitle from './chains/changeNewItemTitle'
-import submitNewItemTitle from './chains/submitNewItemTitle'
+import changeNewItemTitle from './chains/changeNewItemTitle';
+import submitNewItemTitle from './chains/submitNewItemTitle';
 
 export default module => {
-
   module.addState({
     items: {},
     // /* -debug- */
@@ -30,7 +29,7 @@ export default module => {
     newItemTitle: '',
     isSaving: false,
     error: null
-  })
+  });
 
   module.addSignals({
     newItemTitleChanged: {
@@ -38,6 +37,5 @@ export default module => {
       immediate: true
     },
     newItemTitleSubmitted: submitNewItemTitle
-  })
-
-}
+  });
+};

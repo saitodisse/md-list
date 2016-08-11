@@ -1,7 +1,7 @@
-import Inferno from 'inferno'
-import Component from 'inferno-component'
-import {connect} from 'cerebral-view-inferno'
-import Items from '../Items'
+import Inferno from 'inferno';
+import Component from 'inferno-component';
+import {connect} from 'cerebral-view-inferno';
+import Items from '../Items';
 import styles from './styles';
 
 export default connect({
@@ -15,17 +15,17 @@ export default connect({
   class ListApp extends Component {
     componentDidUpdate(prevProps) {
       if (prevProps.isSaving && !this.props.isSaving) {
-        this.input.focus()
+        this.input.focus();
       }
     }
     onFormSubmit(event) {
-      event.preventDefault()
-      this.props.newItemTitleSubmitted()
+      event.preventDefault();
+      this.props.newItemTitleSubmitted();
     }
     onInputChange(event) {
       this.props.newItemTitleChanged({
         title: event.target.value
-      })
+      });
     }
     render() {
       return (
@@ -41,7 +41,7 @@ export default connect({
               autoFocus
               type="text"
               style={this.props.error ? styles.inputError : styles.input}
-              onAttached={node => this.input = node}
+              onAttached={node => {this.input = node;}}
               disabled={this.props.isSaving}
               value={this.props.newItemTitle}
               onInput={event => this.onInputChange(event)}
@@ -54,7 +54,7 @@ export default connect({
           <Items />
 
         </div>
-      )
+      );
     }
   }
-)
+);

@@ -1,5 +1,5 @@
-import {copy} from 'cerebral/operators'
+import {copy} from 'cerebral/operators';
 
 export default [
   copy('input:title', 'state:listApp.newItemTitle')
-]
+];

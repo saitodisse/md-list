@@ -1,8 +1,8 @@
-import Inferno from 'inferno'
-import {connect} from 'cerebral-view-inferno'
+import Inferno from 'inferno';
+import {connect} from 'cerebral-view-inferno';
 import styles from './styles';
-import itemsListComputed from '../../computed/itemsListComputed'
-import Item from '../Item'
+import itemsListComputed from '../../computed/itemsListComputed';
+import Item from '../Item';
 
 export default connect({
   items: 'listApp.items',
@@ -15,6 +15,6 @@ export default connect({
           <Item itemId={itemId} />
         ))}
       </div>
-    )
+    );
   }
-)
+);

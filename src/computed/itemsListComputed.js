@@ -1,4 +1,4 @@
-import {Computed} from 'cerebral'
+import {Computed} from 'cerebral';
 
 export default Computed({
   itemsList: 'listApp.items'

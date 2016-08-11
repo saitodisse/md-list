@@ -1,15 +1,15 @@
 import uuid from 'uuid';
 
-function addItem({input, state, output}) {
+function addItem({state, output}) {
   const newId = uuid.v4();
-  let newItem = {};
+  const newItem = {};
   newItem[newId] = {
     id: newId,
     title: state.get('listApp.newItemTitle'),
   };
 
   state.merge('listApp.items', newItem);
-  output({id: newId})
+  output({id: newId});
 }
 
-export default addItem
+export default addItem;

@@ -1,5 +1,5 @@
-import Inferno from 'inferno'
-import {connect} from 'cerebral-view-inferno'
+import Inferno from 'inferno';
+import {connect} from 'cerebral-view-inferno';
 import styles from './styles';
 
 export default connect(props => ({
@@ -18,6 +18,6 @@ export default connect(props => ({
           <span> {props.item.$isNew ? '(New)' : '(Old)'}</span>
         </div>
       </div>
-    )
+    );
   }
-)
+);

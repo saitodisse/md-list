@@ -4,10 +4,10 @@ function postItem({input, state, output, services}) {
 
   services.http.post('/items', item)
     .then(output.success)
-    .catch(output.error)
+    .catch(output.error);
 }
 
-postItem.async = true
+postItem.async = true;
 postItem.outputs = ['success', 'error'];
 
 export default postItem;

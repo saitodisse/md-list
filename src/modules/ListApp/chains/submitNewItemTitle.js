@@ -1,10 +1,10 @@
-import {set, delay} from 'cerebral/operators'
-import addItem from '../actions/addItem.js'
-import postItem from '../actions/postItem.js'
-import removeFailedItem from '../actions/removeFailedItem.js'
-import updateItem from '../actions/updateItem.js'
-import updateItemIsNew from '../actions/updateItemIsNew.js'
-import updateItemRemoveIsNew from '../actions/updateItemRemoveIsNew.js'
+import {set, delay} from 'cerebral/operators';
+import addItem from '../actions/addItem.js';
+import postItem from '../actions/postItem.js';
+import removeFailedItem from '../actions/removeFailedItem.js';
+import updateItem from '../actions/updateItem.js';
+import updateItemIsNew from '../actions/updateItemIsNew.js';
+import updateItemRemoveIsNew from '../actions/updateItemRemoveIsNew.js';
 
 export default [
   // First we optimistically add the item
@@ -44,4 +44,4 @@ export default [
       set('state:listApp.error', 'Adding item failed on server, removing it')
     ]
   },
-]
+];
