@@ -1,6 +1,7 @@
 function updateItem({input, state}) {
-  const lastIndex = state.get('listApp.items').length - 1;
-  state.merge(`listApp.items.${lastIndex}`, input.result)
+  const itemPath = `listApp.items.${input.id}`;
+  const item = state.get(itemPath);
+  state.merge(itemPath, {...item, $isSaved: true});
 }
 
 export default updateItem;

@@ -7,7 +7,7 @@ import styles from './styles';
 export default connect({
   newItemTitle: 'listApp.newItemTitle',
   isSaving: 'listApp.isSaving',
-  error: 'listApp.error'
+  error: 'listApp.error',
 }, {
   newItemTitleSubmitted: 'listApp.newItemTitleSubmitted',
   newItemTitleChanged: 'listApp.newItemTitleChanged'
@@ -50,7 +50,9 @@ export default connect({
               {this.props.error}
             </div>
           </form>
+
           <Items />
+
         </div>
       )
     }

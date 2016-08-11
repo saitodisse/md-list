@@ -25,8 +25,18 @@ export default [
       // We merge in the ID returned
       // from the server
       updateItem,
+      // The app goes back into normal state,
+      // enabling the input again
+      set('state:listApp.isSaving', false),
+      // The item is not new anymore
+      ...delay(1000, [
+        updateItemRemoveIsNew
+      ]),
     ],
     error: [
+      // The app goes back into normal state,
+      // enabling the input again
+      set('state:listApp.isSaving', false),
       // We remove the item since it
       // failed
       removeFailedItem,
@@ -34,11 +44,4 @@ export default [
       set('state:listApp.error', 'Adding item failed on server, removing it')
     ]
   },
-  // The app goes back into normal state,
-  // enabling the input again
-  set('state:listApp.isSaving', false),
-  // The item is not new anymore
-  ...delay(1000, [
-    updateItemRemoveIsNew
-  ]),
 ]

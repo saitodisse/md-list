@@ -1,5 +1,6 @@
-function postItem({state, output, services}) {
-  const item = state.get('listApp.items')[state.get('listApp.items').length - 1]
+function postItem({input, state, output, services}) {
+  const itemPath = `listApp.items.${input.id}`;
+  const item = state.get(itemPath);
 
   services.http.post('/items', item)
     .then(output.success)

@@ -4,7 +4,7 @@ import submitNewItemTitle from './chains/submitNewItemTitle'
 export default module => {
 
   module.addState({
-    items: [],
+    items: {},
     // /* -debug- */
     // items: [{
     //   title: "1",
