@@ -11,7 +11,8 @@ export default connect({
   error: 'listApp.error',
 }, {
   newItemTitleSubmitted: 'listApp.newItemTitleSubmitted',
-  newItemTitleChanged: 'listApp.newItemTitleChanged'
+  newItemTitleChanged: 'listApp.newItemTitleChanged',
+  pageLoaded: 'listApp.pageLoaded',
 },
   class ListApp extends Component {
 
@@ -19,6 +20,10 @@ export default connect({
       if (prevProps.isSaving && !this.props.isSaving) {
         this.input.focus();
       }
+    }
+
+    componentDidMount() {
+      this.props.pageLoaded();
     }
 
     _OnTextKeyDown = (event) => {

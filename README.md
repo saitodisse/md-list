@@ -1,5 +1,18 @@
 # cerebral-website-tutorial
+
 The tutorial app for the Cerebral website
+
+# run
+
+```sh
+# # json server
+# #  - http://localhost:3001/
+$ npm run server
+
+# # cerebral app
+# #  - http://localhost:3000/
+$ npm run client
+```
 
 # TODO
 
@@ -9,3 +22,4 @@ The tutorial app for the Cerebral website
 - [x] [isNew] update $IsNew by id, not by index
 - [x] [validation] do not permit blank values
 - [x] [item] do not render item if is null
+- [x] [server] add a json server

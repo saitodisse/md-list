@@ -12,7 +12,10 @@ controller.addModules({
 
   // service
   http: Http({
-    baseUrl: '/api'
+    baseUrl: '/api',
+    headers: {
+      'Content-Type': 'application/json'
+    },
   }),
 
   // plug-in
