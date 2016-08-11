@@ -1,7 +1,7 @@
 import {set, delay} from 'cerebral/operators';
 import addItem from '../actions/addItem.js';
 import postItem from '../actions/postItem.js';
-import removeFailedItem from '../actions/removeFailedItem.js';
+import removeItem from '../actions/removeItem.js';
 import updateItem from '../actions/updateItem.js';
 import updateItemIsNew from '../actions/updateItemIsNew.js';
 import updateItemRemoveIsNew from '../actions/updateItemRemoveIsNew.js';
@@ -39,7 +39,7 @@ export default [
       set('state:listApp.isSaving', false),
       // We remove the item since it
       // failed
-      removeFailedItem,
+      removeItem,
       // We set an error to display
       set('state:listApp.error', 'Adding item failed on server, removing it')
     ]

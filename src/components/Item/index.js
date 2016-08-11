@@ -13,13 +13,26 @@ export default connect(props => ({
     }
 
     return (
-      <div style={styles.item}>
-        <div style={styles.id}>
-          {props.item.id && props.item.id.substring(0, 5)}
+      <div style={styles.itemContainer}>
+
+        <div style={styles.topContainer}>
+          <div style={styles.id}>
+            {props.item.id && props.item.id}
+          </div>
+          <button
+            style={styles.removeButton}
+            onClick={() => this.props.removeItemClicked(props.item.id)}
+          >
+            remove
+          </button>
         </div>
-        <pre style={styles.value}>
-          {props.item.title}
-        </pre>
+
+        <div style={styles.valueContainer}>
+          <pre style={styles.value}>
+            {props.item.title}
+          </pre>
+        </div>
+
         <div style={styles.isNew}>
           <span> {props.item.$isNew ? '(New)' : '(Old)'}</span>
         </div>

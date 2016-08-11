@@ -13,6 +13,7 @@ export default connect({
   newItemTitleSubmitted: 'listApp.newItemTitleSubmitted',
   newItemTitleChanged: 'listApp.newItemTitleChanged',
   pageLoaded: 'listApp.pageLoaded',
+  removeItemClicked: 'listApp.removeItemClicked',
 },
   class ListApp extends Component {
 
@@ -48,21 +49,27 @@ export default connect({
     render() {
       return (
         <div style={styles.container}>
-          <h1 style={styles.header}>
+
+          <h1 style={styles.title}>
             List Add
           </h1>
 
-          <div style={styles.textContainer}>
-            <textarea
-              style={this.props.error ? styles.inputError : styles.input}
-              autoFocus
-              type="text"
-              onAttached={node => {this.input = node;}}
-              // disabled={this.props.isSaving}
-              value={this.props.newItemTitle}
-              onInput={event => this.onInputChange(event)}
-              onKeyDown={this._OnTextKeyDown}
-            />
+          <div style={styles.inputContainer}>
+
+            {/* http://stackoverflow.com/questions/13224520/css3-new-style-flexbox-fails-to-stretch-textarea-in-chrome */}
+            <div style={styles.textareaContainer}>
+              <textarea
+                style={this.props.error ? styles.textareaError : styles.textarea}
+                autoFocus
+                type="text"
+                onAttached={node => {this.input = node;}}
+                // disabled={this.props.isSaving}
+                value={this.props.newItemTitle}
+                onInput={event => this.onInputChange(event)}
+                onKeyDown={this._OnTextKeyDown}
+              />
+            </div>
+
             <button
               style={styles.button}
               onClick={this._OnSubmit}

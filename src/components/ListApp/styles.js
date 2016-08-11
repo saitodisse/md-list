@@ -1,41 +1,42 @@
 export default {
   container: {
     display: 'flex',
-    flex: '0 1 auto',
     flexDirection: 'column',
     flexWrap: 1,
-    alignItems: 'center',
     fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
     justifyContent: 'space-around',
     alignIitems: 'stretch',
+    marginLeft: 50,
+    marginRight: 50,
   },
 
-  header: {
+  title: {
     textAlign: 'center',
     flexGrow: 1,
     marginBottom: 10,
     fontSize: 60,
+    fontWeight: 'bold',
+    color: '#777',
   },
 
 
-  textContainer: {
+  inputContainer: {
     display: 'flex',
-    flex: '0 1 auto',
-    flexDirection: 'row',
-    flexWrap: 1,
-    alignItems: 'center',
-    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignIitems: 'stretch',
   },
 
-  input: {
-    width: 400,
+  textareaContainer: {
+    display: 'flex',
+    flexGrow: 1,
+  },
+  textarea: {
+    width: '100%',
     height: 60,
     fontSize: 16,
   },
-  inputError: {
-    width: 400,
+  textareaError: {
+    width: '100%',
     height: 60,
     fontSize: 16,
     borderColor: 'red',
@@ -44,7 +45,9 @@ export default {
     cursor: 'pointer',
     marginLeft: 20,
     padding: 10,
-    fontSize: 14,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#555',
   },
 
 
