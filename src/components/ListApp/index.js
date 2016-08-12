@@ -8,6 +8,7 @@ import R from 'ramda';
 export default connect({
   newItemTitle: 'listApp.newItemTitle',
   isSaving: 'listApp.isSaving',
+  currentItem: 'listApp.currentItem',
   error: 'listApp.error',
 }, {
   newItemTitleSubmitted: 'listApp.newItemTitleSubmitted',
@@ -15,6 +16,7 @@ export default connect({
   pageLoaded: 'listApp.pageLoaded',
   removeItemClicked: 'listApp.removeItemClicked',
   removeAllItemsClicked: 'listApp.removeAllItemsClicked',
+  itemIdClicked: 'listApp.itemIdClicked',
 },
   class ListApp extends Component {
 
@@ -78,6 +80,10 @@ export default connect({
               Send
             </button>
           </div>
+          <div style={styles.currentItem}>
+            id: {this.props.currentItem && this.props.currentItem.id}
+          </div>
+
           <div style={styles.error}>
             {this.props.error}
           </div>

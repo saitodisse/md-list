@@ -32,12 +32,10 @@ export default {
   },
   textarea: {
     width: '100%',
-    height: 60,
     fontSize: 16,
   },
   textareaError: {
     width: '100%',
-    height: 60,
     fontSize: 16,
     borderColor: 'red',
   },
@@ -56,6 +54,13 @@ export default {
     textAlign: 'center',
     fontSize: 14,
     marginTop: 10,
+  },
+
+  currentItem: {
+    color: '#999',
+    // textAlign: 'center',
+    fontSize: 12,
+    marginTop: 5,
   },
 
 

@@ -25,5 +25,5 @@ $ npm run client
 - [x] [item] do not render item if is null
 - [x] [server] add a json server
 - [x] [signals] delete item from server
-- [ ] [signals] delete all items from server
+- [x] [signals] delete all items from server
 - [ ] [signals] update item from server

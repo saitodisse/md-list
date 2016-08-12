@@ -17,6 +17,9 @@ export default {
   id: {
     color: '#666',
     fontSize: 12,
+    textDecoration: 'underline',
+    cursor: 'pointer',
+    marginLeft: 5,
   },
   removeButton: {
     alignSelf: 'flex-end',

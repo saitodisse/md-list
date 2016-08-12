@@ -19,7 +19,10 @@ export default connect(props => ({
       <div style={styles.itemContainer}>
 
         <div style={styles.topContainer}>
-          <div style={styles.id}>
+          <div
+            onClick={() => signals.itemIdClicked({id: props.item.id})}
+            style={styles.id}
+          >
             {props.item.id && props.item.id}
           </div>
           <button
