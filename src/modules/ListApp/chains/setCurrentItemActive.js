@@ -1,7 +1,7 @@
 import {copy} from 'cerebral/operators';
-import setCurrentItem from '../actions/setCurrentItem';
+import toggleCurrentItem from '../actions/toggleCurrentItem';
 
 export default [
-  setCurrentItem,
+  toggleCurrentItem,
   copy('state:listApp.currentItem.title', 'state:listApp.newItemTitle'),
 ];

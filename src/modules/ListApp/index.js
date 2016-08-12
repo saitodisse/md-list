@@ -11,7 +11,7 @@ export default module => {
     newItemTitle: '',
     isSaving: false,
     error: null,
-    currentItem: null,
+    currentItem: {title: ''},
   });
 
   module.addSignals({
