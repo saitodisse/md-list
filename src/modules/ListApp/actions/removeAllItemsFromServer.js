@@ -6,11 +6,9 @@ function removeItemFromServer({state, output, services}) {
   const promisesArray = R.map((pair) => pair[1], R.toPairs(promises));
   Promise.all(promisesArray)
     .then((result) => {
-      /**/console.log({result});/* -debug- */
       return output.success(result);
     })
     .catch((err) => {
-      /**/console.log({err});/* -debug- */
       return output.error(err);
     });
 }

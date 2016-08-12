@@ -6,17 +6,17 @@ import styles from './styles';
 import R from 'ramda';
 
 export default connect({
-  newItemTitle: 'listApp.newItemTitle',
   isSaving: 'listApp.isSaving',
   currentItem: 'listApp.currentItem',
   error: 'listApp.error',
 }, {
   newItemTitleSubmitted: 'listApp.newItemTitleSubmitted',
+  updateItemTitleSubmitted: 'listApp.updateItemTitleSubmitted',
   newItemTitleChanged: 'listApp.newItemTitleChanged',
   pageLoaded: 'listApp.pageLoaded',
   removeItemClicked: 'listApp.removeItemClicked',
   removeAllItemsClicked: 'listApp.removeAllItemsClicked',
-  itemIdClicked: 'listApp.itemIdClicked',
+  itemClicked: 'listApp.itemClicked',
 },
   class ListApp extends Component {
 
@@ -31,16 +31,26 @@ export default connect({
     }
 
     _OnTextKeyDown = (event) => {
-      if (event.keyCode === 13 && event.ctrlKey) {
+      if (event.keyCode === 13 && !event.shiftKey) {
+        event.preventDefault();
         this._OnSubmit();
       }
     }
 
     _OnSubmit = () => {
-      const value = R.trim(this.props.newItemTitle);
-      if (!R.isEmpty(value)) {
-        this.props.newItemTitleSubmitted();
+      const value = R.trim(this.props.currentItem.title);
+      const hasValue = !R.isEmpty(value);
+      const isUpdating = !R.isNil(this.props.currentItem.id);
+      if (hasValue) {
+        if (isUpdating) {
+          this.props.updateItemTitleSubmitted({
+            id: this.props.currentItem.id
+          });
+        } else {
+          this.props.newItemTitleSubmitted();
+        }
       }
+      this.input.focus();
     }
 
     onInputChange(event) {
@@ -67,7 +77,7 @@ export default connect({
                 type="text"
                 onAttached={node => {this.input = node;}}
                 // disabled={this.props.isSaving}
-                value={this.props.newItemTitle}
+                value={this.props.currentItem.title}
                 onInput={event => this.onInputChange(event)}
                 onKeyDown={this._OnTextKeyDown}
               />

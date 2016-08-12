@@ -1,3 +1,19 @@
+const valueStyle = {
+  cursor: 'pointer',
+  overflow: 'auto',
+  marginTop: 5,
+  marginBottom: 0,
+  alignSelf: 'flex-start',
+  marginLeft: 15,
+  marginRight: 15,
+  padding: 5,
+  borderStyle: 'solid',
+  borderWidth: 1,
+  borderColor: '#ddd',
+  width: '100%',
+  fontSize: 16,
+};
+
 export default {
 
   itemContainer: {
@@ -37,18 +53,12 @@ export default {
     justifyContent: 'space-between',
   },
   value: {
-    overflow: 'auto',
-    marginTop: 5,
-    marginBottom: 0,
-    alignSelf: 'flex-start',
-    marginLeft: 15,
-    marginRight: 15,
-    padding: 5,
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: '#ddd',
-    width: '100%',
-    fontSize: 18,
+    ...valueStyle
+  },
+
+  valueSelected: {
+    ...valueStyle,
+    backgroundColor: '#dfd',
   },
 
   isNew: {

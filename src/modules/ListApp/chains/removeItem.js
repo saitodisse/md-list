@@ -8,6 +8,8 @@ export default [
   removeItemFromServer, {
     success: [
       set('state:listApp.isSaving', false),
+      // Clear current item
+      set('state:listApp.currentItem', {title: ''}),
     ],
     error: [
       set('state:listApp.isSaving', false),

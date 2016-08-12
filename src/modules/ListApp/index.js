@@ -1,5 +1,6 @@
 import changeNewItemTitle from './chains/changeNewItemTitle';
 import submitNewItemTitle from './chains/submitNewItemTitle';
+import submitUpdateItemTitle from './chains/submitUpdateItemTitle';
 import getDataFromServer from './chains/getDataFromServer';
 import removeItem from './chains/removeItem';
 import removeAllItems from './chains/removeAllItems';
@@ -8,7 +9,6 @@ import setCurrentItemActive from './chains/setCurrentItemActive';
 export default module => {
   module.addState({
     items: {},
-    newItemTitle: '',
     isSaving: false,
     error: null,
     currentItem: {title: ''},
@@ -20,9 +20,10 @@ export default module => {
       immediate: true
     },
     newItemTitleSubmitted: submitNewItemTitle,
+    updateItemTitleSubmitted: submitUpdateItemTitle,
     pageLoaded: getDataFromServer,
     removeItemClicked: removeItem,
     removeAllItemsClicked: removeAllItems,
-    itemIdClicked: setCurrentItemActive,
+    itemClicked: setCurrentItemActive,
   });
 };

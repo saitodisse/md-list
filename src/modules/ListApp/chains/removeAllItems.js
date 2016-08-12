@@ -9,6 +9,8 @@ export default [
       // enabling the input again
       set('state:listApp.isSaving', false),
       removeAllItems,
+      // Clear current item
+      set('state:listApp.currentItem', {title: ''}),
     ],
     error: [
       // The app goes back into normal state,
