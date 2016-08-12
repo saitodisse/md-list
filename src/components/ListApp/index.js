@@ -110,8 +110,13 @@ export default connect({
               Send
             </button>
           </div>
-          <div style={styles.currentItem}>
-            id: {this.props.currentItem.id ? this.props.currentItem.id : 'new item'}
+          <div style={styles.bellowTextareaContainer}>
+            <div style={styles.currentItem}>
+              id: {this.props.currentItem.id ? this.props.currentItem.id : 'new item'}
+            </div>
+            <div style={styles.shortcuts}>
+              Ctrl + Enter (send)
+            </div>
           </div>
 
           <div style={styles.error}>

@@ -53,6 +53,7 @@ export default {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#555',
+    alignSelf: 'flex-end',
   },
 
 
@@ -63,9 +64,21 @@ export default {
     marginTop: 10,
   },
 
+
+  bellowTextareaContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
   currentItem: {
+    flexGrow: 1,
     color: '#999',
-    // textAlign: 'center',
+    fontSize: 12,
+    marginTop: 5,
+  },
+  shortcuts: {
+    color: '#999',
     fontSize: 12,
     marginTop: 5,
   },

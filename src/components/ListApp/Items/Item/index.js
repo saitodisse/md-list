@@ -3,7 +3,11 @@ import {connect} from 'cerebral-view-inferno';
 import styles from './styles';
 import R from 'ramda';
 import marked from 'marked';
+import highlight from 'highlight.js';
 
+// Highlight Code
+require('!style!css!highlight.js/styles/foundation.css');
+require('!style!css!./styles.css');
 marked.setOptions({
   renderer: new marked.Renderer(),
   gfm: true,
@@ -12,7 +16,10 @@ marked.setOptions({
   pedantic: false,
   sanitize: true,
   smartLists: true,
-  smartypants: false
+  smartypants: false,
+  highlight: (code) => {
+    return highlight.highlightAuto(code).value;
+  }
 });
 
 export default connect(props => ({
