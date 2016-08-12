@@ -3,7 +3,8 @@ export default {
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 1,
-    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: 16,
     justifyContent: 'space-around',
     alignIitems: 'stretch',
     marginLeft: 50,
@@ -87,7 +88,7 @@ export default {
   actionsContainer: {
     display: 'flex',
     flexDirection: 'row',
-    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+    fontFamily: "'Roboto', sans-serif",
     justifyContent: 'flex-end',
     alignIitems: 'flex-end',
     marginTop: 10,

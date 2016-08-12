@@ -1,6 +1,6 @@
 const itemContainerStyle = {
   flexDirection: 'row',
-  fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+  fontFamily: "'Roboto', sans-serif",
   border: '1px solid #E3E3E3',
   marginTop: 10,
 };
