@@ -81,7 +81,7 @@ export default connect({
             </button>
           </div>
           <div style={styles.currentItem}>
-            id: {this.props.currentItem && this.props.currentItem.id}
+            id: {this.props.currentItem.id ? this.props.currentItem.id : 'new item'}
           </div>
 
           <div style={styles.error}>
