@@ -1,7 +1,7 @@
 {
   "name": "cerebral-website-tutorial-next",
-  "version": "0.1.0",
-  "description": "Example app for Cerebral website tutorial",
+  "version": "0.2.0",
+  "description": "MD list (example app for Cerebral website tutorial)",
   "main": "index.js",
   "scripts": {
     "client": "webpack-dev-server",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cerebral/cerebral-website-tutorial-next.git"
+    "url": "git+https://github.com/saitodisse/cerebral-website-tutorial-next.git"
   },
   "author": "Julio Makdisse Saito",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cerebral/cerebral-website-tutorial-next/issues"
+    "url": "https://github.com/saitodisse/cerebral-website-tutorial-next/issues"
   },
-  "homepage": "https://github.com/cerebral/cerebral-website-tutorial-next#readme",
+  "homepage": "https://github.com/saitodisse/cerebral-website-tutorial-next#readme",
   "dependencies": {
     "autosize": "^3.0.17",
     "babel-loader": "^6.2.4",
