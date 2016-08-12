@@ -9,7 +9,7 @@ export default [
     success: [
       set('state:listApp.isSaving', false),
       // Clear current item
-      set('state:listApp.currentItem', {title: ''}),
+      set('state:listApp.currentItem.id', null),
     ],
     error: [
       set('state:listApp.isSaving', false),

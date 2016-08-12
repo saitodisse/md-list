@@ -28,15 +28,22 @@ export default {
 
   textareaContainer: {
     display: 'flex',
+    flexDirection: 'column',
     flexGrow: 1,
   },
   textarea: {
+    boxSizing: 'border-box',
+    height: '100%',
+    flexGrow: 1,
     width: '100%',
     fontSize: 16,
+    padding: 10,
   },
   textareaError: {
+    flexGrow: 1,
     width: '100%',
     fontSize: 16,
+    padding: 10,
     borderColor: 'red',
   },
   button: {

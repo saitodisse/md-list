@@ -4,6 +4,7 @@ import {connect} from 'cerebral-view-inferno';
 import Items from './Items';
 import styles from './styles';
 import R from 'ramda';
+import autosize from 'autosize';
 
 export default connect({
   isSaving: 'listApp.isSaving',
@@ -14,15 +15,29 @@ export default connect({
   updateItemTitleSubmitted: 'listApp.updateItemTitleSubmitted',
   newItemTitleChanged: 'listApp.newItemTitleChanged',
   pageLoaded: 'listApp.pageLoaded',
+  itemClicked: 'listApp.itemClicked',
   removeItemClicked: 'listApp.removeItemClicked',
   removeAllItemsClicked: 'listApp.removeAllItemsClicked',
-  itemClicked: 'listApp.itemClicked',
 },
   class ListApp extends Component {
 
+    static autosizeLoaded = false;
+
     componentDidUpdate(prevProps) {
+      // focus after server actions
       if (prevProps.isSaving && !this.props.isSaving) {
-        this.input.focus();
+        this.textarea.focus();
+      }
+
+      // load autosize for the first time
+      if (this.textarea && !this.autosizeLoaded) {
+        autosize(this.textarea);
+        this.autosizeLoaded = true;
+      }
+
+      // update when currentItem changes
+      if (prevProps.currentItem.id !== this.props.currentItem.id) {
+        autosize.update(this.textarea);
       }
     }
 
@@ -31,7 +46,7 @@ export default connect({
     }
 
     _OnTextKeyDown = (event) => {
-      if (event.keyCode === 13 && !event.shiftKey) {
+      if (event.keyCode === 13 && event.ctrlKey) {
         event.preventDefault();
         this._OnSubmit();
       }
@@ -50,7 +65,11 @@ export default connect({
           this.props.newItemTitleSubmitted();
         }
       }
-      this.input.focus();
+      this.textarea.focus();
+
+      // update textarea size
+      this.textarea.value = '';
+      autosize.update(this.textarea);
     }
 
     onInputChange(event) {
@@ -64,7 +83,7 @@ export default connect({
         <div style={styles.container}>
 
           <h1 style={styles.title}>
-            List Add
+            MD list
           </h1>
 
           <div style={styles.inputContainer}>
@@ -72,11 +91,12 @@ export default connect({
             {/* http://stackoverflow.com/questions/13224520/css3-new-style-flexbox-fails-to-stretch-textarea-in-chrome */}
             <div style={styles.textareaContainer}>
               <textarea
+                id="my_textarea"
                 style={this.props.error ? styles.textareaError : styles.textarea}
                 autoFocus
                 type="text"
-                onAttached={node => {this.input = node;}}
-                // disabled={this.props.isSaving}
+                onAttached={node => {this.textarea = node;}}
+                disabled={this.props.isSaving}
                 value={this.props.currentItem.title}
                 onInput={event => this.onInputChange(event)}
                 onKeyDown={this._OnTextKeyDown}

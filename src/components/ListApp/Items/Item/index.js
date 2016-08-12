@@ -2,6 +2,18 @@ import Inferno from 'inferno';
 import {connect} from 'cerebral-view-inferno';
 import styles from './styles';
 import R from 'ramda';
+import marked from 'marked';
+
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+});
 
 export default connect(props => ({
   item: `listApp.items.${props.itemId}`,
@@ -14,21 +26,19 @@ export default connect(props => ({
     }
 
     const signals = props.signals.listApp;
-    const isCurrentItem = (props.currentItem.id === props.item.id);
-    const valueStyle = isCurrentItem ? styles.valueSelected : styles.value;
+
+    const $isCurrentItem = (props.currentItem.id === props.item.id);
+    const valueStyle = $isCurrentItem ? styles.valueSelected : styles.value;
+
+    const $isNewItem = props.item.$isNew;
+    const itemStyle = $isNewItem ? styles.itemNewContainer : styles.itemContainer;
+
+    function renderMarkdown() { return {__html: marked(props.item.title)}; }
 
     return (
-      <div style={styles.itemContainer}>
+      <div style={itemStyle}>
 
         <div style={styles.topContainer}>
-          {/* ID */}
-          <div
-            style={styles.id}
-            onClick={() => signals.itemClicked({id: props.item.id})}
-          >
-            {props.item.id && props.item.id}
-          </div>
-          {/* remove button */}
           <button
             style={styles.removeButton}
             onClick={() => signals.removeItemClicked({id: props.item.id})}
@@ -37,20 +47,12 @@ export default connect(props => ({
           </button>
         </div>
 
-        {/* title */}
         <div
-          style={styles.valueContainer}
+          style={valueStyle}
           onClick={() => signals.itemClicked({id: props.item.id})}
-        >
-          <pre style={valueStyle}>
-            {props.item.title}
-          </pre>
-        </div>
+          dangerouslySetInnerHTML={renderMarkdown()}
+        / >
 
-        {/* isNew badge */}
-        <div style={styles.isNew}>
-          <span> {props.item.$isNew ? '(New)' : '(Old)'}</span>
-        </div>
       </div>
     );
   }

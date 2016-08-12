@@ -10,7 +10,7 @@ export default [
       set('state:listApp.isSaving', false),
       removeAllItems,
       // Clear current item
-      set('state:listApp.currentItem', {title: ''}),
+      set('state:listApp.currentItem.id', null),
     ],
     error: [
       // The app goes back into normal state,

@@ -21,7 +21,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Cerebral demo application',
+      title: 'MD list',
       template: path.resolve('src', 'index.template.ejs'),
       inject: 'body'
     }),

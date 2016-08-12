@@ -26,4 +26,4 @@ $ npm run client
 - [x] [server] add a json server
 - [x] [signals] delete item from server
 - [x] [signals] delete all items from server
-- [ ] [signals] update item from server
+- [x] [signals] update item from server
