@@ -5,10 +5,12 @@ import Items from './Items';
 import styles from './styles';
 import R from 'ramda';
 import autosize from 'autosize';
+import itemsListCountComputed from '../../computed/itemsListCountComputed';
 
 export default connect({
   isSaving: 'listApp.isSaving',
   currentItem: 'listApp.currentItem',
+  itemsCount: itemsListCountComputed(),
   error: 'listApp.error',
 }, {
   newItemTitleSubmitted: 'listApp.newItemTitleSubmitted',
@@ -39,6 +41,28 @@ export default connect({
       if (prevProps.currentItem.id !== this.props.currentItem.id) {
         autosize.update(this.textarea);
       }
+
+      if (this.props.itemsCount > prevProps.itemsCount) {
+        // /**/console.log({messagesNode: this.messagesNode});/* -debug- */
+        const node = this.messagesNode;
+        /**/console.log({scrollTop: node.scrollTop});/* -debug- */
+        /**/console.log({offsetHeight: node.offsetHeight});/* -debug- */
+        /**/console.log({scrollHeight: node.scrollHeight});/* -debug- */
+
+        setTimeout(() => {
+          /**/console.log({scrollHeight: node.scrollHeight});/* -debug- */
+        }, 1000);
+
+        window.nnn = node;
+        node.scrollTop = node.scrollHeight;
+        // node.scrollTop + node.offsetHeight === node.scrollHeight;
+        // this.messagesNode.scrollTop = this.messagesNode.scrollHeight;
+          // /**/console.log({itemsCount: this.props.itemsCount});/* -debug- */
+      }
+    }
+
+    componentWillMount() {
+
     }
 
     componentDidMount() {
@@ -88,7 +112,7 @@ export default connect({
             </h3>
           </div>
 
-          <div style={styles.messages}>
+          <div style={styles.messages} onAttached={node => {this.messagesNode = node;}}>
             <Items {...this.props}/>
           </div>
 
@@ -127,6 +151,9 @@ export default connect({
             </div>
 
             <div style={styles.bellowTextareaContainer}>
+              <div style={styles.itemsCount}>
+                count: { this.props.itemsCount }
+              </div>
               <div style={styles.currentItem}>
                 id: {this.props.currentItem.id ? this.props.currentItem.id : 'new item'}
               </div>

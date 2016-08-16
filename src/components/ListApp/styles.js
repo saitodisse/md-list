@@ -88,6 +88,12 @@ export default {
     justifyContent: 'space-between',
     marginTop: 10,
   },
+  itemsCount: {
+    flexGrow: 0,
+    color: '#999',
+    fontSize: 12,
+    marginTop: 5,
+  },
   currentItem: {
     flexGrow: 1,
     color: '#999',
