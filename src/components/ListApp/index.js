@@ -82,12 +82,22 @@ export default connect({
       return (
         <div style={styles.container}>
 
-          <h1 style={styles.title}>
+          <h3 style={styles.title}>
             MD list
-          </h1>
+          </h3>
+
+          <Items {...this.props}/>
+
+          <div style={styles.actionsContainer}>
+            <button
+              style={styles.actionsContainerButton}
+              onClick={this.props.removeAllItemsClicked}
+            >
+              remove all
+            </button>
+          </div>
 
           <div style={styles.inputContainer}>
-
             {/* http://stackoverflow.com/questions/13224520/css3-new-style-flexbox-fails-to-stretch-textarea-in-chrome */}
             <div style={styles.textareaContainer}>
               <textarea
@@ -109,29 +119,19 @@ export default connect({
             >
               Send
             </button>
-          </div>
-          <div style={styles.bellowTextareaContainer}>
-            <div style={styles.currentItem}>
-              id: {this.props.currentItem.id ? this.props.currentItem.id : 'new item'}
+
+            <div style={styles.bellowTextareaContainer}>
+              <div style={styles.currentItem}>
+                id: {this.props.currentItem.id ? this.props.currentItem.id : 'new item'}
+              </div>
+              <div style={styles.shortcuts}>
+                Ctrl + Enter (send)
+              </div>
             </div>
-            <div style={styles.shortcuts}>
-              Ctrl + Enter (send)
+
+            <div style={styles.error}>
+              {this.props.error}
             </div>
-          </div>
-
-          <div style={styles.error}>
-            {this.props.error}
-          </div>
-
-          <Items {...this.props}/>
-
-          <div style={styles.actionsContainer}>
-            <button
-              style={styles.actionsContainerButton}
-              onClick={this.props.removeAllItemsClicked}
-            >
-              remove all
-            </button>
           </div>
 
         </div>

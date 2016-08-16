@@ -5,7 +5,6 @@ import {Container} from 'cerebral-view-inferno';
 import controller from './controller';
 import ListApp from './components/ListApp';
 
-
 render((
   <Container controller={controller}>
     <ListApp />

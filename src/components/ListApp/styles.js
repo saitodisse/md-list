@@ -15,7 +15,7 @@ export default {
     textAlign: 'center',
     flexGrow: 1,
     marginBottom: 10,
-    fontSize: 60,
+    // fontSize: 60,
     fontWeight: 'bold',
     color: '#777',
   },
