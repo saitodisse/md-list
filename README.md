@@ -27,3 +27,9 @@ $ npm run client
 - [x] [signals] delete item from server
 - [x] [signals] delete all items from server
 - [x] [signals] update item from server
+- [ ] [scroll] scroll when first load
+- [ ] [scroll] scroll after new item
+- [ ] [shortcut] ESC cancel insert new item
+- [ ] [shortcut] ESC cancel editing
+- [ ] [shortcut] up/down arrows goes up/down when no data on textarea
+- [ ] [shortcut] page up/down arrows goes up/down when no data on textarea
