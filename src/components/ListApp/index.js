@@ -43,27 +43,16 @@ export default connect({
       }
 
       if (this.props.itemsCount > prevProps.itemsCount) {
-        // /**/console.log({messagesNode: this.messagesNode});/* -debug- */
-        const node = this.messagesNode;
-        /**/console.log({scrollTop: node.scrollTop});/* -debug- */
-        /**/console.log({offsetHeight: node.offsetHeight});/* -debug- */
-        /**/console.log({scrollHeight: node.scrollHeight});/* -debug- */
-
-        setTimeout(() => {
-          /**/console.log({scrollHeight: node.scrollHeight});/* -debug- */
-        }, 1000);
-
-        window.nnn = node;
-        node.scrollTop = node.scrollHeight;
-        // node.scrollTop + node.offsetHeight === node.scrollHeight;
-        // this.messagesNode.scrollTop = this.messagesNode.scrollHeight;
-          // /**/console.log({itemsCount: this.props.itemsCount});/* -debug- */
+        window.requestAnimationFrame(() => {
+          const node = this.messagesNode;
+          node.scrollTop = node.scrollHeight;
+          if (node !== undefined) {
+            node.scrollTop = node.scrollHeight;
+          }
+        });
       }
     }
 
-    componentWillMount() {
-
-    }
 
     componentDidMount() {
       this.props.pageLoaded();

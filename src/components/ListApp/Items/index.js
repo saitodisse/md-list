@@ -10,6 +10,14 @@ export default connect({
   listKeys: itemsListComputed(),
 },
   class Items extends Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        srollToCalled: false,
+      };
+    }
+
     render() {
       return (
         <div style={styles.itemsContainer}>

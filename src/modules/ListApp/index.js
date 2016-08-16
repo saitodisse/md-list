@@ -5,7 +5,6 @@ import getDataFromServer from './chains/getDataFromServer';
 import removeItem from './chains/removeItem';
 import removeAllItems from './chains/removeAllItems';
 import setCurrentItemActive from './chains/setCurrentItemActive';
-import setItemRendered from './chains/setItemRendered';
 
 export default module => {
   module.addState({
@@ -26,6 +25,5 @@ export default module => {
     removeItemClicked: removeItem,
     removeAllItemsClicked: removeAllItems,
     itemClicked: setCurrentItemActive,
-    itemRendered: setItemRendered,
   });
 };

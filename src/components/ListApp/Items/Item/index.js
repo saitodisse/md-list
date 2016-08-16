@@ -14,7 +14,6 @@ export default connect(props => ({
 }), {
   itemClicked: 'listApp.itemClicked',
   removeItemClicked: 'listApp.removeItemClicked',
-  itemRendered: 'listApp.itemRendered',
 },
   class Item extends Component {
     constructor(props) {
@@ -38,13 +37,7 @@ export default connect(props => ({
       this.state = {};
     }
 
-    componentDidMount() {
-      /**/console.log({time_after_: (new Date()).getTime()});/* -debug- */
-      this.props.itemRendered({id: this.props.item.id});
-    }
-
     renderMarkdown = () => {
-      /**/console.log({time_before: (new Date()).getTime()});/* -debug- */
       const mdHtml = marked(String(this.props.item.title));
       return {__html: mdHtml};
     }
