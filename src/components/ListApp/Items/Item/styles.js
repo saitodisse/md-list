@@ -6,20 +6,33 @@ const itemContainerStyle = {
 };
 
 const valueStyle = {
-  cursor: 'pointer',
   flexShrink: 1,
   overflow: 'auto',
 
-  padding: 5,
-  margin: 11,
+  padding: 3,
+  marginLeft: 11,
 
-  borderStyle: 'solid',
-  borderWidth: 1,
-  borderColor: '#ddd',
+  // borderStyle: 'solid',
+  // borderWidth: 1,
+  // borderColor: '#ddd',
   fontSize: 16,
 };
 
+const noSelect = {
+  userSelect: 'none',
+  MozUserSelect: 'none',
+  WebkitUserSelect: 'none',
+  msUserSelect: 'none',
+};
+
 export default {
+
+  messageContainer: {
+    flexDirection: 'row',
+    fontFamily: "'Roboto', sans-serif",
+    // border: '1px solid #E3E3E3',
+    // marLeftginTop: 10,
+  },
 
   itemContainer: {
     ...itemContainerStyle,
@@ -31,21 +44,6 @@ export default {
   },
 
 
-  topContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  removeButton: {
-    alignSelf: 'flex-end',
-    cursor: 'pointer',
-    padding: 0,
-    paddingLeft: 2,
-    paddingRight: 2,
-    fontSize: 10,
-    color: '#a55',
-  },
-
-
   value: {
     ...valueStyle,
     backgroundColor: '#fff',
@@ -54,6 +52,27 @@ export default {
   valueSelected: {
     ...valueStyle,
     backgroundColor: '#dfd',
+  },
+
+  buttonsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  editButton: {
+    fontSize: 12,
+    cursor: 'pointer',
+    textDecoration: 'underline',
+    color: '#777',
+    ...noSelect,
+  },
+  deleteButton: {
+    marginLeft: 10,
+    fontSize: 12,
+    cursor: 'pointer',
+    textDecoration: 'underline',
+    color: '#a77',
+    ...noSelect,
   },
 
 };
