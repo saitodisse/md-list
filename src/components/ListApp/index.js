@@ -97,6 +97,34 @@ export default connect({
       if (e.keyCode === 27) {
         this.props.editCanceled();
       }
+      /**/console.log({keyCode: e.keyCode});/* -debug- */
+      if (this.props.currentItem.title.length === 0) {
+        // UP
+        if (e.keyCode === 38 || e.keyCode === 104) {
+          window.requestAnimationFrame(() => {
+            this.messagesNode.scrollTop = this.messagesNode.scrollTop - 30;
+          });
+        }
+        // PAGE UP
+        if (e.keyCode === 33) {
+          window.requestAnimationFrame(() => {
+            this.messagesNode.scrollTop = this.messagesNode.scrollTop - this.messagesNode.offsetHeight;
+          });
+        }
+
+        // DOWN
+        if (e.keyCode === 40 || e.keyCode === 98) {
+          window.requestAnimationFrame(() => {
+            this.messagesNode.scrollTop = this.messagesNode.scrollTop + 30;
+          });
+        }
+        // PAGE DOWN
+        if (e.keyCode === 34) {
+          window.requestAnimationFrame(() => {
+            this.messagesNode.scrollTop = this.messagesNode.scrollTop + this.messagesNode.offsetHeight;
+          });
+        }
+      }
     }
 
     render() {

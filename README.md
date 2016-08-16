@@ -31,5 +31,5 @@ $ npm run client
 - [x] [scroll] scroll after new item
 - [x] [shortcut] ESC cancel insert new item
 - [x] [shortcut] ESC cancel editing
-- [ ] [shortcut] up/down arrows goes up/down when no data on textarea
-- [ ] [shortcut] page up/down arrows goes up/down when no data on textarea
+- [x] [shortcut] up/down arrows goes up/down when no data on textarea
+- [x] [shortcut] page up/down arrows goes up/down when no data on textarea
