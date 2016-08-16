@@ -82,43 +82,49 @@ export default connect({
       return (
         <div style={styles.container}>
 
-          <h3 style={styles.title}>
-            MD list
-          </h3>
-
-          <Items {...this.props}/>
-
-          <div style={styles.actionsContainer}>
-            <button
-              style={styles.actionsContainerButton}
-              onClick={this.props.removeAllItemsClicked}
-            >
-              remove all
-            </button>
+          <div style={styles.title}>
+            <h3>
+              MD list
+            </h3>
           </div>
 
-          <div style={styles.inputContainer}>
-            {/* http://stackoverflow.com/questions/13224520/css3-new-style-flexbox-fails-to-stretch-textarea-in-chrome */}
-            <div style={styles.textareaContainer}>
-              <textarea
-                id="my_textarea"
-                style={this.props.error ? styles.textareaError : styles.textarea}
-                autoFocus
-                type="text"
-                onAttached={node => {this.textarea = node;}}
-                disabled={this.props.isSaving}
-                value={this.props.currentItem.title}
-                onInput={event => this.onInputChange(event)}
-                onKeyDown={this._OnTextKeyDown}
-              />
+          <div style={styles.messages}>
+            <Items {...this.props}/>
+          </div>
+
+          <div style={styles.input}>
+            <div style={styles.actionsContainer}>
+              <button
+                style={styles.actionsContainerButton}
+                onClick={this.props.removeAllItemsClicked}
+              >
+                remove all
+              </button>
             </div>
 
-            <button
-              style={styles.button}
-              onClick={this._OnSubmit}
-            >
-              Send
-            </button>
+            <div style={styles.inputContainer}>
+              {/* http://stackoverflow.com/questions/13224520/css3-new-style-flexbox-fails-to-stretch-textarea-in-chrome */}
+              <div style={styles.textareaContainer}>
+                <textarea
+                  id="my_textarea"
+                  style={this.props.error ? styles.textareaError : styles.textarea}
+                  autoFocus
+                  type="text"
+                  onAttached={node => {this.textarea = node;}}
+                  disabled={this.props.isSaving}
+                  value={this.props.currentItem.title}
+                  onInput={event => this.onInputChange(event)}
+                  onKeyDown={this._OnTextKeyDown}
+                />
+              </div>
+
+              <button
+                style={styles.button}
+                onClick={this._OnSubmit}
+              >
+                Send
+              </button>
+            </div>
 
             <div style={styles.bellowTextareaContainer}>
               <div style={styles.currentItem}>

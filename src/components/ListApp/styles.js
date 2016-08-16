@@ -1,25 +1,41 @@
 export default {
   container: {
     display: 'flex',
+    height: '100%',
     flexDirection: 'column',
-    flexWrap: 1,
     fontFamily: "'Roboto', sans-serif",
     fontSize: 16,
-    justifyContent: 'space-around',
-    alignIitems: 'stretch',
-    marginLeft: 50,
-    marginRight: 50,
+    marginLeft: 10,
+    marginRight: 10,
+    overflowY: 'none',
   },
 
   title: {
     textAlign: 'center',
-    flexGrow: 1,
-    marginBottom: 10,
-    // fontSize: 60,
+    // marginBottom: 10,
     fontWeight: 'bold',
     color: '#777',
   },
 
+  messages: {
+    flexGrow: 1,
+    // textAlign: 'center',
+    // marginBottom: 10,
+    // fontWeight: 'bold',
+    // color: '#777',
+    overflowY: 'auto',
+    height: 0,
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: '#eee',
+  },
+
+  input: {
+    textAlign: 'center',
+    marginBottom: 20,
+    fontWeight: 'bold',
+    color: '#777',
+  },
 
   inputContainer: {
     display: 'flex',
