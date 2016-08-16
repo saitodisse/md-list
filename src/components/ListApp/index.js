@@ -20,6 +20,7 @@ export default connect({
   itemClicked: 'listApp.itemClicked',
   removeItemClicked: 'listApp.removeItemClicked',
   removeAllItemsClicked: 'listApp.removeAllItemsClicked',
+  editCanceled: 'listApp.editCanceled',
 },
   class ListApp extends Component {
 
@@ -28,26 +29,26 @@ export default connect({
     componentDidUpdate(prevProps) {
       // focus after server actions
       if (prevProps.isSaving && !this.props.isSaving) {
-        this.textarea.focus();
+        this.textareaNode.focus();
       }
 
       // load autosize for the first time
-      if (this.textarea && !this.autosizeLoaded) {
-        autosize(this.textarea);
+      if (this.textareaNode && !this.autosizeLoaded) {
+        autosize(this.textareaNode);
         this.autosizeLoaded = true;
       }
 
       // update when currentItem changes
       if (prevProps.currentItem.id !== this.props.currentItem.id) {
-        autosize.update(this.textarea);
+        autosize.update(this.textareaNode);
+        this.textareaNode.focus();
       }
 
       if (this.props.itemsCount > prevProps.itemsCount) {
         window.requestAnimationFrame(() => {
-          const node = this.messagesNode;
-          node.scrollTop = node.scrollHeight;
-          if (node !== undefined) {
-            node.scrollTop = node.scrollHeight;
+          this.messagesNode.scrollTop = this.messagesNode.scrollHeight;
+          if (this.messagesNode !== undefined) {
+            this.messagesNode.scrollTop = this.messagesNode.scrollHeight;
           }
         });
       }
@@ -78,11 +79,11 @@ export default connect({
           this.props.newItemTitleSubmitted();
         }
       }
-      this.textarea.focus();
+      this.textareaNode.focus();
 
       // update textarea size
-      this.textarea.value = '';
-      autosize.update(this.textarea);
+      this.textareaNode.value = '';
+      autosize.update(this.textareaNode);
     }
 
     onInputChange(event) {
@@ -91,9 +92,16 @@ export default connect({
       });
     }
 
+    _onKeyDown = (e) => {
+      // ESC
+      if (e.keyCode === 27) {
+        this.props.editCanceled();
+      }
+    }
+
     render() {
       return (
-        <div style={styles.container}>
+        <div style={styles.container} onKeyDown={this._onKeyDown}>
 
           <div style={styles.title}>
             <h3>
@@ -101,19 +109,13 @@ export default connect({
             </h3>
           </div>
 
-          <div style={styles.messages} onAttached={node => {this.messagesNode = node;}}>
+          <div
+            style={styles.messages}
+            onAttached={node => {this.messagesNode = node;}}>
             <Items {...this.props}/>
           </div>
 
           <div style={styles.input}>
-            <div style={styles.actionsContainer}>
-              <button
-                style={styles.actionsContainerButton}
-                onClick={this.props.removeAllItemsClicked}
-              >
-                remove all
-              </button>
-            </div>
 
             <div style={styles.inputContainer}>
               {/* http://stackoverflow.com/questions/13224520/css3-new-style-flexbox-fails-to-stretch-textarea-in-chrome */}
@@ -123,7 +125,7 @@ export default connect({
                   style={this.props.error ? styles.textareaError : styles.textarea}
                   autoFocus
                   type="text"
-                  onAttached={node => {this.textarea = node;}}
+                  onAttached={node => {this.textareaNode = node;}}
                   disabled={this.props.isSaving}
                   value={this.props.currentItem.title}
                   onInput={event => this.onInputChange(event)}
@@ -131,12 +133,23 @@ export default connect({
                 />
               </div>
 
-              <button
-                style={styles.button}
-                onClick={this._OnSubmit}
-              >
-                Send
-              </button>
+              <div style={styles.actionsContainer}>
+
+                <button
+                  style={styles.button}
+                  onClick={this._OnSubmit}
+                >
+                  Send
+                </button>
+
+                <button
+                  style={styles.actionsContainerButtonRemove}
+                  onClick={this.props.removeAllItemsClicked}
+                >
+                  remove all
+                </button>
+              </div>
+
             </div>
 
             <div style={styles.bellowTextareaContainer}>
