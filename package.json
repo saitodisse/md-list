@@ -4,8 +4,9 @@
   "description": "MD list (example app for Cerebral website tutorial)",
   "main": "index.js",
   "scripts": {
-    "client": "webpack-dev-server",
-    "server": "node server/server.js",
+    "client": "webpack-dev-server & TASK_PID=$!",
+    "server": "node server/server.js && kill $TASK_PID",
+    "start": "npm run client & npm run server",
     "build": "webpack --config webpack.config.production.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,7 +27,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "body-parser": "^1.15.1",
-    "cerebral": "^0.35.0",
+    "cerebral": "^1.0.1",
     "cerebral-module-devtools": "^0.7.0",
     "cerebral-module-http": "^0.4.x",
     "cerebral-view-inferno": "^1.1.0",
@@ -34,6 +35,7 @@
     "highlight.js": "^9.6.0",
     "html-webpack-plugin": "^2.21.0",
     "marked": "^0.3.6",
+    "ramda": "^0.22.1",
     "uuid": "^2.0.2",
     "webpack": "^1.13.1"
   },
