@@ -25,9 +25,23 @@ export default {
     // color: '#777',
     overflowY: 'auto',
     height: 0,
-    borderStyle: 'solid',
-    borderWidth: 2,
-    borderColor: '#eee',
+
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    borderTopColor: 'rgb(200, 200, 258)',
+    borderTopStyle: 'solid',
+    borderTopWidth: '2px',
+    // borderRightColor: 'rgb(200, 200, 200)',
+    // borderRightStyle: 'solid',
+    // borderRightWidth: '2px',
+    borderBottomColor: 'rgb(200, 200, 258)',
+    borderBottomStyle: 'solid',
+    borderBottomWidth: '2px',
+    // borderLeftColor: 'rgb(200, 200, 200)',
+    // borderLeftStyle: 'solid',
+    // borderLeftWidth: '2px',
+
+    // borderColor: '#eee',
   },
 
   input: {
@@ -37,10 +51,19 @@ export default {
     color: '#777',
   },
 
+  error: {
+    color: 'red',
+    textAlign: 'center',
+    fontSize: 14,
+    marginTop: 10,
+  },
+
+
   inputContainer: {
     display: 'flex',
     justifyContent: 'space-between',
     alignIitems: 'stretch',
+    marginTop: 10,
   },
 
   textareaContainer: {
@@ -63,22 +86,48 @@ export default {
     padding: 10,
     borderColor: 'red',
   },
-  button: {
-    cursor: 'pointer',
+
+  actionsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    fontFamily: "'Roboto', sans-serif",
     marginLeft: 20,
-    padding: 10,
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#555',
-    alignSelf: 'flex-end',
+    // marginTop: 10,
   },
 
+  actionsContainerButtonEdit: {
+    cursor: 'pointer',
+    // marginLeft: 10,
+    padding: 2,
+    paddingLeft: 5,
+    paddingRight: 5,
+    fontSize: 12,
+    // fontWeight: 'bold',
+    color: '#a55',
+  },
 
-  error: {
-    color: 'red',
-    textAlign: 'center',
-    fontSize: 14,
-    marginTop: 10,
+  actionsContainerButtonRemove: {
+    cursor: 'pointer',
+    // marginLeft: 10,
+    padding: 2,
+    paddingLeft: 5,
+    paddingRight: 5,
+    fontSize: 12,
+    // fontWeight: 'bold',
+    color: '#a55',
+  },
+
+  button: {
+    cursor: 'pointer',
+    // marginLeft: 20,
+    // marginTop: 20,
+    padding: 2,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#555',
+    // alignSelf: 'flex-end',
   },
 
 
@@ -92,40 +141,14 @@ export default {
     flexGrow: 0,
     color: '#999',
     fontSize: 12,
-    marginTop: 5,
   },
   currentItem: {
     flexGrow: 1,
     color: '#999',
     fontSize: 12,
-    marginTop: 5,
   },
   shortcuts: {
     color: '#999',
     fontSize: 12,
-    marginTop: 5,
   },
-
-
-  actionsContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    fontFamily: "'Roboto', sans-serif",
-    justifyContent: 'flex-end',
-    alignIitems: 'flex-end',
-    marginTop: 10,
-  },
-
-  actionsContainerButton: {
-    cursor: 'pointer',
-    marginLeft: 10,
-    padding: 2,
-    paddingLeft: 5,
-    paddingRight: 5,
-    fontSize: 12,
-    // fontWeight: 'bold',
-    color: '#a55',
-  },
-
-
 };

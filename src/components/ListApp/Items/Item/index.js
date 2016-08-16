@@ -5,8 +5,6 @@ import styles from './styles';
 import R from 'ramda';
 import marked from 'marked';
 import highlight from 'highlight.js';
-require('!style!css!highlight.js/styles/foundation.css');
-require('!style!css!./styles.css');
 
 export default connect(props => ({
   item: `listApp.items.${props.itemId}`,
@@ -42,6 +40,10 @@ export default connect(props => ({
       return {__html: mdHtml};
     }
 
+    _onEdit = () => {
+      this.props.itemClicked({id: this.props.item.id});
+    }
+
     render() {
       // check if item exists
       if (!R.pathOr(false, ['item'], this.props)) {
@@ -57,22 +59,28 @@ export default connect(props => ({
 
 
       return (
-        <div style={itemStyle}>
-
-          <div style={styles.topContainer}>
-            <button
-              style={styles.removeButton}
-              onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
-            >
-              X
-            </button>
+        <div style={styles.messageContainer}>
+          <div style={itemStyle}>
+            <div
+              style={valueStyle}
+              dangerouslySetInnerHTML={this.renderMarkdown()}
+            / >
           </div>
 
-          <div
-            style={valueStyle}
-            onClick={() => this.props.itemClicked({id: this.props.item.id})}
-            dangerouslySetInnerHTML={this.renderMarkdown()}
-          / >
+          <div style={styles.buttonsContainer}>
+            <div
+              style={styles.editButton}
+              onClick={this._onEdit}
+            >
+              edit
+            </div>
+            <div
+              style={styles.deleteButton}
+              onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
+            >
+              delete
+            </div>
+          </div>
 
         </div>
       );
