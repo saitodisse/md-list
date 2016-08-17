@@ -33,3 +33,9 @@ $ npm run client
 - [x] [shortcut] ESC cancel editing
 - [x] [shortcut] up/down arrows goes up/down when no data on textarea
 - [x] [shortcut] page up/down arrows goes up/down when no data on textarea
+- [ ] [firebase] integrate with firebase
+- [ ] [firebase] github login
+- [ ] [user] show who post item
+- [ ] [user] must login to post
+- [ ] [user] can delete only self items
+- [ ] [firebase] deploy
