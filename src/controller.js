@@ -7,6 +7,7 @@ import Router from 'cerebral-module-router';
 import Main from './modules/Main';
 import Login from './modules/Login';
 import ListApp from './modules/ListApp';
+import FirebaseModule from 'cerebral-module-firebase';
 
 const controller = Controller(Model({}));
 
@@ -38,6 +39,20 @@ controller.addModules({
   }, {
     onlyHash: true
   }),
+
+  firebase: FirebaseModule({
+    config: {
+      apiKey: process.env.API_KEY,
+      authDomain: process.env.AUTH_DOMAIN,
+      databaseURL: process.env.DATABASE_URL,
+      storageBucket: process.env.STORAGE_BUCKET,
+    },
+    // When using tasks and firebase queue you can prefix
+    // the specs triggered. This is useful in development
+    // when multiple developers are working against the
+    // same instance
+    specPrefix: 'MD'
+  })
 
 });
 
