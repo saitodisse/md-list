@@ -1,13 +1,15 @@
-import React from 'react'
-import {render} from 'react-dom'
-import {Container} from 'cerebral-view-react'
+import Inferno from 'inferno';
+import {render} from 'inferno-dom';
+import {Container} from 'cerebral-view-inferno';
+import controller from './controller';
+import ListApp from './components/ListApp';
 
-import controller from './controller'
-import App from './components/App'
-
+require('!style!css!highlight.js/styles/github.css');
+require('!style!css!highlight.js/styles/default.css');
+require('!style!css!./styles.css');
 
 render((
-  <Container controller={controller}>
-    <App />
+  <Container controller={controller} style={{height: '100%'}}>
+    <ListApp />
   </Container>
-), document.querySelector('#app'))
+), document.querySelector('#app'));
