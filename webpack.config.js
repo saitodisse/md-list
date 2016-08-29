@@ -36,7 +36,12 @@ module.exports = {
       loader: 'babel',
       query: {
         presets: ['es2015', 'stage-0'],
-        plugins: ['inferno']
+        plugins: [
+          'inferno',
+          ['module-alias', [
+            { 'src': 'src', 'expose': '~' },
+          ]],
+        ]
       }
     }]
   }

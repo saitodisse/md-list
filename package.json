@@ -30,6 +30,7 @@
     "cerebral": "^1.0.1",
     "cerebral-module-devtools": "^0.7.0",
     "cerebral-module-http": "^0.4.x",
+    "cerebral-module-router": "^0.17.1",
     "cerebral-view-inferno": "^1.1.0",
     "express": "^4.13.4",
     "highlight.js": "^9.6.0",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
+    "babel-plugin-module-alias": "^1.6.0",
     "css-loader": "^0.23.1",
     "eslint": "^3.2.2",
     "eslint-plugin-react": "^6.0.0",

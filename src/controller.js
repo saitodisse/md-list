@@ -1,13 +1,23 @@
 import {Controller} from 'cerebral';
 import Model from 'cerebral/models/immutable';
-import Devtools from 'cerebral-module-devtools';
 import Http from 'cerebral-module-http';
+import Devtools from 'cerebral-module-devtools';
+import Router from 'cerebral-module-router';
+
+import Main from './modules/Main';
+import Login from './modules/Login';
 import ListApp from './modules/ListApp';
 
 const controller = Controller(Model({}));
 
 controller.addModules({
-  // app namespace
+  // listApp module
+  main: Main,
+
+  // login module
+  login: Login,
+
+  // listApp module
   listApp: ListApp,
 
   // service
@@ -19,7 +29,16 @@ controller.addModules({
   }),
 
   // plug-in
-  devtools: Devtools()
+  devtools: Devtools(),
+
+  router: Router({
+    '/login': 'main.redirectToLogin',
+    '/list': 'main.redirectToList',
+    '/': 'main.redirectToMain',
+  }, {
+    onlyHash: true
+  }),
+
 });
 
 export default controller;

@@ -1,8 +1,8 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
 import {connect} from 'cerebral-view-inferno';
+import itemsListComputed from '~/computed/itemsListComputed';
 import styles from './styles';
-import itemsListComputed from '../../../computed/itemsListComputed';
 import Item from './Item';
 
 export default connect({

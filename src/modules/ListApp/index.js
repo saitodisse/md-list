@@ -1,3 +1,6 @@
+// router
+
+// chains
 import changeNewItemTitle from './chains/changeNewItemTitle';
 import submitNewItemTitle from './chains/submitNewItemTitle';
 import submitUpdateItemTitle from './chains/submitUpdateItemTitle';
@@ -16,6 +19,9 @@ export default module => {
   });
 
   module.addSignals({
+    // router
+
+    // chains
     newItemTitleChanged: {
       chain: changeNewItemTitle,
       immediate: true

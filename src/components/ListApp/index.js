@@ -1,11 +1,11 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
 import {connect} from 'cerebral-view-inferno';
-import Items from './Items';
-import styles from './styles';
 import R from 'ramda';
 import autosize from 'autosize';
-import itemsListCountComputed from '../../computed/itemsListCountComputed';
+import itemsListCountComputed from '~/computed/itemsListCountComputed';
+import Items from './Items';
+import styles from './styles';
 
 export default connect({
   isSaving: 'listApp.isSaving',
@@ -97,7 +97,6 @@ export default connect({
       if (e.keyCode === 27) {
         this.props.editCanceled();
       }
-      /**/console.log({keyCode: e.keyCode});/* -debug- */
       if (this.props.currentItem.title.length === 0) {
         // UP
         if (e.keyCode === 38 || e.keyCode === 104) {
@@ -130,17 +129,10 @@ export default connect({
     render() {
       return (
         <div style={styles.container} onKeyDown={this._onKeyDown}>
-
-          <div style={styles.title}>
-            <h3>
-              MD list
-            </h3>
-          </div>
-
           <div
             style={styles.messages}
             onAttached={node => {this.messagesNode = node;}}>
-            <Items {...this.props}/>
+            <Items />
           </div>
 
           <div style={styles.input}>
