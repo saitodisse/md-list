@@ -51,7 +51,7 @@ controller.addModules({
     // the specs triggered. This is useful in development
     // when multiple developers are working against the
     // same instance
-    specPrefix: 'MD'
+    // specPrefix: 'MD'
   })
 
 });

@@ -5,7 +5,7 @@ function addItem({state, output}) {
   const newItem = {};
   newItem[newId] = {
     id: newId,
-    title: state.get('listApp.currentItem.title'),
+    title: state.get('listApp.current_item.title'),
   };
 
   state.merge('listApp.items', newItem);

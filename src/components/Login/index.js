@@ -4,11 +4,15 @@ import {connect} from 'cerebral-view-inferno';
 import styles from './styles';
 
 export default connect({
-  isLogged: 'login.isLogged',
-  isLogging: 'login.isLogging',
-  error: 'login.error',
+  is_logged: 'login.is_logged',
+  is_loading: 'login.is_loading',
+  error_code: 'login.error_code',
+  error_message: 'login.error_message',
+  user: 'login.user',
+  some_data: 'login.some_data',
 }, {
-  loginClicked: 'login.loginClicked',
+  facebookLoginClicked: 'login.facebookLoginClicked',
+  signOutClicked: 'login.signOutClicked',
 },
   class Login extends Component {
     componentDidUpdate(_prevProps) {
@@ -20,14 +24,35 @@ export default connect({
     render() {
       return (
         <div style={styles.container}>
-          isLogged: {this.props.isLogged}
+          <button
+            style={styles.facebookLoginButton}
+            onClick={this.props.facebookLoginClicked}
+          >
+            Facebook Login
+          </button>
+          <button
+            style={styles.signOutButton}
+            onClick={this.props.signOutClicked}
+          >
+            Sign Out
+          </button>
+
           <br />
-          isLogging: {this.props.isLogging}
+          some_data: {this.props.some_data}
+
           <br />
-          error: {this.props.error}
+          is_logged: {this.props.is_logged ? 'true' : 'false'}
           <br />
-          Login
+          is_loading: {this.props.is_loading ? 'true' : 'false'}
           <br />
+          error_code: {this.props.error_code}
+          <br />
+          error_message: {this.props.error_message}
+          <br />
+          user:
+            <pre>
+              {JSON.stringify(this.props.user, null, 2)}
+            </pre>
         </div>
       );
     }

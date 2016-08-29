@@ -2,5 +2,5 @@ import {set} from 'cerebral/operators';
 import {PAGE_LIST} from '~/constants';
 
 export default [
-  set('state:main.currentPage', PAGE_LIST),
+  set('state:main.current_page', PAGE_LIST),
 ];

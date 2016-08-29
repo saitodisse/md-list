@@ -7,12 +7,12 @@ export default [
 
   removeItemFromServer, {
     success: [
-      set('state:listApp.isSaving', false),
+      set('state:listApp.is_saving', false),
       // Clear current item
-      set('state:listApp.currentItem.id', null),
+      set('state:listApp.current_item.id', null),
     ],
     error: [
-      set('state:listApp.isSaving', false),
+      set('state:listApp.is_saving', false),
       set('state:listApp.error', 'Removing item from server has failed')
     ]
   },

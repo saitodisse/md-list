@@ -136,7 +136,7 @@ export default {
     color: '#999',
     fontSize: 12,
   },
-  currentItem: {
+  current_item: {
     flexGrow: 1,
     color: '#999',
     fontSize: 12,

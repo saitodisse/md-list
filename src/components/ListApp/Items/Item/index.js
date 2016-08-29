@@ -8,7 +8,7 @@ import highlight from 'highlight.js';
 
 export default connect(props => ({
   item: `listApp.items.${props.itemId}`,
-  currentItem: 'listApp.currentItem',
+  current_item: 'listApp.current_item',
 }), {
   itemClicked: 'listApp.itemClicked',
   removeItemClicked: 'listApp.removeItemClicked',
@@ -51,7 +51,7 @@ export default connect(props => ({
         return null;
       }
 
-      const $isCurrentItem = (this.props.currentItem.id === this.props.item.id);
+      const $isCurrentItem = (this.props.current_item.id === this.props.item.id);
       const valueStyle = $isCurrentItem ? styles.valueSelected : styles.value;
 
       const $isNewItem = this.props.item.$isNew;

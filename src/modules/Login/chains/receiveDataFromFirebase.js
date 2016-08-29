@@ -1,5 +1,5 @@
 import {copy} from 'cerebral/operators';
 
 export default [
-  copy('input:title', 'state:listApp.current_item.title')
+  copy('input:value', 'state:login.some_data'),
 ];

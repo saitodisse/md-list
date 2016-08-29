@@ -8,8 +8,8 @@ import Items from './Items';
 import styles from './styles';
 
 export default connect({
-  isSaving: 'listApp.isSaving',
-  currentItem: 'listApp.currentItem',
+  is_saving: 'listApp.is_saving',
+  current_item: 'listApp.current_item',
   itemsCount: itemsListCountComputed(),
   error: 'listApp.error',
 }, {
@@ -28,7 +28,7 @@ export default connect({
 
     componentDidUpdate(prevProps) {
       // focus after server actions
-      if (prevProps.isSaving && !this.props.isSaving) {
+      if (prevProps.is_saving && !this.props.is_saving) {
         this.textareaNode.focus();
       }
 
@@ -38,8 +38,8 @@ export default connect({
         this.autosizeLoaded = true;
       }
 
-      // update when currentItem changes
-      if (prevProps.currentItem.id !== this.props.currentItem.id) {
+      // update when current_item changes
+      if (prevProps.current_item.id !== this.props.current_item.id) {
         autosize.update(this.textareaNode);
         this.textareaNode.focus();
       }
@@ -69,13 +69,13 @@ export default connect({
     }
 
     _OnSubmit = () => {
-      const value = R.trim(this.props.currentItem.title);
+      const value = R.trim(this.props.current_item.title);
       const hasValue = !R.isEmpty(value);
-      const isUpdating = !R.isNil(this.props.currentItem.id);
+      const isUpdating = !R.isNil(this.props.current_item.id);
       if (hasValue) {
         if (isUpdating) {
           this.props.updateItemTitleSubmitted({
-            id: this.props.currentItem.id
+            id: this.props.current_item.id
           });
         } else {
           this.props.newItemTitleSubmitted();
@@ -99,7 +99,7 @@ export default connect({
       if (e.keyCode === 27) {
         this.props.editCanceled();
       }
-      if (this.props.currentItem.title.length === 0) {
+      if (this.props.current_item.title.length === 0) {
         // UP
         if (e.keyCode === 38 || e.keyCode === 104) {
           window.requestAnimationFrame(() => {
@@ -148,8 +148,8 @@ export default connect({
                   autoFocus
                   type="text"
                   onAttached={node => {this.textareaNode = node;}}
-                  disabled={this.props.isSaving}
-                  value={this.props.currentItem.title}
+                  disabled={this.props.is_saving}
+                  value={this.props.current_item.title}
                   onInput={event => this.onInputChange(event)}
                   onKeyDown={this._OnTextKeyDown}
                 />
@@ -178,8 +178,8 @@ export default connect({
               <div style={styles.itemsCount}>
                 count: { this.props.itemsCount }
               </div>
-              <div style={styles.currentItem}>
-                id: {this.props.currentItem.id ? this.props.currentItem.id : 'new item'}
+              <div style={styles.current_item}>
+                id: {this.props.current_item.id ? this.props.current_item.id : 'new item'}
               </div>
               <div style={styles.shortcuts}>
                 Ctrl + Enter (send)

@@ -4,7 +4,7 @@ import showMain from './chains/showMain';
 
 export default module => {
   module.addState({
-    currentPage: null,
+    current_page: null,
   });
 
   module.addSignals({

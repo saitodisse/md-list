@@ -14,7 +14,7 @@ import {
 import styles from './styles';
 
 export default connect({
-  currentPage: 'main.currentPage',
+  current_page: 'main.current_page',
 }, {
   redirectToLogin: 'main.redirectToLogin',
   redirectToList: 'main.redirectToList',
@@ -45,7 +45,7 @@ export default connect({
             </button>
           </div>
           <div style={styles.bodyContainer}>
-            {pages[this.props.currentPage]}
+            {pages[this.props.current_page]}
           </div>
         </div>
       );

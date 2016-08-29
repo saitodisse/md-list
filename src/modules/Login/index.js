@@ -1,14 +1,22 @@
-import unsetLogged from './chains/unsetLogged';
+import loadPage from './chains/loadPage';
+import loginFacebook from './chains/loginFacebook';
+import signOut from './chains/signOut';
+import receiveDataFromFirebase from './chains/receiveDataFromFirebase';
 
 export default module => {
   module.addState({
-    isLogged: false,
-    isLogging: false,
-    error: null,
+    is_logged: false,
+    is_loading: false,
+    error_code: null,
+    error_message: null,
+    user: {},
+    some_data: null,
   });
 
   module.addSignals({
-    pageLoaded: unsetLogged,
-    // loginClicked: loginWithFirebase,
+    pageLoaded: loadPage,
+    facebookLoginClicked: loginFacebook,
+    signOutClicked: signOut,
+    dataReceived: receiveDataFromFirebase,
   });
 };

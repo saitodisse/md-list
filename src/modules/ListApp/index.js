@@ -13,9 +13,9 @@ import cancelEdit from './chains/cancelEdit';
 export default module => {
   module.addState({
     items: {},
-    isSaving: false,
+    is_saving: false,
     error: null,
-    currentItem: {title: ''},
+    current_item: {title: ''},
   });
 
   module.addSignals({

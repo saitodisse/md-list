@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-require('dotenv').config({path: '.env-dev'});;
+require('dotenv').config({path: '.env-dev'});
 
 module.exports = {
   devtool: 'eval-source-map',
