@@ -4,9 +4,12 @@ import {connect} from 'cerebral-view-inferno';
 import styles from './styles';
 
 export default connect({
-  some_data: 'chat.some_data',
+  list: 'chat.list',
 }, {
   pageLoaded: 'chat.pageLoaded',
+  deleteClicked: 'chat.deleteClicked',
+  postClicked: 'chat.postClicked',
+  putClicked: 'chat.putClicked',
 },
   class ListApp extends Component {
     componentDidMount() {
@@ -16,7 +19,33 @@ export default connect({
     render() {
       return (
         <div style={styles.container}>
-          some_data: {this.props.some_data}
+          <div style={styles.buttonsContainer}>
+            <button
+              style={styles.button}
+              onClick={this.props.deleteClicked}
+            >
+              DELETE
+            </button>
+
+            <button
+              style={styles.button}
+              onClick={this.props.postClicked}
+            >
+              POST
+            </button>
+
+            <button
+              style={styles.button}
+              onClick={this.props.putClicked}
+            >
+              PUT
+            </button>
+          </div>
+
+          <div style={styles.dataContainer}>
+            <pre>{JSON.stringify(this.props.list, null, 2)}</pre>
+          </div>
+
         </div>
       );
     }

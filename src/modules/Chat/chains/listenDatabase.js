@@ -1,5 +1,5 @@
-import listenSomeData from '../actions/listenSomeData';
+import listenChanges from '../actions/listenChanges';
 
 export default [
-  listenSomeData,
+  listenChanges,
 ];

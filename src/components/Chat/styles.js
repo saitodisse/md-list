@@ -10,4 +10,24 @@ export default {
     marginRight: 10,
     overflowY: 'none',
   },
+
+  buttonsContainer: {
+    // display: 'flex',
+    // marginTop: 20,
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
+  },
+
+  button: {
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: 12,
+  },
+
+  dataContainer: {
+    display: 'flex',
+    marginTop: 20,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+
 };

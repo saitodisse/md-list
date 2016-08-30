@@ -1,5 +1,5 @@
-import {copy} from 'cerebral/operators';
+import addItem from '../actions/addItem';
 
 export default [
-  copy('input:value', 'state:chat.some_data'),
+  addItem,
 ];
