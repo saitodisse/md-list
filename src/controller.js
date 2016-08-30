@@ -40,6 +40,7 @@ controller.addModules({
   router: Router({
     '/login': 'main.redirectToLogin',
     '/list': 'main.redirectToList',
+    '/chat': 'main.redirectToChat',
     '/': 'main.redirectToMain',
   }, {
     onlyHash: true

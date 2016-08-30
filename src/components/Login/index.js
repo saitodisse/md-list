@@ -9,7 +9,6 @@ export default connect({
   error_code: 'login.error_code',
   error_message: 'login.error_message',
   user: 'login.user',
-  some_data: 'login.some_data',
 }, {
   facebookLoginClicked: 'login.facebookLoginClicked',
   signOutClicked: 'login.signOutClicked',
@@ -36,9 +35,6 @@ export default connect({
           >
             Sign Out
           </button>
-
-          <br />
-          some_data: {this.props.some_data}
 
           <br />
           is_logged: {this.props.is_logged ? 'true' : 'false'}

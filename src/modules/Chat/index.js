@@ -1,35 +1,14 @@
 // chains
-import changeNewItemTitle from './chains/changeNewItemTitle';
-import submitNewItemTitle from './chains/submitNewItemTitle';
-import submitUpdateItemTitle from './chains/submitUpdateItemTitle';
-import getDataFromServer from './chains/getDataFromServer';
-import removeItem from './chains/removeItem';
-import removeAllItems from './chains/removeAllItems';
-import setCurrentItemActive from './chains/setCurrentItemActive';
-import cancelEdit from './chains/cancelEdit';
+import listenDatabase from './chains/listenDatabase';
+import receiveDataFromFirebase from './chains/receiveDataFromFirebase';
 
 export default module => {
   module.addState({
-    items: {},
-    is_saving: false,
-    error: null,
-    current_item: {title: ''},
+    some_data: null,
   });
 
   module.addSignals({
-    // router
-
-    // chains
-    newItemTitleChanged: {
-      chain: changeNewItemTitle,
-      immediate: true
-    },
-    newItemTitleSubmitted: submitNewItemTitle,
-    updateItemTitleSubmitted: submitUpdateItemTitle,
-    pageLoaded: getDataFromServer,
-    removeItemClicked: removeItem,
-    removeAllItemsClicked: removeAllItems,
-    itemClicked: setCurrentItemActive,
-    editCanceled: cancelEdit,
+    pageLoaded: listenDatabase,
+    dataReceived: receiveDataFromFirebase,
   });
 };

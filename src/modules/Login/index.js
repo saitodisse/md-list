@@ -9,7 +9,6 @@ export default module => {
     error_code: null,
     error_message: null,
     user: {},
-    some_data: null,
   });
 
   module.addSignals({
