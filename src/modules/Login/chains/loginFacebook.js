@@ -1,6 +1,6 @@
 import {set, copy} from 'cerebral/operators';
 import facebookLogin from '../actions/facebookLogin.js';
-import listenSomeData from '../actions/listenSomeData.js';
+import listenSomeData from '../actions/firebase/listenSomeData.js';
 
 export default [
   set('state:login.is_loading', true),

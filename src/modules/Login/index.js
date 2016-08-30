@@ -1,7 +1,6 @@
 import loadPage from './chains/loadPage';
 import loginFacebook from './chains/loginFacebook';
 import signOut from './chains/signOut';
-import receiveDataFromFirebase from './chains/receiveDataFromFirebase';
 
 export default module => {
   module.addState({
@@ -17,6 +16,5 @@ export default module => {
     pageLoaded: loadPage,
     facebookLoginClicked: loginFacebook,
     signOutClicked: signOut,
-    dataReceived: receiveDataFromFirebase,
   });
 };

@@ -7,6 +7,8 @@ import Router from 'cerebral-module-router';
 import Main from './modules/Main';
 import Login from './modules/Login';
 import ListApp from './modules/ListApp';
+import Chat from './modules/Chat';
+
 import FirebaseModule from 'cerebral-module-firebase';
 
 const controller = Controller(Model({}));
@@ -20,6 +22,9 @@ controller.addModules({
 
   // listApp module
   listApp: ListApp,
+
+  // listApp module
+  chat: Chat,
 
   // service
   http: Http({
