@@ -51,7 +51,7 @@ export default connect(props => ({
         return null;
       }
 
-      const $isCurrentItem = (this.props.current_item.id === Object.keys(this.props.item)[0]);
+      const $isCurrentItem = (this.props.current_item.id === this.props.item.id);
       const valueStyle = $isCurrentItem ? styles.valueSelected : styles.value;
 
       const $isNewItem = this.props.item.$isNew;

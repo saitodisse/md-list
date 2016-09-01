@@ -1,5 +1,5 @@
 function removeItem({ input, state }) {
-  state.unset(`chatList.items.${input.key}`);
+  state.unset(`chatList.items.${input.id}`);
 }
 
 export default removeItem;
