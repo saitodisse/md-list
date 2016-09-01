@@ -3,14 +3,19 @@ import listenDatabase from './chains/listenDatabase';
 import unlistenDatabase from './chains/unlistenDatabase';
 import receiveDataFromFirebase from './chains/receiveDataFromFirebase';
 import deleteChildFromFirebase from './chains/deleteChildFromFirebase';
-import postItem from './chains/postItem';
-import putItem from './chains/putItem';
-import deleteItem from './chains/deleteItem';
+// import postItem from './chains/postItem';
+// import putItem from './chains/putItem';
+// import deleteItem from './chains/deleteItem';
+
+import editCurrentItemBody from './chains/editCurrentItemBody';
+import submitItemBody from './chains/submitItemBody';
 
 export default module => {
   module.addState({
-    current_item: {title: ''},
     items: {},
+    current_item: {body: ''},
+    is_saving: false,
+    error: null,
   });
 
   module.addSignals({
@@ -19,8 +24,15 @@ export default module => {
     firebaseChildAdded: receiveDataFromFirebase,
     firebaseChildRemoved: deleteChildFromFirebase,
     firebaseChildChanged: receiveDataFromFirebase,
-    deleteClicked: deleteItem,
-    postClicked: postItem,
-    putClicked: putItem,
+    // deleteClicked: deleteItem,
+    // postClicked: postItem,
+    // putClicked: putItem,
+
+    currentItemChanged: {
+      chain: editCurrentItemBody,
+      immediate: true
+    },
+    currentItemSubmitted: submitItemBody,
+
   });
 };

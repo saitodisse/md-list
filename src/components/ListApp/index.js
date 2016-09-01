@@ -60,8 +60,6 @@ export default connect({
     }
 
     _OnTextKeyDown = (event) => {
-      /**/console.log({event});/* -debug- */
-      /**/console.log({keyCode: event.keyCode});/* -debug- */
       if (event.keyCode === 13 && event.ctrlKey) {
         event.preventDefault();
         this._OnSubmit();

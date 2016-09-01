@@ -1,10 +1,16 @@
 import firebase from 'firebase';
 
-function postItem({ state, input }) {
+function postItem({ state, input, output }) {
   // const {body} = input;
   const uid = state.get('login.user.uid');
   const displayName = state.get('login.user.displayName');
-  const body = 'Teste 123';
+
+  if (!uid || !displayName) {
+    throw new Error(`uid (${uid}) OR displayName (${displayName}) not found. Must login first.`);
+  }
+
+  const current_item = state.get('chatList.current_item');
+  const body = current_item.body;
 
   const itemData = {
     uid,
@@ -20,7 +26,12 @@ function postItem({ state, input }) {
   updates['/items/' + newItemKey] = itemData;
   updates['/user-items/' + uid + '/' + newItemKey] = itemData;
 
-  return firebase.database().ref().update(updates);
+  firebase.database().ref().update(updates)
+    .then(output.success)
+    .catch(output.error);
 }
+
+postItem.async = true;
+postItem.outputs = ['success', 'error'];
 
 export default postItem;

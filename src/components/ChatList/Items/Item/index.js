@@ -45,7 +45,6 @@ export default connect(props => ({
     }
 
     render() {
-      /**/console.log({item: this.props.item});/* -debug- */
       // check if item exists
       if (!R.pathOr(false, ['item'], this.props)) {
         console.error('\n%% ERROR: item is null \n');

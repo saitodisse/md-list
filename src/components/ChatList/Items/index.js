@@ -19,7 +19,6 @@ export default connect({
     }
 
     render() {
-      /**/console.log({itemsKeys: this.props.itemsKeys});/* -debug- */
       return (
         <div style={styles.itemsContainer}>
           {this.props.itemsKeys.map((itemId) => (

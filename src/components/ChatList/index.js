@@ -8,15 +8,20 @@ import Items from './Items';
 import styles from './styles';
 
 export default connect({
+  user: 'login.user',
   is_saving: 'chatList.is_saving',
   current_item: 'chatList.current_item',
   itemsCount: itemsListCountComputed(),
   error: 'chatList.error',
 }, {
-  newItemTitleSubmitted: 'chatList.newItemTitleSubmitted',
+  currentUserRequested: 'login.currentUserRequested',
+  currentItemChanged: 'chatList.currentItemChanged',
+  currentItemSubmitted: 'chatList.currentItemSubmitted',
+
   updateItemTitleSubmitted: 'chatList.updateItemTitleSubmitted',
   newItemTitleChanged: 'chatList.newItemTitleChanged',
   pageLoaded: 'chatList.pageLoaded',
+  pageUnloaded: 'chatList.pageUnloaded',
   itemClicked: 'chatList.itemClicked',
   removeItemClicked: 'chatList.removeItemClicked',
   removeAllItemsClicked: 'chatList.removeAllItemsClicked',
@@ -25,6 +30,16 @@ export default connect({
   class ChatList extends Component {
 
     static autosizeLoaded = false;
+
+    componentDidMount() {
+      if (!this.props.user.uid) {
+        this.props.currentUserRequested();
+      }
+      this.props.pageLoaded();
+    }
+    componentWillUnmount() {
+      this.props.pageUnloaded();
+    }
 
     componentDidUpdate(prevProps) {
       // focus after server actions
@@ -54,14 +69,7 @@ export default connect({
       }
     }
 
-
-    componentDidMount() {
-      this.props.pageLoaded();
-    }
-
     _OnTextKeyDown = (event) => {
-      /**/console.log({event});/* -debug- */
-      /**/console.log({keyCode: event.keyCode});/* -debug- */
       if (event.keyCode === 13 && event.ctrlKey) {
         event.preventDefault();
         this._OnSubmit();
@@ -69,7 +77,7 @@ export default connect({
     }
 
     _OnSubmit = () => {
-      const value = R.trim(this.props.current_item.title);
+      const value = R.trim(this.props.current_item.body);
       const hasValue = !R.isEmpty(value);
       const isUpdating = !R.isNil(this.props.current_item.id);
       if (hasValue) {
@@ -78,7 +86,7 @@ export default connect({
             id: this.props.current_item.id
           });
         } else {
-          this.props.newItemTitleSubmitted();
+          this.props.currentItemSubmitted();
         }
       }
       this.textareaNode.focus();
@@ -89,8 +97,8 @@ export default connect({
     }
 
     onInputChange(event) {
-      this.props.newItemTitleChanged({
-        title: event.target.value
+      this.props.currentItemChanged({
+        body: event.target.value
       });
     }
 
@@ -99,7 +107,7 @@ export default connect({
       if (e.keyCode === 27) {
         this.props.editCanceled();
       }
-      if (this.props.current_item.title.length === 0) {
+      if (this.props.current_item.body.length === 0) {
         // UP
         if (e.keyCode === 38 || e.keyCode === 104) {
           window.requestAnimationFrame(() => {
@@ -149,7 +157,7 @@ export default connect({
                   type="text"
                   onAttached={node => {this.textareaNode = node;}}
                   disabled={this.props.is_saving}
-                  value={this.props.current_item.title}
+                  value={this.props.current_item.body}
                   onInput={event => this.onInputChange(event)}
                   onKeyDown={this._OnTextKeyDown}
                 />
