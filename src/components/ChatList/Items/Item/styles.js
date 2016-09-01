@@ -1,7 +1,7 @@
 const itemContainerStyle = {
   flexDirection: 'row',
   fontFamily: "'Roboto', sans-serif",
-  border: '1px solid #E3E3E3',
+  // border: '1px solid #E3E3E3',
   marginTop: 3,
   marginLeft: 8,
 };
@@ -29,6 +29,8 @@ export default {
     flex: '0 1 auto',
     flexDirection: 'row',
     marginTop: 7,
+    borderTop: '1px solid #e2e2e2',
+    paddingTop: 4,
   },
 
   userPhotoContainer: {
@@ -45,10 +47,14 @@ export default {
 
   bodyContainer: {
     flexDirection: 'row',
-    fontFamily: "'Roboto', sans-serif",
     flexGrow: 1,
-    // border: '1px solid #E3E3E3',
-    // marLeftginTop: 10,
+  },
+
+  topBodyContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    flexGrow: 1,
   },
 
   userName: {

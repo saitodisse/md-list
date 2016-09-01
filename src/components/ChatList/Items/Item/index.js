@@ -51,7 +51,7 @@ export default connect(props => ({
         return null;
       }
 
-      const $isCurrentItem = (this.props.current_item.id === this.props.item.id);
+      const $isCurrentItem = (this.props.current_item.id === Object.keys(this.props.item)[0]);
       const valueStyle = $isCurrentItem ? styles.valueSelected : styles.value;
 
       const $isNewItem = this.props.item.$isNew;
@@ -66,8 +66,25 @@ export default connect(props => ({
           </div>
 
           <div style={styles.bodyContainer}>
-            <div style={styles.userName}>
-              {this.props.item.displayName}
+            <div style={styles.topBodyContainer}>
+              <div style={styles.userName}>
+                {this.props.item.displayName}
+              </div>
+
+              <div style={styles.buttonsContainer}>
+                <div
+                  style={styles.editButton}
+                  onClick={this._onEdit}
+                >
+                  edit
+                </div>
+                <div
+                  style={styles.deleteButton}
+                  onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
+                >
+                  delete
+                </div>
+              </div>
             </div>
 
             <div style={itemStyle}>
@@ -77,20 +94,6 @@ export default connect(props => ({
               / >
             </div>
 
-            <div style={styles.buttonsContainer}>
-              <div
-                style={styles.editButton}
-                onClick={this._onEdit}
-              >
-                edit
-              </div>
-              <div
-                style={styles.deleteButton}
-                onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
-              >
-                delete
-              </div>
-            </div>
           </div>
 
         </div>
