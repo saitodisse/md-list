@@ -60,25 +60,36 @@ export default connect(props => ({
 
       return (
         <div style={styles.messageContainer}>
-          <div style={itemStyle}>
-            <div
-              style={valueStyle}
-              dangerouslySetInnerHTML={this.renderMarkdown()}
-            / >
+
+          <div style={styles.userPhotoContainer}>
+            <img style={styles.userPhoto} src={this.props.item.photoURL} alt="photo" />
           </div>
 
-          <div style={styles.buttonsContainer}>
-            <div
-              style={styles.editButton}
-              onClick={this._onEdit}
-            >
-              edit
+          <div style={styles.bodyContainer}>
+            <div style={styles.userName}>
+              {this.props.item.displayName}
             </div>
-            <div
-              style={styles.deleteButton}
-              onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
-            >
-              delete
+
+            <div style={itemStyle}>
+              <div
+                style={valueStyle}
+                dangerouslySetInnerHTML={this.renderMarkdown()}
+              / >
+            </div>
+
+            <div style={styles.buttonsContainer}>
+              <div
+                style={styles.editButton}
+                onClick={this._onEdit}
+              >
+                edit
+              </div>
+              <div
+                style={styles.deleteButton}
+                onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
+              >
+                delete
+              </div>
             </div>
           </div>
 

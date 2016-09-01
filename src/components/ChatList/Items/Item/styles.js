@@ -2,7 +2,8 @@ const itemContainerStyle = {
   flexDirection: 'row',
   fontFamily: "'Roboto', sans-serif",
   border: '1px solid #E3E3E3',
-  marginTop: 10,
+  marginTop: 3,
+  marginLeft: 8,
 };
 
 const valueStyle = {
@@ -10,12 +11,8 @@ const valueStyle = {
   overflow: 'auto',
 
   padding: 3,
-  marginLeft: 11,
-
-  // borderStyle: 'solid',
-  // borderWidth: 1,
-  // borderColor: '#ddd',
-  fontSize: 16,
+  marginLeft: 5,
+  fontSize: 14,
 };
 
 const noSelect = {
@@ -28,10 +25,36 @@ const noSelect = {
 export default {
 
   messageContainer: {
+    display: 'flex',
+    flex: '0 1 auto',
+    flexDirection: 'row',
+    marginTop: 7,
+  },
+
+  userPhotoContainer: {
+    flexGrow: 0,
+  },
+
+  userPhoto: {
+    width: '2.25rem',
+    height: '2.25rem',
+    borderRadius: '.2rem',
+    display: 'inline-block',
+    position: 'relative',
+  },
+
+  bodyContainer: {
     flexDirection: 'row',
     fontFamily: "'Roboto', sans-serif",
+    flexGrow: 1,
     // border: '1px solid #E3E3E3',
     // marLeftginTop: 10,
+  },
+
+  userName: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    marginLeft: 8,
   },
 
   itemContainer: {
@@ -67,7 +90,7 @@ export default {
     ...noSelect,
   },
   deleteButton: {
-    marginLeft: 10,
+    marginLeft: 7,
     fontSize: 12,
     cursor: 'pointer',
     textDecoration: 'underline',
