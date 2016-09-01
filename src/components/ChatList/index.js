@@ -8,19 +8,19 @@ import Items from './Items';
 import styles from './styles';
 
 export default connect({
-  is_saving: 'listApp.is_saving',
-  current_item: 'listApp.current_item',
+  is_saving: 'chatList.is_saving',
+  current_item: 'chatList.current_item',
   itemsCount: itemsListCountComputed(),
-  error: 'listApp.error',
+  error: 'chatList.error',
 }, {
-  newItemTitleSubmitted: 'listApp.newItemTitleSubmitted',
-  updateItemTitleSubmitted: 'listApp.updateItemTitleSubmitted',
-  newItemTitleChanged: 'listApp.newItemTitleChanged',
-  pageLoaded: 'listApp.pageLoaded',
-  itemClicked: 'listApp.itemClicked',
-  removeItemClicked: 'listApp.removeItemClicked',
-  removeAllItemsClicked: 'listApp.removeAllItemsClicked',
-  editCanceled: 'listApp.editCanceled',
+  newItemTitleSubmitted: 'chatList.newItemTitleSubmitted',
+  updateItemTitleSubmitted: 'chatList.updateItemTitleSubmitted',
+  newItemTitleChanged: 'chatList.newItemTitleChanged',
+  pageLoaded: 'chatList.pageLoaded',
+  itemClicked: 'chatList.itemClicked',
+  removeItemClicked: 'chatList.removeItemClicked',
+  removeAllItemsClicked: 'chatList.removeAllItemsClicked',
+  editCanceled: 'chatList.editCanceled',
 },
   class ChatList extends Component {
 

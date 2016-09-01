@@ -8,6 +8,7 @@ import Main from './modules/Main';
 import Login from './modules/Login';
 import ListApp from './modules/ListApp';
 import Chat from './modules/Chat';
+import ChatList from './modules/ChatList';
 
 import FirebaseModule from 'cerebral-module-firebase';
 
@@ -25,6 +26,9 @@ controller.addModules({
 
   // listApp module
   chat: Chat,
+
+  // listApp module
+  chatList: ChatList,
 
   // service
   http: Http({

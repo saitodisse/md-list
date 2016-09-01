@@ -9,7 +9,7 @@ import deleteItem from './chains/deleteItem';
 
 export default module => {
   module.addState({
-    current_item: null,
+    current_item: {title: ''},
     items: {},
   });
 

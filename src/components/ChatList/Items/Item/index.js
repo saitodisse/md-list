@@ -7,11 +7,11 @@ import marked from 'marked';
 import highlight from 'highlight.js';
 
 export default connect(props => ({
-  item: `listApp.items.${props.itemId}`,
-  current_item: 'listApp.current_item',
+  item: `chatList.items.${props.itemId}`,
+  current_item: 'chatList.current_item',
 }), {
-  itemClicked: 'listApp.itemClicked',
-  removeItemClicked: 'listApp.removeItemClicked',
+  itemClicked: 'chatList.itemClicked',
+  removeItemClicked: 'chatList.removeItemClicked',
 },
   class Item extends Component {
     constructor(props) {
@@ -36,7 +36,7 @@ export default connect(props => ({
     }
 
     renderMarkdown = () => {
-      const mdHtml = marked(String(this.props.item.title));
+      const mdHtml = marked(String(this.props.item.body));
       return {__html: mdHtml};
     }
 
@@ -45,6 +45,7 @@ export default connect(props => ({
     }
 
     render() {
+      /**/console.log({item: this.props.item});/* -debug- */
       // check if item exists
       if (!R.pathOr(false, ['item'], this.props)) {
         console.error('\n%% ERROR: item is null \n');

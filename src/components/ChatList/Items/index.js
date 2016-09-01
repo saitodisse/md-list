@@ -1,13 +1,13 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
 import {connect} from 'cerebral-view-inferno';
-import itemsListComputed from '~/computed/itemsListComputed';
+import itensKeysComputed from '~/computed/itensKeysComputed';
 import styles from './styles';
 import Item from './Item';
 
 export default connect({
-  items: 'listApp.items',
-  listKeys: itemsListComputed(),
+  items: 'chatList.items',
+  itemsKeys: itensKeysComputed(),
 },
   class Items extends Component {
     constructor(props) {
@@ -19,9 +19,10 @@ export default connect({
     }
 
     render() {
+      /**/console.log({itemsKeys: this.props.itemsKeys});/* -debug- */
       return (
         <div style={styles.itemsContainer}>
-          {this.props.listKeys.map((itemId) => (
+          {this.props.itemsKeys.map((itemId) => (
             <Item {...this.props} key={itemId} itemId={itemId} />
           ))}
         </div>
