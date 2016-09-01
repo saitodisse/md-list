@@ -5,14 +5,19 @@ import styles from './styles';
 
 export default connect({
   list: 'chat.list',
+  user: 'login.user',
 }, {
   pageLoaded: 'chat.pageLoaded',
+  currentUserRequested: 'login.currentUserRequested',
   deleteClicked: 'chat.deleteClicked',
   postClicked: 'chat.postClicked',
   putClicked: 'chat.putClicked',
 },
   class ListApp extends Component {
     componentDidMount() {
+      if (!this.props.user.uid) {
+        this.props.currentUserRequested();
+      }
       this.props.pageLoaded();
     }
 

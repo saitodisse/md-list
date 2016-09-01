@@ -12,12 +12,14 @@ export default connect({
 }, {
   facebookLoginClicked: 'login.facebookLoginClicked',
   signOutClicked: 'login.signOutClicked',
+  currentUserRequested: 'login.currentUserRequested',
 },
   class Login extends Component {
     componentDidUpdate(_prevProps) {
     }
 
     componentDidMount() {
+      this.props.currentUserRequested();
     }
 
     render() {

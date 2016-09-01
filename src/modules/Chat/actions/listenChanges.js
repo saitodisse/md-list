@@ -1,7 +1,7 @@
 function listenChanges({ services }) {
   // services.firebase.onValue('some_data', 'chat.dataReceived');
 
-  services.firebase.onChildAdded('list', 'chat.dataReceived', {
+  services.firebase.onChildAdded('items', 'chat.dataReceived', {
     // payload: {}, // Merged with the payload of the signal
     // limitToFirst: 5, // Read Firebase docs
     // limitToLast: 5, // Read Firebase docs
@@ -13,7 +13,7 @@ function listenChanges({ services }) {
     // orderByValue: true // Read Firebase docs
   });
 
-  services.firebase.onChildRemoved('list', 'chat.dataReceived', {
+  services.firebase.onChildRemoved('items', 'chat.dataReceived', {
     // payload: {}, // Merged with the payload of the signal
     // limitToFirst: 5, // Read Firebase docs
     // limitToLast: 5, // Read Firebase docs
@@ -25,7 +25,7 @@ function listenChanges({ services }) {
     // orderByValue: true // Read Firebase docs
   });
 
-  services.firebase.onChildChanged('list', 'chat.dataReceived', {
+  services.firebase.onChildChanged('items', 'chat.dataReceived', {
     // payload: {}, // Merged with the payload of the signal
     // limitToFirst: 5, // Read Firebase docs
     // limitToLast: 5, // Read Firebase docs

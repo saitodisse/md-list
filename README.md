@@ -35,8 +35,6 @@ $ npm run client
 - [x] [shortcut] page up/down arrows goes up/down when no data on textarea
 - [x] [firebase] integrate with firebase module
 - [x] [firebase] facebook login
-  - https://console.firebase.google.com/project/md-list-43a87/authentication/providers
-  - https://developers.facebook.com/apps/559780907564132/fb-login/
 - [ ] [localstorage] create a localstorage service
 - [ ] [firebase] deploy
 - [ ] [user] save user to a localstorage

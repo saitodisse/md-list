@@ -1,5 +1,5 @@
-import loadPage from './chains/loadPage';
 import loginFacebook from './chains/loginFacebook';
+import getUser from './chains/getUser';
 import signOut from './chains/signOut';
 
 export default module => {
@@ -12,7 +12,7 @@ export default module => {
   });
 
   module.addSignals({
-    pageLoaded: loadPage,
+    currentUserRequested: getUser,
     facebookLoginClicked: loginFacebook,
     signOutClicked: signOut,
   });
