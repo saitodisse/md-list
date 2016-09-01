@@ -8,7 +8,6 @@ function deleteItem({ state }) {
 
   // Get a key for a new Post.
   const itemToDelete = keys[0];
-  /**/console.log({itemToDelete});/* -debug- */
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};

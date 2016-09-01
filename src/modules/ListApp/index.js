@@ -1,6 +1,3 @@
-// router
-
-// chains
 import changeNewItemTitle from './chains/changeNewItemTitle';
 import submitNewItemTitle from './chains/submitNewItemTitle';
 import submitUpdateItemTitle from './chains/submitUpdateItemTitle';
@@ -19,16 +16,13 @@ export default module => {
   });
 
   module.addSignals({
-    // router
-
-    // chains
+    pageLoaded: getDataFromServer,
     newItemTitleChanged: {
       chain: changeNewItemTitle,
       immediate: true
     },
     newItemTitleSubmitted: submitNewItemTitle,
     updateItemTitleSubmitted: submitUpdateItemTitle,
-    pageLoaded: getDataFromServer,
     removeItemClicked: removeItem,
     removeAllItemsClicked: removeAllItems,
     itemClicked: setCurrentItemActive,
