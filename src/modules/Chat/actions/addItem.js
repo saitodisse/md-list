@@ -3,7 +3,7 @@ function addItem({state, output, input}) {
   const newItem = {};
   newItem[key] = value;
 
-  state.merge('chat.list', newItem);
+  state.merge('chat.items', newItem);
   output({id: key});
 }
 

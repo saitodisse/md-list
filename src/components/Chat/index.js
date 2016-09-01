@@ -4,7 +4,7 @@ import {connect} from 'cerebral-view-inferno';
 import styles from './styles';
 
 export default connect({
-  list: 'chat.list',
+  items: 'chat.items',
   user: 'login.user',
 }, {
   pageLoaded: 'chat.pageLoaded',
@@ -48,7 +48,7 @@ export default connect({
           </div>
 
           <div style={styles.dataContainer}>
-            <pre>{JSON.stringify(this.props.list, null, 2)}</pre>
+            <pre>{JSON.stringify(this.props.items, null, 2)}</pre>
           </div>
 
         </div>

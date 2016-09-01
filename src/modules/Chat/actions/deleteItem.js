@@ -1,21 +1,19 @@
+import R from 'ramda';
 import firebase from 'firebase';
 
-function deleteItem({ input }) {
-  const {user_id, user_name, body} = input;
-
-  const postData = {
-    user_id,
-    user_name,
-    body,
-  };
+function deleteItem({ state }) {
+  const uid = state.get('login.user.uid');
+  const items = state.get('chat.items');
+  const keys = R.keys(items);
 
   // Get a key for a new Post.
-  const newPostKey = firebase.database().ref().child('list').push().key;
+  const itemToDelete = keys[0];
+  /**/console.log({itemToDelete});/* -debug- */
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};
-  updates['/items/' + newPostKey] = postData;
-  updates['/user-items/' + user_id + '/' + newPostKey] = postData;
+  updates['/items/' + itemToDelete] = null;
+  updates['/user-items/' + uid + '/' + itemToDelete] = null;
 
   return firebase.database().ref().update(updates);
 }

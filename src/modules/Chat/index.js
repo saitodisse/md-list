@@ -7,7 +7,7 @@ import deleteItem from './chains/deleteItem';
 
 export default module => {
   module.addState({
-    list: {},
+    items: {},
   });
 
   module.addSignals({
