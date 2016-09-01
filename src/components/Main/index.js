@@ -5,12 +5,14 @@ import {connect} from 'cerebral-view-inferno';
 import Login from '~/components/Login';
 import ListApp from '~/components/ListApp';
 import Chat from '~/components/Chat';
+import ChatList from '~/components/ChatList';
 
 import {
   PAGE_EMPTY,
   PAGE_LOGIN,
   PAGE_LIST,
   PAGE_CHAT,
+  PAGE_CHAT_LIST,
 } from '~/constants';
 
 function getPages() {
@@ -18,6 +20,7 @@ function getPages() {
   pages[PAGE_LOGIN] = <Login />;
   pages[PAGE_LIST] = <ListApp />;
   pages[PAGE_CHAT] = <Chat />;
+  pages[PAGE_CHAT_LIST] = <ChatList />;
   pages[PAGE_EMPTY] = null;
   return pages;
 }
@@ -30,6 +33,7 @@ export default connect({
   redirectToLogin: 'main.redirectToLogin',
   redirectToList: 'main.redirectToList',
   redirectToChat: 'main.redirectToChat',
+  redirectToChatList: 'main.redirectToChatList',
 },
   class Main extends Component {
     render() {
@@ -40,24 +44,37 @@ export default connect({
             <div style={styles.title}>
               MD list
             </div>
-            <button
-              style={styles.buttonGoLogin}
-              onClick={this.props.redirectToLogin}
-            >
-              Login
-            </button>
-            <button
-              style={styles.buttonGoLogin}
-              onClick={this.props.redirectToList}
-            >
-              List
-            </button>
-            <button
-              style={styles.buttonGoLogin}
-              onClick={this.props.redirectToChat}
-            >
-              Chat
-            </button>
+
+            <div style={styles.buttonsContainer}>
+              <button
+                style={styles.button}
+                onClick={this.props.redirectToLogin}
+              >
+                Facebook Login
+              </button>
+
+              <button
+                style={styles.button}
+                onClick={this.props.redirectToList}
+              >
+                List (JSON Server)
+              </button>
+
+              <button
+                style={styles.button}
+                onClick={this.props.redirectToChat}
+              >
+                Chat (firebase test)
+              </button>
+
+              <button
+                style={styles.button}
+                onClick={this.props.redirectToChatList}
+              >
+                Chat List (firebase)
+              </button>
+            </div>
+
           </div>
           <div style={styles.bodyContainer}>
             {pages[this.props.current_page]}

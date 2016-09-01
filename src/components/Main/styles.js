@@ -29,5 +29,13 @@ export default {
     overflowY: 'none',
   },
 
+  buttonsContainer: {
+    display: 'flex',
+  },
+
+  button: {
+    marginLeft: 10,
+  },
+
 
 };

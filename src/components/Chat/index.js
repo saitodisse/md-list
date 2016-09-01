@@ -14,7 +14,7 @@ export default connect({
   postClicked: 'chat.postClicked',
   putClicked: 'chat.putClicked',
 },
-  class ListApp extends Component {
+  class Chat extends Component {
     componentDidMount() {
       if (!this.props.user.uid) {
         this.props.currentUserRequested();

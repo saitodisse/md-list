@@ -41,6 +41,7 @@ controller.addModules({
     '/login': 'main.redirectToLogin',
     '/list': 'main.redirectToList',
     '/chat': 'main.redirectToChat',
+    '/chatList': 'main.redirectToChatList',
     '/': 'main.redirectToMain',
   }, {
     onlyHash: true
