@@ -8,12 +8,24 @@ export default connect({
   user: 'login.user',
 }, {
   pageLoaded: 'chat.pageLoaded',
+  pageUnloaded: 'chat.pageUnloaded',
   currentUserRequested: 'login.currentUserRequested',
   deleteClicked: 'chat.deleteClicked',
   postClicked: 'chat.postClicked',
   putClicked: 'chat.putClicked',
 },
   class ListApp extends Component {
+    componentDidMount() {
+      if (!this.props.user.uid) {
+        this.props.currentUserRequested();
+      }
+      this.props.pageLoaded();
+    }
+
+    componentWillUnmount() {
+      this.props.pageUnloaded();
+    }
+
     componentDidMount() {
       if (!this.props.user.uid) {
         this.props.currentUserRequested();
