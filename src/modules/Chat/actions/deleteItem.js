@@ -2,7 +2,6 @@ import firebase from 'firebase';
 
 function deleteItem({ input }) {
   const {user_id, user_name, body} = input;
-  // services.firebase.onValue('some_data', 'chat.dataReceived');
 
   const postData = {
     user_id,

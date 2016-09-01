@@ -1,5 +1,5 @@
-import postItem from '../actions/postItem';
+import deleteItem from '../actions/deleteItem';
 
 export default [
-  postItem,
+  deleteItem,
 ];
