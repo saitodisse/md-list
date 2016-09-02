@@ -10,19 +10,19 @@ import cancelEdit from './chains/cancelEdit';
 export default module => {
   module.addState({
     items: {},
-    isSaving: false,
+    is_saving: false,
     error: null,
-    currentItem: {title: ''},
+    current_item: {title: ''},
   });
 
   module.addSignals({
+    pageLoaded: getDataFromServer,
     newItemTitleChanged: {
       chain: changeNewItemTitle,
       immediate: true
     },
     newItemTitleSubmitted: submitNewItemTitle,
     updateItemTitleSubmitted: submitUpdateItemTitle,
-    pageLoaded: getDataFromServer,
     removeItemClicked: removeItem,
     removeAllItemsClicked: removeAllItems,
     itemClicked: setCurrentItemActive,

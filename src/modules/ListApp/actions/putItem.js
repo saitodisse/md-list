@@ -1,7 +1,7 @@
 function putItem({state, output, services}) {
-  const currentItem = state.get('listApp.currentItem');
+  const current_item = state.get('listApp.current_item');
 
-  services.http.put(`/items/${currentItem.id}`, currentItem)
+  services.http.put(`/items/${current_item.id}`, current_item)
     .then(output.success)
     .catch(output.error);
 }

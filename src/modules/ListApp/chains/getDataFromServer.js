@@ -7,10 +7,10 @@ export default [
   getItems, {
     success: [
       updateAllItems,
-      set('state:listApp.isSaving', false),
+      set('state:listApp.is_saving', false),
     ],
     error: [
-      set('state:listApp.isSaving', false),
+      set('state:listApp.is_saving', false),
       set('state:listApp.error', 'Can\'t get items from server')
     ]
   },

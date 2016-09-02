@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+require('dotenv').config({path: '.env-dev'});
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -26,9 +27,17 @@ module.exports = {
       inject: 'body'
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env': {
+        'ENV': JSON.stringify(process.env.ENV),
+        'NODE_ENV': JSON.stringify('development'),
+        'API_KEY': JSON.stringify(process.env.API_KEY),
+        'AUTH_DOMAIN': JSON.stringify(process.env.AUTH_DOMAIN),
+        'DATABASE_URL': JSON.stringify(process.env.DATABASE_URL),
+        'STORAGE_BUCKET': JSON.stringify(process.env.STORAGE_BUCKET),
+      }
     })
   ],
+
   module: {
     loaders: [{
       test: /\.js?$/,
@@ -36,7 +45,12 @@ module.exports = {
       loader: 'babel',
       query: {
         presets: ['es2015', 'stage-0'],
-        plugins: ['inferno']
+        plugins: [
+          'inferno',
+          ['module-alias', [
+            { 'src': 'src', 'expose': '~' },
+          ]],
+        ]
       }
     }]
   }

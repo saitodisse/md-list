@@ -33,3 +33,28 @@ $ npm run client
 - [x] [shortcut] ESC cancel editing
 - [x] [shortcut] up/down arrows goes up/down when no data on textarea
 - [x] [shortcut] page up/down arrows goes up/down when no data on textarea
+- [x] [firebase] integrate with firebase module
+- [x] [firebase] facebook login
+- [-] [localstorage] create a localstorage service
+- [-] [firebase] deploy
+- [-] [user] save user to a localstorage
+- [x] [chat] listen to some_data
+- [x] [chat] get some_data
+- [x] [chat] post some_data
+- [x] [chat] delete some_data
+- [x] [chat] put some_data
+- [x] [chat] show who post item
+- [x] [chat] must login to post
+- [-] [chat] can delete only self items
+
+## Chat List
+
+- [ ] [chat-list] listen to data
+- [ ] [chat-list] get data
+- [ ] [chat-list] post
+- [ ] [chat-list] put
+- [ ] [chat-list] delete
+- [ ] [chat-list] show user name
+- [ ] [chat-list] show user photo
+- [ ] [chat-list] only user can edit his item
+- [ ] [chat-list] only user can delete his item
