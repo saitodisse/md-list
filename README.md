@@ -1,19 +1,14 @@
-# cerebral-website-tutorial
-
-The tutorial app for the Cerebral website
+# md-list - JSON Server
 
 # run
 
 ```sh
-# # json server
-# #  - http://localhost:3001/
-$ mv server/db-example.json server/db.json
-$ npm run server
-
-# # cerebral app
-# #  - http://localhost:3000/
-$ npm run client
+npm install
+npm start
 ```
+
+- open: http://localhost:3000/
+
 
 # TODO
 
