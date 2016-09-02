@@ -1,19 +1,13 @@
-# cerebral-website-tutorial
-
-The tutorial app for the Cerebral website
+# md list: Chat + firebase + cerebral controller
 
 # run
 
 ```sh
-# # json server
-# #  - http://localhost:3001/
-$ mv server/db-example.json server/db.json
-$ npm run server
-
-# # cerebral app
-# #  - http://localhost:3000/
-$ npm run client
+npm install
+npm start
 ```
+
+- open: http://localhost:3000
 
 # TODO
 
@@ -26,12 +20,15 @@ $ npm run client
 - [x] [chat-list] delete
 - [x] [chat-list] show user name
 - [x] [chat-list] show user photo
+- [ ] [listApp] remove listApp
 - [ ] [login] if there is no user aways redirect to login
 - [ ] [login] facebook login button
 - [ ] [login] show logged user after login
-- [ ] [listApp] remove listApp
 - [ ] [chat-list] only user can edit his item
 - [ ] [chat-list] only user can delete his item
+- [ ] [deploy] build and deploy to gh-pages on github
+
+### old
 
 - [x] [styles] make items to align to the right
 - [x] [signals] allow to enter new value even before server response
