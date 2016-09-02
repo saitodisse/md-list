@@ -16,14 +16,16 @@ export default {
     textAlign: 'center',
     marginTop: 10,
     marginBottom: 10,
+    justifyContent: 'space-between',
   },
   title: {
-    flexGrow: 1,
+    flexGrow: 0,
     fontWeight: 'bold',
     color: '#777',
   },
 
   bodyContainer: {
+    flexGrow: 0,
     display: 'flex',
     height: '100%',
     overflowY: 'none',
@@ -37,5 +39,11 @@ export default {
     marginLeft: 10,
   },
 
+  link: {
+    marginLeft: 10,
+    textDecoration: 'underline',
+    color: 'cadetblue',
+    cursor: 'pointer',
+  },
 
 };

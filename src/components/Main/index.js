@@ -3,23 +3,17 @@ import Component from 'inferno-component';
 import {connect} from 'cerebral-view-inferno';
 
 import Login from '~/components/Login';
-import ListApp from '~/components/ListApp';
-import Chat from '~/components/Chat';
 import ChatList from '~/components/ChatList';
 
 import {
   PAGE_EMPTY,
   PAGE_LOGIN,
-  PAGE_LIST,
-  PAGE_CHAT,
   PAGE_CHAT_LIST,
 } from '~/constants';
 
 function getPages() {
   const pages = {};
   pages[PAGE_LOGIN] = <Login />;
-  pages[PAGE_LIST] = <ListApp />;
-  pages[PAGE_CHAT] = <Chat />;
   pages[PAGE_CHAT_LIST] = <ChatList />;
   pages[PAGE_EMPTY] = null;
   return pages;
@@ -29,25 +23,46 @@ import styles from './styles';
 
 export default connect({
   user: 'login.user',
+  is_logged: 'login.is_logged',
   current_page: 'main.current_page',
 }, {
-  redirectToLogin: 'main.redirectToLogin',
-  redirectToList: 'main.redirectToList',
-  redirectToChat: 'main.redirectToChat',
-  redirectToChatList: 'main.redirectToChatList',
   pageLoaded: 'main.pageLoaded',
-  pageUnloaded: 'main.pageUnloaded',
-  currentUserRequested: 'login.currentUserRequested',
+
+  userLoggedIn: 'main.userLoggedIn',
+  redirectToChatList: 'main.redirectToChatList',
+
+  userLoggedOut: 'main.userLoggedOut',
+  redirectToLogin: 'main.redirectToLogin',
+
+  signOutClicked: 'login.signOutClicked',
 },
   class Main extends Component {
     componentDidMount() {
-      if (!this.props.user.uid) {
-        this.props.currentUserRequested();
-      }
       this.props.pageLoaded();
     }
     componentWillUnmount() {
-      this.props.pageUnloaded();
+      this.props.userLoggedOut();
+    }
+    componentDidUpdate(prevProps) {
+      if (prevProps.is_logged !== this.props.is_logged) {
+        if (this.props.is_logged) {
+          this.props.userLoggedIn();
+          this.props.redirectToChatList();
+        } else {
+          this.props.userLoggedOut();
+          this.props.redirectToLogin();
+        }
+      }
+    }
+
+    getTitle() {
+      if (this.props.current_page === PAGE_LOGIN) {
+        return ':: Login';
+      }
+      if (this.props.current_page === PAGE_CHAT_LIST) {
+        return ':: Chat';
+      }
+      return '';
     }
 
     render() {
@@ -56,30 +71,18 @@ export default connect({
         <div style={styles.mainContainer}>
           <div style={styles.titleContainer}>
             <div style={styles.title}>
-              MD list
+              md list {this.getTitle(this.props.current_page)}
             </div>
 
             <div style={styles.buttonsContainer}>
-              <button
-                style={styles.button}
-                onClick={this.props.redirectToLogin}
-              >
-                Facebook Login
-              </button>
+              {this.props.is_logged && this.props.user.displayName}
 
-              <button
-                style={styles.button}
-                onClick={this.props.redirectToList}
+              <div
+                style={styles.link}
+                onClick={this.props.signOutClicked}
               >
-                List (JSON Server)
-              </button>
-
-              <button
-                style={styles.button}
-                onClick={this.props.redirectToChatList}
-              >
-                Chat List (firebase)
-              </button>
+                logout
+              </div>
             </div>
 
           </div>

@@ -4,9 +4,7 @@
   "description": "MD list",
   "main": "index.js",
   "scripts": {
-    "client": "webpack-dev-server & TASK_PID=$!",
-    "server": "node server/server.js && kill $TASK_PID",
-    "start": "npm run client & npm run server",
+    "start": "webpack-dev-server",
     "build": "webpack --config webpack.config.production.js",
     "test": "exit 1"
   },

@@ -6,7 +6,6 @@ import Router from 'cerebral-module-router';
 
 import Main from './modules/Main';
 import Login from './modules/Login';
-import ListApp from './modules/ListApp';
 import ChatList from './modules/ChatList';
 
 import FirebaseModule from 'cerebral-module-firebase';
@@ -15,16 +14,8 @@ import FirebaseModule from 'cerebral-module-firebase';
 const controller = Controller(Model({}));
 
 controller.addModules({
-  // listApp module
   main: Main,
-
-  // login module
   login: Login,
-
-  // listApp module
-  listApp: ListApp,
-
-  // listApp module
   chatList: ChatList,
 
   // service
@@ -40,9 +31,7 @@ controller.addModules({
 
   router: Router({
     '/login': 'main.redirectToLogin',
-    '/list': 'main.redirectToList',
-    '/chatList': 'main.redirectToChatList',
-    '/': 'main.redirectToMain',
+    '/': 'main.redirectToChatList',
   }, {
     onlyHash: true
   }),
