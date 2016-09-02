@@ -26,21 +26,29 @@ module.exports = {
         'STORAGE_BUCKET': JSON.stringify(process.env.STORAGE_BUCKET),
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false,
+    //     mangle: false,
+    //   }
+    // })
   ],
   module: {
-    loaders: [{
-      test: /\.js?$/,
+    loaders: [
+    { test: /\.js?$/,
       include: path.resolve('src'),
       loader: 'babel',
       query: {
         presets: ['es2015', 'stage-0'],
-        plugins: ['inferno']
+        plugins: [
+          'inferno',
+          ['module-alias', [
+            { 'src': 'src', 'expose': '~' },
+          ]],
+        ]
+
       }
-    }]
+    },
+    ]
   }
 };
