@@ -25,7 +25,7 @@ module.exports = {
         'DATABASE_URL': JSON.stringify(process.env.DATABASE_URL),
         'STORAGE_BUCKET': JSON.stringify(process.env.STORAGE_BUCKET),
       }
-    })
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false

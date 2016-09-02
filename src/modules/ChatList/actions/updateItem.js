@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-function postItem({ state, output }) {
+function updateItem({ input, state, output }) {
   // User info
   const uid = state.get('login.user.uid');
   const displayName = state.get('login.user.displayName');
@@ -20,12 +20,17 @@ function postItem({ state, output }) {
   };
 
   // Get a key for a new Post.
-  const newItemKey = firebase.database().ref().child('list').push().key;
+  let key = null;
+  if (input.id) {
+    key = input.id;
+  } else {
+    key = firebase.database().ref().child('list').push().key;
+  }
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};
-  updates['/items/' + newItemKey] = itemData;
-  updates['/user-items/' + uid + '/' + newItemKey] = itemData;
+  updates['/items/' + key] = itemData;
+  updates['/user-items/' + uid + '/' + key] = itemData;
 
   // Send to firebase
   firebase.database().ref().update(updates)
@@ -33,7 +38,7 @@ function postItem({ state, output }) {
     .catch(output.error);
 }
 
-postItem.async = true;
-postItem.outputs = ['success', 'error'];
+updateItem.async = true;
+updateItem.outputs = ['success', 'error'];
 
-export default postItem;
+export default updateItem;

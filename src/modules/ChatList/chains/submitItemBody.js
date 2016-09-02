@@ -1,5 +1,5 @@
 import {set} from 'cerebral/operators';
-import postItem from '../actions/postItem.js';
+import updateItem from '../actions/updateItem.js';
 
 const submitItemBody = [
   // We set the app is saving mode to disable the input
@@ -7,12 +7,12 @@ const submitItemBody = [
   // We reset the error
   set('state:chatList.error', null),
   // We post the item to the server
-  postItem, {
+  updateItem, {
     success: [
       // The app goes back into normal state,
       // enabling the input again
       set('state:chatList.is_saving', false),
-      set('state:chatList.current_item.body', ''),
+      set('state:chatList.current_item', {body: ''}),
     ],
     error: [
       // The app goes back into normal state,

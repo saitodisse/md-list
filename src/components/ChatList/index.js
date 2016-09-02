@@ -8,7 +8,6 @@ import Items from './Items';
 import styles from './styles';
 
 export default connect({
-  user: 'login.user',
   is_saving: 'chatList.is_saving',
   current_item: 'chatList.current_item',
   itemsCount: itemsListCountComputed(),
@@ -18,28 +17,13 @@ export default connect({
   currentItemChanged: 'chatList.currentItemChanged',
   currentItemSubmitted: 'chatList.currentItemSubmitted',
 
-  updateItemTitleSubmitted: 'chatList.updateItemTitleSubmitted',
-  newItemTitleChanged: 'chatList.newItemTitleChanged',
-  pageLoaded: 'chatList.pageLoaded',
-  pageUnloaded: 'chatList.pageUnloaded',
-  itemClicked: 'chatList.itemClicked',
-  removeItemClicked: 'chatList.removeItemClicked',
+  updateItemSubmitted: 'chatList.updateItemSubmitted',
   removeAllItemsClicked: 'chatList.removeAllItemsClicked',
   editCanceled: 'chatList.editCanceled',
 },
   class ChatList extends Component {
 
     static autosizeLoaded = false;
-
-    componentDidMount() {
-      if (!this.props.user.uid) {
-        this.props.currentUserRequested();
-      }
-      this.props.pageLoaded();
-    }
-    componentWillUnmount() {
-      this.props.pageUnloaded();
-    }
 
     componentDidUpdate(prevProps) {
       // focus after server actions
@@ -79,15 +63,10 @@ export default connect({
     _OnSubmit = () => {
       const value = R.trim(this.props.current_item.body);
       const hasValue = !R.isEmpty(value);
-      const isUpdating = !R.isNil(this.props.current_item.id);
       if (hasValue) {
-        if (isUpdating) {
-          this.props.updateItemTitleSubmitted({
-            id: this.props.current_item.id
-          });
-        } else {
-          this.props.currentItemSubmitted();
-        }
+        this.props.currentItemSubmitted({
+          id: this.props.current_item.id
+        });
       }
       this.textareaNode.focus();
 

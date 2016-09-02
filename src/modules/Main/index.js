@@ -1,8 +1,9 @@
 import showLogin from './chains/showLogin';
 import showList from './chains/showList';
 import showMain from './chains/showMain';
-import showChat from './chains/showChat';
 import showChatList from './chains/showChatList';
+import listenDatabase from './chains/listenDatabase';
+import unlistenDatabase from './chains/unlistenDatabase';
 
 export default module => {
   module.addState({
@@ -13,7 +14,8 @@ export default module => {
     redirectToMain: showMain,
     redirectToLogin: showLogin,
     redirectToList: showList,
-    redirectToChat: showChat,
     redirectToChatList: showChatList,
+    pageLoaded: listenDatabase,
+    pageUnloaded: unlistenDatabase,
   });
 };

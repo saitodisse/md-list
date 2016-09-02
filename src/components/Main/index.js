@@ -28,14 +28,28 @@ function getPages() {
 import styles from './styles';
 
 export default connect({
+  user: 'login.user',
   current_page: 'main.current_page',
 }, {
   redirectToLogin: 'main.redirectToLogin',
   redirectToList: 'main.redirectToList',
   redirectToChat: 'main.redirectToChat',
   redirectToChatList: 'main.redirectToChatList',
+  pageLoaded: 'main.pageLoaded',
+  pageUnloaded: 'main.pageUnloaded',
+  currentUserRequested: 'login.currentUserRequested',
 },
   class Main extends Component {
+    componentDidMount() {
+      if (!this.props.user.uid) {
+        this.props.currentUserRequested();
+      }
+      this.props.pageLoaded();
+    }
+    componentWillUnmount() {
+      this.props.pageUnloaded();
+    }
+
     render() {
       const pages = getPages();
       return (
@@ -58,13 +72,6 @@ export default connect({
                 onClick={this.props.redirectToList}
               >
                 List (JSON Server)
-              </button>
-
-              <button
-                style={styles.button}
-                onClick={this.props.redirectToChat}
-              >
-                Chat (firebase test)
               </button>
 
               <button

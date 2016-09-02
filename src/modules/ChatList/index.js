@@ -1,14 +1,13 @@
 // chains
-import listenDatabase from './chains/listenDatabase';
-import unlistenDatabase from './chains/unlistenDatabase';
 import receiveDataFromFirebase from './chains/receiveDataFromFirebase';
 import deleteChildFromFirebase from './chains/deleteChildFromFirebase';
-// import postItem from './chains/postItem';
 // import putItem from './chains/putItem';
 import deleteItemChain from './chains/deleteItemChain';
 
-import editCurrentItemBody from './chains/editCurrentItemBody';
+import setBody from './chains/setBody';
 import submitItemBody from './chains/submitItemBody';
+import setCurrentItem from './chains/setCurrentItem';
+import cancelEdit from './chains/cancelEdit';
 
 export default module => {
   module.addState({
@@ -19,22 +18,20 @@ export default module => {
   });
 
   module.addSignals({
-    pageLoaded: listenDatabase,
-    pageUnloaded: unlistenDatabase,
     firebaseChildAdded: receiveDataFromFirebase,
     firebaseChildRemoved: deleteChildFromFirebase,
     firebaseChildChanged: receiveDataFromFirebase,
 
     currentItemChanged: {
-      chain: editCurrentItemBody,
+      chain: setBody,
       immediate: true
     },
     currentItemSubmitted: submitItemBody,
-
-    // updateItemTitleSubmitted: submitUpdateItemTitle,
+    // updateItemTitleSubmitted: submitItemBody,
     removeItemClicked: deleteItemChain,
+    itemClicked: setCurrentItem,
+    editCanceled: cancelEdit,
     // removeAllItemsClicked: removeAllItems,
-    // itemClicked: setCurrentItemActive,
 
   });
 };
