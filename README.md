@@ -17,6 +17,22 @@ $ npm run client
 
 # TODO
 
+## Chat List
+
+- [x] [chat-list] listen to data
+- [x] [chat-list] get data
+- [x] [chat-list] post
+- [x] [chat-list] put
+- [x] [chat-list] delete
+- [x] [chat-list] show user name
+- [x] [chat-list] show user photo
+- [ ] [login] if there is no user aways redirect to login
+- [ ] [login] facebook login button
+- [ ] [login] show logged user after login
+- [ ] [listApp] remove listApp
+- [ ] [chat-list] only user can edit his item
+- [ ] [chat-list] only user can delete his item
+
 - [x] [styles] make items to align to the right
 - [x] [signals] allow to enter new value even before server response
 - [x] [list] transform data in an object: http://www.cerebraljs.com/documentation/storing_server_data
@@ -46,15 +62,3 @@ $ npm run client
 - [x] [chat] show who post item
 - [x] [chat] must login to post
 - [-] [chat] can delete only self items
-
-## Chat List
-
-- [ ] [chat-list] listen to data
-- [ ] [chat-list] get data
-- [ ] [chat-list] post
-- [ ] [chat-list] put
-- [ ] [chat-list] delete
-- [ ] [chat-list] show user name
-- [ ] [chat-list] show user photo
-- [ ] [chat-list] only user can edit his item
-- [ ] [chat-list] only user can delete his item
