@@ -97,7 +97,6 @@ export default connect({
       if (e.keyCode === 27) {
         this.props.editCanceled();
       }
-      /**/console.log({keyCode: e.keyCode});/* -debug- */
       if (this.props.currentItem.title.length === 0) {
         // UP
         if (e.keyCode === 38 || e.keyCode === 104) {
