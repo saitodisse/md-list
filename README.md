@@ -1,17 +1,34 @@
 # md list: Chat + firebase + cerebral controller
 
-### run
+- demo: https://saitodisse.github.io/md-list
+- cerebral controller: http://www.cerebraljs.com/
+- firebase: firebase.google.com
+
+---------
+
+
+### run dev
 
 ```sh
+# create a project on firebase with a database
+cp .env-example .env-dev
+# edit API_KEY, AUTH_DOMAIN, DATABASE_URL and STORAGE_BUCKET on .env-dev
+# apply rules from /docs/firebase_rules.md on firebase console
+
 npm install
 npm start
 ```
 
 - open: http://localhost:3000
 
-### deploy
+---------
+
+
+### deploy to gh-pages
 
 ```sh
+# you can copy dev settings
+cp .env-dev .env-prod
 npm run deploy
 ```
 
