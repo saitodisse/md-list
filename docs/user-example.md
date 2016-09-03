@@ -1,4 +1,4 @@
-# Facebook User
+# Facebook user example
 
 ```js
 user: {
