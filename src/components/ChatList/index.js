@@ -18,7 +18,6 @@ export default connect({
   currentItemSubmitted: 'chatList.currentItemSubmitted',
 
   updateItemSubmitted: 'chatList.updateItemSubmitted',
-  removeAllItemsClicked: 'chatList.removeAllItemsClicked',
   editCanceled: 'chatList.editCanceled',
 },
   class ChatList extends Component {
@@ -143,19 +142,11 @@ export default connect({
               </div>
 
               <div style={styles.actionsContainer}>
-
                 <button
                   style={styles.button}
                   onClick={this._OnSubmit}
                 >
                   Send
-                </button>
-
-                <button
-                  style={styles.actionsContainerButtonRemove}
-                  onClick={this.props.removeAllItemsClicked}
-                >
-                  remove all
                 </button>
               </div>
 

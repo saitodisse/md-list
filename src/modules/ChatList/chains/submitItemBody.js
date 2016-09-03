@@ -1,4 +1,4 @@
-import {set} from 'cerebral/operators';
+import {set, copy} from 'cerebral/operators';
 import updateItem from '../actions/updateItem.js';
 
 const submitItemBody = [
@@ -19,7 +19,7 @@ const submitItemBody = [
       // enabling the input again
       set('state:chatList.is_saving', false),
       // We set an error to display
-      set('state:chatList.error', 'Adding item failed on server, removing it')
+      copy('input:code', 'state:chatList.error'),
     ]
   },
 ];

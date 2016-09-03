@@ -31,7 +31,5 @@ export default module => {
     removeItemClicked: deleteItemChain,
     itemClicked: setCurrentItem,
     editCanceled: cancelEdit,
-    // removeAllItemsClicked: removeAllItems,
-
   });
 };

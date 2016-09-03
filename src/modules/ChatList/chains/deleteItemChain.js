@@ -1,4 +1,4 @@
-import {set} from 'cerebral/operators';
+import {set, copy} from 'cerebral/operators';
 import deleteItem from '../actions/deleteItem';
 import removeItem from '../actions/removeItem';
 
@@ -15,7 +15,7 @@ const deleteItemChain = [
     ],
     error: [
       set('state:chatList.is_saving', false),
-      set('state:chatList.error', 'Adding item failed on server, removing it')
+      copy('input:code', 'state:chatList.error'),
     ]
   },
 ];

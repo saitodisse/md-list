@@ -12,12 +12,6 @@ function updateItem({ input, state, output }) {
   // Prepare data
   const current_item = state.get('chatList.current_item');
   const body = current_item.body;
-  const itemData = {
-    uid,
-    displayName,
-    photoURL,
-    body,
-  };
 
   // Get a key for a new Post.
   let key = null;
@@ -27,10 +21,18 @@ function updateItem({ input, state, output }) {
     key = firebase.database().ref().child('list').push().key;
   }
 
+  const itemData = {
+    id: key,
+    uid,
+    displayName,
+    photoURL,
+    body,
+  };
+
+
   // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};
   updates['/items/' + key] = itemData;
-  updates['/user-items/' + uid + '/' + key] = itemData;
 
   // Send to firebase
   firebase.database().ref().update(updates)
