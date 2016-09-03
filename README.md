@@ -58,7 +58,9 @@ cp .env-dev .env-prod
 npm run deploy
 ```
 
-Open: https://__YOUR_GITHUB_NAME__.github.io/md-list/
+Open: https://--your_github_name--.github.io/md-list/
+
+_You must make your facebook app public to allow others to login (https://developers.facebook.com/apps/--project_id--/review-status/)_
 
 ---------
 
