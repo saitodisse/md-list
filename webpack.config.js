@@ -22,7 +22,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'MD list',
+      title: 'md list',
       template: path.resolve('src', 'index.template.ejs'),
       inject: 'body'
     }),

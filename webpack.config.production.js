@@ -8,11 +8,11 @@ module.exports = {
   output: {
     path: path.resolve('dist'),
     filename: 'main.js',
-    publicPath: '/'
+    publicPath: ''
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'MD list',
+      title: 'md list',
       template: path.resolve('src', 'index.template.ejs'),
       inject: 'body'
     }),

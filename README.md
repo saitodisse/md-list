@@ -1,6 +1,6 @@
 # md list: Chat + firebase + cerebral controller
 
-# run
+### run
 
 ```sh
 npm install
@@ -9,26 +9,15 @@ npm start
 
 - open: http://localhost:3000
 
-# TODO
+### deploy
 
-## Chat List
+```sh
+npm run deploy
+```
 
-- [x] [chat-list] listen to data
-- [x] [chat-list] get data
-- [x] [chat-list] post
-- [x] [chat-list] put
-- [x] [chat-list] delete
-- [x] [chat-list] show user name
-- [x] [chat-list] show user photo
-- [ ] [listApp] remove listApp
-- [ ] [login] if there is no user aways redirect to login
-- [ ] [login] facebook login button
-- [ ] [login] show logged user after login
-- [ ] [chat-list] only user can edit his item
-- [ ] [chat-list] only user can delete his item
-- [ ] [deploy] build and deploy to gh-pages on github
+---------
 
-### old
+## TODO
 
 - [x] [styles] make items to align to the right
 - [x] [signals] allow to enter new value even before server response
@@ -59,3 +48,17 @@ npm start
 - [x] [chat] show who post item
 - [x] [chat] must login to post
 - [-] [chat] can delete only self items
+- [x] [chat-list] listen to data
+- [x] [chat-list] get data
+- [x] [chat-list] post
+- [x] [chat-list] put
+- [x] [chat-list] delete
+- [x] [chat-list] show user name
+- [x] [chat-list] show user photo
+- [x] [listApp] remove listApp
+- [x] [login] if there is no user aways redirect to login
+- [x] [login] facebook login button
+- [x] [login] show logged user after login
+- [x] [chat-list] only user can edit his item
+- [x] [chat-list] only user can delete his item
+- [x] [deploy] build and deploy to gh-pages on github
