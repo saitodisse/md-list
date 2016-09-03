@@ -28,7 +28,7 @@ cp .env-example .env-dev`
 
 ##### 4. Firebase facebook authentication
 
-- Configure a facebook auth following the _Before you begin_ section: https://firebase.google.com/docs/auth/web/facebook-login
+- Configure a facebook auth following steps 2 and 3 from _Before you begin_ section: https://firebase.google.com/docs/auth/web/facebook-login
 
 ##### 5. Start app
 
