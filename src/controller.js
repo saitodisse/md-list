@@ -11,7 +11,10 @@ import ChatList from './modules/ChatList';
 import FirebaseModule from 'cerebral-module-firebase';
 // import FirebaseModule from '../../cerebral-module-firebase/build/index.js';
 
-const controller = Controller(Model({}));
+const modelOptions = process.env.NODE_ENV === 'production' ? {
+  immutable: false // Do not set this to false when using the Recorder
+} : {};
+const controller = Controller(Model({}, modelOptions));
 
 controller.addModules({
   main: Main,
@@ -27,7 +30,7 @@ controller.addModules({
   }),
 
   // plug-in
-  devtools: Devtools(),
+  devtools: process.env.NODE_ENV === 'production' ? () => {} : Devtools(),
 
   router: Router({
     '/login': 'main.redirectToLogin',
