@@ -36,7 +36,13 @@ npm run deploy
 
 ---------
 
-## TODO
+If you want a server/client example made with `express` and `JSON server` go to this branch: https://github.com/saitodisse/md-list/tree/json-server
+
+---------
+
+## task-list
+
+### done
 
 - [x] [styles] make items to align to the right
 - [x] [signals] allow to enter new value even before server response
