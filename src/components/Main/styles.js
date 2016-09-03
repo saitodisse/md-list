@@ -27,7 +27,6 @@ export default {
 
   bodyContainer: {
     flexGrow: 0,
-    display: 'flex',
     height: '100%',
     overflowY: 'none',
     justifyContent: 'center',
