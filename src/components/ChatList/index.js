@@ -8,11 +8,13 @@ import Items from './Items';
 import styles from './styles';
 
 export default connect({
+  is_logged: 'login.is_logged',
   is_saving: 'chatList.is_saving',
   current_item: 'chatList.current_item',
   itemsCount: itemsListCountComputed(),
   error: 'chatList.error',
 }, {
+  redirectToLogin: 'main.redirectToLogin',
   currentUserRequested: 'login.currentUserRequested',
   currentItemChanged: 'chatList.currentItemChanged',
   currentItemSubmitted: 'chatList.currentItemSubmitted',
@@ -24,7 +26,20 @@ export default connect({
 
     static autosizeLoaded = false;
 
+    componentDidMount() {
+      if (!this.props.is_logged) {
+        this.props.redirectToLogin();
+      }
+    }
+
     componentDidUpdate(prevProps) {
+      // redirect to login if is_logged === false
+      if (prevProps.is_logged !== this.props.is_logged) {
+        if (!this.props.is_logged) {
+          this.props.redirectToLogin();
+        }
+      }
+
       // focus after server actions
       if (prevProps.is_saving && !this.props.is_saving) {
         this.textareaNode.focus();

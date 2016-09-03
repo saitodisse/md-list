@@ -49,20 +49,9 @@ export default connect({
           this.props.userLoggedIn();
           this.props.redirectToChatList();
         } else {
-          this.props.userLoggedOut();
           this.props.redirectToLogin();
         }
       }
-    }
-
-    getTitle() {
-      if (this.props.current_page === PAGE_LOGIN) {
-        return ':: Login';
-      }
-      if (this.props.current_page === PAGE_CHAT_LIST) {
-        return ':: Chat';
-      }
-      return '';
     }
 
     render() {
@@ -71,18 +60,22 @@ export default connect({
         <div style={styles.mainContainer}>
           <div style={styles.titleContainer}>
             <div style={styles.title}>
-              md list {this.getTitle(this.props.current_page)}
+              md list
             </div>
 
             <div style={styles.buttonsContainer}>
-              {this.props.is_logged && this.props.user.displayName}
+              {this.props.is_logged && (
+                <img style={styles.userPhoto} src={this.props.user.photoURL} alt="photo" />
+              )}
 
-              <div
-                style={styles.link}
-                onClick={this.props.signOutClicked}
-              >
-                logout
-              </div>
+              {this.props.is_logged && (
+                <div
+                  style={styles.link}
+                  onClick={this.props.signOutClicked}
+                >
+                  logout
+                </div>
+              )}
             </div>
 
           </div>

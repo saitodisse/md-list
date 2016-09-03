@@ -4,6 +4,7 @@ import {connect} from 'cerebral-view-inferno';
 import styles from './styles';
 
 export default connect({
+  is_loading: 'login.is_loading',
 }, {
   facebookLoginClicked: 'login.facebookLoginClicked',
 },
@@ -11,12 +12,14 @@ export default connect({
     render() {
       return (
         <div style={styles.container}>
-          <button
-            style={styles.facebookLoginButton}
-            onClick={this.props.facebookLoginClicked}
-          >
-            Facebook Login
-          </button>
+          {!this.props.is_loading && (
+              <button
+                style={styles.facebookLoginButton}
+                onClick={this.props.facebookLoginClicked}
+              >
+                Sign In with facebook
+              </button>
+          )}
         </div>
       );
     }

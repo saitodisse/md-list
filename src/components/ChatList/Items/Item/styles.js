@@ -34,11 +34,13 @@ export default {
   },
 
   userPhotoContainer: {
+    display: 'flex',
     flexGrow: 0,
+    width: '2.25rem',
+    justifyContent: 'center',
   },
 
   userPhoto: {
-    width: '2.25rem',
     height: '2.25rem',
     borderRadius: '.2rem',
     display: 'inline-block',
@@ -61,6 +63,7 @@ export default {
     fontSize: 12,
     fontWeight: 'bold',
     marginLeft: 8,
+    color: '#6d6d6d',
   },
 
   itemContainer: {

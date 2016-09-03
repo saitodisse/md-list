@@ -19,9 +19,10 @@ export default {
     justifyContent: 'space-between',
   },
   title: {
-    flexGrow: 0,
+    flexGrow: 1,
     fontWeight: 'bold',
     color: '#777',
+    fontSize: 23,
   },
 
   bodyContainer: {
@@ -29,10 +30,22 @@ export default {
     display: 'flex',
     height: '100%',
     overflowY: 'none',
+    justifyContent: 'center',
   },
 
   buttonsContainer: {
     display: 'flex',
+    position: 'absolute',
+    right: 21,
+    top: 24,
+    fontSize: 12,
+  },
+
+  userPhoto: {
+    position: 'relative',
+    height: 30,
+    top: -17,
+    right: -3,
   },
 
   button: {
