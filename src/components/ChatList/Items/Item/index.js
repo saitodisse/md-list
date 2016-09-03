@@ -9,6 +9,7 @@ import highlight from 'highlight.js';
 export default connect(props => ({
   item: `chatList.items.${props.itemId}`,
   current_item: 'chatList.current_item',
+  user_uid: 'login.user.uid',
 }), {
   itemClicked: 'chatList.itemClicked',
   removeItemClicked: 'chatList.removeItemClicked',
@@ -57,6 +58,9 @@ export default connect(props => ({
       const $isNewItem = this.props.item.$isNew;
       const itemStyle = $isNewItem ? styles.itemNewContainer : styles.itemContainer;
 
+      const current_uid = this.props.user_uid;
+      const item_uid = this.props.item.uid;
+      const is_my_item = (current_uid === item_uid);
 
       return (
         <div style={styles.messageContainer}>
@@ -71,20 +75,22 @@ export default connect(props => ({
                 {this.props.item.displayName}
               </div>
 
-              <div style={styles.buttonsContainer}>
-                <div
-                  style={styles.editButton}
-                  onClick={this._onEdit}
-                >
-                  edit
+                {is_my_item && (
+                <div style={styles.buttonsContainer}>
+                  <div
+                    style={styles.editButton}
+                    onClick={this._onEdit}
+                  >
+                    edit
+                  </div>
+                  <div
+                    style={styles.deleteButton}
+                    onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
+                  >
+                    delete
+                  </div>
                 </div>
-                <div
-                  style={styles.deleteButton}
-                  onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
-                >
-                  delete
-                </div>
-              </div>
+                )}
             </div>
 
             <div style={itemStyle}>
