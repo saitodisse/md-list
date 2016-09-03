@@ -3,8 +3,6 @@
 ## markdown chat with cerebral, firebase and flex-box
 
 - demo: https://saitodisse.github.io/md-list
-
-
 - cerebral controller: http://www.cerebraljs.com/
 - firebase: https://firebase.google.com
 
