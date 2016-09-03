@@ -57,20 +57,20 @@ export default connect({
     render() {
       const pages = getPages();
       return (
-        <div style={styles.mainContainer}>
-          <div style={styles.titleContainer}>
-            <div style={styles.title}>
+        <div style={styles.mainContainer} id="mainContainer">
+          <div style={styles.titleContainer} id="titleContainer">
+            <div style={styles.title} id="title">
               md list
             </div>
 
-            <div style={styles.buttonsContainer}>
+            <div style={styles.buttonsContainer} id="buttonsContainer">
               {this.props.is_logged && (
-                <img style={styles.userPhoto} src={this.props.user.photoURL} alt="photo" />
+                <img style={styles.userPhoto} id="userPhoto" src={this.props.user.photoURL} alt="photo" />
               )}
 
               {this.props.is_logged && (
                 <div
-                  style={styles.link}
+                  style={styles.link} id="link"
                   onClick={this.props.signOutClicked}
                 >
                   logout
@@ -79,7 +79,7 @@ export default connect({
             </div>
 
           </div>
-          <div style={styles.bodyContainer}>
+          <div style={styles.bodyContainer} id="bodyContainer">
             {pages[this.props.current_page]}
           </div>
         </div>

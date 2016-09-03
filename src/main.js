@@ -9,7 +9,7 @@ require('!style!css!highlight.js/styles/default.css');
 require('!style!css!./styles.css');
 
 render((
-  <Container controller={controller} style={{height: '100%'}}>
+  <Container controller={controller} style={{height: '100%', overflowY: 'hidden'}}>
     <Main />
   </Container>
 ), document.querySelector('#app'));

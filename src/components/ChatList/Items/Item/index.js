@@ -63,28 +63,28 @@ export default connect(props => ({
       const is_my_item = (current_uid === item_uid);
 
       return (
-        <div style={styles.messageContainer}>
+        <div style={styles.messageContainer} id="messageContainer">
 
-          <div style={styles.userPhotoContainer}>
-            <img style={styles.userPhoto} src={this.props.item.photoURL} alt="photo" />
+          <div style={styles.userPhotoContainer} id="userPhotoContainer">
+            <img style={styles.userPhoto} id="userPhoto" src={this.props.item.photoURL} alt="photo" />
           </div>
 
-          <div style={styles.bodyContainer}>
-            <div style={styles.topBodyContainer}>
-              <div style={styles.userName}>
+          <div style={styles.bodyContainer} id="bodyContainer">
+            <div style={styles.topBodyContainer} id="topBodyContainer">
+              <div style={styles.userName} id="userName">
                 {this.props.item.displayName}
               </div>
 
                 {is_my_item && (
-                <div style={styles.buttonsContainer}>
+                <div style={styles.buttonsContainer} id="buttonsContainer">
                   <div
-                    style={styles.editButton}
+                    style={styles.editButton} id="editButton"
                     onClick={this._onEdit}
                   >
                     edit
                   </div>
                   <div
-                    style={styles.deleteButton}
+                    style={styles.deleteButton} id="deleteButton"
                     onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
                   >
                     delete

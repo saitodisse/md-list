@@ -20,7 +20,7 @@ export default connect({
 
     render() {
       return (
-        <div style={styles.itemsContainer}>
+        <div style={styles.itemsContainer} id="itemsContainer">
           {this.props.itemsKeys.map((itemId) => (
             <Item {...this.props} key={itemId} itemId={itemId} />
           ))}

@@ -39,8 +39,9 @@ export default {
   },
 
   input: {
+    overflowY: 'auto',
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 34,
     fontWeight: 'bold',
     color: '#777',
   },
@@ -67,10 +68,10 @@ export default {
   },
   textarea: {
     boxSizing: 'border-box',
-    height: '100%',
-    flexGrow: 1,
-    width: '100%',
-    fontSize: 16,
+    // height: '100%',
+    // flexGrow: 1,
+    // width: '100%',
+    fontSize: 14,
     padding: 10,
   },
   textareaError: {
@@ -81,47 +82,19 @@ export default {
     borderColor: 'red',
   },
 
-  actionsContainer: {
+  sendContainer: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    fontFamily: "'Roboto', sans-serif",
-    marginLeft: 20,
-    // marginTop: 10,
-  },
-
-  actionsContainerButtonEdit: {
-    cursor: 'pointer',
-    // marginLeft: 10,
-    padding: 2,
-    paddingLeft: 5,
-    paddingRight: 5,
-    fontSize: 12,
-    // fontWeight: 'bold',
-    color: '#a55',
-  },
-
-  actionsContainerButtonRemove: {
-    cursor: 'pointer',
-    // marginLeft: 10,
-    padding: 2,
-    paddingLeft: 5,
-    paddingRight: 5,
-    fontSize: 12,
-    // fontWeight: 'bold',
-    color: '#a55',
+    alignItems: 'flex-end',
+    marginLeft: 10,
+    marginRight: 10,
   },
 
   button: {
     cursor: 'pointer',
-    // marginLeft: 20,
-    // marginTop: 20,
     padding: 2,
     fontSize: 16,
     fontWeight: 'bold',
     color: '#555',
-    // alignSelf: 'flex-end',
   },
 
 

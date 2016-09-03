@@ -11,7 +11,6 @@ export default {
   },
 
   titleContainer: {
-    display: 'flex',
     flexDirection: 'row',
     textAlign: 'center',
     marginTop: 10,
@@ -22,7 +21,7 @@ export default {
     flexGrow: 1,
     fontWeight: 'bold',
     color: '#777',
-    fontSize: 23,
+    // fontSize: 23,
   },
 
   bodyContainer: {
@@ -42,8 +41,8 @@ export default {
 
   userPhoto: {
     position: 'relative',
-    height: 30,
-    top: -17,
+    height: 24,
+    top: -19,
     right: -3,
   },
 
@@ -52,6 +51,8 @@ export default {
   },
 
   link: {
+    position: 'relative',
+    top: -9,
     marginLeft: 10,
     textDecoration: 'underline',
     color: 'cadetblue',

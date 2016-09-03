@@ -131,18 +131,18 @@ export default connect({
 
     render() {
       return (
-        <div style={styles.container} onKeyDown={this._onKeyDown}>
+        <div style={styles.container} id="container" onKeyDown={this._onKeyDown}>
           <div
-            style={styles.messages}
+            style={styles.messages} id="messages"
             onAttached={node => {this.messagesNode = node;}}>
             <Items />
           </div>
 
-          <div style={styles.input}>
+          <div style={styles.input} id="input">
 
-            <div style={styles.inputContainer}>
+            <div style={styles.inputContainer} id="inputContainer">
               {/* http://stackoverflow.com/questions/13224520/css3-new-style-flexbox-fails-to-stretch-textarea-in-chrome */}
-              <div style={styles.textareaContainer}>
+              <div style={styles.textareaContainer} id="textareaContainer">
                 <textarea
                   id="my_textarea"
                   style={this.props.error ? styles.textareaError : styles.textarea}
@@ -156,9 +156,9 @@ export default connect({
                 />
               </div>
 
-              <div style={styles.actionsContainer}>
+              <div style={styles.sendContainer} id="sendContainer">
                 <button
-                  style={styles.button}
+                  style={styles.button} id="button"
                   onClick={this._OnSubmit}
                 >
                   Send
@@ -167,19 +167,19 @@ export default connect({
 
             </div>
 
-            <div style={styles.bellowTextareaContainer}>
-              <div style={styles.itemsCount}>
+            <div style={styles.bellowTextareaContainer} id="bellowTextareaContainer">
+              <div style={styles.itemsCount} id="itemsCount">
                 count: { this.props.itemsCount }
               </div>
-              <div style={styles.current_item}>
+              <div style={styles.current_item} id="current_item">
                 id: {this.props.current_item.id ? this.props.current_item.id : 'new item'}
               </div>
-              <div style={styles.shortcuts}>
+              <div style={styles.shortcuts} id="shortcuts">
                 Ctrl + Enter (send)
               </div>
             </div>
 
-            <div style={styles.error}>
+            <div style={styles.error} id="error">
               {this.props.error}
             </div>
           </div>

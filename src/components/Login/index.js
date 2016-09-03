@@ -11,10 +11,10 @@ export default connect({
   class Login extends Component {
     render() {
       return (
-        <div style={styles.container}>
+        <div style={styles.container} id="container">
           {!this.props.is_loading && (
               <button
-                style={styles.facebookLoginButton}
+                style={styles.facebookLoginButton} id="facebookLoginButton"
                 onClick={this.props.facebookLoginClicked}
               >
                 Sign In with facebook
