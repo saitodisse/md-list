@@ -88,7 +88,7 @@
 
 	(0, _infernoDom.render)(bp0(_cerebralViewInferno.Container, {
 	  controller: _controller2.default,
-	  style: { height: '100%' }
+	  style: { height: '100%', overflowY: 'hidden' }
 	}, bp1(_Main2.default)), document.querySelector('#app'));
 
 /***/ },
@@ -16345,8 +16345,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16355,8 +16358,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16365,8 +16371,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16375,8 +16384,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16385,8 +16397,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16405,11 +16420,14 @@
 	  style: {
 	    arg: 0
 	  },
-	  events: {
+	  attrs: {
 	    arg: 1
 	  },
-	  children: {
+	  events: {
 	    arg: 2
+	  },
+	  children: {
+	    arg: 3
 	  }
 	});
 
@@ -16462,12 +16480,25 @@
 	    key: 'render',
 	    value: function render() {
 	      var pages = getPages();
-	      return bp2(_styles2.default.mainContainer, [bp3(_styles2.default.titleContainer, [bp4(_styles2.default.title, 'md list'), bp5(_styles2.default.buttonsContainer, [this.props.is_logged && bp7(_styles2.default.userPhoto, {
+	      return bp2(_styles2.default.mainContainer, {
+	        id: 'mainContainer'
+	      }, [bp3(_styles2.default.titleContainer, {
+	        id: 'titleContainer'
+	      }, [bp4(_styles2.default.title, {
+	        id: 'title'
+	      }, 'md list'), bp5(_styles2.default.buttonsContainer, {
+	        id: 'buttonsContainer'
+	      }, [this.props.is_logged && bp7(_styles2.default.userPhoto, {
+	        id: 'userPhoto',
 	        src: this.props.user.photoURL,
 	        alt: 'photo'
 	      }), this.props.is_logged && bp8(_styles2.default.link, {
+	        id: 'link'
+	      }, {
 	        onclick: this.props.signOutClicked
-	      }, 'logout')])]), bp6(_styles2.default.bodyContainer, pages[this.props.current_page])]);
+	      }, 'logout')])]), bp6(_styles2.default.bodyContainer, {
+	        id: 'bodyContainer'
+	      }, pages[this.props.current_page])]);
 	    }
 	  }]);
 
@@ -16513,8 +16544,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16523,11 +16557,14 @@
 	  style: {
 	    arg: 0
 	  },
-	  events: {
+	  attrs: {
 	    arg: 1
 	  },
-	  children: {
+	  events: {
 	    arg: 2
+	  },
+	  children: {
+	    arg: 3
 	  }
 	});
 
@@ -16547,7 +16584,11 @@
 	  _createClass(Login, [{
 	    key: 'render',
 	    value: function render() {
-	      return bp0(_styles2.default.container, !this.props.is_loading && bp1(_styles2.default.facebookLoginButton, {
+	      return bp0(_styles2.default.container, {
+	        id: 'container'
+	      }, !this.props.is_loading && bp1(_styles2.default.facebookLoginButton, {
+	        id: 'facebookLoginButton'
+	      }, {
 	        onclick: this.props.facebookLoginClicked
 	      }, 'Sign In with facebook'));
 	    }
@@ -16653,8 +16694,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16663,8 +16707,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16673,8 +16720,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16683,8 +16733,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16693,8 +16746,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16703,11 +16759,14 @@
 	  style: {
 	    arg: 0
 	  },
-	  events: {
+	  attrs: {
 	    arg: 1
 	  },
-	  children: {
+	  events: {
 	    arg: 2
+	  },
+	  children: {
+	    arg: 3
 	  }
 	});
 
@@ -16716,8 +16775,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16742,8 +16804,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16752,8 +16817,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16762,8 +16830,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -16778,11 +16849,14 @@
 	  style: {
 	    arg: 0
 	  },
-	  hooks: {
+	  attrs: {
 	    arg: 1
 	  },
-	  children: {
+	  hooks: {
 	    arg: 2
+	  },
+	  children: {
+	    arg: 3
 	  }
 	});
 
@@ -16791,11 +16865,14 @@
 	  style: {
 	    arg: 0
 	  },
-	  events: {
+	  attrs: {
 	    arg: 1
 	  },
-	  children: {
+	  events: {
 	    arg: 2
+	  },
+	  children: {
+	    arg: 3
 	  }
 	});
 
@@ -16938,12 +17015,22 @@
 	      var _this3 = this;
 
 	      return bp0(_styles2.default.container, {
+	        id: 'container'
+	      }, {
 	        onkeydown: this._onKeyDown
 	      }, [bp1(_styles2.default.messages, {
+	        id: 'messages'
+	      }, {
 	        attached: function attached(node) {
 	          _this3.messagesNode = node;
 	        }
-	      }, bp2(_Items2.default)), bp3(_styles2.default.input, [bp4(_styles2.default.inputContainer, [/* http://stackoverflow.com/questions/13224520/css3-new-style-flexbox-fails-to-stretch-textarea-in-chrome */, bp5(_styles2.default.textareaContainer, bp6(this.props.error ? _styles2.default.textareaError : _styles2.default.textarea, {
+	      }, bp2(_Items2.default)), bp3(_styles2.default.input, {
+	        id: 'input'
+	      }, [bp4(_styles2.default.inputContainer, {
+	        id: 'inputContainer'
+	      }, [/* http://stackoverflow.com/questions/13224520/css3-new-style-flexbox-fails-to-stretch-textarea-in-chrome */, bp5(_styles2.default.textareaContainer, {
+	        id: 'textareaContainer'
+	      }, bp6(this.props.error ? _styles2.default.textareaError : _styles2.default.textarea, {
 	        id: 'my_textarea',
 	        autoFocus: true,
 	        type: 'text',
@@ -16958,9 +17045,23 @@
 	        attached: function attached(node) {
 	          _this3.textareaNode = node;
 	        }
-	      })), bp7(_styles2.default.actionsContainer, bp8(_styles2.default.button, {
+	      })), bp7(_styles2.default.sendContainer, {
+	        id: 'sendContainer'
+	      }, bp8(_styles2.default.button, {
+	        id: 'button'
+	      }, {
 	        onclick: this._OnSubmit
-	      }, 'Send'))]), bp9(_styles2.default.bellowTextareaContainer, [bp10(_styles2.default.itemsCount, ['count: ', this.props.itemsCount]), bp11(_styles2.default.current_item, ['id: ', this.props.current_item.id ? this.props.current_item.id : 'new item']), bp12(_styles2.default.shortcuts, 'Ctrl + Enter (send)')]), bp13(_styles2.default.error, this.props.error)])]);
+	      }, 'Send'))]), bp9(_styles2.default.bellowTextareaContainer, {
+	        id: 'bellowTextareaContainer'
+	      }, [bp10(_styles2.default.itemsCount, {
+	        id: 'itemsCount'
+	      }, ['count: ', this.props.itemsCount]), bp11(_styles2.default.current_item, {
+	        id: 'current_item'
+	      }, ['id: ', this.props.current_item.id ? this.props.current_item.id : 'new item']), bp12(_styles2.default.shortcuts, {
+	        id: 'shortcuts'
+	      }, 'Ctrl + Enter (send)')]), bp13(_styles2.default.error, {
+	        id: 'error'
+	      }, this.props.error)])]);
 	    }
 	  }]);
 
@@ -26138,8 +26239,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -26172,7 +26276,9 @@
 	  _createClass(Items, [{
 	    key: 'render',
 	    value: function render() {
-	      return bp0(_styles2.default.itemsContainer, this.props.itemsKeys.map(function (itemId) {
+	      return bp0(_styles2.default.itemsContainer, {
+	        id: 'itemsContainer'
+	      }, this.props.itemsKeys.map(function (itemId) {
 	        return bp1(_Item2.default, _extends({
 	          key: itemId,
 	          itemId: itemId,
@@ -26296,8 +26402,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -26306,8 +26415,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -26316,8 +26428,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -26336,8 +26451,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -26346,8 +26464,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -26356,11 +26477,14 @@
 	  style: {
 	    arg: 0
 	  },
-	  events: {
+	  attrs: {
 	    arg: 1
 	  },
-	  children: {
+	  events: {
 	    arg: 2
+	  },
+	  children: {
+	    arg: 3
 	  }
 	});
 
@@ -26369,11 +26493,14 @@
 	  style: {
 	    arg: 0
 	  },
-	  events: {
+	  attrs: {
 	    arg: 1
 	  },
-	  children: {
+	  events: {
 	    arg: 2
+	  },
+	  children: {
+	    arg: 3
 	  }
 	});
 
@@ -26382,8 +26509,11 @@
 	  style: {
 	    arg: 0
 	  },
-	  children: {
+	  attrs: {
 	    arg: 1
+	  },
+	  children: {
+	    arg: 2
 	  }
 	});
 
@@ -26453,12 +26583,29 @@
 	      var item_uid = this.props.item.uid;
 	      var is_my_item = current_uid === item_uid;
 
-	      return bp0(_styles2.default.messageContainer, [bp1(_styles2.default.userPhotoContainer, bp2(_styles2.default.userPhoto, {
+	      return bp0(_styles2.default.messageContainer, {
+	        id: 'messageContainer'
+	      }, [bp1(_styles2.default.userPhotoContainer, {
+	        id: 'userPhotoContainer'
+	      }, bp2(_styles2.default.userPhoto, {
+	        id: 'userPhoto',
 	        src: this.props.item.photoURL,
 	        alt: 'photo'
-	      })), bp3(_styles2.default.bodyContainer, [bp4(_styles2.default.topBodyContainer, [bp5(_styles2.default.userName, this.props.item.displayName), is_my_item && bp8(_styles2.default.buttonsContainer, [bp9(_styles2.default.editButton, {
+	      })), bp3(_styles2.default.bodyContainer, {
+	        id: 'bodyContainer'
+	      }, [bp4(_styles2.default.topBodyContainer, {
+	        id: 'topBodyContainer'
+	      }, [bp5(_styles2.default.userName, {
+	        id: 'userName'
+	      }, this.props.item.displayName), is_my_item && bp8(_styles2.default.buttonsContainer, {
+	        id: 'buttonsContainer'
+	      }, [bp9(_styles2.default.editButton, {
+	        id: 'editButton'
+	      }, {
 	        onclick: this._onEdit
 	      }, 'edit'), bp10(_styles2.default.deleteButton, {
+	        id: 'deleteButton'
+	      }, {
 	        onclick: function onclick() {
 	          return _this2.props.removeItemClicked({ id: _this2.props.item.id });
 	        }
@@ -44160,8 +44307,9 @@
 	  },
 
 	  input: {
+	    overflowY: 'auto',
 	    textAlign: 'center',
-	    marginBottom: 20,
+	    marginBottom: 34,
 	    fontWeight: 'bold',
 	    color: '#777'
 	  },
@@ -44187,10 +44335,10 @@
 	  },
 	  textarea: {
 	    boxSizing: 'border-box',
-	    height: '100%',
-	    flexGrow: 1,
-	    width: '100%',
-	    fontSize: 16,
+	    // height: '100%',
+	    // flexGrow: 1,
+	    // width: '100%',
+	    fontSize: 14,
 	    padding: 10
 	  },
 	  textareaError: {
@@ -44201,41 +44349,15 @@
 	    borderColor: 'red'
 	  },
 
-	  actionsContainer: {
+	  sendContainer: {
 	    display: 'flex',
-	    flexDirection: 'column',
-	    alignItems: 'center',
-	    justifyContent: 'space-around',
-	    fontFamily: "'Roboto', sans-serif",
-	    marginLeft: 20
-	  },
-
-	  actionsContainerButtonEdit: {
-	    cursor: 'pointer',
-	    // marginLeft: 10,
-	    padding: 2,
-	    paddingLeft: 5,
-	    paddingRight: 5,
-	    fontSize: 12,
-	    // fontWeight: 'bold',
-	    color: '#a55'
-	  },
-
-	  actionsContainerButtonRemove: {
-	    cursor: 'pointer',
-	    // marginLeft: 10,
-	    padding: 2,
-	    paddingLeft: 5,
-	    paddingRight: 5,
-	    fontSize: 12,
-	    // fontWeight: 'bold',
-	    color: '#a55'
+	    alignItems: 'flex-end',
+	    marginLeft: 10,
+	    marginRight: 10
 	  },
 
 	  button: {
 	    cursor: 'pointer',
-	    // marginLeft: 20,
-	    // marginTop: 20,
 	    padding: 2,
 	    fontSize: 16,
 	    fontWeight: 'bold',
@@ -44286,7 +44408,6 @@
 	  },
 
 	  titleContainer: {
-	    display: 'flex',
 	    flexDirection: 'row',
 	    textAlign: 'center',
 	    marginTop: 10,
@@ -44296,13 +44417,11 @@
 	  title: {
 	    flexGrow: 1,
 	    fontWeight: 'bold',
-	    color: '#777',
-	    fontSize: 23
+	    color: '#777'
 	  },
 
 	  bodyContainer: {
 	    flexGrow: 0,
-	    display: 'flex',
 	    height: '100%',
 	    overflowY: 'none',
 	    justifyContent: 'center'
@@ -44318,8 +44437,8 @@
 
 	  userPhoto: {
 	    position: 'relative',
-	    height: 30,
-	    top: -17,
+	    height: 24,
+	    top: -19,
 	    right: -3
 	  },
 
@@ -44328,6 +44447,8 @@
 	  },
 
 	  link: {
+	    position: 'relative',
+	    top: -9,
 	    marginLeft: 10,
 	    textDecoration: 'underline',
 	    color: 'cadetblue',
