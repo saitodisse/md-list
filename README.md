@@ -1,8 +1,10 @@
-# md list: Chat + firebase + cerebral controller
+# md list
+
+## markdown chat with cerebral and firebase
 
 - demo: https://saitodisse.github.io/md-list
 - cerebral controller: http://www.cerebraljs.com/
-- firebase: firebase.google.com
+- firebase: https://firebase.google.com
 
 ---------
 
