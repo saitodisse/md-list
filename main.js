@@ -3349,7 +3349,10 @@
 
 	// import FirebaseModule from '../../cerebral-module-firebase/build/index.js';
 
-	var controller = (0, _cerebral.Controller)((0, _immutable2.default)({}));
+	var modelOptions =  true ? {
+	  immutable: false // Do not set this to false when using the Recorder
+	} : {};
+	var controller = (0, _cerebral.Controller)((0, _immutable2.default)({}, modelOptions));
 
 	controller.addModules({
 	  main: _Main2.default,
@@ -3365,7 +3368,7 @@
 	  }),
 
 	  // plug-in
-	  devtools: (0, _cerebralModuleDevtools2.default)(),
+	  devtools:  true ? function () {} : (0, _cerebralModuleDevtools2.default)(),
 
 	  router: (0, _cerebralModuleRouter2.default)({
 	    '/login': 'main.redirectToLogin',
