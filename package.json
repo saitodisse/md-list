@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --config webpack.config.production.js",
+    "deploy": "./tools/deploy.sh",
     "test": "exit 1"
   },
   "repository": {
