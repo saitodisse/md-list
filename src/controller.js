@@ -4,6 +4,7 @@ import Http from 'cerebral-module-http';
 import Devtools from 'cerebral-module-devtools';
 import Router from 'cerebral-module-router';
 
+import Notifications from './modules/Notifications';
 import Main from './modules/Main';
 import Login from './modules/Login';
 import ChatList from './modules/ChatList';
@@ -17,11 +18,12 @@ const modelOptions = process.env.NODE_ENV === 'production' ? {
 const controller = Controller(Model({}, modelOptions));
 
 controller.addModules({
+  // app modules
   main: Main,
   login: Login,
   chatList: ChatList,
 
-  // service
+  // services
   http: Http({
     baseUrl: '/api',
     headers: {
@@ -29,7 +31,6 @@ controller.addModules({
     },
   }),
 
-  // plug-in
   devtools: process.env.NODE_ENV === 'production' ? () => {} : Devtools(),
 
   router: Router({
@@ -46,12 +47,9 @@ controller.addModules({
       databaseURL: process.env.DATABASE_URL,
       storageBucket: process.env.STORAGE_BUCKET,
     },
-    // When using tasks and firebase queue you can prefix
-    // the specs triggered. This is useful in development
-    // when multiple developers are working against the
-    // same instance
-    // specPrefix: 'MD'
-  })
+  }),
+
+  notifications: Notifications(),
 
 });
 

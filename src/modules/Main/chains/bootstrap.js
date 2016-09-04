@@ -1,9 +1,10 @@
 import {set, copy} from 'cerebral/operators';
 import getUser from '../actions/getUser.js';
+import notificationRequestPermition from '../actions/notificationRequestPermition.js';
 
 export default [
-  // get user
   set('state:login.is_loading', true),
+
   getUser, {
     success: [
       set('state:login.is_logged', true),
@@ -11,6 +12,25 @@ export default [
     ],
     error: [
       set('state:login.is_logged', false),
+      copy('input:code', 'state:login.error_code'),
+      copy('input:message', 'state:login.error_message'),
+    ]
+  },
+
+  notificationRequestPermition, {
+    default: [
+      set('state:login.notifications_enabled', null),
+      copy('input:notification_result', 'state:login.notification_result'),
+    ],
+    granted: [
+      set('state:login.notifications_enabled', true),
+      copy('input:notification_result', 'state:login.notification_result'),
+    ],
+    denied: [
+      set('state:login.notifications_enabled', false),
+      copy('input:notification_result', 'state:login.notification_result'),
+    ],
+    error: [
       copy('input:code', 'state:login.error_code'),
       copy('input:message', 'state:login.error_message'),
     ]
