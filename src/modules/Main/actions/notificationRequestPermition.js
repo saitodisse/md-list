@@ -5,7 +5,6 @@ function notificationRequestPermition({ services, output }) {
 
   services.notifications.requestPermitionAsync()
     .then((result) => {
-      /**/console.log({result});/* -debug- */
       switch (result) {
       case DEFAULT:
         output.default({notification_result: result});

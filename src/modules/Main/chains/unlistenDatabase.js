@@ -1,5 +1,7 @@
 import unlistenChanges from '../actions/unlistenChanges';
 
-export default [
+const unlistenDatabase = [
   unlistenChanges,
 ];
+
+export default unlistenDatabase;

@@ -1,5 +1,7 @@
 import removeItem from '../actions/removeItem';
 
-export default [
+const deleteChildFromFirebase = [
   removeItem,
 ];
+
+export default deleteChildFromFirebase;

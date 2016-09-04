@@ -1,5 +1,5 @@
 import loginFacebook from './chains/loginFacebook';
-import signOut from './chains/signOut';
+import userSignOut from './chains/userSignOut';
 
 export default module => {
   module.addState({
@@ -12,6 +12,6 @@ export default module => {
 
   module.addSignals({
     facebookLoginClicked: loginFacebook,
-    signOutClicked: signOut,
+    signOutClicked: userSignOut,
   });
 };

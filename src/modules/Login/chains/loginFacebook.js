@@ -2,7 +2,7 @@ import {set, copy} from 'cerebral/operators';
 import {PAGE_CHAT_LIST} from '~/constants';
 import facebookLogin from '../actions/facebookLogin.js';
 
-export default [
+const loginFacebook = [
   set('state:login.is_loading', true),
   facebookLogin, {
     success: [
@@ -18,3 +18,5 @@ export default [
   set('state:main.current_page', PAGE_CHAT_LIST),
   set('state:login.is_loading', false),
 ];
+
+export default loginFacebook;

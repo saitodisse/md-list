@@ -1,5 +1,7 @@
 import toggleCurrentItem from '../actions/toggleCurrentItem';
 
-export default [
+const setCurrentItem = [
   toggleCurrentItem
 ];
+
+export default setCurrentItem;

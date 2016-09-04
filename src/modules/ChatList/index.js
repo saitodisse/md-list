@@ -1,7 +1,6 @@
 // chains
 import receiveDataFromFirebase from './chains/receiveDataFromFirebase';
 import deleteChildFromFirebase from './chains/deleteChildFromFirebase';
-// import putItem from './chains/putItem';
 import deleteItemChain from './chains/deleteItemChain';
 
 import setBody from './chains/setBody';
@@ -27,7 +26,6 @@ export default module => {
       immediate: true
     },
     currentItemSubmitted: submitItemBody,
-    // updateItemTitleSubmitted: submitItemBody,
     removeItemClicked: deleteItemChain,
     itemClicked: setCurrentItem,
     editCanceled: cancelEdit,

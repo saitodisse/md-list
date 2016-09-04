@@ -1,5 +1,7 @@
 import listenChanges from '../actions/listenChanges';
 
-export default [
+const listenDatabase = [
   listenChanges,
 ];
+
+export default listenDatabase;

@@ -1,18 +1,20 @@
 import {set, copy} from 'cerebral/operators';
-import getUser from '../actions/getUser.js';
+import signOut from '../actions/signOut.js';
 
-export default [
+const userSignOut = [
   set('state:login.is_loading', true),
-  getUser, {
+  signOut, {
     success: [
-      set('state:login.is_logged', true),
-      copy('input:user', 'state:login.user'),
+      set('state:login.is_logged', false),
+      set('state:login.user', {}),
     ],
     error: [
-      set('state:login.is_logged', false),
       copy('input:code', 'state:login.error_code'),
       copy('input:message', 'state:login.error_message'),
     ]
   },
   set('state:login.is_loading', false),
 ];
+
+
+export default userSignOut;

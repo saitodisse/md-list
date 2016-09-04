@@ -1,5 +1,7 @@
 import {copy} from 'cerebral/operators';
 
-export default [
+const setBody = [
   copy('input:body', 'state:chatList.current_item.body'),
 ];
+
+export default setBody;

@@ -2,7 +2,7 @@ import {set, copy} from 'cerebral/operators';
 import getUser from '../actions/getUser.js';
 import notificationRequestPermition from '../actions/notificationRequestPermition.js';
 
-export default [
+const bootstrap = [
   set('state:login.is_loading', true),
 
   getUser, {
@@ -38,3 +38,5 @@ export default [
 
   set('state:login.is_loading', false),
 ];
+
+export default bootstrap;

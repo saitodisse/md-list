@@ -1,4 +1,4 @@
-function addItem({state, output, input}) {
+function mergeItem({state, output, input}) {
   const {key, value} = input;
   const newItem = {};
   newItem[key] = value;
@@ -8,4 +8,4 @@ function addItem({state, output, input}) {
   output({id: key});
 }
 
-export default addItem;
+export default mergeItem;

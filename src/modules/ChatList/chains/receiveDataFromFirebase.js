@@ -1,5 +1,7 @@
-import addItem from '../actions/addItem';
+import mergeItem from '../actions/mergeItem';
 
-export default [
-  addItem,
+const receiveDataFromFirebase = [
+  mergeItem,
 ];
+
+export default receiveDataFromFirebase;
