@@ -27,6 +27,7 @@ function updateItem({ input, state, output }) {
     displayName,
     photoURL,
     body,
+    created_at: firebase.database.ServerValue.TIMESTAMP,
   };
 
 
