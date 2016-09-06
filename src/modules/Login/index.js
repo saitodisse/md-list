@@ -8,6 +8,7 @@ export default module => {
     error_code: null,
     error_message: null,
     user: {},
+    last_login_at: null,
   });
 
   module.addSignals({
