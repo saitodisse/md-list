@@ -9,7 +9,7 @@ import highlight from 'highlight.js';
 export default connect(props => ({
   item: `chatList.items.${props.itemId}`,
   current_item: 'chatList.current_item',
-  user_uid: 'login.user.uid',
+  user_id: 'login.user.uid',
 }), {
   itemClicked: 'chatList.itemClicked',
   removeItemClicked: 'chatList.removeItemClicked',
@@ -58,9 +58,9 @@ export default connect(props => ({
       const $isNewItem = this.props.item.$isNew;
       const itemStyle = $isNewItem ? styles.itemNewContainer : styles.itemContainer;
 
-      const current_uid = this.props.user_uid;
-      const item_uid = this.props.item.uid;
-      const is_my_item = (current_uid === item_uid);
+      const me_id = this.props.user_id;
+      const item_uid = this.props.item.user_id;
+      const is_my_item = (me_id === item_uid);
 
       return (
         <div style={styles.messageContainer} id="messageContainer">

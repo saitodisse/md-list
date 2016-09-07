@@ -24,7 +24,7 @@ cp .env-example .env-dev`
 
 ##### 3. Firebase database rules
 
-- Copy and paste database rules (https://github.com/saitodisse/md-list/blob/master/docs/firebase_rules.md) onto database rules on firebase console
+- Copy and paste database rules (https://github.com/saitodisse/md-list/blob/master/docs/firebase_rules.java) onto database rules on firebase console
 
 ##### 4. Firebase facebook authentication
 

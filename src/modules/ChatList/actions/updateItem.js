@@ -2,11 +2,11 @@ import firebase from 'firebase';
 
 function updateItem({ input, state, output }) {
   // User info
-  const uid = state.get('login.user.uid');
+  const user_id = state.get('login.user.uid');
   const displayName = state.get('login.user.displayName');
   const photoURL = state.get('login.user.photoURL');
-  if (!uid || !displayName) {
-    throw new Error(`uid (${uid}) OR displayName (${displayName}) not found. Must login first.`);
+  if (!user_id || !displayName) {
+    throw new Error(`user_id (${user_id}) OR displayName (${displayName}) not found. Must login first.`);
   }
 
   // Prepare data
@@ -23,7 +23,7 @@ function updateItem({ input, state, output }) {
 
   const itemData = {
     id: key,
-    uid,
+    user_id,
     displayName,
     photoURL,
     body,

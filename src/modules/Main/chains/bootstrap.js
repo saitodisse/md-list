@@ -10,6 +10,7 @@ const bootstrap = [
       set('state:login.is_logged', true),
       copy('input:user', 'state:login.user'),
       set('state:login.last_login_at', (new Date()).getTime()),
+      // send user to firebase
     ],
     error: [
       set('state:login.is_logged', false),
