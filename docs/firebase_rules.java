@@ -89,7 +89,7 @@
                  'user_id',
                  'displayName',
                  'photoURL',
-                 'created_at'
+                 'updated_at'
                ])
             || (
                    // can delete
@@ -140,7 +140,7 @@
           && newData.val().length > 0
         "},
 
-        "created_at": { ".validate": "true" },
+        "updated_at": { ".validate": "true" },
 
         // no other field
         "$other": { ".validate": false },

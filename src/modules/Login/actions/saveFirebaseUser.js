@@ -15,14 +15,14 @@ function saveFirebaseUser({ input, output }) {
     key = firebase.database().ref().child('users').push().key;
   }
 
-  const itemData = {
+  const user_data = {
     user_id: input.user.uid,
     displayName: input.user.displayName,
     photoURL: input.user.photoURL,
-    created_at: firebase.database.ServerValue.TIMESTAMP,
+    updated_at: firebase.database.ServerValue.TIMESTAMP,
   };
   const updates = {};
-  updates['/users/' + key] = itemData;
+  updates['/users/' + key] = user_data;
 
   // Send to firebase
   firebase.database().ref().update(updates)
