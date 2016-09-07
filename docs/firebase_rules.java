@@ -71,6 +71,7 @@
         "},
 
         "created_at": { ".validate": "true" },
+        "updated_at": { ".validate": "true" },
 
         // no other field
         "$other": { ".validate": false },

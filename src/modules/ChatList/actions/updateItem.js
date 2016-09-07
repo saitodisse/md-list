@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import R from 'ramda';
 
 function updateItem({ input, state, output }) {
   // User info
@@ -12,13 +13,14 @@ function updateItem({ input, state, output }) {
   // Prepare data
   const current_item = state.get('chatList.current_item');
   const body = current_item.body;
+  const is_updating = !R.isNil(input.id);
 
   // Get a key for a new Post.
   let key = null;
-  if (input.id) {
+  if (is_updating) {
     key = input.id;
   } else {
-    key = firebase.database().ref().child('list').push().key;
+    key = firebase.database().ref().child('items').push().key;
   }
 
   const itemData = {
@@ -27,18 +29,29 @@ function updateItem({ input, state, output }) {
     displayName,
     photoURL,
     body,
-    created_at: firebase.database.ServerValue.TIMESTAMP,
   };
 
 
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  const updates = {};
-  updates['/items/' + key] = itemData;
+  if (is_updating) {
+    const updates = {};
+    updates[`/items/${key}/id`] = itemData.id;
+    updates[`/items/${key}/user_id`] = itemData.user_id;
+    updates[`/items/${key}/displayName`] = itemData.displayName;
+    updates[`/items/${key}/photoURL`] = itemData.photoURL;
+    updates[`/items/${key}/body`] = itemData.body;
+    updates[`/items/${key}/updated_at`] = firebase.database.ServerValue.TIMESTAMP;
 
-  // Send to firebase
-  firebase.database().ref().update(updates)
-    .then(output.success)
-    .catch(output.error);
+    firebase.database().ref().update(updates)
+      .then(output.success)
+      .catch(output.error);
+  } else {
+    itemData.created_at = firebase.database.ServerValue.TIMESTAMP;
+
+    const itemsRef = firebase.database().ref().child('items').push();
+    itemsRef.set(itemData)
+      .then(output.success)
+      .catch(output.error);
+  }
 }
 
 updateItem.async = true;
