@@ -4,9 +4,6 @@ function notificationItemAdd({ input, services, state }) {
 
   // must be newer than last login date
   const is_message_new = item.created_at > last_login_at;
-  /**/console.log({"item.created_at": item.created_at});/* -debug- */
-  /**/console.log({"last_login_at": last_login_at});/* -debug- */
-  /**/console.log({is_message_new});/* -debug- */
   if (!is_message_new) {
     return null;
   }
