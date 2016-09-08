@@ -8,6 +8,13 @@ function notificationItemAdd({ input, services, state }) {
     return null;
   }
 
+  // must be from other user
+  const me_user_id = state.get('login.user.uid');
+  const is_my_item = item.user_id === me_user_id;
+  if (is_my_item) {
+    return null;
+  }
+
   const notif = services.notifications.sendNotification({
     title: item.displayName,
     body: `${item.body}`,
