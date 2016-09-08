@@ -62,6 +62,13 @@ export default connect(props => ({
       const item_uid = this.props.item.user_id;
       const is_my_item = (me_id === item_uid);
 
+      const userNameStyle = styles.userName;
+      if (is_my_item) {
+        userNameStyle.color = '#437b58';
+      } else {
+        userNameStyle.color = '#4f58d8';
+      }
+
       return (
         <div style={styles.messageContainer} id="messageContainer">
 
@@ -71,7 +78,7 @@ export default connect(props => ({
 
           <div style={styles.bodyContainer} id="bodyContainer">
             <div style={styles.topBodyContainer} id="topBodyContainer">
-              <div style={styles.userName} id="userName">
+              <div style={userNameStyle} id="userName">
                 {this.props.item.displayName}
               </div>
 
