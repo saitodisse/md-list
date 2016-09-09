@@ -22,6 +22,10 @@ function notificationItemAdd({ input, services, state }) {
     close_in_seconds: 4,
   });
 
+  notif.onclick = () => {
+    notif.close();
+  };
+
   return {notificationOnClick: notif.onclick};
 }
 

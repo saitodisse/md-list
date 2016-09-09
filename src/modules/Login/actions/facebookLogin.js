@@ -1,6 +1,6 @@
 function facebookLogin({ services, output }) {
   services.firebase.signInWithFacebook({
-    redirect: false,
+    redirect: true,
     scopes: [], // Facebook scopes to access
   })
   .then(output.success)
