@@ -9,7 +9,7 @@ import unlistenDatabase from './chains/unlistenDatabase';
 export default module => {
   module.addState({
     current_page: null,
-    page_is_visible: null,
+    page_is_visible: true,
   });
 
   module.addSignals({

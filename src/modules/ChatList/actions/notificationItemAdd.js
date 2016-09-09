@@ -15,6 +15,12 @@ function notificationItemAdd({ input, services, state }) {
     return null;
   }
 
+  // if page is on focus do not emit
+  const page_is_visible = state.get('main.page_is_visible');
+  if (page_is_visible) {
+    return null;
+  }
+
   const notif = services.notifications.sendNotification({
     title: item.displayName,
     body: `${item.body}`,

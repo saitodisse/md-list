@@ -91,8 +91,8 @@ export default connect({
       } else {
         // Handle page visibility change
         document.addEventListener(visibilityChange, handleVisibilityChange.bind(this), false);
-        window.onfocus = () => {/**/console.log('\n%% window.onfocus \n');/* -debug- */ this.props.pageBecameVisible()};
-        window.onblur = () => {/**/console.log('\n%% window.onblur \n');/* -debug- */ this.props.pageBecameHidden()};
+        window.onfocus = () => this.props.pageBecameVisible();
+        window.onblur = () => this.props.pageBecameHidden();
       }
     }
 
