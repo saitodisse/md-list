@@ -2,11 +2,25 @@
 
 [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) chat with [cerebral](http://www.cerebraljs.com/), [firebase](https://firebase.google.com) and [flex-box](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
-- [demo](https://saitodisse.github.io/md-list)
+- [demo](https://saitodisse.github.io/md-list) (You can use [Cerebral Debbuger Chrome Extension](https://chrome.google.com/webstore/detail/cerebral-debugger/ddefoknoniaeoikpgneklcbjlipfedbb))
 - [github](https://github.com/saitodisse/md-list)
 
 ---------
 
+## Features
+
+- [x] Flexbox css
+- [x] Firebase rules (restrict edit/delete only message owner)
+- [x] Edit already sent message
+- [x] Notifications about other users messages and deletes
+- [x] Easy one step deploy to gh-pages
+
+#### TODO
+
+- [ ] Channels
+- [ ] End-to-end message encryption
+
+---------
 
 ### run dev
 

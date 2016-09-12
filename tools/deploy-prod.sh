@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-npm run build
+npm run build-prod
 git checkout gh-pages
 cp dist/main.js .
 cp dist/index.html .

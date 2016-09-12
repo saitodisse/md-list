@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "NODE_ENV=production webpack --config webpack.config.production.js",
-    "deploy": "./tools/deploy.sh",
+    "build-dev": "NODE_ENV=dev webpack --config webpack.config.development.js",
+    "deploy-dev": "./tools/deploy-dev.sh",
+    "build-prod": "NODE_ENV=production webpack --config webpack.config.production.js",
+    "deploy-prod": "./tools/deploy-prod.sh",
     "test": "exit 1"
   },
   "repository": {
