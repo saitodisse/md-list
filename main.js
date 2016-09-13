@@ -25543,14 +25543,11 @@
 
 	var bp4 = _inferno2.default.createBlueprint({
 	  tag: 'div',
-	  style: {
-	    arg: 0
-	  },
 	  attrs: {
-	    arg: 1
+	    id: 'title'
 	  },
 	  children: {
-	    arg: 2
+	    arg: 0
 	  }
 	});
 
@@ -25731,12 +25728,10 @@
 	        id: 'mainContainer'
 	      }, [bp3(_styles2.default.titleContainer, {
 	        id: 'titleContainer'
-	      }, [bp4(_styles2.default.title, {
-	        id: 'title'
-	      }, ['md list ', this.props.page_is_visible, bp5(_styles2.default.titleSourceLink, {
+	      }, bp4(bp5(_styles2.default.title, {
 	        href: 'https://github.com/saitodisse/md-list',
 	        target: '_blank'
-	      }, 'source')]), bp6(_styles2.default.buttonsContainer, {
+	      }, ['md list ', this.props.page_is_visible]))), bp6(_styles2.default.buttonsContainer, {
 	        id: 'buttonsContainer'
 	      }, [this.props.is_logged && bp8(_styles2.default.userPhoto, {
 	        id: 'userPhoto',
@@ -25746,7 +25741,7 @@
 	        id: 'link'
 	      }, {
 	        onclick: this.props.signOutClicked
-	      }, 'logout')])]), bp7(_styles2.default.bodyContainer, {
+	      }, 'logout')]), bp7(_styles2.default.bodyContainer, {
 	        id: 'bodyContainer'
 	      }, pages[this.props.current_page])]);
 	    }
@@ -26205,6 +26200,8 @@
 	          });
 	        }
 	      }
+	    }, _this._OnTextAreaBlur = function () {
+	      /**/console.log({ "this.textareaNode": _this.textareaNode }); /* -debug- */
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
@@ -26293,7 +26290,8 @@
 	        autoFocus: true,
 	        type: 'text',
 	        disabled: this.props.is_saving,
-	        value: this.props.current_item.body
+	        value: this.props.current_item.body,
+	        rows: 1
 	      }, {
 	        oninput: function oninput(event) {
 	          return _this3.onInputChange(event);
@@ -46970,7 +46968,7 @@
 	  },
 	  textarea: {
 	    boxSizing: 'border-box',
-	    // height: '100%',
+	    // height: 23,
 	    // flexGrow: 1,
 	    // width: '100%',
 	    fontSize: 14,
@@ -46978,6 +46976,7 @@
 	  },
 	  textareaError: {
 	    flexGrow: 1,
+	    // height: 23,
 	    width: '100%',
 	    fontSize: 16,
 	    padding: 10,
@@ -46993,8 +46992,8 @@
 
 	  button: {
 	    cursor: 'pointer',
-	    padding: 2,
-	    fontSize: 16,
+	    padding: 6,
+	    fontSize: 19,
 	    fontWeight: 'bold',
 	    color: '#555'
 	  },
@@ -47043,17 +47042,18 @@
 	  },
 
 	  titleContainer: {
-	    flexDirection: 'row',
-	    textAlign: 'center',
-	    justifyContent: 'space-between'
+	    flexDirection: 'column',
+	    // textAlign: 'center',
+	    justifyContent: 'space-between',
+	    marginTop: 9,
+	    marginBottom: 9
 	  },
 	  title: {
 	    flexGrow: 1,
-	    marginTop: 4,
-	    marginBottom: 4,
-	    fontWeight: 'bold',
-	    fontSize: 25,
-	    color: '#777'
+	    // fontWeight: 'bold',
+	    fontSize: 22,
+	    color: '#777',
+	    marginLeft: 8
 	  },
 
 	  titleSourceLink: {
@@ -47082,7 +47082,7 @@
 	  userPhoto: {
 	    position: 'relative',
 	    height: 24,
-	    top: -19,
+	    top: -13,
 	    right: -3
 	  },
 
@@ -47092,7 +47092,7 @@
 
 	  link: {
 	    position: 'relative',
-	    top: -9,
+	    top: -3,
 	    marginLeft: 10,
 	    textDecoration: 'underline',
 	    color: 'cadetblue',
