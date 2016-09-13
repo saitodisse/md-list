@@ -13,15 +13,23 @@ export default {
   titleContainer: {
     flexDirection: 'row',
     textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 10,
     justifyContent: 'space-between',
   },
   title: {
     flexGrow: 1,
+    marginTop: 4,
+    marginBottom: 4,
     fontWeight: 'bold',
+    fontSize: 25,
     color: '#777',
-    // fontSize: 23,
+  },
+
+  titleSourceLink: {
+    fontWeight: 'normal',
+    color: 'rgb(153, 208, 231)',
+    fontSize: 11,
+    textDecoration: 'underline',
+    cursor: 'pointer',
   },
 
   bodyContainer: {

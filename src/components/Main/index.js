@@ -103,6 +103,13 @@ export default connect({
           <div style={styles.titleContainer} id="titleContainer">
             <div style={styles.title} id="title">
               md list {this.props.page_is_visible}
+              <a
+                style={styles.titleSourceLink}
+                href="https://github.com/saitodisse/md-list"
+                target="_blank"
+              >
+                source
+              </a>
             </div>
 
             <div style={styles.buttonsContainer} id="buttonsContainer">
