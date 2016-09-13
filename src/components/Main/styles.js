@@ -11,17 +11,18 @@ export default {
   },
 
   titleContainer: {
-    flexDirection: 'row',
-    textAlign: 'center',
+    flexDirection: 'column',
+    // textAlign: 'center',
     justifyContent: 'space-between',
+    marginTop: 9,
+    marginBottom: 9,
   },
   title: {
     flexGrow: 1,
-    marginTop: 4,
-    marginBottom: 4,
-    fontWeight: 'bold',
-    fontSize: 25,
+    // fontWeight: 'bold',
+    fontSize: 22,
     color: '#777',
+    marginLeft: 8,
   },
 
   titleSourceLink: {
@@ -50,7 +51,7 @@ export default {
   userPhoto: {
     position: 'relative',
     height: 24,
-    top: -19,
+    top: -13,
     right: -3,
   },
 
@@ -60,7 +61,7 @@ export default {
 
   link: {
     position: 'relative',
-    top: -9,
+    top: -3,
     marginLeft: 10,
     textDecoration: 'underline',
     color: 'cadetblue',

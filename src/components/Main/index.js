@@ -125,37 +125,39 @@ export default connect({
       const pages = getPages();
       return (
         <div style={styles.mainContainer} id="mainContainer">
+
           <div style={styles.titleContainer} id="titleContainer">
-            <div style={styles.title} id="title">
-              md list {this.props.page_is_visible}
+            <div id="title">
               <a
-                style={styles.titleSourceLink}
+                style={styles.title}
                 href="https://github.com/saitodisse/md-list"
                 target="_blank"
               >
-                source
+                md list {this.props.page_is_visible}
               </a>
+
             </div>
-
-            <div style={styles.buttonsContainer} id="buttonsContainer">
-              {this.props.is_logged && (
-                <img style={styles.userPhoto} id="userPhoto" src={this.props.user.photoURL} alt="photo" />
-              )}
-
-              {this.props.is_logged && (
-                <div
-                  style={styles.link} id="link"
-                  onClick={this.props.signOutClicked}
-                >
-                  logout
-                </div>
-              )}
-            </div>
-
           </div>
+
+          <div style={styles.buttonsContainer} id="buttonsContainer">
+            {this.props.is_logged && (
+              <img style={styles.userPhoto} id="userPhoto" src={this.props.user.photoURL} alt="photo" />
+            )}
+
+            {this.props.is_logged && (
+              <div
+                style={styles.link} id="link"
+                onClick={this.props.signOutClicked}
+              >
+                logout
+              </div>
+            )}
+          </div>
+
           <div style={styles.bodyContainer} id="bodyContainer">
             {pages[this.props.current_page]}
           </div>
+
         </div>
       );
     }

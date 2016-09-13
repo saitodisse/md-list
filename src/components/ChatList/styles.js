@@ -68,7 +68,7 @@ export default {
   },
   textarea: {
     boxSizing: 'border-box',
-    // height: '100%',
+    // height: 23,
     // flexGrow: 1,
     // width: '100%',
     fontSize: 14,
@@ -76,6 +76,7 @@ export default {
   },
   textareaError: {
     flexGrow: 1,
+    // height: 23,
     width: '100%',
     fontSize: 16,
     padding: 10,
@@ -91,8 +92,8 @@ export default {
 
   button: {
     cursor: 'pointer',
-    padding: 2,
-    fontSize: 16,
+    padding: 6,
+    fontSize: 19,
     fontWeight: 'bold',
     color: '#555',
   },

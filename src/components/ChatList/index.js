@@ -136,6 +136,10 @@ export default connect({
       }
     }
 
+    _OnTextAreaBlur = () => {
+      /**/console.log({"this.textareaNode": this.textareaNode});/* -debug- */
+    }
+
     render() {
       return (
         <div style={styles.container} id="container" onKeyDown={this._onKeyDown}>
@@ -160,6 +164,7 @@ export default connect({
                   value={this.props.current_item.body}
                   onInput={event => this.onInputChange(event)}
                   onKeyDown={this._OnTextKeyDown}
+                  rows={1}
                 />
               </div>
 
