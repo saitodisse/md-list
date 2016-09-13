@@ -49,6 +49,7 @@ export default connect({
     componentDidMount() {
       this.props.pageLoaded();
       this.listenPageVisibilityChanges();
+      this._resizeThrottler();
     }
     componentWillUnmount() {
       this.props.userLoggedOut();
@@ -90,34 +91,34 @@ export default connect({
         }
       }
 
-      let resizeTimeout;
-      function resizeThrottler() {
-        // ignore resize events as long as an actualResizeHandler execution is in the queue
-        if ( !resizeTimeout ) {
-          resizeTimeout = setTimeout(() => {
-            resizeTimeout = null;
-            if (window.innerWidth < 700
-                && (   this.props.window_size_is_mobile === null
-                    || this.props.window_size_is_mobile === false)) {
-              this.props.windowSizeIsMobileEmited();
-            } else if (window.innerWidth >= 700
-                       && (   this.props.window_size_is_mobile === null
-                       || this.props.window_size_is_mobile === true)) {
-              this.props.windowSizeIsDesktopEmited();
-            }
-          }, 300);
-        }
-      }
-
       // Warn if the browser doesn't support addEventListener or the Page Visibility API
       if (typeof document.addEventListener === 'undefined' || typeof document[hidden] === 'undefined') {
         console.warn('Page Visibility API: requires a compatible browser, such as Google Chrome or Firefox.');
       } else {
         // Handle page visibility change
         document.addEventListener(visibilityChange, handleVisibilityChange.bind(this), false);
-        window.addEventListener('resize', resizeThrottler.bind(this), false);
+        window.addEventListener('resize', this._resizeThrottler, false);
         window.onfocus = () => this.props.pageBecameVisible();
         window.onblur = () => this.props.pageBecameHidden();
+      }
+    }
+
+    static resizeTimeout;
+    _resizeThrottler = () => {
+      // ignore resize events as long as an actualResizeHandler execution is in the queue
+      if ( !this.resizeTimeout ) {
+        this.resizeTimeout = setTimeout(() => {
+          this.resizeTimeout = null;
+          if (window.innerWidth < 700
+              && (   this.props.window_size_is_mobile === null
+                  || this.props.window_size_is_mobile === false)) {
+            this.props.windowSizeIsMobileEmited();
+          } else if (window.innerWidth >= 700
+                     && (   this.props.window_size_is_mobile === null
+                     || this.props.window_size_is_mobile === true)) {
+            this.props.windowSizeIsDesktopEmited();
+          }
+        }, 300);
       }
     }
 
