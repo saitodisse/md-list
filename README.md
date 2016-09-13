@@ -9,15 +9,18 @@
 
 ## Features
 
-- [x] Flexbox css
+- [x] Facebook Login
+- [x] Keyboard shortcuts to scroll list if text area is empty
 - [x] Firebase rules (restrict edit/delete only message owner)
 - [x] Edit already sent message
-- [x] Notifications about other users messages and deletes
+- [x] Notifications about other users messages and deletes (https://github.com/saitodisse/md-list/pull/7)
 - [x] Easy one step deploy to gh-pages
+- [x] Flexbox css
 
 #### TODO
 
-- [ ] Channels
+- [ ] Rooms/Channels (https://github.com/saitodisse/md-list/issues/3)
+- [ ] Responsive design for mobiles (https://github.com/saitodisse/md-list/issues/6)
 - [ ] End-to-end message encryption
 
 ---------
