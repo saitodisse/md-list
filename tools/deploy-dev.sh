@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+CURRENT_BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 npm run build-dev
 git checkout gh-pages
 cp dist/main.js .
@@ -9,4 +10,4 @@ git add .
 git commit -m"Deploy" || true
 git push
 rm ./main.js ./index.html
-git checkout master
+git checkout $CURRENT_BRANCH

@@ -10,6 +10,7 @@ export default module => {
   module.addState({
     current_page: null,
     page_is_visible: true,
+    window_size_is_mobile: null,
   });
 
   module.addSignals({
@@ -21,5 +22,7 @@ export default module => {
     userLoggedOut: unlistenDatabase,
     pageBecameHidden: [set('state:main.page_is_visible', false)],
     pageBecameVisible: [set('state:main.page_is_visible', true)],
+    windowSizeIsMobileEmited: [set('state:main.window_size_is_mobile', true)],
+    windowSizeIsDesktopEmited: [set('state:main.window_size_is_mobile', false)],
   });
 };
