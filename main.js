@@ -25629,9 +25629,29 @@
 	  _inherits(Main, _Component);
 
 	  function Main() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
 	    _classCallCheck(this, Main);
 
-	    return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Main.__proto__ || Object.getPrototypeOf(Main)).call.apply(_ref, [this].concat(args))), _this), _this._resizeThrottler = function () {
+	      // ignore resize events as long as an actualResizeHandler execution is in the queue
+	      if (!_this.resizeTimeout) {
+	        _this.resizeTimeout = setTimeout(function () {
+	          _this.resizeTimeout = null;
+	          if (window.innerWidth < 700 && (_this.props.window_size_is_mobile === null || _this.props.window_size_is_mobile === false)) {
+	            _this.props.windowSizeIsMobileEmited();
+	          } else if (window.innerWidth >= 700 && (_this.props.window_size_is_mobile === null || _this.props.window_size_is_mobile === true)) {
+	            _this.props.windowSizeIsDesktopEmited();
+	          }
+	        }, 300);
+	      }
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
 	  _createClass(Main, [{
@@ -25639,6 +25659,7 @@
 	    value: function componentDidMount() {
 	      this.props.pageLoaded();
 	      this.listenPageVisibilityChanges();
+	      this._resizeThrottler();
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
@@ -25660,7 +25681,7 @@
 	  }, {
 	    key: 'listenPageVisibilityChanges',
 	    value: function listenPageVisibilityChanges() {
-	      var _this3 = this;
+	      var _this2 = this;
 
 	      // Set the name of the hidden property and the change event for visibility
 	      var hidden = void 0;
@@ -25688,35 +25709,18 @@
 	        }
 	      }
 
-	      var resizeTimeout = void 0;
-	      function resizeThrottler() {
-	        var _this2 = this;
-
-	        // ignore resize events as long as an actualResizeHandler execution is in the queue
-	        if (!resizeTimeout) {
-	          resizeTimeout = setTimeout(function () {
-	            resizeTimeout = null;
-	            if (window.innerWidth < 700 && (_this2.props.window_size_is_mobile === null || _this2.props.window_size_is_mobile === false)) {
-	              _this2.props.windowSizeIsMobileEmited();
-	            } else if (window.innerWidth >= 700 && (_this2.props.window_size_is_mobile === null || _this2.props.window_size_is_mobile === true)) {
-	              _this2.props.windowSizeIsDesktopEmited();
-	            }
-	          }, 300);
-	        }
-	      }
-
 	      // Warn if the browser doesn't support addEventListener or the Page Visibility API
 	      if (typeof document.addEventListener === 'undefined' || typeof document[hidden] === 'undefined') {
 	        console.warn('Page Visibility API: requires a compatible browser, such as Google Chrome or Firefox.');
 	      } else {
 	        // Handle page visibility change
 	        document.addEventListener(visibilityChange, handleVisibilityChange.bind(this), false);
-	        window.addEventListener('resize', resizeThrottler.bind(this), false);
+	        window.addEventListener('resize', this._resizeThrottler, false);
 	        window.onfocus = function () {
-	          return _this3.props.pageBecameVisible();
+	          return _this2.props.pageBecameVisible();
 	        };
 	        window.onblur = function () {
-	          return _this3.props.pageBecameHidden();
+	          return _this2.props.pageBecameHidden();
 	        };
 	      }
 	    }
