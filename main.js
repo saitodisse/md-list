@@ -26131,7 +26131,8 @@
 	  is_saving: 'chatList.is_saving',
 	  current_item: 'chatList.current_item',
 	  itemsCount: (0, _itemsListCountComputed2.default)(),
-	  error: 'chatList.error'
+	  error: 'chatList.error',
+	  window_size_is_mobile: 'main.window_size_is_mobile'
 	}, {
 	  redirectToLogin: 'main.redirectToLogin',
 	  currentUserRequested: 'login.currentUserRequested',
@@ -26167,7 +26168,7 @@
 	          id: _this.props.current_item.id
 	        });
 	      }
-	      _this.textareaNode.focus();
+	      _this._setFocusOnTextArea();
 
 	      // update textarea size
 	      _this.textareaNode.value = '';
@@ -26228,7 +26229,7 @@
 
 	      // focus after server actions
 	      if (prevProps.is_saving && !this.props.is_saving) {
-	        this.textareaNode.focus();
+	        this._setFocusOnTextArea();
 	      }
 
 	      // load autosize for the first time
@@ -26240,7 +26241,7 @@
 	      // update when current_item changes
 	      if (prevProps.current_item.id !== this.props.current_item.id) {
 	        _autosize2.default.update(this.textareaNode);
-	        this.textareaNode.focus();
+	        this._setFocusOnTextArea();
 	      }
 
 	      if (this.props.itemsCount > prevProps.itemsCount) {
@@ -26250,6 +26251,13 @@
 	            _this2.messagesNode.scrollTop = _this2.messagesNode.scrollHeight;
 	          }
 	        });
+	      }
+	    }
+	  }, {
+	    key: '_setFocusOnTextArea',
+	    value: function _setFocusOnTextArea() {
+	      if (!this.props.window_size_is_mobile) {
+	        this.textareaNode.focus();
 	      }
 	    }
 	  }, {
