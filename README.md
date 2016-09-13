@@ -26,29 +26,29 @@
 
 ##### 1. Firebase project and keys
 
-- Create a project on firebase https://console.firebase.google.com/
-- Get your api key by clicking on "Add Firebase to your web app"
+- Create a new project on [Firebase](https://console.firebase.google.com/)
+- Get your __API key__ by clicking on "Add Firebase to your web app"
 - Copy `.env-example` to `.env-dev`
 
 ```sh
 cp .env-example .env-dev`
 ```
 
-- Edit API_KEY, AUTH_DOMAIN, DATABASE_URL and STORAGE_BUCKET on `.env-dev`
+- Edit `API_KEY`, `AUTH_DOMAIN`, `DATABASE_URL` and `STORAGE_BUCKET` on **.env-dev**
 
-##### 3. Firebase database rules
+##### 2. Firebase database rules
 
-- Copy and paste database rules (https://github.com/saitodisse/md-list/blob/master/docs/firebase_rules.java) onto database rules on firebase console
+- Copy and paste [database rules content](https://github.com/saitodisse/md-list/blob/master/docs/firebase_rules.java) onto **database rules** on Firebase console
 
-##### 4. Firebase facebook authentication
+##### 3. Firebase facebook authentication
 
-- Configure a facebook auth following steps 2 and 3 from _Before you begin_ section: https://firebase.google.com/docs/auth/web/facebook-login
+- Configure a Facebook auth following __steps 2 and 3__ from _Before you begin_ section: https://firebase.google.com/docs/auth/web/facebook-login
 
-##### 5. Start app
+##### 4. Start app
 
 ```sh
-    npm install
-    npm start
+npm install
+npm start
 ```
 
 - Open: http://localhost:3000
@@ -58,7 +58,7 @@ cp .env-example .env-dev`
 
 ### deploy to gh-pages
 
-This will build the app and push to `gh-pages` branch
+This will build the app and push to `gh-pages` __branch__
 
 - Create a new firebase project or copy dev settings
 
@@ -69,7 +69,10 @@ cp .env-dev .env-prod
 - Build and deploy
 
 ```sh
-npm run deploy
+# with debugger
+npm run deploy-dev
+# without debugger
+npm run deploy-prod
 ```
 
 Open: https://--your_github_name--.github.io/md-list/
