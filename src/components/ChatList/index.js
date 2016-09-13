@@ -13,6 +13,7 @@ export default connect({
   current_item: 'chatList.current_item',
   itemsCount: itemsListCountComputed(),
   error: 'chatList.error',
+  window_size_is_mobile: 'main.window_size_is_mobile',
 }, {
   redirectToLogin: 'main.redirectToLogin',
   currentUserRequested: 'login.currentUserRequested',
@@ -42,7 +43,7 @@ export default connect({
 
       // focus after server actions
       if (prevProps.is_saving && !this.props.is_saving) {
-        this.textareaNode.focus();
+        this._setFocusOnTextArea();
       }
 
       // load autosize for the first time
@@ -54,7 +55,7 @@ export default connect({
       // update when current_item changes
       if (prevProps.current_item.id !== this.props.current_item.id) {
         autosize.update(this.textareaNode);
-        this.textareaNode.focus();
+        this._setFocusOnTextArea();
       }
 
       if (this.props.itemsCount > prevProps.itemsCount) {
@@ -64,6 +65,12 @@ export default connect({
             this.messagesNode.scrollTop = this.messagesNode.scrollHeight;
           }
         });
+      }
+    }
+
+    _setFocusOnTextArea() {
+      if (!this.props.window_size_is_mobile) {
+        this.textareaNode.focus();
       }
     }
 
@@ -82,7 +89,7 @@ export default connect({
           id: this.props.current_item.id
         });
       }
-      this.textareaNode.focus();
+      this._setFocusOnTextArea();
 
       // update textarea size
       this.textareaNode.value = '';
