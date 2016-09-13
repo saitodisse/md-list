@@ -34,6 +34,7 @@
     "cerebral-module-http": "^0.5.x",
     "cerebral-module-router": "^0.17.1",
     "cerebral-view-inferno": "^1.1.4",
+    "deep-extend": "^0.4.1",
     "express": "^4.14.0",
     "firebase": "^3.3.0",
     "highlight.js": "^9.6.0",
