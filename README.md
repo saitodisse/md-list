@@ -72,10 +72,15 @@ cp .env-dev .env-prod
 - Build and deploy
 
 ```sh
+# gh-pages
 # with debugger
-npm run deploy-dev
+npm run deploy-dev-gh-pages
 # without debugger
-npm run deploy-prod
+npm run deploy-prod-gh-pages
+
+# s3
+# with debugger
+npm run deploy-dev-s3
 ```
 
 Open: https://--your_github_name--.github.io/md-list/

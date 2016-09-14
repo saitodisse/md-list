@@ -6,9 +6,10 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build-dev": "NODE_ENV=dev webpack --config webpack.config.development.js",
-    "deploy-dev": "./tools/deploy-dev.sh",
     "build-prod": "NODE_ENV=production webpack --config webpack.config.production.js",
-    "deploy-prod": "./tools/deploy-prod.sh",
+    "deploy-dev-gh-pages": "./tools/deploy-dev-gh-pages.sh",
+    "deploy-prod-gh-pages": "./tools/deploy-prod-gh-pages.sh",
+    "deploy-dev-s3": "./tools/deploy-dev-s3.sh",
     "test": "exit 1"
   },
   "repository": {
