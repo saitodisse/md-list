@@ -6,6 +6,7 @@ import stylesMobile from './styles-mobile';
 import R from 'ramda';
 import marked from 'marked';
 import highlight from 'highlight.js';
+import emojify from 'emojify.js';
 
 export default connect(props => ({
   item: `chatList.items.${props.itemId}`,
@@ -38,8 +39,12 @@ export default connect(props => ({
       this.state = {};
     }
 
+    _emojiReplacer = (emoji, name) => {
+      return `![${emoji}](https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/images/basic/${name}.png#emoji-img)`;
+    }
+
     renderMarkdown = () => {
-      const mdHtml = marked(String(this.props.item.body));
+      const mdHtml = marked(emojify.replace(String(this.props.item.body), this._emojiReplacer));
       return {__html: mdHtml};
     }
 

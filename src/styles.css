@@ -20,6 +20,11 @@ td {
   border: 1px solid #dcdcdc;
 }
 
+img[src$='#emoji-img'] {
+  width: 27px;
+  vertical-align: bottom;
+}
+
 /*
 
 agate.css

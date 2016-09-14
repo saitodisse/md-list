@@ -1,7 +1,6 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
 import {connect} from 'cerebral-view-inferno';
-import R from 'ramda';
 
 import Login from '~/components/Login';
 import ChatList from '~/components/ChatList';
