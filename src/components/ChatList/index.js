@@ -82,7 +82,12 @@ export default connect({
     }
 
     _OnSubmit = () => {
-      const value = R.trim(this.props.current_item.body);
+      const value = R.trim(this.textareaNode.value);
+
+      this.props.currentItemChanged({
+        body: value
+      });
+
       const hasValue = !R.isEmpty(value);
       if (hasValue) {
         this.props.currentItemSubmitted({
@@ -96,18 +101,12 @@ export default connect({
       autosize.update(this.textareaNode);
     }
 
-    onInputChange(event) {
-      this.props.currentItemChanged({
-        body: event.target.value
-      });
-    }
-
     _onKeyDown = (e) => {
       // ESC
       if (e.keyCode === 27) {
         this.props.editCanceled();
       }
-      if (this.props.current_item.body.length === 0) {
+      if (this.textareaNode.value.length === 0) {
         // UP
         if (e.keyCode === 38 || e.keyCode === 104) {
           window.requestAnimationFrame(() => {
@@ -136,10 +135,6 @@ export default connect({
       }
     }
 
-    _OnTextAreaBlur = () => {
-      /**/console.log({"this.textareaNode": this.textareaNode});/* -debug- */
-    }
-
     render() {
       return (
         <div style={styles.container} id="container" onKeyDown={this._onKeyDown}>
@@ -162,7 +157,7 @@ export default connect({
                   onAttached={node => {this.textareaNode = node;}}
                   disabled={this.props.is_saving}
                   value={this.props.current_item.body}
-                  onInput={event => this.onInputChange(event)}
+                  onChange={event => this.props.currentItemChanged({body: event.target.value})}
                   onKeyDown={this._OnTextKeyDown}
                   rows={1}
                 />
