@@ -26160,7 +26160,12 @@
 	        _this._OnSubmit();
 	      }
 	    }, _this._OnSubmit = function () {
-	      var value = _ramda2.default.trim(_this.props.current_item.body);
+	      var value = _ramda2.default.trim(_this.textareaNode.value);
+
+	      _this.props.currentItemChanged({
+	        body: value
+	      });
+
 	      var hasValue = !_ramda2.default.isEmpty(value);
 	      if (hasValue) {
 	        _this.props.currentItemSubmitted({
@@ -26177,7 +26182,7 @@
 	      if (e.keyCode === 27) {
 	        _this.props.editCanceled();
 	      }
-	      if (_this.props.current_item.body.length === 0) {
+	      if (_this.textareaNode.value.length === 0) {
 	        // UP
 	        if (e.keyCode === 38 || e.keyCode === 104) {
 	          window.requestAnimationFrame(function () {
@@ -26204,8 +26209,6 @@
 	          });
 	        }
 	      }
-	    }, _this._OnTextAreaBlur = function () {
-	      /**/console.log({ "this.textareaNode": _this.textareaNode }); /* -debug- */
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
@@ -26262,13 +26265,6 @@
 	      }
 	    }
 	  }, {
-	    key: 'onInputChange',
-	    value: function onInputChange(event) {
-	      this.props.currentItemChanged({
-	        body: event.target.value
-	      });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this3 = this;
@@ -26297,8 +26293,8 @@
 	        value: this.props.current_item.body,
 	        rows: 1
 	      }, {
-	        oninput: function oninput(event) {
-	          return _this3.onInputChange(event);
+	        onchange: function onchange(event) {
+	          return _this3.props.currentItemChanged({ body: event.target.value });
 	        },
 	        onkeydown: this._OnTextKeyDown
 	      }, {
