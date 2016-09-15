@@ -26983,7 +26983,7 @@
 	        var puml_code = curr.content;
 	        var encoded = _plantumlEncoder2.default.encode(puml_code);
 	        var img_url = 'http://www.plantuml.com/plantuml/img/' + encoded;
-	        return prev.split(curr.full).join('![' + puml_code + '](' + img_url + '#plantuml)');
+	        return prev.split(curr.full).join('![puml_code](' + img_url + ')');
 	      }, content);
 
 	      return result;
