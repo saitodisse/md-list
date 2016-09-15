@@ -7,6 +7,7 @@ import R from 'ramda';
 import marked from 'marked';
 import highlight from 'highlight.js';
 import emojify from 'emojify.js';
+import plantumlEncoder from 'plantuml-encoder';
 
 export default connect(props => ({
   item: `chatList.items.${props.itemId}`,
@@ -43,8 +44,32 @@ export default connect(props => ({
       return `![${emoji}](https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/images/basic/${name}.png#emoji-img)`;
     }
 
+    _plantUML_image = (content) => {
+      const puml_regex = /```puml\n([\s\S]*?)\n```/g;
+      const puml_matches = [];
+      let match_result = puml_regex.exec(content);
+      while (match_result !== null) {
+        puml_matches.push({
+          full: match_result[0],
+          content: match_result[1]
+        });
+        match_result = puml_regex.exec(content);
+      }
+
+      const result = puml_matches.reduce((prev, curr) => {
+        const puml_code = curr.content;
+        const encoded = plantumlEncoder.encode(puml_code);
+        const img_url = 'http://www.plantuml.com/plantuml/img/' + encoded;
+        return prev.split(curr.full).join(`![${puml_code}](${img_url}#plantuml)`);
+      }, content);
+
+      return result;
+    }
+
     renderMarkdown = () => {
-      const mdHtml = marked(emojify.replace(String(this.props.item.body), this._emojiReplacer));
+      const md_with_puml = this._plantUML_image(String(this.props.item.body));
+      const md_with_emoji = emojify.replace(String(md_with_puml), this._emojiReplacer);
+      const mdHtml = marked(md_with_emoji);
       return {__html: mdHtml};
     }
 

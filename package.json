@@ -42,6 +42,7 @@
     "highlight.js": "^9.6.0",
     "html-webpack-plugin": "^2.22.0",
     "marked": "^0.3.6",
+    "plantuml-encoder": "^1.2.3",
     "ramda": "^0.22.1",
     "uuid": "^2.0.2",
     "webpack": "^1.13.2"
