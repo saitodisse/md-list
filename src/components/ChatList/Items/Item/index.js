@@ -58,7 +58,7 @@ export default connect(props => ({
       const result = puml_matches.reduce((prev, curr) => {
         const puml_code = curr.content;
         const encoded = plantumlEncoder.encode(puml_code);
-        const img_url = 'http://www.plantuml.com/plantuml/img/' + encoded;
+        const img_url = 'https://www.plantuml.com/plantuml/img/' + encoded;
         return prev.split(curr.full).join(`![puml_code](${img_url})`);
       }, content);
 
