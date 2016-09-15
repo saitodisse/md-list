@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build-dev": "NODE_ENV=dev webpack --config webpack.config.development.js",
-    "build-prod": "NODE_ENV=production webpack --config webpack.config.production.js",
+    "build-dev": "NODE_ENV=dev webpack",
+    "build-prod": "NODE_ENV=production webpack",
     "deploy-dev-gh-pages": "./tools/deploy-dev-gh-pages.sh",
     "deploy-prod-gh-pages": "./tools/deploy-prod-gh-pages.sh",
     "deploy-dev-s3": "./tools/deploy-dev-s3.sh",
