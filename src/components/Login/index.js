@@ -1,6 +1,5 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-import {connect} from 'cerebral-view-inferno';
+import React from 'react';
+import {connect} from 'cerebral-view-react';
 import styles from './styles';
 
 export default connect({
@@ -8,7 +7,7 @@ export default connect({
 }, {
   facebookLoginClicked: 'login.facebookLoginClicked',
 },
-  class Login extends Component {
+  class Login extends React.Component {
     render() {
       return (
         <div style={styles.container} id="container">

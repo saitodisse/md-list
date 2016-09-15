@@ -2,15 +2,20 @@ export default (_options = {}) => module => {
   module.addServices({
 
     requestPermitionAsync() {
+      if (!('Notification' in window)) {
+        console.log('This browser does not support desktop notification');
+        return Promise.resolve('denied');
+      }
+
       return Notification.requestPermission();
     },
 
     sendNotification({title, body, icon_url, close_in_seconds}) {
-      // Let's check if the browser supports notifications
       if (!('Notification' in window)) {
         console.log('This browser does not support desktop notification');
         return null;
       }
+
       const options = {
         body: body,
         icon: icon_url

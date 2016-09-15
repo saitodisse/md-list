@@ -1,6 +1,5 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-import {connect} from 'cerebral-view-inferno';
+import React from 'react';
+import {connect} from 'cerebral-view-react';
 
 import Login from '~/components/Login';
 import ChatList from '~/components/ChatList';
@@ -44,7 +43,7 @@ export default connect({
   windowSizeIsDesktopEmited: 'main.windowSizeIsDesktopEmited',
 
 },
-  class Main extends Component {
+  class Main extends React.Component {
     componentDidMount() {
       this.props.pageLoaded();
       this.listenPageVisibilityChanges();

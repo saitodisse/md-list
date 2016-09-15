@@ -1,6 +1,5 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-import {connect} from 'cerebral-view-inferno';
+import React from 'react';
+import {connect} from 'cerebral-view-react';
 import R from 'ramda';
 import autosize from 'autosize';
 import itemsListCountComputed from '~/computed/itemsListCountComputed';
@@ -23,7 +22,7 @@ export default connect({
   updateItemSubmitted: 'chatList.updateItemSubmitted',
   editCanceled: 'chatList.editCanceled',
 },
-  class ChatList extends Component {
+  class ChatList extends React.Component {
 
     static autosizeLoaded = false;
 
@@ -140,7 +139,7 @@ export default connect({
         <div style={styles.container} id="container" onKeyDown={this._onKeyDown}>
           <div
             style={styles.messages} id="messages"
-            onAttached={node => {this.messagesNode = node;}}>
+            ref={node => {this.messagesNode = node;}}>
             <Items />
           </div>
 
@@ -154,7 +153,7 @@ export default connect({
                   style={this.props.error ? styles.textareaError : styles.textarea}
                   autoFocus
                   type="text"
-                  onAttached={node => {this.textareaNode = node;}}
+                  ref={node => {this.textareaNode = node;}}
                   disabled={this.props.is_saving}
                   value={this.props.current_item.body}
                   onChange={event => this.props.currentItemChanged({body: event.target.value})}

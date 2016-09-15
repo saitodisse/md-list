@@ -1,6 +1,5 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
-import {connect} from 'cerebral-view-inferno';
+import React from 'react';
+import {connect} from 'cerebral-view-react';
 import styles from './styles';
 import stylesMobile from './styles-mobile';
 import R from 'ramda';
@@ -18,7 +17,7 @@ export default connect(props => ({
   itemClicked: 'chatList.itemClicked',
   removeItemClicked: 'chatList.removeItemClicked',
 },
-  class Item extends Component {
+  class Item extends React.Component {
     constructor(props) {
       super(props);
 
