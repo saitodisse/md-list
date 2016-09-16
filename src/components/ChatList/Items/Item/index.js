@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'cerebral-view-react';
 import styles from './styles';
-import stylesMobile from './styles-mobile';
 import R from 'ramda';
 import marked from 'marked';
 import highlight from 'highlight.js';
@@ -83,48 +82,39 @@ export default connect(props => ({
         return null;
       }
 
-      const currentStyle = this.props.window_size_is_mobile ? stylesMobile : styles;
-
       const $isCurrentItem = (this.props.current_item.id === this.props.item.id);
-      const valueStyle = $isCurrentItem ? currentStyle.valueSelected : currentStyle.value;
+      const valueStyle = $isCurrentItem ? styles.valueSelected : styles.value;
 
       const $isNewItem = this.props.item.$isNew;
-      const itemStyle = $isNewItem ? currentStyle.itemNewContainer : currentStyle.itemContainer;
+      const itemStyle = $isNewItem ? styles.itemNewContainer : styles.itemContainer;
 
       const me_id = this.props.user_id;
       const item_uid = this.props.item.user_id;
       const is_my_item = (me_id === item_uid);
 
-      const userNameStyle = currentStyle.userName;
-      if (is_my_item) {
-        userNameStyle.color = '#437b58';
-      } else {
-        userNameStyle.color = '#4f58d8';
-      }
-
       return (
-        <div style={currentStyle.messageContainer} id="messageContainer">
+        <div style={styles.messageContainer} id="messageContainer">
 
-          <div style={currentStyle.userPhotoContainer} id="userPhotoContainer">
-            <img style={currentStyle.userPhoto} id="userPhoto" src={this.props.item.photoURL} alt="photo" />
+          <div style={styles.userPhotoContainer} id="userPhotoContainer">
+            <img style={styles.userPhoto} id="userPhoto" src={this.props.item.photoURL} alt="photo" />
           </div>
 
-          <div style={currentStyle.bodyContainer} id="bodyContainer">
-            <div style={currentStyle.topBodyContainer} id="topBodyContainer">
-              <div style={userNameStyle} id="userName">
+          <div style={styles.bodyContainer} id="bodyContainer">
+            <div style={styles.topBodyContainer} id="topBodyContainer">
+              <div style={styles.userName} id="userName" className={is_my_item ? 'userNameMe' : 'userNameOther'}>
                 {this.props.item.displayName}
               </div>
 
                 {is_my_item && (
-                <div style={currentStyle.buttonsContainer} id="buttonsContainer">
+                <div style={styles.buttonsContainer} id="buttonsContainer">
                   <div
-                    style={currentStyle.editButton} id="editButton"
+                    style={styles.editButton} id="editButton"
                     onClick={this._onEdit}
                   >
                     edit
                   </div>
                   <div
-                    style={currentStyle.deleteButton} id="deleteButton"
+                    style={styles.deleteButton} id="deleteButton"
                     onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
                   >
                     delete

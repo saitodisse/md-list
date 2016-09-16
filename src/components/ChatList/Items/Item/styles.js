@@ -12,7 +12,7 @@ const valueStyle = {
 
   padding: 3,
   marginLeft: 5,
-  fontSize: 14,
+  // fontSize: 14,
 };
 
 const noSelect = {
@@ -63,7 +63,6 @@ export default {
     fontSize: 12,
     fontWeight: 'bold',
     marginLeft: 8,
-    color: '#6d6d6d',
   },
 
   itemContainer: {
@@ -92,19 +91,19 @@ export default {
     justifyContent: 'flex-end',
   },
   editButton: {
-    fontSize: 12,
-    cursor: 'pointer',
-    textDecoration: 'underline',
-    color: '#777',
-    ...noSelect,
+    // fontSize: 12,
+    // cursor: 'pointer',
+    // textDecoration: 'underline',
+    // color: '#777',
+    // ...noSelect,
   },
   deleteButton: {
-    marginLeft: 7,
-    fontSize: 12,
-    cursor: 'pointer',
-    textDecoration: 'underline',
+    // marginLeft: 7,
+    // fontSize: 12,
+    // cursor: 'pointer',
+    // textDecoration: 'underline',
     color: '#a77',
-    ...noSelect,
+    // ...noSelect,
   },
 
 };

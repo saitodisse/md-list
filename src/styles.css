@@ -25,6 +25,51 @@ img[src$='#emoji-img'] {
   vertical-align: bottom;
 }
 
+
+.userNameMe {
+  color: #437b58;
+}
+
+.userNameOther {
+  color: #4f58d8;
+}
+
+#bodyContainer {
+  flex-direction: 'row';
+  flex-grow: 1;
+  font-size: 14px;
+}
+#editButton, #deleteButton {
+  font-size: 12px;
+  margin-left: 7px;
+  cursor: pointer;
+  text-decoration: underline;
+  color: #777;
+  user-select: none;
+  moz-user-select: none;
+  webkit-user-select: none;
+  ms-user-select: none;
+}
+@media all and (max-width: 700px) {
+  #bodyContainer {
+    flex-direction: 'row';
+    flex-grow: 1;
+    font-size: 18px;
+  }
+  #editButton, #deleteButton {
+    font-size: 18px;
+    margin-left: 7px;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #777;
+    user-select: none;
+    moz-user-select: none;
+    webkit-user-select: none;
+    ms-user-select: none;
+  }
+}
+
+
 /*
 
 agate.css
