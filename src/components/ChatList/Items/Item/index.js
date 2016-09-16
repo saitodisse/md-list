@@ -8,7 +8,7 @@ import emojify from 'emojify.js';
 import plantumlEncoder from 'plantuml-encoder';
 
 export default connect(props => ({
-  item: `chatList.items.${props.itemId}`,
+  // item: `chatList.items.${props.itemId}`,
   current_item: 'chatList.current_item',
   user_id: 'login.user.uid',
   window_size_is_mobile: 'main.window_size_is_mobile',
