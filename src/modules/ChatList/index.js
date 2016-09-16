@@ -12,8 +12,6 @@ export default module => {
   module.addState({
     items: {},
     current_item: {body: ''},
-    is_saving: false,
-    error: null,
   });
 
   module.addSignals({

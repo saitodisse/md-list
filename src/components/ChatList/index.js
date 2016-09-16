@@ -8,10 +8,10 @@ import styles from './styles';
 
 export default connect({
   is_logged: 'login.is_logged',
-  is_saving: 'chatList.is_saving',
+  is_saving: 'main.is_saving',
   current_item: 'chatList.current_item.*',
   itemsCount: itemsListCountComputed(),
-  error: 'chatList.error',
+  error: 'main.error',
   window_size_is_mobile: 'main.window_size_is_mobile',
 }, {
   redirectToLogin: 'main.redirectToLogin',

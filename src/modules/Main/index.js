@@ -11,6 +11,8 @@ export default module => {
     current_page: null,
     page_is_visible: true,
     window_size_is_mobile: null,
+    is_saving: false,
+    error: null,
   });
 
   module.addSignals({

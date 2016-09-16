@@ -7,7 +7,7 @@ import highlight from 'highlight.js';
 import emojify from 'emojify.js';
 import plantumlEncoder from 'plantuml-encoder';
 
-export default connect(props => ({
+export default connect(_props => ({
   // item: `chatList.items.${props.itemId}`,
   current_item: 'chatList.current_item',
   user_id: 'login.user.uid',
@@ -36,6 +36,41 @@ export default connect(props => ({
       });
 
       this.state = {};
+    }
+
+    // optimizations
+    shouldComponentUpdate(nextProps, _nextState) {
+      // body changed
+      const body_changed = (
+        this.props.item.body !== nextProps.item.body
+      );
+      if (body_changed) {
+        return true;
+      }
+
+      const item_id = this.props.item.id;
+      const new_current_item_id = R.pathOr(null, ['id'], nextProps.current_item);
+      const is_current_item = (item_id === new_current_item_id);
+
+      // item was selected
+      if (is_current_item) {
+        return true;
+      }
+
+      // item was deselected
+      const old_current_item_id = R.pathOr(null, ['id'], this.props.current_item);
+      const was_current_item = (
+           old_current_item_id === item_id
+        && (
+               old_current_item_id !== new_current_item_id
+            || new_current_item_id === null
+           )
+      );
+      if (!is_current_item && was_current_item) {
+        return true;
+      }
+
+      return false;
     }
 
     _emojiReplacer = (emoji, name) => {

@@ -46,9 +46,9 @@ img[src$='#emoji-img'] {
   text-decoration: underline;
   color: #777;
   user-select: none;
-  moz-user-select: none;
-  webkit-user-select: none;
-  ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 @media all and (max-width: 700px) {
   #bodyContainer {
