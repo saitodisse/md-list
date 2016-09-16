@@ -30287,7 +30287,9 @@
 	  module.addState({
 	    current_page: null,
 	    page_is_visible: true,
-	    window_size_is_mobile: null
+	    window_size_is_mobile: null,
+	    is_saving: false,
+	    error: null
 	  });
 
 	  module.addSignals({
@@ -33793,9 +33795,7 @@
 	exports.default = function (module) {
 	  module.addState({
 	    items: {},
-	    current_item: { body: '' },
-	    is_saving: false,
-	    error: null
+	    current_item: { body: '' }
 	  });
 
 	  module.addSignals({
@@ -34044,13 +34044,13 @@
 
 	var deleteItemChain = [
 	// We set the app is saving mode to disable the input
-	(0, _operators.set)('state:chatList.is_saving', true),
+	(0, _operators.set)('state:main.is_saving', true),
 	// We reset the error
-	(0, _operators.set)('state:chatList.error', null),
+	(0, _operators.set)('state:main.error', null),
 	// We post the item to the server
 	_deleteItem2.default, {
-	  success: [_removeItem2.default, (0, _operators.set)('state:chatList.is_saving', false)],
-	  error: [(0, _operators.set)('state:chatList.is_saving', false), (0, _operators.copy)('input:code', 'state:chatList.error')]
+	  success: [_removeItem2.default, (0, _operators.set)('state:main.is_saving', false)],
+	  error: [(0, _operators.set)('state:main.is_saving', false), (0, _operators.copy)('input:code', 'state:main.error')]
 	}];
 
 	exports.default = deleteItemChain;
@@ -34125,21 +34125,21 @@
 
 	var submitItemBody = [
 	// We set the app is saving mode to disable the input
-	(0, _operators.set)('state:chatList.is_saving', true),
+	(0, _operators.set)('state:main.is_saving', true),
 	// We reset the error
-	(0, _operators.set)('state:chatList.error', null),
+	(0, _operators.set)('state:main.error', null),
 	// We post the item to the server
 	_updateItem2.default, {
 	  success: [
 	  // The app goes back into normal state,
 	  // enabling the input again
-	  (0, _operators.set)('state:chatList.is_saving', false), (0, _operators.set)('state:chatList.current_item', { body: '' })],
+	  (0, _operators.set)('state:main.is_saving', false), (0, _operators.set)('state:chatList.current_item', { body: '' })],
 	  error: [
 	  // The app goes back into normal state,
 	  // enabling the input again
-	  (0, _operators.set)('state:chatList.is_saving', false),
+	  (0, _operators.set)('state:main.is_saving', false),
 	  // We set an error to display
-	  (0, _operators.copy)('input:code', 'state:chatList.error')]
+	  (0, _operators.copy)('input:code', 'state:main.error')]
 	}];
 
 	exports.default = submitItemBody;
@@ -44210,10 +44210,10 @@
 
 	exports.default = (0, _cerebralViewReact.connect)({
 	  is_logged: 'login.is_logged',
-	  is_saving: 'chatList.is_saving',
+	  is_saving: 'main.is_saving',
 	  current_item: 'chatList.current_item.*',
 	  itemsCount: (0, _itemsListCountComputed2.default)(),
-	  error: 'chatList.error',
+	  error: 'main.error',
 	  window_size_is_mobile: 'main.window_size_is_mobile'
 	}, {
 	  redirectToLogin: 'main.redirectToLogin',
@@ -44866,7 +44866,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	exports.default = (0, _cerebralViewReact.connect)(function (props) {
+	exports.default = (0, _cerebralViewReact.connect)(function (_props) {
 	  return {
 	    // item: `chatList.items.${props.itemId}`,
 	    current_item: 'chatList.current_item',
@@ -44940,7 +44940,37 @@
 	    return _this;
 	  }
 
+	  // optimizations
+
+
 	  _createClass(Item, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps, _nextState) {
+	      // body changed
+	      var body_changed = this.props.item.body !== nextProps.item.body;
+	      if (body_changed) {
+	        return true;
+	      }
+
+	      var item_id = this.props.item.id;
+	      var new_current_item_id = _ramda2.default.pathOr(null, ['id'], nextProps.current_item);
+	      var is_current_item = item_id === new_current_item_id;
+
+	      // item was selected
+	      if (is_current_item) {
+	        return true;
+	      }
+
+	      // item was deselected
+	      var old_current_item_id = _ramda2.default.pathOr(null, ['id'], this.props.current_item);
+	      var was_current_item = old_current_item_id === item_id && (old_current_item_id !== new_current_item_id || new_current_item_id === null);
+	      if (!is_current_item && was_current_item) {
+	        return true;
+	      }
+
+	      return false;
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -67684,7 +67714,7 @@
 
 
 	// module
-	exports.push([module.id, "pre {\n  border-left: 1px dashed #eee;\n  margin-left: 5px;\n  padding-left: 10px;\n}\n\npre code{\n  font-family: 'Anonymous Pro', monospace;\n  border-bottom: 1px dashed #d7d7d7;\n}\n\nth {\n  background-color: rgba(176, 176, 176, 0.3);\n  border: 1px solid rgba(176, 176, 176, 0.3);\n  padding: 7px;\n}\n\ntd {\n  padding: 7px;\n  border: 1px solid #dcdcdc;\n}\n\nimg[src$='#emoji-img'] {\n  width: 27px;\n  vertical-align: bottom;\n}\n\n\n.userNameMe {\n  color: #437b58;\n}\n\n.userNameOther {\n  color: #4f58d8;\n}\n\n#bodyContainer {\n  flex-direction: 'row';\n  flex-grow: 1;\n  font-size: 14px;\n}\n#editButton, #deleteButton {\n  font-size: 12px;\n  margin-left: 7px;\n  cursor: pointer;\n  text-decoration: underline;\n  color: #777;\n  user-select: none;\n  moz-user-select: none;\n  webkit-user-select: none;\n  ms-user-select: none;\n}\n@media all and (max-width: 700px) {\n  #bodyContainer {\n    flex-direction: 'row';\n    flex-grow: 1;\n    font-size: 18px;\n  }\n  #editButton, #deleteButton {\n    font-size: 18px;\n    margin-left: 7px;\n    cursor: pointer;\n    text-decoration: underline;\n    color: #777;\n    user-select: none;\n    moz-user-select: none;\n    webkit-user-select: none;\n    ms-user-select: none;\n  }\n}\n\n\n/*\n\nagate.css\nandroidstudio.css\narduino-light.css\narta.css\nascetic.css\natelier-cave-dark.css\natelier-cave-light.css\natelier-dune-dark.css\natelier-dune-light.css\natelier-estuary-dark.css\natelier-estuary-light.css\natelier-forest-dark.css\natelier-forest-light.css\natelier-heath-dark.css\natelier-heath-light.css\natelier-lakeside-dark.css\natelier-lakeside-light.css\natelier-plateau-dark.css\natelier-plateau-light.css\natelier-savanna-dark.css\natelier-savanna-light.css\natelier-seaside-dark.css\natelier-seaside-light.css\natelier-sulphurpool-dark.css\natelier-sulphurpool-light.css\natom-one-dark.css\natom-one-light.css\nbrown-paper.css\ncodepen-embed.css\ncolor-brewer.css\ndarcula.css\ndark.css\ndarkula.css\ndefault.css\ndocco.css\ndracula.css\nfar.css\nfoundation.css\ngithub-gist.css\ngithub.css\ngooglecode.css\ngrayscale.css\ngruvbox-dark.css\ngruvbox-light.css\nhopscotch.css\nhybrid.css\nidea.css\nir-black.css\nkimbie.dark.css\nkimbie.light.css\nmagula.css\nmono-blue.css\nmonokai-sublime.css\nmonokai.css\nobsidian.css\nocean.css\nparaiso-dark.css\nparaiso-light.css\npojoaque.css\npojoaque.jpg\npurebasic.css\nqtcreator_dark.css\nqtcreator_light.css\nrailscasts.css\nrainbow.css\nschool-book.css\nsolarized-dark.css\nsolarized-light.css\nsunburst.css\ntomorrow-night-blue.css\ntomorrow-night-bright.css\ntomorrow-night-eighties.css\ntomorrow-night.css\ntomorrow.css\nvs.css\nxcode.css\nxt256.css\nzenburn.css\n\n */\n", ""]);
+	exports.push([module.id, "pre {\n  border-left: 1px dashed #eee;\n  margin-left: 5px;\n  padding-left: 10px;\n}\n\npre code{\n  font-family: 'Anonymous Pro', monospace;\n  border-bottom: 1px dashed #d7d7d7;\n}\n\nth {\n  background-color: rgba(176, 176, 176, 0.3);\n  border: 1px solid rgba(176, 176, 176, 0.3);\n  padding: 7px;\n}\n\ntd {\n  padding: 7px;\n  border: 1px solid #dcdcdc;\n}\n\nimg[src$='#emoji-img'] {\n  width: 27px;\n  vertical-align: bottom;\n}\n\n\n.userNameMe {\n  color: #437b58;\n}\n\n.userNameOther {\n  color: #4f58d8;\n}\n\n#bodyContainer {\n  flex-direction: 'row';\n  flex-grow: 1;\n  font-size: 14px;\n}\n#editButton, #deleteButton {\n  font-size: 12px;\n  margin-left: 7px;\n  cursor: pointer;\n  text-decoration: underline;\n  color: #777;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  -ms-user-select: none;\n}\n\n@media all and (max-width: 700px) {\n  #bodyContainer {\n    flex-direction: 'row';\n    flex-grow: 1;\n    font-size: 18px;\n  }\n  #editButton, #deleteButton {\n    font-size: 18px;\n    margin-left: 7px;\n    cursor: pointer;\n    text-decoration: underline;\n    color: #777;\n    user-select: none;\n    -moz-user-select: none;\n    -webkit-user-select: none;\n    -ms-user-select: none;\n  }\n}\n\n\n/*\n\nagate.css\nandroidstudio.css\narduino-light.css\narta.css\nascetic.css\natelier-cave-dark.css\natelier-cave-light.css\natelier-dune-dark.css\natelier-dune-light.css\natelier-estuary-dark.css\natelier-estuary-light.css\natelier-forest-dark.css\natelier-forest-light.css\natelier-heath-dark.css\natelier-heath-light.css\natelier-lakeside-dark.css\natelier-lakeside-light.css\natelier-plateau-dark.css\natelier-plateau-light.css\natelier-savanna-dark.css\natelier-savanna-light.css\natelier-seaside-dark.css\natelier-seaside-light.css\natelier-sulphurpool-dark.css\natelier-sulphurpool-light.css\natom-one-dark.css\natom-one-light.css\nbrown-paper.css\ncodepen-embed.css\ncolor-brewer.css\ndarcula.css\ndark.css\ndarkula.css\ndefault.css\ndocco.css\ndracula.css\nfar.css\nfoundation.css\ngithub-gist.css\ngithub.css\ngooglecode.css\ngrayscale.css\ngruvbox-dark.css\ngruvbox-light.css\nhopscotch.css\nhybrid.css\nidea.css\nir-black.css\nkimbie.dark.css\nkimbie.light.css\nmagula.css\nmono-blue.css\nmonokai-sublime.css\nmonokai.css\nobsidian.css\nocean.css\nparaiso-dark.css\nparaiso-light.css\npojoaque.css\npojoaque.jpg\npurebasic.css\nqtcreator_dark.css\nqtcreator_light.css\nrailscasts.css\nrainbow.css\nschool-book.css\nsolarized-dark.css\nsolarized-light.css\nsunburst.css\ntomorrow-night-blue.css\ntomorrow-night-bright.css\ntomorrow-night-eighties.css\ntomorrow-night.css\ntomorrow.css\nvs.css\nxcode.css\nxt256.css\nzenburn.css\n\n */\n", ""]);
 
 	// exports
 
