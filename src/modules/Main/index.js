@@ -3,8 +3,8 @@ import showLogin from './chains/showLogin';
 import showMain from './chains/showMain';
 import showChatList from './chains/showChatList';
 import bootstrap from './chains/bootstrap';
-import listenDatabase from './chains/listenDatabase';
-import unlistenDatabase from './chains/unlistenDatabase';
+import initFirebase from './chains/initFirebase';
+import unlistenFirebase from './chains/unlistenFirebase';
 
 export default module => {
   module.addState({
@@ -20,8 +20,8 @@ export default module => {
     redirectToLogin: showLogin,
     redirectToChatList: showChatList,
     pageLoaded: bootstrap,
-    userLoggedIn: listenDatabase,
-    userLoggedOut: unlistenDatabase,
+    userLoggedIn: initFirebase,
+    userLoggedOut: unlistenFirebase,
     pageBecameHidden: [set('state:main.page_is_visible', false)],
     pageBecameVisible: [set('state:main.page_is_visible', true)],
     windowSizeIsMobileEmited: [set('state:main.window_size_is_mobile', true)],

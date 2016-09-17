@@ -1,7 +1,7 @@
 import unlistenChanges from '../actions/unlistenChanges';
 
-const unlistenDatabase = [
+const unlistenFirebase = [
   unlistenChanges,
 ];
 
-export default unlistenDatabase;
+export default unlistenFirebase;

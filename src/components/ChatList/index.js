@@ -9,7 +9,8 @@ import styles from './styles';
 export default connect({
   is_logged: 'login.is_logged',
   is_saving: 'main.is_saving',
-  current_item: 'chatList.current_item.*',
+  current_item_id: 'chatList.current_item.id',
+  current_item_body: 'chatList.current_item.body',
   itemsCount: itemsListCountComputed(),
   error: 'main.error',
   window_size_is_mobile: 'main.window_size_is_mobile',
@@ -52,7 +53,7 @@ export default connect({
       }
 
       // update when current_item changes
-      if (prevProps.current_item.id !== this.props.current_item.id) {
+      if (prevProps.current_item_id !== this.props.current_item_id) {
         autosize.update(this.textareaNode);
         this._setFocusOnTextArea();
       }
@@ -90,7 +91,7 @@ export default connect({
       const hasValue = !R.isEmpty(value);
       if (hasValue) {
         this.props.currentItemSubmitted({
-          id: this.props.current_item.id
+          id: this.props.current_item_id
         });
       }
       this._setFocusOnTextArea();
@@ -155,7 +156,7 @@ export default connect({
                   type="text"
                   ref={node => {this.textareaNode = node;}}
                   disabled={this.props.is_saving}
-                  value={this.props.current_item.body}
+                  value={this.props.current_item_body}
                   onChange={event => this.props.currentItemChanged({body: event.target.value})}
                   onKeyDown={this._OnTextKeyDown}
                   rows={1}
@@ -178,7 +179,7 @@ export default connect({
                 count: { this.props.itemsCount }
               </div>
               <div style={styles.current_item} id="current_item">
-                id: {this.props.current_item.id ? this.props.current_item.id : 'new item'}
+                id: {this.props.current_item_id ? this.props.current_item_id : 'new item'}
               </div>
               <div style={styles.shortcuts} id="shortcuts">
                 Ctrl + Enter (send)
