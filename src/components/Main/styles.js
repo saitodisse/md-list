@@ -11,13 +11,16 @@ export default {
   },
 
   titleContainer: {
-    flexDirection: 'column',
+    display: 'flex',
+    flexDirection: 'row',
     // textAlign: 'center',
     justifyContent: 'space-between',
     marginTop: 9,
-    marginBottom: 9,
+    marginBottom: 35,
   },
   title: {
+  },
+  titleLink: {
     flexGrow: 1,
     // fontWeight: 'bold',
     fontSize: 22,
@@ -25,10 +28,11 @@ export default {
     marginLeft: 8,
   },
 
-  titleSourceLink: {
-    fontWeight: 'normal',
-    color: 'rgb(153, 208, 231)',
-    fontSize: 11,
+  fullScreenLink: {
+    flexGrow: 1,
+    fontSize: 18,
+    color: '#777',
+    marginRight: 87,
     textDecoration: 'underline',
     cursor: 'pointer',
   },

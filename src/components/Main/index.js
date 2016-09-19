@@ -3,6 +3,7 @@ import {connect} from 'cerebral-view-react';
 
 import Login from '~/components/Login';
 import ChatList from '~/components/ChatList';
+import screenfull from 'screenfull';
 
 import {
   PAGE_EMPTY,
@@ -120,22 +121,34 @@ export default connect({
       }
     }
 
+    _goFullScreen = () => {
+      if (screenfull.enabled) {
+        screenfull.toggle();
+      }
+    }
+
     render() {
       const pages = getPages();
       return (
         <div style={styles.mainContainer} id="mainContainer">
 
           <div style={styles.titleContainer} id="titleContainer">
-            <div id="title">
+            <a
+              href="https://github.com/saitodisse/md-list"
+              target="_blank"
+              style={styles.titleLink}
+            >
+              md list {this.props.page_is_visible}
+            </a>
+            {this.props.window_size_is_mobile && (
               <a
-                style={styles.title}
-                href="https://github.com/saitodisse/md-list"
+                style={styles.fullScreenLink}
                 target="_blank"
+                onClick={this._goFullScreen}
               >
-                md list {this.props.page_is_visible}
+                full screen
               </a>
-
-            </div>
+            )}
           </div>
 
           <div style={styles.buttonsContainer} id="buttonsContainer">
