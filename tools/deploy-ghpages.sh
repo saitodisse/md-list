@@ -1,8 +1,12 @@
 #!/bin/bash
 set -e
 
+. ./.env-$NODE_ENV
+
 CURRENT_BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-npm run build-dev
+
+npm run build
+
 git checkout gh-pages
 cp dist/main.js .
 cp dist/index.html .

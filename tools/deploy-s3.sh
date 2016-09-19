@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
 
-npm run build-prod
+. ./.env-$NODE_ENV
 
-. ./.env-dev
+npm run build
+
+s3cmd mb $S3_BUCKET_URL --region=sa-east-1 || true
+s3cmd ws-create $S3_BUCKET_URL             || true
+s3cmd setacl $S3_BUCKET_URL --acl-public   || true
 
 # s3cmd del --recursive --force $S3_BUCKET_URL
 
@@ -27,3 +31,5 @@ s3cmd sync ./dist/main.js.gz \
            -m text/js \
            --add-header='Cache-Control:max-age=3600' \
            --add-header='Content-Encoding:gzip'
+
+s3cmd ws-info $S3_BUCKET_URL               || true

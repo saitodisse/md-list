@@ -59,28 +59,22 @@ npm start
 ---------
 
 
-### deploy to gh-pages
-
-This will build the app and push to `gh-pages` __branch__
+### Deploy
 
 - Create a new firebase project or copy dev settings
 
 ```sh
-cp .env-dev .env-prod
+cp .env-dev .env-production
 ```
 
-- Build and deploy
-
 ```sh
-# gh-pages
-# with debugger
-npm run deploy-dev-gh-pages
-# without debugger
-npm run deploy-prod-gh-pages
+# gh-pages - push dist to `gh-pages`
+NODE_ENV=dev ./tools/deploy-ghpages
+NODE_ENV=production ./tools/deploy-ghpages
 
-# s3
-# with debugger
-npm run deploy-dev-s3
+# AWS S3 with s3cmd
+NODE_ENV=dev ./tools/deploy-s3
+NODE_ENV=production ./tools/deploy-s3
 ```
 
 Open: https://--your_github_name--.github.io/md-list/

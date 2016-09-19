@@ -40,4 +40,4 @@ server/db.json
 dist/
 
 .env-dev
-.env-prod
+.env-production

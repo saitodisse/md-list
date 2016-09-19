@@ -2,11 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-if (process.env.NODE_ENV === 'production') {
-  require('dotenv').config({path: '.env-prod'});
-} else {
-  require('dotenv').config({path: '.env-dev'});
-}
+require('dotenv').config({path: '.env-' + process.env.NODE_ENV});
 
 const plugins = [
   new HtmlWebpackPlugin({
