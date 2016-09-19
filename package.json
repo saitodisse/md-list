@@ -4,7 +4,7 @@
   "description": "MD list",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "./tools/start-dev.sh",
     "build": "webpack",
     "test": "exit 1"
   },
@@ -56,7 +56,6 @@
     "babel-eslint": "^6.1.2",
     "babel-plugin-module-alias": "^1.6.0",
     "css-loader": "^0.25.0",
-    "dotenv": "^2.0.0",
     "eslint": "^3.5.0",
     "eslint-plugin-react": "^6.2.2",
     "style-loader": "^0.13.1"

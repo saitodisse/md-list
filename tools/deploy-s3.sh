@@ -1,13 +1,38 @@
 #!/bin/bash
 set -e
 
-. ./.env-$NODE_ENV
+. ./$1
 
-npm run build
+echo ""
+echo " - NODE_ENV=$NODE_ENV"
+echo " - API_KEY=$API_KEY"
+echo " - AUTH_DOMAIN=$AUTH_DOMAIN"
+echo " - DATABASE_URL=$DATABASE_URL"
+echo " - STORAGE_BUCKET=$STORAGE_BUCKET"
+echo " - S3_BUCKET_URL=$S3_BUCKET_URL"
 
-s3cmd mb $S3_BUCKET_URL --region=sa-east-1 || true
-s3cmd ws-create $S3_BUCKET_URL             || true
-s3cmd setacl $S3_BUCKET_URL --acl-public   || true
+echo ""
+echo "Building"
+
+NODE_ENV=$NODE_ENV             \
+API_KEY=$API_KEY               \
+AUTH_DOMAIN=$AUTH_DOMAIN       \
+DATABASE_URL=$DATABASE_URL     \
+STORAGE_BUCKET=$STORAGE_BUCKET \
+./node_modules/.bin/webpack
+
+echo ""
+echo "S3"
+path=$S3_BUCKET_URL
+count=`s3cmd ls $path | wc -l`
+if [[ $count -gt 0 ]]; then
+  echo "Bucket already exist - OK"
+else
+  echo "Creating and configuring new bucket..."
+  s3cmd mb $S3_BUCKET_URL --region=sa-east-1
+  s3cmd ws-create $S3_BUCKET_URL
+  s3cmd setacl $S3_BUCKET_URL --acl-public
+fi
 
 # s3cmd del --recursive --force $S3_BUCKET_URL
 
@@ -32,4 +57,4 @@ s3cmd sync ./dist/main.js.gz \
            --add-header='Cache-Control:max-age=3600' \
            --add-header='Content-Encoding:gzip'
 
-s3cmd ws-info $S3_BUCKET_URL               || true
+s3cmd ws-info $S3_BUCKET_URL

@@ -12,19 +12,18 @@ const bootstrap = [
       copy('input:user', 'state:login.user'),
       set('state:login.last_login_at', (new Date()).getTime()),
       // send user to firebase
+      saveFirebaseUser, {
+        success: [
+          set('state:login.user_saved', false),
+        ],
+        error: [
+          copy('input:code', 'state:login.error_code'),
+          copy('input:message', 'state:login.error_message'),
+        ]
+      },
     ],
     error: [
       set('state:login.is_logged', false),
-      copy('input:code', 'state:login.error_code'),
-      copy('input:message', 'state:login.error_message'),
-    ]
-  },
-
-  saveFirebaseUser, {
-    success: [
-      set('state:login.user_saved', false),
-    ],
-    error: [
       copy('input:code', 'state:login.error_code'),
       copy('input:message', 'state:login.error_message'),
     ]

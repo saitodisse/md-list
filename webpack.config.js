@@ -2,8 +2,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-require('dotenv').config({path: '.env-' + process.env.NODE_ENV});
-
 const plugins = [
   new HtmlWebpackPlugin({
     title: 'md list',

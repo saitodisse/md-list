@@ -68,16 +68,15 @@ cp .env-dev .env-production
 ```
 
 ```sh
-# gh-pages - push dist to `gh-pages`
-NODE_ENV=dev ./tools/deploy-ghpages
-NODE_ENV=production ./tools/deploy-ghpages
+# Github: push only dist files to `gh-pages`
+# https://--your_github_name--.github.io/md-list/
+./tools/deploy-ghpages .env-dev
 
-# AWS S3 with s3cmd
-NODE_ENV=dev ./tools/deploy-s3
-NODE_ENV=production ./tools/deploy-s3
+# S3: create bucket, gzip and send files with s3cmd
+# http://__S3_BUCKET_URL__.s3-website-sa-east-1.amazonaws.com/
+./tools/deploy-s3 .env-dev
 ```
 
-Open: https://--your_github_name--.github.io/md-list/
 
 _You must make your facebook app public to allow others to login (https://developers.facebook.com/apps/--project_id--/review-status/)_
 

@@ -41,3 +41,4 @@ dist/
 
 .env-dev
 .env-production
+.env-cs-puml
