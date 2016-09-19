@@ -64,9 +64,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(542);
-	__webpack_require__(546);
-	__webpack_require__(548);
+	__webpack_require__(543);
+	__webpack_require__(547);
+	__webpack_require__(549);
 
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _cerebralViewReact.Container,
@@ -21871,7 +21871,7 @@
 
 	var _Main2 = _interopRequireDefault(_Main);
 
-	var _Login = __webpack_require__(320);
+	var _Login = __webpack_require__(326);
 
 	var _Login2 = _interopRequireDefault(_Login);
 
@@ -30273,11 +30273,11 @@
 
 	var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
-	var _initFirebase = __webpack_require__(314);
+	var _initFirebase = __webpack_require__(320);
 
 	var _initFirebase2 = _interopRequireDefault(_initFirebase);
 
-	var _unlistenFirebase = __webpack_require__(318);
+	var _unlistenFirebase = __webpack_require__(324);
 
 	var _unlistenFirebase2 = _interopRequireDefault(_unlistenFirebase);
 
@@ -32768,11 +32768,18 @@
 
 	var _notificationRequestPermition2 = _interopRequireDefault(_notificationRequestPermition);
 
+	var _saveFirebaseUser = __webpack_require__(314);
+
+	var _saveFirebaseUser2 = _interopRequireDefault(_saveFirebaseUser);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var bootstrap = [(0, _operators.set)('state:login.is_loading', true), _getUser2.default, {
 	  success: [(0, _operators.set)('state:login.is_logged', true), (0, _operators.copy)('input:user', 'state:login.user'), (0, _operators.set)('state:login.last_login_at', new Date().getTime())],
 	  error: [(0, _operators.set)('state:login.is_logged', false), (0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	}, _saveFirebaseUser2.default, {
+	  success: [(0, _operators.set)('state:login.user_saved', false)],
+	  error: [(0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
 	}, _notificationRequestPermition2.default, {
 	  default: [(0, _operators.set)('state:login.notifications_enabled', null), (0, _operators.copy)('input:notification_result', 'state:login.notification_result')],
 	  granted: [(0, _operators.set)('state:login.notifications_enabled', true), (0, _operators.copy)('input:notification_result', 'state:login.notification_result')],
@@ -32848,238 +32855,7 @@
 	  value: true
 	});
 
-	var _operators = __webpack_require__(235);
-
-	var _getInitialData = __webpack_require__(315);
-
-	var _getInitialData2 = _interopRequireDefault(_getInitialData);
-
-	var _listenChanges = __webpack_require__(316);
-
-	var _listenChanges2 = _interopRequireDefault(_listenChanges);
-
-	var _setItemsKeys = __webpack_require__(317);
-
-	var _setItemsKeys2 = _interopRequireDefault(_setItemsKeys);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var listenDatabase = [(0, _operators.set)('state:main.is_saving', true), (0, _operators.set)('state:main.error', null), _getInitialData2.default, {
-	  success: [_setItemsKeys2.default],
-	  error: [(0, _operators.copy)('input:code', 'state:main.error')]
-	}, (0, _operators.set)('state:main.is_saving', false), _listenChanges2.default];
-
-	exports.default = listenDatabase;
-
-/***/ },
-/* 315 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	function getInitialData(_ref) {
-	  var services = _ref.services;
-	  var output = _ref.output;
-
-	  services.firebase.value('items').then(output.success).catch(output.error);
-	}
-
-	getInitialData.async = true;
-	getInitialData.outputs = ['success', 'error'];
-
-	exports.default = getInitialData;
-
-/***/ },
-/* 316 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var options = {
-	  orderByChild: 'created_at',
-	  startAt: new Date().getTime()
-	};
-
-	function listenChanges(_ref) {
-	  var services = _ref.services;
-
-	  services.firebase.onChildAdded('items', 'chatList.firebaseChildAdded', options);
-	  services.firebase.onChildRemoved('items', 'chatList.firebaseChildRemoved', {});
-	  services.firebase.onChildChanged('items', 'chatList.firebaseChildChanged', {});
-	}
-
-	exports.default = listenChanges;
-
-/***/ },
-/* 317 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	function setItemsKeys(_ref) {
-	  var input = _ref.input;
-	  var state = _ref.state;
-
-	  var items = Object.keys(input.value).reduce(function (prev, key) {
-	    prev[key] = input.value[key];
-	    prev[key].id = key;
-	    return prev;
-	  }, {});
-	  state.set('chatList.items', items);
-	}
-
-	exports.default = setItemsKeys;
-
-/***/ },
-/* 318 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _unlistenChanges = __webpack_require__(319);
-
-	var _unlistenChanges2 = _interopRequireDefault(_unlistenChanges);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var unlistenFirebase = [_unlistenChanges2.default];
-
-	exports.default = unlistenFirebase;
-
-/***/ },
-/* 319 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	function unlistenChanges(_ref) {
-	  var services = _ref.services;
-
-	  services.firebase.off('items', 'onChildAdded', 'chatList.firebaseChildAdded');
-	  services.firebase.off('items', 'onChildRemoved', 'chatList.firebaseChildRemoved');
-	  services.firebase.off('items', 'onChildChanged', 'chatList.firebaseChildChanged');
-	}
-
-	exports.default = unlistenChanges;
-
-/***/ },
-/* 320 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _loginFacebook = __webpack_require__(321);
-
-	var _loginFacebook2 = _interopRequireDefault(_loginFacebook);
-
-	var _userSignOut = __webpack_require__(329);
-
-	var _userSignOut2 = _interopRequireDefault(_userSignOut);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (module) {
-	  module.addState({
-	    is_logged: null,
-	    is_loading: null,
-	    error_code: null,
-	    error_message: null,
-	    user: {},
-	    last_login_at: null
-	  });
-
-	  module.addSignals({
-	    facebookLoginClicked: _loginFacebook2.default,
-	    signOutClicked: _userSignOut2.default
-	  });
-	};
-
-/***/ },
-/* 321 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _operators = __webpack_require__(235);
-
-	var _constants = __webpack_require__(308);
-
-	var _facebookLogin = __webpack_require__(322);
-
-	var _facebookLogin2 = _interopRequireDefault(_facebookLogin);
-
-	var _saveFirebaseUser = __webpack_require__(323);
-
-	var _saveFirebaseUser2 = _interopRequireDefault(_saveFirebaseUser);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var loginFacebook = [(0, _operators.set)('state:login.is_loading', true), _facebookLogin2.default, {
-	  success: [(0, _operators.set)('state:login.is_logged', true), (0, _operators.copy)('input:user', 'state:login.user'), (0, _operators.set)('state:login.last_login_at', new Date().getTime())],
-	  error: [(0, _operators.set)('state:login.is_logged', false), (0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
-	}, _saveFirebaseUser2.default, {
-	  success: [],
-	  error: [(0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
-	}, (0, _operators.set)('state:main.current_page', _constants.PAGE_CHAT_LIST), (0, _operators.set)('state:login.is_loading', false)];
-
-	exports.default = loginFacebook;
-
-/***/ },
-/* 322 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	function facebookLogin(_ref) {
-	  var services = _ref.services;
-	  var output = _ref.output;
-
-	  services.firebase.signInWithFacebook({
-	    redirect: true,
-	    scopes: [] }).then(output.success).catch(output.error);
-	}
-	facebookLogin.async = true;
-
-	exports.default = facebookLogin;
-
-/***/ },
-/* 323 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _firebase = __webpack_require__(324);
+	var _firebase = __webpack_require__(315);
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
@@ -33122,7 +32898,7 @@
 	exports.default = saveFirebaseUser;
 
 /***/ },
-/* 324 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -33132,15 +32908,15 @@
 	 *
 	 *   firebase = require('firebase');
 	 */
-	var firebase = __webpack_require__(325);
-	__webpack_require__(326);
-	__webpack_require__(327);
-	__webpack_require__(328);
+	var firebase = __webpack_require__(316);
+	__webpack_require__(317);
+	__webpack_require__(318);
+	__webpack_require__(319);
 	module.exports = firebase;
 
 
 /***/ },
-/* 325 */
+/* 316 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*! @license Firebase v3.4.0
@@ -33177,10 +32953,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 326 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var firebase = __webpack_require__(325);
+	var firebase = __webpack_require__(316);
 	/*! @license Firebase v3.4.0
 	    Build: 3.4.0-rc.3
 	    Terms: https://developers.google.com/terms */
@@ -33402,10 +33178,10 @@
 
 
 /***/ },
-/* 327 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var firebase = __webpack_require__(325);
+	var firebase = __webpack_require__(316);
 	/*! @license Firebase v3.4.0
 	    Build: 3.4.0-rc.3
 	    Terms: https://developers.google.com/terms */
@@ -33653,10 +33429,10 @@
 
 
 /***/ },
-/* 328 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var firebase = __webpack_require__(325);
+	var firebase = __webpack_require__(316);
 	/*! @license Firebase v3.4.0
 	    Build: 3.4.0-rc.3
 	    Terms: https://developers.google.com/terms */
@@ -33759,6 +33535,234 @@
 	(function(){function a(a){return new Y(a)}var b={TaskState:va,TaskEvent:ua,StringFormat:Ua,Storage:Y,Reference:X};if("undefined"!==typeof firebase)firebase.INTERNAL.registerService("storage",a,b);else throw Error("Cannot install Firebase Storage - be sure to load firebase-app.js first.");})();})();
 	module.exports = firebase.storage;
 
+
+/***/ },
+/* 320 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _operators = __webpack_require__(235);
+
+	var _getInitialData = __webpack_require__(321);
+
+	var _getInitialData2 = _interopRequireDefault(_getInitialData);
+
+	var _listenChanges = __webpack_require__(322);
+
+	var _listenChanges2 = _interopRequireDefault(_listenChanges);
+
+	var _setItemsKeys = __webpack_require__(323);
+
+	var _setItemsKeys2 = _interopRequireDefault(_setItemsKeys);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var listenDatabase = [(0, _operators.set)('state:main.is_saving', true), (0, _operators.set)('state:main.error', null), _getInitialData2.default, {
+	  success: [_setItemsKeys2.default],
+	  error: [(0, _operators.copy)('input:code', 'state:main.error')]
+	}, (0, _operators.set)('state:main.is_saving', false), _listenChanges2.default];
+
+	exports.default = listenDatabase;
+
+/***/ },
+/* 321 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	function getInitialData(_ref) {
+	  var services = _ref.services;
+	  var output = _ref.output;
+
+	  services.firebase.value('items').then(output.success).catch(output.error);
+	}
+
+	getInitialData.async = true;
+	getInitialData.outputs = ['success', 'error'];
+
+	exports.default = getInitialData;
+
+/***/ },
+/* 322 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var options = {
+	  orderByChild: 'created_at',
+	  startAt: new Date().getTime()
+	};
+
+	function listenChanges(_ref) {
+	  var services = _ref.services;
+
+	  services.firebase.onChildAdded('items', 'chatList.firebaseChildAdded', options);
+	  services.firebase.onChildRemoved('items', 'chatList.firebaseChildRemoved', {});
+	  services.firebase.onChildChanged('items', 'chatList.firebaseChildChanged', {});
+	}
+
+	exports.default = listenChanges;
+
+/***/ },
+/* 323 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	function setItemsKeys(_ref) {
+	  var input = _ref.input;
+	  var state = _ref.state;
+
+	  if (!input.value) {
+	    return;
+	  }
+
+	  var items = Object.keys(input.value).reduce(function (prev, key) {
+	    prev[key] = input.value[key];
+	    prev[key].id = key;
+	    return prev;
+	  }, {});
+	  state.set('chatList.items', items);
+	}
+
+	exports.default = setItemsKeys;
+
+/***/ },
+/* 324 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _unlistenChanges = __webpack_require__(325);
+
+	var _unlistenChanges2 = _interopRequireDefault(_unlistenChanges);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var unlistenFirebase = [_unlistenChanges2.default];
+
+	exports.default = unlistenFirebase;
+
+/***/ },
+/* 325 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	function unlistenChanges(_ref) {
+	  var services = _ref.services;
+
+	  services.firebase.off('items', 'onChildAdded', 'chatList.firebaseChildAdded');
+	  services.firebase.off('items', 'onChildRemoved', 'chatList.firebaseChildRemoved');
+	  services.firebase.off('items', 'onChildChanged', 'chatList.firebaseChildChanged');
+	}
+
+	exports.default = unlistenChanges;
+
+/***/ },
+/* 326 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _loginFacebook = __webpack_require__(327);
+
+	var _loginFacebook2 = _interopRequireDefault(_loginFacebook);
+
+	var _userSignOut = __webpack_require__(329);
+
+	var _userSignOut2 = _interopRequireDefault(_userSignOut);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (module) {
+	  module.addState({
+	    is_logged: null,
+	    is_loading: null,
+	    error_code: null,
+	    error_message: null,
+	    user: {},
+	    last_login_at: null
+	  });
+
+	  module.addSignals({
+	    facebookLoginClicked: _loginFacebook2.default,
+	    signOutClicked: _userSignOut2.default
+	  });
+	};
+
+/***/ },
+/* 327 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _operators = __webpack_require__(235);
+
+	var _constants = __webpack_require__(308);
+
+	var _facebookLogin = __webpack_require__(328);
+
+	var _facebookLogin2 = _interopRequireDefault(_facebookLogin);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var loginFacebook = [(0, _operators.set)('state:login.is_loading', true), _facebookLogin2.default, {
+	  success: [(0, _operators.set)('state:login.is_logged', true), (0, _operators.copy)('input:user', 'state:login.user'), (0, _operators.set)('state:login.last_login_at', new Date().getTime())],
+	  error: [(0, _operators.set)('state:login.is_logged', false), (0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	}, (0, _operators.set)('state:main.current_page', _constants.PAGE_CHAT_LIST), (0, _operators.set)('state:login.is_loading', false)];
+
+	exports.default = loginFacebook;
+
+/***/ },
+/* 328 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	function facebookLogin(_ref) {
+	  var services = _ref.services;
+	  var output = _ref.output;
+
+	  services.firebase.signInWithFacebook({
+	    redirect: true,
+	    scopes: [] }).then(output.success).catch(output.error);
+	}
+	facebookLogin.async = true;
+
+	exports.default = facebookLogin;
 
 /***/ },
 /* 329 */
@@ -34117,7 +34121,7 @@
 	  value: true
 	});
 
-	var _firebase = __webpack_require__(324);
+	var _firebase = __webpack_require__(315);
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
@@ -34206,7 +34210,7 @@
 	  value: true
 	});
 
-	var _firebase = __webpack_require__(324);
+	var _firebase = __webpack_require__(315);
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
@@ -43180,7 +43184,7 @@
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(324));
+			module.exports = factory(__webpack_require__(315));
 		else if(typeof define === 'function' && define.amd)
 			define(["firebase"], factory);
 		else if(typeof exports === 'object')
@@ -43915,9 +43919,13 @@
 
 	var _ChatList2 = _interopRequireDefault(_ChatList);
 
+	var _screenfull = __webpack_require__(541);
+
+	var _screenfull2 = _interopRequireDefault(_screenfull);
+
 	var _constants = __webpack_require__(308);
 
-	var _styles = __webpack_require__(541);
+	var _styles = __webpack_require__(542);
 
 	var _styles2 = _interopRequireDefault(_styles);
 
@@ -43984,6 +43992,10 @@
 	            _this.props.windowSizeIsDesktopEmited();
 	          }
 	        }, 300);
+	      }
+	    }, _this._goFullScreen = function () {
+	      if (_screenfull2.default.enabled) {
+	        _screenfull2.default.toggle();
 	      }
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
@@ -44069,18 +44081,41 @@
 	          'div',
 	          { style: _styles2.default.titleContainer, id: 'titleContainer' },
 	          _react2.default.createElement(
-	            'div',
-	            { id: 'title' },
-	            _react2.default.createElement(
-	              'a',
-	              {
-	                style: _styles2.default.title,
-	                href: 'https://github.com/saitodisse/md-list',
-	                target: '_blank'
-	              },
-	              'md list ',
-	              this.props.page_is_visible
-	            )
+	            'a',
+	            {
+	              href: 'https://github.com/saitodisse/md-list',
+	              target: '_blank',
+	              style: _styles2.default.titleLink
+	            },
+	            'md list ',
+	            this.props.page_is_visible
+	          ),
+	          this.props.window_size_is_mobile && _react2.default.createElement(
+	            'a',
+	            {
+	              style: _styles2.default.fullScreenLink,
+	              target: '_blank',
+	              onClick: this._goFullScreen
+	            },
+	            'full screen'
+	          ),
+	          !this.props.window_size_is_mobile && _react2.default.createElement(
+	            'a',
+	            {
+	              style: _styles2.default.refLink,
+	              target: '_blank',
+	              href: 'https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet'
+	            },
+	            'ref: markdown'
+	          ),
+	          !this.props.window_size_is_mobile && _react2.default.createElement(
+	            'a',
+	            {
+	              style: _styles2.default.refLink,
+	              target: '_blank',
+	              href: 'http://plantuml.com/'
+	            },
+	            'ref: plantuml'
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -67267,6 +67302,157 @@
 /* 541 */
 /***/ function(module, exports) {
 
+	/*!
+	* screenfull
+	* v3.0.0 - 2015-11-24
+	* (c) Sindre Sorhus; MIT License
+	*/
+	(function () {
+		'use strict';
+
+		var isCommonjs = typeof module !== 'undefined' && module.exports;
+		var keyboardAllowed = typeof Element !== 'undefined' && 'ALLOW_KEYBOARD_INPUT' in Element;
+
+		var fn = (function () {
+			var val;
+			var valLength;
+
+			var fnMap = [
+				[
+					'requestFullscreen',
+					'exitFullscreen',
+					'fullscreenElement',
+					'fullscreenEnabled',
+					'fullscreenchange',
+					'fullscreenerror'
+				],
+				// new WebKit
+				[
+					'webkitRequestFullscreen',
+					'webkitExitFullscreen',
+					'webkitFullscreenElement',
+					'webkitFullscreenEnabled',
+					'webkitfullscreenchange',
+					'webkitfullscreenerror'
+
+				],
+				// old WebKit (Safari 5.1)
+				[
+					'webkitRequestFullScreen',
+					'webkitCancelFullScreen',
+					'webkitCurrentFullScreenElement',
+					'webkitCancelFullScreen',
+					'webkitfullscreenchange',
+					'webkitfullscreenerror'
+
+				],
+				[
+					'mozRequestFullScreen',
+					'mozCancelFullScreen',
+					'mozFullScreenElement',
+					'mozFullScreenEnabled',
+					'mozfullscreenchange',
+					'mozfullscreenerror'
+				],
+				[
+					'msRequestFullscreen',
+					'msExitFullscreen',
+					'msFullscreenElement',
+					'msFullscreenEnabled',
+					'MSFullscreenChange',
+					'MSFullscreenError'
+				]
+			];
+
+			var i = 0;
+			var l = fnMap.length;
+			var ret = {};
+
+			for (; i < l; i++) {
+				val = fnMap[i];
+				if (val && val[1] in document) {
+					for (i = 0, valLength = val.length; i < valLength; i++) {
+						ret[fnMap[0][i]] = val[i];
+					}
+					return ret;
+				}
+			}
+
+			return false;
+		})();
+
+		var screenfull = {
+			request: function (elem) {
+				var request = fn.requestFullscreen;
+
+				elem = elem || document.documentElement;
+
+				// Work around Safari 5.1 bug: reports support for
+				// keyboard in fullscreen even though it doesn't.
+				// Browser sniffing, since the alternative with
+				// setTimeout is even worse.
+				if (/5\.1[\.\d]* Safari/.test(navigator.userAgent)) {
+					elem[request]();
+				} else {
+					elem[request](keyboardAllowed && Element.ALLOW_KEYBOARD_INPUT);
+				}
+			},
+			exit: function () {
+				document[fn.exitFullscreen]();
+			},
+			toggle: function (elem) {
+				if (this.isFullscreen) {
+					this.exit();
+				} else {
+					this.request(elem);
+				}
+			},
+			raw: fn
+		};
+
+		if (!fn) {
+			if (isCommonjs) {
+				module.exports = false;
+			} else {
+				window.screenfull = false;
+			}
+
+			return;
+		}
+
+		Object.defineProperties(screenfull, {
+			isFullscreen: {
+				get: function () {
+					return Boolean(document[fn.fullscreenElement]);
+				}
+			},
+			element: {
+				enumerable: true,
+				get: function () {
+					return document[fn.fullscreenElement];
+				}
+			},
+			enabled: {
+				enumerable: true,
+				get: function () {
+					// Coerce to boolean in case of old WebKit
+					return Boolean(document[fn.fullscreenEnabled]);
+				}
+			}
+		});
+
+		if (isCommonjs) {
+			module.exports = screenfull;
+		} else {
+			window.screenfull = screenfull;
+		}
+	})();
+
+
+/***/ },
+/* 542 */
+/***/ function(module, exports) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -67285,13 +67471,15 @@
 	  },
 
 	  titleContainer: {
-	    flexDirection: 'column',
+	    display: 'flex',
+	    flexDirection: 'row',
 	    // textAlign: 'center',
 	    justifyContent: 'space-between',
 	    marginTop: 9,
-	    marginBottom: 9
+	    marginBottom: 35
 	  },
-	  title: {
+	  title: {},
+	  titleLink: {
 	    flexGrow: 1,
 	    // fontWeight: 'bold',
 	    fontSize: 22,
@@ -67299,11 +67487,21 @@
 	    marginLeft: 8
 	  },
 
-	  titleSourceLink: {
-	    fontWeight: 'normal',
-	    color: 'rgb(153, 208, 231)',
-	    fontSize: 11,
+	  fullScreenLink: {
+	    flexGrow: 1,
+	    fontSize: 18,
+	    color: '#777',
+	    marginRight: 87,
 	    textDecoration: 'underline',
+	    cursor: 'pointer'
+	  },
+
+	  refLink: {
+	    flexGrow: 1,
+	    fontSize: 14,
+	    color: '#777',
+	    textDecoration: 'underline',
+	    marginTop: 9,
 	    cursor: 'pointer'
 	  },
 
@@ -67345,16 +67543,16 @@
 	};
 
 /***/ },
-/* 542 */
+/* 543 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(543);
+	var content = __webpack_require__(544);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(545)(content, {});
+	var update = __webpack_require__(546)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -67371,10 +67569,10 @@
 	}
 
 /***/ },
-/* 543 */
+/* 544 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(544)();
+	exports = module.exports = __webpack_require__(545)();
 	// imports
 
 
@@ -67385,7 +67583,7 @@
 
 
 /***/ },
-/* 544 */
+/* 545 */
 /***/ function(module, exports) {
 
 	/*
@@ -67441,7 +67639,7 @@
 
 
 /***/ },
-/* 545 */
+/* 546 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -67693,16 +67891,16 @@
 
 
 /***/ },
-/* 546 */
+/* 547 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(547);
+	var content = __webpack_require__(548);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(545)(content, {});
+	var update = __webpack_require__(546)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -67719,10 +67917,10 @@
 	}
 
 /***/ },
-/* 547 */
+/* 548 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(544)();
+	exports = module.exports = __webpack_require__(545)();
 	// imports
 
 
@@ -67733,16 +67931,16 @@
 
 
 /***/ },
-/* 548 */
+/* 549 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(549);
+	var content = __webpack_require__(550);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(545)(content, {});
+	var update = __webpack_require__(546)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -67759,10 +67957,10 @@
 	}
 
 /***/ },
-/* 549 */
+/* 550 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(544)();
+	exports = module.exports = __webpack_require__(545)();
 	// imports
 
 
