@@ -149,6 +149,24 @@ export default connect({
                 full screen
               </a>
             )}
+            {!this.props.window_size_is_mobile && (
+              <a
+                style={styles.refLink}
+                target="_blank"
+                href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+              >
+                ref: markdown
+              </a>
+            )}
+            {!this.props.window_size_is_mobile && (
+              <a
+                style={styles.refLink}
+                target="_blank"
+                href="http://plantuml.com/"
+              >
+                ref: plantuml
+              </a>
+            )}
           </div>
 
           <div style={styles.buttonsContainer} id="buttonsContainer">

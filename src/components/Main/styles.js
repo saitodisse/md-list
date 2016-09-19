@@ -37,6 +37,15 @@ export default {
     cursor: 'pointer',
   },
 
+  refLink: {
+    flexGrow: 1,
+    fontSize: 14,
+    color: '#777',
+    textDecoration: 'underline',
+    marginTop: 9,
+    cursor: 'pointer',
+  },
+
   bodyContainer: {
     flexGrow: 0,
     height: '100%',
