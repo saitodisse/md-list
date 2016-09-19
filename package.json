@@ -11,6 +11,7 @@
     "deploy-dev-gh-pages": "./tools/deploy-dev-gh-pages.sh",
     "deploy-prod-gh-pages": "./tools/deploy-prod-gh-pages.sh",
     "deploy-dev-s3": "./tools/deploy-dev-s3.sh",
+    "deploy-prod-s3": "./tools/deploy-prod-s3.sh",
     "test": "exit 1"
   },
   "repository": {
