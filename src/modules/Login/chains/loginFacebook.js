@@ -1,7 +1,6 @@
 import {set, copy} from 'cerebral/operators';
 import {PAGE_CHAT_LIST} from '~/constants';
 import facebookLogin from '../actions/facebookLogin.js';
-import saveFirebaseUser from '../actions/saveFirebaseUser.js';
 
 const loginFacebook = [
   set('state:login.is_loading', true),
@@ -13,14 +12,6 @@ const loginFacebook = [
     ],
     error: [
       set('state:login.is_logged', false),
-      copy('input:code', 'state:login.error_code'),
-      copy('input:message', 'state:login.error_message'),
-    ]
-  },
-  saveFirebaseUser, {
-    success: [
-    ],
-    error: [
       copy('input:code', 'state:login.error_code'),
       copy('input:message', 'state:login.error_message'),
     ]

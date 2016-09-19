@@ -1,6 +1,7 @@
 import {set, copy} from 'cerebral/operators';
 import getUser from '../actions/getUser.js';
 import notificationRequestPermition from '../actions/notificationRequestPermition.js';
+import saveFirebaseUser from '../actions/saveFirebaseUser.js';
 
 const bootstrap = [
   set('state:login.is_loading', true),
@@ -14,6 +15,16 @@ const bootstrap = [
     ],
     error: [
       set('state:login.is_logged', false),
+      copy('input:code', 'state:login.error_code'),
+      copy('input:message', 'state:login.error_message'),
+    ]
+  },
+
+  saveFirebaseUser, {
+    success: [
+      set('state:login.user_saved', false),
+    ],
+    error: [
       copy('input:code', 'state:login.error_code'),
       copy('input:message', 'state:login.error_message'),
     ]
