@@ -1,8 +1,29 @@
 {
   "rules": {
+    ".read": "auth != null
+       // VERY RESTRICTIVE
+       && (
+          auth.uid === 'Y2uQZXZLvbMghT4KnGL6Jl1SSRE2'
+          // ||  auth.uid === 'xxx'
+       )
+    ",
+    ".write": "auth != null
+       // VERY RESTRICTIVE
+       && (
+          auth.uid === 'Y2uQZXZLvbMghT4KnGL6Jl1SSRE2'
+          // ||  auth.uid === 'xxx'
+       )
+    ",
+
     "items": {
       // is authenticated
-      ".read": "auth != null",
+      ".read": "auth != null
+             // VERY RESTRICTIVE
+             && (
+                      auth.uid === 'Y2uQZXZLvbMghT4KnGL6Jl1SSRE2'
+                  // ||  auth.uid === 'xxx'
+                )
+      ",
       ".indexOn": ["created_at"],
       "$ITEM_KEY": {
         ".write": "
@@ -22,6 +43,12 @@
                    !newData.exists()
                    // only his item
                 && root.child('items/'+$ITEM_KEY).child('user_id').val() === auth.uid
+                // VERY RESTRICTIVE
+                && (
+                       auth.uid === 'Y2uQZXZLvbMghT4KnGL6Jl1SSRE2'
+                    // ||  auth.uid === 'xxx'
+                   )
+
               )
           )
         ",
@@ -47,6 +74,11 @@
                   !data.exists() && newData.val() === auth.uid
                   // existing item
                ||  data.exists() && data.val() === auth.uid
+             )
+          // VERY RESTRICTIVE
+          && (
+                auth.uid === 'Y2uQZXZLvbMghT4KnGL6Jl1SSRE2'
+             // ||  auth.uid === 'xxx'
              )
         "},
 
