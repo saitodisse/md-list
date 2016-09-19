@@ -32775,11 +32775,13 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var bootstrap = [(0, _operators.set)('state:login.is_loading', true), _getUser2.default, {
-	  success: [(0, _operators.set)('state:login.is_logged', true), (0, _operators.copy)('input:user', 'state:login.user'), (0, _operators.set)('state:login.last_login_at', new Date().getTime())],
+	  success: [(0, _operators.set)('state:login.is_logged', true), (0, _operators.copy)('input:user', 'state:login.user'), (0, _operators.set)('state:login.last_login_at', new Date().getTime()),
+	  // send user to firebase
+	  _saveFirebaseUser2.default, {
+	    success: [(0, _operators.set)('state:login.user_saved', false)],
+	    error: [(0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	  }],
 	  error: [(0, _operators.set)('state:login.is_logged', false), (0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
-	}, _saveFirebaseUser2.default, {
-	  success: [(0, _operators.set)('state:login.user_saved', false)],
-	  error: [(0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
 	}, _notificationRequestPermition2.default, {
 	  default: [(0, _operators.set)('state:login.notifications_enabled', null), (0, _operators.copy)('input:notification_result', 'state:login.notification_result')],
 	  granted: [(0, _operators.set)('state:login.notifications_enabled', true), (0, _operators.copy)('input:notification_result', 'state:login.notification_result')],
