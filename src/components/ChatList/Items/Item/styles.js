@@ -54,7 +54,7 @@ export default {
 
   topBodyContainer: {
     display: 'flex',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     flexDirection: 'row',
     flexGrow: 1,
   },
@@ -63,6 +63,12 @@ export default {
     fontSize: 12,
     fontWeight: 'bold',
     marginLeft: 8,
+  },
+
+  dateTime: {
+    fontSize: 12,
+    marginLeft: 7,
+    color: '#828282',
   },
 
   itemContainer: {

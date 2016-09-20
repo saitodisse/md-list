@@ -139,6 +139,9 @@ export default connect(_props => ({
               <div style={styles.userName} id="userName" className={is_my_item ? 'userNameMe' : 'userNameOther'}>
                 {this.props.item.displayName}
               </div>
+              <div style={styles.dateTime} id="dateTime" className={is_my_item ? 'userNameMe' : 'userNameOther'}>
+                {`${(new Date(this.props.item.created_at)).toLocaleDateString()} ${(new Date(this.props.item.created_at)).toLocaleTimeString()}`}
+              </div>
 
                 {is_my_item && (
                 <div style={styles.buttonsContainer} id="buttonsContainer">
