@@ -36,7 +36,7 @@
              newData.isString()
           && newData.val().length > 0
              // check id
-             // && $ITEM_KEY === newData.val()
+//           && $ITEM_KEY === newData.val()
         "},
 
         "user_id": { ".validate": "
@@ -78,14 +78,14 @@
       }
     },
     "users": {
-      // is authenticated
-      ".read": "auth != null",
+      // cannot read the list
+      ".read": "false",
       "$USER_ID": {
         ".read": "
+             // must be logged in
              auth != null
-             // only himself
-          && data.child('user_id').val() === auth.uid
-          && data.child('user_id').val() === $USER_ID
+             // must be his own user key
+          && auth.uid === $USER_ID
         ",
         ".write": "
              // is authenticated

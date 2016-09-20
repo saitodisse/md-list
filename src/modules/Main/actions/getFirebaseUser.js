@@ -1,5 +1,5 @@
-function getFirebaseUser({ services, output }) {
-  services.firebase.value('users')
+function getFirebaseUser({ input, services, output }) {
+  services.firebase.value(`users.${input.user.uid}`)
     .then(output.success)
     .catch(output.error);
 }
