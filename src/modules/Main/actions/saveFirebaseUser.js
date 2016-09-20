@@ -3,7 +3,8 @@ import firebase from 'firebase';
 function saveFirebaseUser({ input, output }) {
   // User info
   if (!input.user) {
-    throw new Error('Cannot find user on input');
+    return output.error();
+    // throw new Error('Cannot find user on input');
   }
 
   let key = null;
@@ -25,7 +26,7 @@ function saveFirebaseUser({ input, output }) {
   updates['/users/' + key] = user_data;
 
   // Send to firebase
-  firebase.database().ref().update(updates)
+  return firebase.database().ref().update(updates)
     .then(output.success)
     .catch(output.error);
 }

@@ -35,6 +35,8 @@
              // has value
              newData.isString()
           && newData.val().length > 0
+             // check id
+//           && $ITEM_KEY === newData.val()
         "},
 
         "user_id": { ".validate": "
@@ -79,6 +81,12 @@
       // is authenticated
       ".read": "auth != null",
       "$USER_ID": {
+        ".read": "
+             auth != null
+             // only himself
+          && data.child('user_id').val() === auth.uid
+          && data.child('user_id').val() === $USER_ID
+        ",
         ".write": "
              // is authenticated
              auth != null
@@ -147,3 +155,4 @@
     },
   }
 }
+

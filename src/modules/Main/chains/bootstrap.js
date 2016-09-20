@@ -1,6 +1,7 @@
-import {set, copy} from 'cerebral/operators';
+import {set, copy, when, filter} from 'cerebral/operators';
 import getUser from '../actions/getUser.js';
 import notificationRequestPermition from '../actions/notificationRequestPermition.js';
+import getFirebaseUser from '../actions/getFirebaseUser.js';
 import saveFirebaseUser from '../actions/saveFirebaseUser.js';
 
 const bootstrap = [
@@ -12,13 +13,24 @@ const bootstrap = [
       copy('input:user', 'state:login.user'),
       set('state:login.last_login_at', (new Date()).getTime()),
       // send user to firebase
-      saveFirebaseUser, {
+      getFirebaseUser, {
         success: [
-          set('state:login.user_saved', false),
+          // existent user
         ],
         error: [
           copy('input:code', 'state:login.error_code'),
           copy('input:message', 'state:login.error_message'),
+          // firebase: Permission Denied
+          //           lets save to "users" on firebase
+          saveFirebaseUser, {
+            success: [
+              set('state:login.user_saved', true),
+            ],
+            error: [
+              copy('input:code', 'state:login.error_code'),
+              copy('input:message', 'state:login.error_message'),
+            ]
+          },
         ]
       },
     ],
