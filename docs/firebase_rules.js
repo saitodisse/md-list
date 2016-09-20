@@ -36,7 +36,7 @@
              newData.isString()
           && newData.val().length > 0
              // check id
-//           && $ITEM_KEY === newData.val()
+             // && $ITEM_KEY === newData.val()
         "},
 
         "user_id": { ".validate": "
