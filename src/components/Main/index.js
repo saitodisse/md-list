@@ -62,8 +62,14 @@ export default connect({
       if (prevProps.is_logged !== this.props.is_logged) {
         if (this.props.is_logged) {
           this.props.userLoggedIn();
-          this.props.redirectedToChatList();
+
+          // after login redirect
+          // go to chat list automatically
+          if (this.props.current_page === PAGE_LOGIN) {
+            this.props.redirectedToChatList();
+          }
         } else {
+          // user is not logged in
           this.props.redirectedToLogin();
         }
       }
@@ -145,14 +151,12 @@ export default connect({
             >
               md list {this.props.page_is_visible}
             </a>
-            {!this.props.window_size_is_mobile && (
-              <a
-                style={styles.topLink}
-                onClick={() => this.props.redirectedToConfiguration()}
-              >
-                config
-              </a>
-            )}
+            <a
+              style={styles.topLink}
+              onClick={() => this.props.redirectedToConfiguration()}
+            >
+              config
+            </a>
             <span style={styles.topSeparator}>
               |
             </span>

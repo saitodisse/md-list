@@ -11,7 +11,6 @@ import {set} from 'cerebral/operators';
 export default module => {
   module.addState({
     current_page: null,
-    last_page: null,
     page_is_visible: true,
     window_size_is_mobile: null,
     is_saving: false,

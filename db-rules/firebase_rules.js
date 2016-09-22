@@ -2,6 +2,22 @@
   "rules": {
     // cannot list
     ".read": "false",
+    "configurations": {
+      ".read": "auth != null",
+      "$CONFIG_KEY": {
+        ".write": "
+             // is authenticated
+             auth != null
+             // cannot delete
+          && newData.exists()
+        ",
+
+        ".validate": "
+          // must have admin role
+          root.child('roles/admins/' + auth.uid).exists()
+        ",
+      }
+    },
     "items": {
       // is authenticated
       ".read": "auth != null",

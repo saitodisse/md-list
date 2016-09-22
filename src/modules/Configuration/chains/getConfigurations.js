@@ -5,7 +5,8 @@ const getConfigurations = [
   set('state:login.is_loading', true),
   getConfigurationData, {
     success: [
-      copy('input:value', 'state:configuration.data'),
+      copy('input:value.edit_other_users_items', 'state:configuration.edit_other_users_items'),
+      copy('input:value.restricted_access_to_members', 'state:configuration.restricted_access_to_members'),
     ],
     error: [
       copy('input:message', 'state:main.error'),
