@@ -13,36 +13,34 @@ export default {
   titleContainer: {
     display: 'flex',
     flexDirection: 'row',
-    // textAlign: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     marginTop: 9,
     marginBottom: 35,
   },
   title: {
   },
   titleLink: {
-    flexGrow: 1,
-    // fontWeight: 'bold',
     fontSize: 22,
     color: '#777',
     marginLeft: 8,
-  },
-
-  fullScreenLink: {
-    flexGrow: 1,
-    fontSize: 18,
-    color: '#777',
-    marginRight: 87,
     textDecoration: 'underline',
     cursor: 'pointer',
   },
 
-  refLink: {
-    flexGrow: 1,
+  topSeparator: {
     fontSize: 14,
     color: '#777',
-    textDecoration: 'underline',
     marginTop: 9,
+    marginLeft: 10,
+    cursor: 'pointer',
+  },
+
+  topLink: {
+    fontSize: 14,
+    color: '#777',
+    marginTop: 9,
+    marginLeft: 10,
+    textDecoration: 'underline',
     cursor: 'pointer',
   },
 

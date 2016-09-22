@@ -3,18 +3,21 @@ import {connect} from 'cerebral-view-react';
 
 import Login from '~/components/Login';
 import ChatList from '~/components/ChatList';
+import Configuration from '~/components/Configuration';
 import screenfull from 'screenfull';
 
 import {
   PAGE_EMPTY,
   PAGE_LOGIN,
   PAGE_CHAT_LIST,
+  PAGE_CONFIGURATION,
 } from '~/constants';
 
 function getPages() {
   const pages = {};
   pages[PAGE_LOGIN] = <Login />;
   pages[PAGE_CHAT_LIST] = <ChatList />;
+  pages[PAGE_CONFIGURATION] = <Configuration />;
   pages[PAGE_EMPTY] = null;
   return pages;
 }
@@ -31,10 +34,12 @@ export default connect({
   pageLoaded: 'main.pageLoaded',
 
   userLoggedIn: 'main.userLoggedIn',
-  redirectToChatList: 'main.redirectToChatList',
 
   userLoggedOut: 'main.userLoggedOut',
-  redirectToLogin: 'main.redirectToLogin',
+  userDisconnected: 'main.userDisconnected',
+  redirectedToLogin: 'main.redirectedToLogin',
+  redirectedToChatList: 'main.redirectedToChatList',
+  redirectedToConfiguration: 'main.redirectedToConfiguration',
 
   signOutClicked: 'login.signOutClicked',
 
@@ -57,9 +62,9 @@ export default connect({
       if (prevProps.is_logged !== this.props.is_logged) {
         if (this.props.is_logged) {
           this.props.userLoggedIn();
-          this.props.redirectToChatList();
+          this.props.redirectedToChatList();
         } else {
-          this.props.redirectToLogin();
+          this.props.redirectedToLogin();
         }
       }
     }
@@ -134,37 +139,51 @@ export default connect({
 
           <div style={styles.titleContainer} id="titleContainer">
             <a
-              href="https://github.com/saitodisse/md-list"
               target="_blank"
               style={styles.titleLink}
+              onClick={() => this.props.redirectedToChatList()}
             >
               md list {this.props.page_is_visible}
             </a>
+            {!this.props.window_size_is_mobile && (
+              <a
+                style={styles.topLink}
+                onClick={() => this.props.redirectedToConfiguration()}
+              >
+                config
+              </a>
+            )}
+            <span style={styles.topSeparator}>
+              |
+            </span>
+            <a
+              style={styles.topLink}
+              target="_blank"
+              href="https://github.com/saitodisse/md-list"
+            >
+              github
+            </a>
+            <a
+              style={styles.topLink}
+              target="_blank"
+              href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+            >
+              md
+            </a>
+            <a
+              style={styles.topLink}
+              target="_blank"
+              href="http://plantuml.com/"
+            >
+              puml
+            </a>
             {this.props.window_size_is_mobile && (
               <a
-                style={styles.fullScreenLink}
+                style={styles.topLink}
                 target="_blank"
                 onClick={this._goFullScreen}
               >
                 full screen
-              </a>
-            )}
-            {!this.props.window_size_is_mobile && (
-              <a
-                style={styles.refLink}
-                target="_blank"
-                href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
-              >
-                ref: markdown
-              </a>
-            )}
-            {!this.props.window_size_is_mobile && (
-              <a
-                style={styles.refLink}
-                target="_blank"
-                href="http://plantuml.com/"
-              >
-                ref: plantuml
               </a>
             )}
           </div>

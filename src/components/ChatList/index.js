@@ -15,7 +15,7 @@ export default connect({
   error: 'main.error',
   window_size_is_mobile: 'main.window_size_is_mobile',
 }, {
-  redirectToLogin: 'main.redirectToLogin',
+  redirectedToLogin: 'main.redirectedToLogin',
   currentUserRequested: 'login.currentUserRequested',
   currentItemChanged: 'chatList.currentItemChanged',
   currentItemSubmitted: 'chatList.currentItemSubmitted',
@@ -29,7 +29,7 @@ export default connect({
 
     componentDidMount() {
       if (!this.props.is_logged) {
-        this.props.redirectToLogin();
+        this.props.redirectedToLogin();
       }
     }
 
@@ -37,7 +37,7 @@ export default connect({
       // redirect to login if is_logged === false
       if (prevProps.is_logged !== this.props.is_logged) {
         if (!this.props.is_logged) {
-          this.props.redirectToLogin();
+          this.props.redirectedToLogin();
         }
       }
 

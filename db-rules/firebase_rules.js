@@ -1,5 +1,7 @@
 {
   "rules": {
+    // cannot list
+    ".read": "false",
     "items": {
       // is authenticated
       ".read": "auth != null",
@@ -78,7 +80,7 @@
       }
     },
     "users": {
-      // cannot read the list
+      // cannot list
       ".read": "false",
       "$USER_ID": {
         ".read": "

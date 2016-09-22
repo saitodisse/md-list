@@ -8,6 +8,7 @@ import Notifications from './modules/Notifications';
 import Main from './modules/Main';
 import Login from './modules/Login';
 import ChatList from './modules/ChatList';
+import Configuration from './modules/Configuration';
 
 import FirebaseModule from 'cerebral-module-firebase';
 // import FirebaseModule from '../../cerebral-module-firebase/build/index.js';
@@ -22,6 +23,7 @@ controller.addModules({
   main: Main,
   login: Login,
   chatList: ChatList,
+  configuration: Configuration,
 
   // services
   http: Http({
@@ -34,8 +36,9 @@ controller.addModules({
   devtools: process.env.NODE_ENV === 'production' ? () => {} : Devtools(),
 
   router: Router({
-    '/login': 'main.redirectToLogin',
-    '/': 'main.redirectToChatList',
+    '/login': 'main.redirectedToLogin',
+    '/config': 'main.redirectedToConfiguration',
+    '/': 'main.redirectedToChatList',
   }, {
     onlyHash: true
   }),
