@@ -23,34 +23,194 @@ export default connect({
           </section>
 
           <section className="fields">
-            <div style={styles.fieldContainer} className="fieldContainer">
-              <div style={styles.label} className="label">
-                User can edit others users items
+
+
+            <div className="fieldGroup">
+
+              <div className="fieldGroupTitle">
+                Display Desktop
               </div>
-              <div style={styles.value} className="value">
-                <input
-                  type="checkbox"
-                  checked={this.props.edit_other_users_items}
-                  onClick={(ev) => this.props.editOtherUsersItemsClicked({
-                    value: ev.target.checked
-                  })}
-                />
+
+              <div style={styles.fieldContainer} className="fieldContainer">
+                <div className="labelContainer">
+                  <div style={styles.label} className="label">
+                    Font Size
+                  </div>
+                  <div style={styles.labelDescription} className="label">
+                    items font size
+                  </div>
+                </div>
+                <div style={styles.value} className="value">
+                  <input
+                    type="text"
+                    checked={this.props.restricted_access_to_members}
+                    onClick={(ev) => this.props.restrictedAccessToMembersClicked({
+                      value: ev.target.checked
+                    })}
+                  />
+                </div>
               </div>
+
+              <div style={styles.fieldContainer} className="fieldContainer">
+                <div className="labelContainer">
+                  <div style={styles.label} className="label">
+                    Display Edit
+                  </div>
+                  <div style={styles.labelDescription} className="label">
+                    show edit button on each message
+                  </div>
+                </div>
+                <div style={styles.value} className="value">
+                  <input
+                    type="checkbox"
+                    checked={this.props.edit_other_users_items}
+                    onClick={(ev) => this.props.editOtherUsersItemsClicked({
+                      value: ev.target.checked
+                    })}
+                  />
+                </div>
+              </div>
+
+              <div style={styles.fieldContainer} className="fieldContainer">
+                <div className="labelContainer">
+                  <div style={styles.label} className="label">
+                    Display Delete
+                  </div>
+                  <div style={styles.labelDescription} className="label">
+                    show delete button on each message
+                  </div>
+                </div>
+                <div style={styles.value} className="value">
+                  <input
+                    type="checkbox"
+                    checked={this.props.edit_other_users_items}
+                    onClick={(ev) => this.props.editOtherUsersItemsClicked({
+                      value: ev.target.checked
+                    })}
+                  />
+                </div>
+              </div>
+
             </div>
-            <div style={styles.fieldContainer} className="fieldContainer">
-              <div style={styles.label} className="label">
-                Only members can read and post items
+
+
+            <div className="fieldGroup">
+
+              <div className="fieldGroupTitle">
+                Display Mobile
               </div>
-              <div style={styles.value} className="value">
-                <input
-                  type="checkbox"
-                  checked={this.props.restricted_access_to_members}
-                  onClick={(ev) => this.props.restrictedAccessToMembersClicked({
-                    value: ev.target.checked
-                  })}
-                />
+
+              <div style={styles.fieldContainer} className="fieldContainer">
+                <div className="labelContainer">
+                  <div style={styles.label} className="label">
+                    Font Size
+                  </div>
+                  <div style={styles.labelDescription} className="label">
+                    items font size
+                  </div>
+                </div>
+                <div style={styles.value} className="value">
+                  <input
+                    type="text"
+                    checked={this.props.restricted_access_to_members}
+                    onClick={(ev) => this.props.restrictedAccessToMembersClicked({
+                      value: ev.target.checked
+                    })}
+                  />
+                </div>
               </div>
+
+              <div style={styles.fieldContainer} className="fieldContainer">
+                <div className="labelContainer">
+                  <div style={styles.label} className="label">
+                    Display Edit
+                  </div>
+                  <div style={styles.labelDescription} className="label">
+                    show edit button on each message
+                  </div>
+                </div>
+                <div style={styles.value} className="value">
+                  <input
+                    type="checkbox"
+                    checked={this.props.edit_other_users_items}
+                    onClick={(ev) => this.props.editOtherUsersItemsClicked({
+                      value: ev.target.checked
+                    })}
+                  />
+                </div>
+              </div>
+
+              <div style={styles.fieldContainer} className="fieldContainer">
+                <div className="labelContainer">
+                  <div style={styles.label} className="label">
+                    Display Delete
+                  </div>
+                  <div style={styles.labelDescription} className="label">
+                    show delete button on each message
+                  </div>
+                </div>
+                <div style={styles.value} className="value">
+                  <input
+                    type="checkbox"
+                    checked={this.props.edit_other_users_items}
+                    onClick={(ev) => this.props.editOtherUsersItemsClicked({
+                      value: ev.target.checked
+                    })}
+                  />
+                </div>
+              </div>
+
             </div>
+
+
+            <div className="fieldGroup">
+
+              <div className="fieldGroupTitle">
+                Chat (admin only)
+              </div>
+
+              <div style={styles.fieldContainer} className="fieldContainer">
+                <div className="labelContainer">
+                  <div style={styles.label} className="label">
+                    Private
+                  </div>
+                  <div style={styles.labelDescription} className="label">
+                    Only members can read and post items
+                  </div>
+                </div>
+                <div style={styles.value} className="value">
+                  <input
+                    type="checkbox"
+                    checked={this.props.restricted_access_to_members}
+                    onClick={(ev) => this.props.restrictedAccessToMembersClicked({
+                      value: ev.target.checked
+                    })}
+                  />
+                </div>
+              </div>
+
+              <div style={styles.fieldContainer} className="fieldContainer">
+                <div className="labelContainer">
+                  <div style={styles.label} className="label">
+                    Shared Itens
+                  </div>
+                  <div style={styles.labelDescription} className="label">
+                    User can edit others users items
+                  </div>
+                </div>
+                <div style={styles.value} className="value">
+                  <input
+                    type="checkbox"
+                    checked={this.props.edit_other_users_items}
+                    onClick={(ev) => this.props.editOtherUsersItemsClicked({
+                      value: ev.target.checked
+                    })}
+                  />
+                </div>
+              </div>
+
+            </div>
+
           </section>
 
         </div>

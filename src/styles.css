@@ -61,11 +61,35 @@ section.title {
 
 section.fields {
   font-size: 16px;
-  margin: 20px;
+  margin: 23px 10% 0 10%;
+  border: 5px solid #d9cadc;
+}
+
+section.fields .fieldGroup {
+  border: 3px solid #bda4fb;
+  padding: 20px;
+  margin: 16.8px;
+}
+
+section.fields .fieldGroupTitle {
+  font-size: 21px;
+  margin: 0 0 15px 0;
+  color: #7c5fc9;
+  font-weight: bold;
 }
 
 section.fields .fieldContainer{
-  margin-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #d9cadc;
+}
+
+.labelContainer {
+  display: flex;
+  flex-direction: row;
 }
 
 section.fields input[type=checkbox] {
@@ -75,6 +99,14 @@ section.fields input[type=checkbox] {
   -webkit-transform: scale(1.7); /* Safari and Chrome */
   -o-transform: scale(1.7); /* Opera */
   padding: 10px;
+}
+
+section.fields input[type=text] {
+  text-align: right;
+  font-size: 18px;
+  width: 30px;
+  padding-right: 10px;
+  margin: 3px 0px;
 }
 
 @media all and (max-width: 700px) {
@@ -93,6 +125,11 @@ section.fields input[type=checkbox] {
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+  }
+
+  .labelContainer {
+    display: flex;
+    flex-direction: column;
   }
 }
 
