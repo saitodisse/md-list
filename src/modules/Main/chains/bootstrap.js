@@ -2,6 +2,9 @@ import {set, copy} from 'cerebral/operators';
 import getUser from '../actions/getUser.js';
 import notificationRequestPermition from '../actions/notificationRequestPermition.js';
 import getFirebaseUser from '../actions/getFirebaseUser.js';
+import getFirebaseUserConfigurations from '../actions/getFirebaseUserConfigurations.js';
+import checkAdminFirebaseUser from '../actions/checkAdminFirebaseUser.js';
+import checkPermissionDenied from '../actions/checkPermissionDenied.js';
 import saveFirebaseUser from '../actions/saveFirebaseUser.js';
 
 const bootstrap = [
@@ -14,12 +17,7 @@ const bootstrap = [
       set('state:login.last_login_at', (new Date()).getTime()),
       // send user to firebase
       getFirebaseUser, {
-        success: [
-          // existent user
-        ],
-        error: [
-          copy('input:code', 'state:login.error_code'),
-          copy('input:message', 'state:login.error_message'),
+        not_exist: [
           // firebase: Permission Denied
           //           lets save to "users" on firebase
           saveFirebaseUser, {
@@ -31,6 +29,31 @@ const bootstrap = [
               copy('input:message', 'state:login.error_message'),
             ]
           },
+        ],
+        exist: [
+          getFirebaseUserConfigurations, {
+            success: [
+              copy('input:value', 'state:login.user.configurations'),
+            ],
+            error: [
+              copy('input:code', 'state:login.error_code'),
+              copy('input:message', 'state:login.error_message'),
+            ]
+          },
+          // existent user
+          checkAdminFirebaseUser, {
+            success: [
+              set('state:login.user.is_admin', true),
+            ],
+            error: [
+              // Permission Denied
+              checkPermissionDenied,
+            ]
+          }
+        ],
+        error: [
+          copy('input:code', 'state:login.error_code'),
+          copy('input:message', 'state:login.error_message'),
         ]
       },
     ],

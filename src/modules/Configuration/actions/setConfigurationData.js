@@ -1,9 +1,9 @@
 import firebase from 'firebase';
 
-function setConfigurationData(config_key) {
+function setConfigurationData(firebase_apth) {
   function setConfigurationDataFirebase({ input, output }) {
     const updates = {};
-    updates[`/configurations/${config_key}`] = input.value;
+    updates[firebase_apth] = input.value;
 
     firebase.database().ref().update(updates)
       .then(output.success)

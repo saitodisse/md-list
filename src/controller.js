@@ -23,7 +23,7 @@ controller.addModules({
   main: Main,
   login: Login,
   chatList: ChatList,
-  configuration: Configuration,
+  configurations: Configuration,
 
   // services
   http: Http({

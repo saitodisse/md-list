@@ -3,7 +3,7 @@ import getInitialData from '../actions/getInitialData';
 import listenChanges from '../actions/listenChanges';
 import setItemsKeys from '../actions/setItemsKeys';
 
-const listenDatabase = [
+const initFirebase = [
   set('state:main.is_saving', true),
   set('state:main.error', null),
   getInitialData, {
@@ -18,4 +18,4 @@ const listenDatabase = [
   listenChanges,
 ];
 
-export default listenDatabase;
+export default initFirebase;

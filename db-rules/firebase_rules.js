@@ -18,6 +18,15 @@
         ",
       }
     },
+    "roles": {
+      "$USER_KEY": {
+        ".read": "
+             auth != null
+          && auth.uid != $USER_KEY
+          && root.child('roles/admins/' + auth.uid).exists()
+        ",
+      }
+    },
     "items": {
       // is authenticated
       ".read": "auth != null",
@@ -166,6 +175,10 @@
         "},
 
         "updated_at": { ".validate": "true" },
+
+        "configurations": {
+          ".read": "auth.uid != $USER_ID",
+        },
 
         // no other field
         "$other": { ".validate": false },

@@ -1,20 +1,36 @@
 import React from 'react';
 import {connect} from 'cerebral-view-react';
 import styles from './styles';
+import ConfigurationField from './ConfigurationField';
 
 export default connect({
-  edit_other_users_items: 'configuration.edit_other_users_items',
-  restricted_access_to_members: 'configuration.restricted_access_to_members',
+  configurations: 'configurations.*',
+  user_configurations: 'login.user.configurations.*',
+  user_id: 'login.user.uid',
+  is_admin: 'login.user.is_admin',
 }, {
-  pageLoaded: 'configuration.pageLoaded',
-  editOtherUsersItemsClicked: 'configuration.editOtherUsersItemsClicked',
-  restrictedAccessToMembersClicked: 'configuration.restrictedAccessToMembersClicked',
+  pageLoaded: 'configurations.pageLoaded',
+  createInitialConfigurationsClicked: 'configurations.createInitialConfigurationsClicked',
 },
   class Configuration extends React.Component {
     componentDidMount() {
       this.props.pageLoaded();
     }
     render() {
+      // wait prop
+      if ( typeof this.props.configurations === 'undefined'
+        || typeof this.props.configurations.app === 'undefined'
+        || typeof this.props.configurations.user === 'undefined'
+        || typeof this.props.configurations.app.restricted_access_to_members === 'undefined'
+        ) {
+        return null;
+      }
+
+      const has_user_configuration = (
+           typeof this.props.user_configurations !== 'undefined'
+        && typeof this.props.user_configurations.desktop.font_size !== 'undefined'
+      );
+
       return (
         <div style={styles.container} className="container">
 
@@ -24,69 +40,31 @@ export default connect({
 
           <section className="fields">
 
-
+            {/*
+              /////////////
+              Create Configurations
+              /////////////
+            */}
             <div className="fieldGroup">
 
               <div className="fieldGroupTitle">
-                Display Desktop
+                Create Configurations
               </div>
 
-              <div style={styles.fieldContainer} className="fieldContainer">
+              <div className="fieldContainer">
                 <div className="labelContainer">
                   <div style={styles.label} className="label">
-                    Font Size
+                    Initial Configuration
                   </div>
                   <div style={styles.labelDescription} className="label">
-                    items font size
+                    Create initial configurations (do this first)
                   </div>
                 </div>
                 <div style={styles.value} className="value">
                   <input
-                    type="text"
-                    checked={this.props.restricted_access_to_members}
-                    onClick={(ev) => this.props.restrictedAccessToMembersClicked({
-                      value: ev.target.checked
-                    })}
-                  />
-                </div>
-              </div>
-
-              <div style={styles.fieldContainer} className="fieldContainer">
-                <div className="labelContainer">
-                  <div style={styles.label} className="label">
-                    Display Edit
-                  </div>
-                  <div style={styles.labelDescription} className="label">
-                    show edit button on each message
-                  </div>
-                </div>
-                <div style={styles.value} className="value">
-                  <input
-                    type="checkbox"
-                    checked={this.props.edit_other_users_items}
-                    onClick={(ev) => this.props.editOtherUsersItemsClicked({
-                      value: ev.target.checked
-                    })}
-                  />
-                </div>
-              </div>
-
-              <div style={styles.fieldContainer} className="fieldContainer">
-                <div className="labelContainer">
-                  <div style={styles.label} className="label">
-                    Display Delete
-                  </div>
-                  <div style={styles.labelDescription} className="label">
-                    show delete button on each message
-                  </div>
-                </div>
-                <div style={styles.value} className="value">
-                  <input
-                    type="checkbox"
-                    checked={this.props.edit_other_users_items}
-                    onClick={(ev) => this.props.editOtherUsersItemsClicked({
-                      value: ev.target.checked
-                    })}
+                    type="button"
+                    value="RESET"
+                    onClick={this.props.createInitialConfigurationsClicked}
                   />
                 </div>
               </div>
@@ -94,120 +72,172 @@ export default connect({
             </div>
 
 
-            <div className="fieldGroup">
+            {/*
+              /////////////
+              Current User
+              /////////////
+            */}
+            {has_user_configuration && this.props.user_configurations.desktop && (
+              <div className="fieldGroup">
 
-              <div className="fieldGroupTitle">
-                Display Mobile
+                <div className="fieldGroupTitle">
+                  Display Desktop (User)
+                </div>
+
+                <ConfigurationField
+                  title="Font Size"
+                  description="Items font size"
+                  value={this.props.user_configurations.desktop.font_size}
+                  path={`users/${this.props.user_id}/configurations/desktop/font_size`}
+                />
+
+                <ConfigurationField
+                  title="Display Edit"
+                  description="Show edit button on each message"
+                  value={this.props.user_configurations.desktop.show_edit_button}
+                  path={`users/${this.props.user_id}/configurations/desktop/show_edit_button`}
+                />
+
+                <ConfigurationField
+                  title="Display Delete"
+                  description="Show delete button on each message"
+                  value={this.props.user_configurations.desktop.show_delete_button}
+                  path={`users/${this.props.user_id}/configurations/desktop/show_delete_button`}
+                />
               </div>
+            )}
 
-              <div style={styles.fieldContainer} className="fieldContainer">
-                <div className="labelContainer">
-                  <div style={styles.label} className="label">
-                    Font Size
-                  </div>
-                  <div style={styles.labelDescription} className="label">
-                    items font size
-                  </div>
+            {has_user_configuration && this.props.user_configurations.mobile && (
+              <div className="fieldGroup">
+
+                <div className="fieldGroupTitle">
+                  Display Mobile (User)
                 </div>
-                <div style={styles.value} className="value">
-                  <input
-                    type="text"
-                    checked={this.props.restricted_access_to_members}
-                    onClick={(ev) => this.props.restrictedAccessToMembersClicked({
-                      value: ev.target.checked
-                    })}
-                  />
-                </div>
+
+                <ConfigurationField
+                  title="Font Size"
+                  description="Items font size"
+                  value={this.props.user_configurations.mobile.font_size}
+                  path={`users/${this.props.user_id}/configurations/mobile/font_size`}
+                />
+
+                <ConfigurationField
+                  title="Display Edit"
+                  description="Show edit button on each message"
+                  value={this.props.user_configurations.mobile.show_edit_button}
+                  path={`users/${this.props.user_id}/configurations/mobile/show_edit_button`}
+                />
+
+                <ConfigurationField
+                  title="Display Delete"
+                  description="Show delete button on each message"
+                  value={this.props.user_configurations.mobile.show_delete_button}
+                  path={`users/${this.props.user_id}/configurations/mobile/show_delete_button`}
+                />
+
               </div>
+            )}
 
-              <div style={styles.fieldContainer} className="fieldContainer">
-                <div className="labelContainer">
-                  <div style={styles.label} className="label">
-                    Display Edit
-                  </div>
-                  <div style={styles.labelDescription} className="label">
-                    show edit button on each message
-                  </div>
+
+            {/*
+              /////////////
+              Global User (Admin Only)
+              /////////////
+            */}
+            {this.props.configurations.user.desktop && (
+              <div className="fieldGroup">
+
+                <div className="fieldGroupTitle">
+                  Display Desktop (Global)
                 </div>
-                <div style={styles.value} className="value">
-                  <input
-                    type="checkbox"
-                    checked={this.props.edit_other_users_items}
-                    onClick={(ev) => this.props.editOtherUsersItemsClicked({
-                      value: ev.target.checked
-                    })}
-                  />
-                </div>
+
+                <ConfigurationField
+                  title="Font Size"
+                  only_admin={true}
+                  description="Items font size"
+                  value={this.props.configurations.user.desktop.font_size}
+                  path={'/configurations/user/desktop/font_size'}
+                />
+
+                <ConfigurationField
+                  title="Display Edit"
+                  only_admin={true}
+                  description="Show edit button on each message"
+                  value={this.props.configurations.user.desktop.show_edit_button}
+                  path={'/configurations/user/desktop/show_edit_button'}
+                />
+
+                <ConfigurationField
+                  title="Display Delete"
+                  only_admin={true}
+                  description="Show delete button on each message"
+                  value={this.props.configurations.user.desktop.show_delete_button}
+                  path={'/configurations/user/desktop/show_delete_button'}
+                />
               </div>
+            )}
 
-              <div style={styles.fieldContainer} className="fieldContainer">
-                <div className="labelContainer">
-                  <div style={styles.label} className="label">
-                    Display Delete
-                  </div>
-                  <div style={styles.labelDescription} className="label">
-                    show delete button on each message
-                  </div>
+            {this.props.configurations.user.mobile && (
+              <div className="fieldGroup">
+
+                <div className="fieldGroupTitle">
+                  Display Mobile (Global)
                 </div>
-                <div style={styles.value} className="value">
-                  <input
-                    type="checkbox"
-                    checked={this.props.edit_other_users_items}
-                    onClick={(ev) => this.props.editOtherUsersItemsClicked({
-                      value: ev.target.checked
-                    })}
-                  />
-                </div>
+
+                <ConfigurationField
+                  title="Font Size"
+                  only_admin={true}
+                  description="Items font size"
+                  value={this.props.configurations.user.mobile.font_size}
+                  path={'/configurations/user/mobile/font_size'}
+                />
+
+                <ConfigurationField
+                  title="Display Edit"
+                  only_admin={true}
+                  description="Show edit button on each message"
+                  value={this.props.configurations.user.mobile.show_edit_button}
+                  path={'/configurations/user/mobile/show_edit_button'}
+                />
+
+                <ConfigurationField
+                  title="Display Delete"
+                  only_admin={true}
+                  description="Show delete button on each message"
+                  value={this.props.configurations.user.mobile.show_delete_button}
+                  path={'/configurations/user/mobile/show_delete_button'}
+                />
+
               </div>
+            )}
 
-            </div>
 
-
+            {/*
+              /////////////
+              Global App (Admin Only)
+              /////////////
+            */}
             <div className="fieldGroup">
 
               <div className="fieldGroupTitle">
                 Chat (admin only)
               </div>
 
-              <div style={styles.fieldContainer} className="fieldContainer">
-                <div className="labelContainer">
-                  <div style={styles.label} className="label">
-                    Private
-                  </div>
-                  <div style={styles.labelDescription} className="label">
-                    Only members can read and post items
-                  </div>
-                </div>
-                <div style={styles.value} className="value">
-                  <input
-                    type="checkbox"
-                    checked={this.props.restricted_access_to_members}
-                    onClick={(ev) => this.props.restrictedAccessToMembersClicked({
-                      value: ev.target.checked
-                    })}
-                  />
-                </div>
-              </div>
+              <ConfigurationField
+                title="Private"
+                description="Only members can read and post items"
+                only_admin={true}
+                value={this.props.configurations.app.restricted_access_to_members}
+                path={'/configurations/app/restricted_access_to_members'}
+              />
 
-              <div style={styles.fieldContainer} className="fieldContainer">
-                <div className="labelContainer">
-                  <div style={styles.label} className="label">
-                    Shared Itens
-                  </div>
-                  <div style={styles.labelDescription} className="label">
-                    User can edit others users items
-                  </div>
-                </div>
-                <div style={styles.value} className="value">
-                  <input
-                    type="checkbox"
-                    checked={this.props.edit_other_users_items}
-                    onClick={(ev) => this.props.editOtherUsersItemsClicked({
-                      value: ev.target.checked
-                    })}
-                  />
-                </div>
-              </div>
+              <ConfigurationField
+                title="Shared Itens"
+                description="User can edit others users items"
+                only_admin={true}
+                value={this.props.configurations.app.edit_other_users_items}
+                path={'/configurations/app/edit_other_users_items'}
+              />
 
             </div>
 

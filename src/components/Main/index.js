@@ -26,6 +26,7 @@ import styles from './styles';
 
 export default connect({
   user: 'login.user',
+  login_is_loading: 'login.is_loading',
   is_logged: 'login.is_logged',
   current_page: 'main.current_page',
   page_is_visible: 'main.page_is_visible',
@@ -59,8 +60,8 @@ export default connect({
       this.props.userLoggedOut();
     }
     componentDidUpdate(prevProps) {
-      if (prevProps.is_logged !== this.props.is_logged) {
-        if (this.props.is_logged) {
+      if (prevProps.login_is_loading !== this.props.login_is_loading) {
+        if (!this.props.login_is_loading) {
           this.props.userLoggedIn();
 
           // after login redirect

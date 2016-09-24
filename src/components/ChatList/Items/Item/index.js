@@ -12,6 +12,8 @@ export default connect(_props => ({
   current_item: 'chatList.current_item',
   user_id: 'login.user.uid',
   window_size_is_mobile: 'main.window_size_is_mobile',
+  configurations: 'configurations.*',
+  user_configurations: 'login.user.configurations.*',
 }), {
   itemClicked: 'chatList.itemClicked',
   removeItemClicked: 'chatList.removeItemClicked',
@@ -70,6 +72,30 @@ export default connect(_props => ({
         return true;
       }
 
+      // window change width
+      const window_width_changed = (
+        this.props.window_size_is_mobile !== nextProps.window_size_is_mobile
+      );
+      if (window_width_changed) {
+        return true;
+      }
+
+      // configurations changed
+      const configurations_changed = (
+           this.props.user_configurations
+        &&  (    this.props.user_configurations.desktop.font_size !== nextProps.user_configurations.desktop.font_size
+              || this.props.user_configurations.mobile.font_size !== nextProps.user_configurations.mobile.font_size
+              || this.props.user_configurations.desktop.show_edit_button !== nextProps.user_configurations.desktop.show_edit_button
+              || this.props.user_configurations.mobile.show_edit_button !== nextProps.user_configurations.mobile.show_edit_button
+              || this.props.user_configurations.desktop.show_delete_button !== nextProps.user_configurations.desktop.show_delete_button
+              || this.props.user_configurations.mobile.show_delete_button !== nextProps.user_configurations.mobile.show_delete_button
+            )
+      );
+      if (configurations_changed) {
+        return true;
+      }
+
+
       return false;
     }
 
@@ -112,13 +138,40 @@ export default connect(_props => ({
 
     render() {
       // check if item exists
-      if (!R.pathOr(false, ['item'], this.props)) {
+      if ( !R.pathOr(false, ['item'], this.props)) {
         console.error('\n%% ERROR: item is null \n');
         return null;
       }
 
       const $isCurrentItem = (this.props.current_item.id === this.props.item.id);
-      const valueStyle = $isCurrentItem ? styles.valueSelected : styles.value;
+
+      let valueStyle = styles.value;
+      if ($isCurrentItem) {
+        valueStyle = styles.valueSelected;
+      }
+
+      // Configurations
+      // --------------
+      // responsive: font-size
+      if (this.props.window_size_is_mobile) {
+        valueStyle.fontSize = `${this.props.user_configurations.mobile.font_size}px`;
+      } else {
+        valueStyle.fontSize = `${this.props.user_configurations.desktop.font_size}px`;
+      }
+      // show edit button
+      let show_edit_button = null;
+      if (this.props.window_size_is_mobile) {
+        show_edit_button = this.props.user_configurations.mobile.show_edit_button;
+      } else {
+        show_edit_button = this.props.user_configurations.desktop.show_edit_button;
+      }
+      // show delete button
+      let show_delete_button = null;
+      if (this.props.window_size_is_mobile) {
+        show_delete_button = this.props.user_configurations.mobile.show_delete_button;
+      } else {
+        show_delete_button = this.props.user_configurations.desktop.show_delete_button;
+      }
 
       const $isNewItem = this.props.item.$isNew;
       const itemStyle = $isNewItem ? styles.itemNewContainer : styles.itemContainer;
@@ -145,25 +198,29 @@ export default connect(_props => ({
 
                 {is_my_item && (
                 <div style={styles.buttonsContainer} id="buttonsContainer">
-                  <div
-                    style={styles.editButton} id="editButton"
-                    onClick={this._onEdit}
-                  >
-                    edit
-                  </div>
-                  <div
-                    style={styles.deleteButton} id="deleteButton"
-                    onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
-                  >
-                    delete
-                  </div>
+                  {show_edit_button && (
+                    <div
+                      style={styles.editButton} id="editButton"
+                      onClick={this._onEdit}
+                    >
+                      edit
+                    </div>
+                  )}
+                  {show_delete_button && (
+                    <div
+                      style={styles.deleteButton} id="deleteButton"
+                      onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
+                    >
+                      delete
+                    </div>
+                  )}
                 </div>
                 )}
             </div>
 
             <div style={itemStyle}>
               <div
-                style={valueStyle}
+                style={R.clone(valueStyle)}
                 dangerouslySetInnerHTML={this.renderMarkdown()}
               / >
             </div>
