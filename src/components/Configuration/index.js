@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'cerebral-view-react';
 import styles from './styles';
 import ConfigurationField from './ConfigurationField';
+import R from 'ramda';
 
 export default connect({
   configurations: 'configurations.*',
@@ -18,18 +19,17 @@ export default connect({
     }
     render() {
       // wait prop
-      if ( typeof this.props.configurations === 'undefined'
-        || typeof this.props.configurations.app === 'undefined'
-        || typeof this.props.configurations.user === 'undefined'
-        || typeof this.props.configurations.app.restricted_access_to_members === 'undefined'
-        ) {
+      if (R.pathOr(
+          null,
+          ['app', 'restricted_access_to_members'],
+          this.props.configurations) === null) {
         return null;
       }
 
-      const has_user_configuration = (
-           typeof this.props.user_configurations !== 'undefined'
-        && typeof this.props.user_configurations.desktop.font_size !== 'undefined'
-      );
+      const has_user_configuration = R.pathOr(
+          null,
+          ['desktop', 'font_size'],
+          this.props.user_configurations) !== null;
 
       return (
         <div style={styles.container} className="container">
@@ -39,6 +39,35 @@ export default connect({
           </section>
 
           <section className="fields">
+
+            {/*
+              /////////////
+              Global App (Admin Only)
+              /////////////
+            */}
+            <div className="fieldGroup">
+
+              <div className="fieldGroupTitle">
+                Chat (admin only)
+              </div>
+
+              <ConfigurationField
+                title="Private"
+                description="Only members can read and post items"
+                only_admin={true}
+                value={R.pathOr(false, ['app', 'restricted_access_to_members'], this.props.configurations)}
+                path={'/configurations/app/restricted_access_to_members'}
+              />
+
+              <ConfigurationField
+                title="Shared Itens"
+                description="User can edit others users items"
+                only_admin={true}
+                value={R.pathOr(false, ['app', 'edit_other_users_items'], this.props.configurations)}
+                path={'/configurations/app/edit_other_users_items'}
+              />
+
+            </div>
 
             {/*
               /////////////
@@ -144,7 +173,7 @@ export default connect({
               Global User (Admin Only)
               /////////////
             */}
-            {this.props.configurations.user.desktop && (
+            {this.props.configurations.user && this.props.configurations.user.desktop && (
               <div className="fieldGroup">
 
                 <div className="fieldGroupTitle">
@@ -177,7 +206,7 @@ export default connect({
               </div>
             )}
 
-            {this.props.configurations.user.mobile && (
+            {this.props.configurations.user && this.props.configurations.user.mobile && (
               <div className="fieldGroup">
 
                 <div className="fieldGroupTitle">
@@ -210,36 +239,6 @@ export default connect({
 
               </div>
             )}
-
-
-            {/*
-              /////////////
-              Global App (Admin Only)
-              /////////////
-            */}
-            <div className="fieldGroup">
-
-              <div className="fieldGroupTitle">
-                Chat (admin only)
-              </div>
-
-              <ConfigurationField
-                title="Private"
-                description="Only members can read and post items"
-                only_admin={true}
-                value={this.props.configurations.app.restricted_access_to_members}
-                path={'/configurations/app/restricted_access_to_members'}
-              />
-
-              <ConfigurationField
-                title="Shared Itens"
-                description="User can edit others users items"
-                only_admin={true}
-                value={this.props.configurations.app.edit_other_users_items}
-                path={'/configurations/app/edit_other_users_items'}
-              />
-
-            </div>
 
           </section>
 

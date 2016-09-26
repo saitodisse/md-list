@@ -11,6 +11,7 @@
               && root.child('configurations/app/restricted_access_to_members').val() === true
             )
             || root.child('configurations/app/restricted_access_to_members').val() === false
+            || !root.child('configurations/app/restricted_access_to_members').exists()
          )
       ",
       "$CONFIG_KEY": {
@@ -23,6 +24,7 @@
                   && root.child('configurations/app/restricted_access_to_members').val() === true
                 )
                  || root.child('configurations/app/restricted_access_to_members').val() === false
+                 || !root.child('configurations/app/restricted_access_to_members').exists()
              )
              // cannot delete
           && newData.exists()
@@ -44,6 +46,7 @@
                   && root.child('configurations/app/restricted_access_to_members').val() === true
                 )
                  || root.child('configurations/app/restricted_access_to_members').val() === false
+                 || !root.child('configurations/app/restricted_access_to_members').exists()
              )
           && auth.uid != $USER_KEY
           && root.child('roles/admins/' + auth.uid).exists()
@@ -60,6 +63,7 @@
               && root.child('configurations/app/restricted_access_to_members').val() === true
             )
             || root.child('configurations/app/restricted_access_to_members').val() === false
+            || !root.child('configurations/app/restricted_access_to_members').exists()
          )
       ",
       ".indexOn": ["created_at"],
@@ -73,6 +77,7 @@
                   && root.child('configurations/app/restricted_access_to_members').val() === true
                 )
                  || root.child('configurations/app/restricted_access_to_members').val() === false
+                 || !root.child('configurations/app/restricted_access_to_members').exists()
              )
           && (
                // insert/update: must have this childs
@@ -162,6 +167,7 @@
                   && root.child('configurations/app/restricted_access_to_members').val() === true
                 )
                  || root.child('configurations/app/restricted_access_to_members').val() === false
+                 || !root.child('configurations/app/restricted_access_to_members').exists()
              )
              // must be his own user key
           && auth.uid === $USER_ID
@@ -175,6 +181,7 @@
                   && root.child('configurations/app/restricted_access_to_members').val() === true
                 )
                  || root.child('configurations/app/restricted_access_to_members').val() === false
+                 || !root.child('configurations/app/restricted_access_to_members').exists()
              )
           && (
                // insert/update: must have this childs
