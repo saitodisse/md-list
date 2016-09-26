@@ -48,14 +48,17 @@
                    // can delete
                    !newData.exists()
                    // only his item
-                && root.child('items/'+$ITEM_KEY).child('user_id').val() === auth.uid
+                &&  (    root.child('items/'+$ITEM_KEY).child('user_id').val() === auth.uid
+                      || root.child('configurations/app/edit_other_users_items').val() === true
+                    )
               )
           )
         ",
 
         ".validate": "
            // update: only his items
-           newData.child('user_id').val() === auth.uid
+              newData.child('user_id').val() === auth.uid
+           || root.child('configurations/app/edit_other_users_items').val() === true
         ",
 
         "id": { ".validate": "
@@ -75,7 +78,10 @@
                   // new item
                   !data.exists() && newData.val() === auth.uid
                   // existing item
-               ||  data.exists() && data.val() === auth.uid
+               || data.exists() &&
+                  (    data.val() === auth.uid
+                    || root.child('configurations/app/edit_other_users_items').val() === true
+                  )
              )
         "},
 
