@@ -32833,14 +32833,14 @@
 	    //           lets save to "users" on firebase
 	    _saveFirebaseUser2.default, {
 	      success: [(0, _operators.set)('state:login.user_saved', true)],
-	      error: [(0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	      error: [(0, _operators.copy)('input:error', 'state:main.error_message')]
 	    }],
 	    exist: [_getFirebaseGlobalConfigurations2.default, {
 	      success: [(0, _operators.copy)('input:value', 'state:configurations')],
-	      error: [(0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	      error: [(0, _operators.copy)('input:error', 'state:main.error_message')]
 	    }, _getFirebaseUserConfigurations2.default, {
 	      success: [(0, _operators.copy)('input:value', 'state:login.user.configurations')],
-	      error: [(0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	      error: [(0, _operators.copy)('input:error', 'state:main.error_message')]
 	    },
 	    // existent user
 	    _checkAdminFirebaseUser2.default, {
@@ -32849,14 +32849,14 @@
 	      // Permission Denied
 	      _checkPermissionDenied2.default]
 	    }],
-	    error: [(0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	    error: [(0, _operators.copy)('input:error', 'state:main.error_message')]
 	  }],
-	  error: [(0, _operators.set)('state:login.is_logged', false), (0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	  error: [(0, _operators.set)('state:login.is_logged', false), (0, _operators.copy)('input:error', 'state:main.error_message')]
 	}, _notificationRequestPermition2.default, {
 	  default: [(0, _operators.set)('state:login.notifications_enabled', null), (0, _operators.copy)('input:notification_result', 'state:login.notification_result')],
 	  granted: [(0, _operators.set)('state:login.notifications_enabled', true), (0, _operators.copy)('input:notification_result', 'state:login.notification_result')],
 	  denied: [(0, _operators.set)('state:login.notifications_enabled', false), (0, _operators.copy)('input:notification_result', 'state:login.notification_result')],
-	  error: [(0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	  error: [(0, _operators.copy)('input:error', 'state:main.error_message')]
 	}, (0, _operators.set)('state:login.is_loading', false)];
 
 	exports.default = bootstrap;
@@ -33752,7 +33752,7 @@
 
 	var initFirebase = [(0, _operators.set)('state:main.is_saving', true), (0, _operators.set)('state:main.error', null), _getInitialData2.default, {
 	  success: [_setItemsKeys2.default],
-	  error: [(0, _operators.copy)('input:code', 'state:main.error')]
+	  error: [(0, _operators.copy)('input:error', 'state:main.error')]
 	}, (0, _operators.set)('state:main.is_saving', false), _listenChanges2.default];
 
 	exports.default = initFirebase;
@@ -33898,8 +33898,6 @@
 	  module.addState({
 	    is_logged: null,
 	    is_loading: null,
-	    error_code: null,
-	    error_message: null,
 	    user: {},
 	    last_login_at: null
 	  });
@@ -33932,7 +33930,7 @@
 
 	var loginFacebook = [(0, _operators.set)('state:login.is_loading', true), _facebookLogin2.default, {
 	  success: [(0, _operators.set)('state:login.is_logged', true), (0, _operators.copy)('input:user', 'state:login.user'), (0, _operators.set)('state:login.last_login_at', new Date().getTime())],
-	  error: [(0, _operators.set)('state:login.is_logged', false), (0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	  error: [(0, _operators.set)('state:login.is_logged', false), (0, _operators.copy)('input:error', 'state:main.error_message')]
 	}, (0, _operators.set)('state:main.current_page', _constants.PAGE_CHAT_LIST), (0, _operators.set)('state:login.is_loading', false)];
 
 	exports.default = loginFacebook;
@@ -33978,7 +33976,7 @@
 
 	var userSignOut = [(0, _operators.set)('state:login.is_loading', true), _signOut2.default, {
 	  success: [(0, _operators.set)('state:login.is_logged', false), (0, _operators.set)('state:login.user', {})],
-	  error: [(0, _operators.copy)('input:code', 'state:login.error_code'), (0, _operators.copy)('input:message', 'state:login.error_message')]
+	  error: [(0, _operators.copy)('input:error', 'state:main.error_message')]
 	}, (0, _operators.set)('state:login.is_loading', false)];
 
 	exports.default = userSignOut;
@@ -34300,7 +34298,7 @@
 	// We post the item to the server
 	_deleteItem2.default, {
 	  success: [_removeItem2.default, (0, _operators.set)('state:main.is_saving', false)],
-	  error: [(0, _operators.set)('state:main.is_saving', false), (0, _operators.copy)('input:code', 'state:main.error')]
+	  error: [(0, _operators.set)('state:main.is_saving', false), (0, _operators.copy)('input:error', 'state:main.error')]
 	}];
 
 	exports.default = deleteItemChain;
@@ -34389,7 +34387,7 @@
 	  // enabling the input again
 	  (0, _operators.set)('state:main.is_saving', false),
 	  // We set an error to display
-	  (0, _operators.copy)('input:code', 'state:main.error')]
+	  (0, _operators.copy)('input:error', 'state:main.error')]
 	}];
 
 	exports.default = submitItemBody;
@@ -43438,10 +43436,10 @@
 
 	var getConfigurations = [(0, _operators.set)('state:main.is_loading', true), _getConfigurationData2.default, {
 	  success: [(0, _operators.copy)('input:value', 'state:configurations')],
-	  error: [(0, _operators.copy)('input:message', 'state:main.error')]
+	  error: [(0, _operators.copy)('input:error', 'state:main.error')]
 	}, _getUserConfigurationData2.default, {
 	  success: [(0, _operators.copy)('input:value', 'state:login.user.configurations')],
-	  error: [(0, _operators.copy)('input:message', 'state:main.error')]
+	  error: [(0, _operators.copy)('input:error', 'state:main.error')]
 	}, (0, _operators.set)('state:main.is_loading', false)];
 
 	exports.default = getConfigurations;
@@ -43512,7 +43510,7 @@
 	  success: [
 	    // copy('input:value', `state:configurations.${config_key}`),
 	  ],
-	  error: [(0, _operators.copy)('input:message', 'state:main.error')]
+	  error: [(0, _operators.copy)('input:error', 'state:main.error')]
 	}, (0, _operators.set)('state:main.is_loading', false)];
 
 	exports.default = toggleConfiguration;
@@ -43649,7 +43647,7 @@
 
 	var createInitialConfigurations = [(0, _operators.set)('state:main.is_loading', true)].concat(_toConsumableArray((0, _operators.filter)('state:login.user.is_admin', true, [(0, _setFirebaseData2.default)('/configurations/app/edit_other_users_items', false), { success: [], error: [(0, _operators.copy)('input:code', 'state:main.error')] }, (0, _setFirebaseData2.default)('/configurations/app/restricted_access_to_members', false), { success: [], error: [(0, _operators.copy)('input:code', 'state:main.error')] }, (0, _setFirebaseData2.default)('/configurations/user/desktop/font_size', 16), { success: [], error: [(0, _operators.copy)('input:code', 'state:main.error')] }, (0, _setFirebaseData2.default)('/configurations/user/desktop/show_delete_button', true), { success: [], error: [(0, _operators.copy)('input:code', 'state:main.error')] }, (0, _setFirebaseData2.default)('/configurations/user/desktop/show_edit_button', true), { success: [], error: [(0, _operators.copy)('input:code', 'state:main.error')] }, (0, _setFirebaseData2.default)('/configurations/user/mobile/font_size', 18), { success: [], error: [(0, _operators.copy)('input:code', 'state:main.error')] }, (0, _setFirebaseData2.default)('/configurations/user/mobile/show_delete_button', true), { success: [], error: [(0, _operators.copy)('input:code', 'state:main.error')] }, (0, _setFirebaseData2.default)('/configurations/user/mobile/show_edit_button', true), { success: [], error: [(0, _operators.copy)('input:code', 'state:main.error')] }])), [_saveInitialConfigurations2.default, {
 	  success: [],
-	  error: [(0, _operators.copy)('input:message', 'state:main.error')]
+	  error: [(0, _operators.copy)('input:error', 'state:main.error')]
 	}, (0, _operators.set)('state:main.is_loading', false)]);
 
 	exports.default = createInitialConfigurations;
