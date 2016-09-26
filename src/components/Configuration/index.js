@@ -17,13 +17,44 @@ export default connect({
     componentDidMount() {
       this.props.pageLoaded();
     }
+
+    renderCreateInitialConfigurationsButton() {
+      return (
+        <div className="fieldGroup">
+
+          <div className="fieldGroupTitle">
+            Create Configurations
+          </div>
+
+          <div className="fieldContainer">
+            <div className="labelContainer">
+              <div style={styles.label} className="label">
+                Initial Configuration
+              </div>
+              <div style={styles.labelDescription} className="label">
+                Create initial configurations (do this first)
+              </div>
+            </div>
+            <div style={styles.value} className="value">
+              <input
+                type="button"
+                value="RESET"
+                onClick={this.props.createInitialConfigurationsClicked}
+              />
+            </div>
+          </div>
+
+        </div>
+      );
+    }
+
     render() {
       // wait prop
       if (R.pathOr(
           null,
           ['app', 'restricted_access_to_members'],
           this.props.configurations) === null) {
-        return null;
+        return this.renderCreateInitialConfigurationsButton();
       }
 
       const has_user_configuration = R.pathOr(
@@ -74,31 +105,7 @@ export default connect({
               Create Configurations
               /////////////
             */}
-            <div className="fieldGroup">
-
-              <div className="fieldGroupTitle">
-                Create Configurations
-              </div>
-
-              <div className="fieldContainer">
-                <div className="labelContainer">
-                  <div style={styles.label} className="label">
-                    Initial Configuration
-                  </div>
-                  <div style={styles.labelDescription} className="label">
-                    Create initial configurations (do this first)
-                  </div>
-                </div>
-                <div style={styles.value} className="value">
-                  <input
-                    type="button"
-                    value="RESET"
-                    onClick={this.props.createInitialConfigurationsClicked}
-                  />
-                </div>
-              </div>
-
-            </div>
+            {this.renderCreateInitialConfigurationsButton()}
 
 
             {/*
