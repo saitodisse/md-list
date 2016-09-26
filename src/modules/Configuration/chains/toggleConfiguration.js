@@ -1,9 +1,9 @@
 import {set, copy} from 'cerebral/operators';
 import setConfigurationData from '../actions/setConfigurationData.js';
 
-const toggleConfiguration = (firebase_path) => ([
+const toggleConfiguration = [
   set('state:main.is_loading', true),
-  setConfigurationData(firebase_path), {
+  setConfigurationData, {
     success: [
       // copy('input:value', `state:configurations.${config_key}`),
     ],
@@ -12,6 +12,6 @@ const toggleConfiguration = (firebase_path) => ([
     ]
   },
   set('state:main.is_loading', false),
-]);
+];
 
 export default toggleConfiguration;

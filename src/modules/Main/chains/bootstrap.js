@@ -2,6 +2,7 @@ import {set, copy} from 'cerebral/operators';
 import getUser from '../actions/getUser.js';
 import notificationRequestPermition from '../actions/notificationRequestPermition.js';
 import getFirebaseUser from '../actions/getFirebaseUser.js';
+import getFirebaseGlobalConfigurations from '../actions/getFirebaseGlobalConfigurations.js';
 import getFirebaseUserConfigurations from '../actions/getFirebaseUserConfigurations.js';
 import checkAdminFirebaseUser from '../actions/checkAdminFirebaseUser.js';
 import checkPermissionDenied from '../actions/checkPermissionDenied.js';
@@ -31,6 +32,15 @@ const bootstrap = [
           },
         ],
         exist: [
+          getFirebaseGlobalConfigurations, {
+            success: [
+              copy('input:value', 'state:configurations'),
+            ],
+            error: [
+              copy('input:code', 'state:login.error_code'),
+              copy('input:message', 'state:login.error_message'),
+            ]
+          },
           getFirebaseUserConfigurations, {
             success: [
               copy('input:value', 'state:login.user.configurations'),

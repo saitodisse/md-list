@@ -41,6 +41,7 @@
     "ramda": "^0.22.1",
     "react": "^15.3.x",
     "react-dom": "^15.3.x",
+    "react-notification-system": "^0.2.10",
     "screenfull": "^3.0.2",
     "uuid": "^2.0.2",
     "webpack": "^1.13.2"

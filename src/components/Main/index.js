@@ -5,6 +5,7 @@ import Login from '~/components/Login';
 import ChatList from '~/components/ChatList';
 import Configuration from '~/components/Configuration';
 import screenfull from 'screenfull';
+import NotificationSystem from 'react-notification-system';
 
 import {
   PAGE_EMPTY,
@@ -31,6 +32,7 @@ export default connect({
   current_page: 'main.current_page',
   page_is_visible: 'main.page_is_visible',
   window_size_is_mobile: 'main.window_size_is_mobile',
+  error_message: 'main.error',
 }, {
   pageLoaded: 'main.pageLoaded',
 
@@ -55,6 +57,7 @@ export default connect({
       this.props.pageLoaded();
       this.listenPageVisibilityChanges();
       this._resizeThrottler();
+      this._notificationSystem = this.refs.notificationSystem;
     }
     componentWillUnmount() {
       this.props.userLoggedOut();
@@ -73,6 +76,13 @@ export default connect({
           // user is not logged in
           this.props.redirectedToLogin();
         }
+      }
+      if (   prevProps.error_message !== this.props.error_message
+          && this.props.error_message !== null) {
+        this._notificationSystem.addNotification({
+          message: this.props.error_message,
+          level: 'error'
+        });
       }
     }
 
@@ -143,6 +153,8 @@ export default connect({
       const pages = getPages();
       return (
         <div style={styles.mainContainer} id="mainContainer">
+
+          <NotificationSystem ref="notificationSystem" />
 
           <div style={styles.titleContainer} id="titleContainer">
             <a

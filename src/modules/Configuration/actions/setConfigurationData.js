@@ -1,19 +1,14 @@
 import firebase from 'firebase';
 
-function setConfigurationData(firebase_apth) {
-  function setConfigurationDataFirebase({ input, output }) {
-    const updates = {};
-    updates[firebase_apth] = input.value;
+function setConfigurationData({ input, output }) {
+  const updates = {};
+  updates[input.path] = input.value;
 
-    firebase.database().ref().update(updates)
-      .then(output.success)
-      .catch(output.error);
-  }
-  setConfigurationDataFirebase.async = true;
-  setConfigurationDataFirebase.outputs = ['success', 'error'];
-
-  return setConfigurationDataFirebase;
+  firebase.database().ref().update(updates)
+    .then(output.success)
+    .catch(output.error);
 }
-
+setConfigurationData.async = true;
+setConfigurationData.outputs = ['success', 'error'];
 
 export default setConfigurationData;

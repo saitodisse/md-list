@@ -89,6 +89,7 @@ export default connect(_props => ({
               || this.props.user_configurations.mobile.show_edit_button !== nextProps.user_configurations.mobile.show_edit_button
               || this.props.user_configurations.desktop.show_delete_button !== nextProps.user_configurations.desktop.show_delete_button
               || this.props.user_configurations.mobile.show_delete_button !== nextProps.user_configurations.mobile.show_delete_button
+              || this.props.configurations.app.edit_other_users_items !== nextProps.configurations.app.edit_other_users_items
             )
       );
       if (configurations_changed) {
@@ -179,6 +180,7 @@ export default connect(_props => ({
       const me_id = this.props.user_id;
       const item_uid = this.props.item.user_id;
       const is_my_item = (me_id === item_uid);
+      const edit_other_users_items = R.pathOr(false, ['app', 'edit_other_users_items'], this.props.configurations);
 
       return (
         <div style={styles.messageContainer} id="messageContainer">
@@ -196,7 +198,7 @@ export default connect(_props => ({
                 {`${(new Date(this.props.item.created_at)).toLocaleDateString()} ${(new Date(this.props.item.created_at)).toLocaleTimeString()}`}
               </div>
 
-                {is_my_item && (
+                {(is_my_item || edit_other_users_items) && (
                 <div style={styles.buttonsContainer} id="buttonsContainer">
                   {show_edit_button && (
                     <div

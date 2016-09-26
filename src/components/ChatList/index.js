@@ -12,7 +12,6 @@ export default connect({
   current_item_id: 'chatList.current_item.id',
   current_item_body: 'chatList.current_item.body',
   itemsCount: itemsListCountComputed(),
-  error: 'main.error',
   window_size_is_mobile: 'main.window_size_is_mobile',
 }, {
   redirectedToLogin: 'main.redirectedToLogin',
@@ -184,10 +183,6 @@ export default connect({
               <div style={styles.shortcuts} id="shortcuts">
                 Ctrl + Enter (send)
               </div>
-            </div>
-
-            <div style={styles.error} id="error">
-              {this.props.error}
             </div>
           </div>
 
