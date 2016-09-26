@@ -3,11 +3,27 @@
     // cannot list
     ".read": "false",
     "configurations": {
-      ".read": "auth != null",
+      ".read": "
+        auth != null
+        && (
+            (
+                 root.child('members/' + auth.uid).exists()
+              && root.child('configurations/app/restricted_access_to_members').val() === true
+            )
+            || root.child('configurations/app/restricted_access_to_members').val() === false
+         )
+      ",
       "$CONFIG_KEY": {
         ".write": "
              // is authenticated
              auth != null
+             && (
+                 (
+                     root.child('members/' + auth.uid).exists()
+                  && root.child('configurations/app/restricted_access_to_members').val() === true
+                )
+                 || root.child('configurations/app/restricted_access_to_members').val() === false
+             )
              // cannot delete
           && newData.exists()
         ",
@@ -22,6 +38,13 @@
       "$USER_KEY": {
         ".read": "
              auth != null
+             && (
+                 (
+                     root.child('members/' + auth.uid).exists()
+                  && root.child('configurations/app/restricted_access_to_members').val() === true
+                )
+                 || root.child('configurations/app/restricted_access_to_members').val() === false
+             )
           && auth.uid != $USER_KEY
           && root.child('roles/admins/' + auth.uid).exists()
         ",
@@ -29,12 +52,28 @@
     },
     "items": {
       // is authenticated
-      ".read": "auth != null",
+      ".read": "
+        auth != null
+        && (
+            (
+                 root.child('members/' + auth.uid).exists()
+              && root.child('configurations/app/restricted_access_to_members').val() === true
+            )
+            || root.child('configurations/app/restricted_access_to_members').val() === false
+         )
+      ",
       ".indexOn": ["created_at"],
       "$ITEM_KEY": {
         ".write": "
              // is authenticated
              auth != null
+             && (
+                 (
+                     root.child('members/' + auth.uid).exists()
+                  && root.child('configurations/app/restricted_access_to_members').val() === true
+                )
+                 || root.child('configurations/app/restricted_access_to_members').val() === false
+             )
           && (
                // insert/update: must have this childs
                newData.hasChildren([
@@ -117,12 +156,26 @@
         ".read": "
              // must be logged in
              auth != null
+             && (
+                 (
+                     root.child('members/' + auth.uid).exists()
+                  && root.child('configurations/app/restricted_access_to_members').val() === true
+                )
+                 || root.child('configurations/app/restricted_access_to_members').val() === false
+             )
              // must be his own user key
           && auth.uid === $USER_ID
         ",
         ".write": "
              // is authenticated
              auth != null
+             && (
+                 (
+                     root.child('members/' + auth.uid).exists()
+                  && root.child('configurations/app/restricted_access_to_members').val() === true
+                )
+                 || root.child('configurations/app/restricted_access_to_members').val() === false
+             )
           && (
                // insert/update: must have this childs
                newData.hasChildren([
