@@ -3,6 +3,8 @@ set -e
 
 . ./$1
 
+cp -R src/assets dist
+
 echo ""
 echo " - NODE_ENV=$NODE_ENV"
 echo " - API_KEY=$API_KEY"
@@ -56,5 +58,12 @@ s3cmd sync ./dist/main.js.gz                         \
            -m text/js                                \
            --add-header='Cache-Control:max-age=3600' \
            --add-header='Content-Encoding:gzip'
+
+s3cmd sync ./dist/assets                             \
+           $S3_BUCKET_URL                            \
+           --delete-removed                          \
+           --reduced-redundancy                      \
+           --acl-public                              \
+           --add-header='Cache-Control:max-age=3600'
 
 s3cmd ws-info $S3_BUCKET_URL

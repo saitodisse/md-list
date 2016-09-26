@@ -3,6 +3,7 @@ set -e
 
 . ./$1
 
+
 echo ""
 echo " - NODE_ENV=$NODE_ENV"
 echo " - API_KEY=$API_KEY"
@@ -23,9 +24,16 @@ DATABASE_URL=$DATABASE_URL     \
 STORAGE_BUCKET=$STORAGE_BUCKET \
 ./node_modules/.bin/webpack
 
+cp -R src/assets dist
+
 git checkout gh-pages
+
 cp dist/main.js .
 cp dist/index.html .
+
+mkdir -p assets
+cp -R dist/assets/ ./assets/
+
 git add .
 git commit -m"Deploy" || true
 git push
