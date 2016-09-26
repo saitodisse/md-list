@@ -8,7 +8,7 @@ const toggleConfiguration = [
       // copy('input:value', `state:configurations.${config_key}`),
     ],
     error: [
-      copy('input:message', 'state:main.error'),
+      copy('input:error', 'state:main.error'),
     ]
   },
   set('state:main.is_loading', false),

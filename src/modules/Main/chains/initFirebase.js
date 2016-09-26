@@ -11,7 +11,7 @@ const initFirebase = [
       setItemsKeys,
     ],
     error: [
-      copy('input:code', 'state:main.error'),
+      copy('input:error', 'state:main.error'),
     ]
   },
   set('state:main.is_saving', false),

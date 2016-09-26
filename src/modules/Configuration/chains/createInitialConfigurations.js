@@ -20,7 +20,7 @@ const createInitialConfigurations = [
   saveInitialConfigurations, {
     success: [],
     error: [
-      copy('input:message', 'state:main.error')
+      copy('input:error', 'state:main.error')
     ]
   },
 

@@ -9,7 +9,7 @@ const getConfigurations = [
       copy('input:value', 'state:configurations'),
     ],
     error: [
-      copy('input:message', 'state:main.error'),
+      copy('input:error', 'state:main.error'),
     ]
   },
   getUserConfigurationData, {
@@ -17,7 +17,7 @@ const getConfigurations = [
       copy('input:value', 'state:login.user.configurations'),
     ],
     error: [
-      copy('input:message', 'state:main.error'),
+      copy('input:error', 'state:main.error'),
     ]
   },
   set('state:main.is_loading', false),

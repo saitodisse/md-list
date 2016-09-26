@@ -15,7 +15,7 @@ const deleteItemChain = [
     ],
     error: [
       set('state:main.is_saving', false),
-      copy('input:code', 'state:main.error'),
+      copy('input:error', 'state:main.error'),
     ]
   },
 ];

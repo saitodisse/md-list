@@ -26,8 +26,7 @@ const bootstrap = [
               set('state:login.user_saved', true),
             ],
             error: [
-              copy('input:code', 'state:login.error_code'),
-              copy('input:message', 'state:login.error_message'),
+              copy('input:error', 'state:main.error_message'),
             ]
           },
         ],
@@ -37,8 +36,7 @@ const bootstrap = [
               copy('input:value', 'state:configurations'),
             ],
             error: [
-              copy('input:code', 'state:login.error_code'),
-              copy('input:message', 'state:login.error_message'),
+              copy('input:error', 'state:main.error_message'),
             ]
           },
           getFirebaseUserConfigurations, {
@@ -46,8 +44,7 @@ const bootstrap = [
               copy('input:value', 'state:login.user.configurations'),
             ],
             error: [
-              copy('input:code', 'state:login.error_code'),
-              copy('input:message', 'state:login.error_message'),
+              copy('input:error', 'state:main.error_message'),
             ]
           },
           // existent user
@@ -62,15 +59,13 @@ const bootstrap = [
           }
         ],
         error: [
-          copy('input:code', 'state:login.error_code'),
-          copy('input:message', 'state:login.error_message'),
+          copy('input:error', 'state:main.error_message'),
         ]
       },
     ],
     error: [
       set('state:login.is_logged', false),
-      copy('input:code', 'state:login.error_code'),
-      copy('input:message', 'state:login.error_message'),
+      copy('input:error', 'state:main.error_message'),
     ]
   },
 
@@ -88,8 +83,7 @@ const bootstrap = [
       copy('input:notification_result', 'state:login.notification_result'),
     ],
     error: [
-      copy('input:code', 'state:login.error_code'),
-      copy('input:message', 'state:login.error_message'),
+      copy('input:error', 'state:main.error_message'),
     ]
   },
 

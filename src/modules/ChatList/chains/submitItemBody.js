@@ -19,7 +19,7 @@ const submitItemBody = [
       // enabling the input again
       set('state:main.is_saving', false),
       // We set an error to display
-      copy('input:code', 'state:main.error'),
+      copy('input:error', 'state:main.error'),
     ]
   },
 ];

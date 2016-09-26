@@ -12,8 +12,7 @@ const loginFacebook = [
     ],
     error: [
       set('state:login.is_logged', false),
-      copy('input:code', 'state:login.error_code'),
-      copy('input:message', 'state:login.error_message'),
+      copy('input:error', 'state:main.error_message'),
     ]
   },
   set('state:main.current_page', PAGE_CHAT_LIST),
