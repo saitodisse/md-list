@@ -30,7 +30,7 @@ export default {
     cursor: 'pointer',
     color: '#3e3654',
     border: '1px solid #bda4fb',
-    'font-size': '16px',
+    fontSize: '16px',
   },
 
 };

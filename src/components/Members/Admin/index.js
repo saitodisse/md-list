@@ -5,7 +5,7 @@ import styles from './styles';
 export default connect({
   is_admin: 'login.user.is_admin',
 }, {
-  toggleConfigurationClicked: 'configurations.toggleConfigurationClicked',
+  unmakeAdminClicked: 'members.unmakeAdminClicked',
 },
   class Admin extends React.Component {
     render() {
@@ -19,7 +19,7 @@ export default connect({
               {this.props.data.displayName}
             </div>
             <div style={styles.labelDescription} className="label">
-              {this.props.data.uid}
+              {this.props.data.user_id}
             </div>
           </div>
           <div style={styles.value} className="value">
@@ -27,7 +27,7 @@ export default connect({
               style={styles.button}
               type="button"
               value="unmake admin"
-              onClick={this.props.createInitialMembersClicked}
+              onClick={() => this.props.unmakeAdminClicked({user_id: this.props.data.user_id})}
             />
           </div>
         </div>

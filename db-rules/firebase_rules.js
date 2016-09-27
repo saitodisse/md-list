@@ -157,14 +157,17 @@
     "admins": {
       // only list if is admin
       ".read": "root.child('admins/' + auth.uid).exists()",
+      ".write": "root.child('admins/' + auth.uid).exists()",
     },
     "members": {
       // only list if is admin
       ".read": "root.child('admins/' + auth.uid).exists()",
+      ".write": "root.child('admins/' + auth.uid).exists()",
     },
     "users": {
       // only list if is admin
       ".read": "root.child('admins/' + auth.uid).exists()",
+      ".write": "root.child('admins/' + auth.uid).exists()",
       "$USER_ID": {
         ".read": "
              // must be logged in
