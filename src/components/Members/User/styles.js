@@ -25,11 +25,21 @@ export default {
     alignSelf: 'center',
   },
 
-  button: {
+  addMemberButton: {
     margin: '0 8px',
     cursor: 'pointer',
-    color: '#3e3654',
-    border: '1px solid #bda4fb',
+    color: '#184c2e',
+    border: '1px solid #3ba93e',
+    backgroundColor: '#bdffbf',
+    fontSize: '16px',
+  },
+
+  removeUserButton: {
+    margin: '0 8px',
+    cursor: 'pointer',
+    color: '#862929',
+    border: '1px solid #ce6980',
+    backgroundColor: '#ecd2d2',
     fontSize: '16px',
   },
 

@@ -19,7 +19,7 @@ export default connect({
               {this.props.data.displayName}
             </div>
             <div style={styles.labelDescription} className="label">
-              {this.props.data.user_id}
+              Admin
             </div>
           </div>
           <div style={styles.value} className="value">

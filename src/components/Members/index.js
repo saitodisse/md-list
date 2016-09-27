@@ -15,6 +15,14 @@ export default connect({
   unlistened: 'members.unlistened',
 },
   class Members extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        is_calculated: false
+      };
+    }
+
     componentDidMount() {
       this.props.membersLoaded();
     }
@@ -25,28 +33,51 @@ export default connect({
       }
     }
 
+    componentDidUpdate(prevProps) {
+      if (!this.state.is_calculated && !_.isEmpty(this.props.members.adminsList)) {
+        this.calculateLists();
+      } else if (!_.isEqual(this.props.members.adminsList, prevProps.members.adminsList)) {
+        this.calculateLists();
+      } else if (!_.isEqual(this.props.members.membersList, prevProps.members.membersList)) {
+        this.calculateLists();
+      } else if (!_.isEqual(this.props.members.usersList, prevProps.members.usersList)) {
+        this.calculateLists();
+      }
+    }
+
+    calculateLists = () => {
+      this.admins_keys = Object.keys(this.props.members.adminsList);
+
+      const members_keys = Object.keys(this.props.members.membersList);
+      this.members_keys = _.difference(members_keys, this.admins_keys);
+
+      const users_keys = Object.keys(this.props.members.usersList);
+      const members_and_admins = _.union(members_keys, this.admins_keys);
+      const users_filtered = _.difference(users_keys, members_and_admins);
+      this.users_keys = users_filtered;
+
+      this.setState({is_calculated: true});
+    }
+
     listAdmins = () => {
-      const keys = Object.keys(this.props.members.adminsList);
       return _.map((key) => ({
         key,
         item: this.props.members.usersList[key]
-      }), keys);
+      }), this.admins_keys);
     }
 
     listMembers = () => {
-      const keys = Object.keys(this.props.members.membersList);
       return _.map((key) => ({
         key,
         item: this.props.members.usersList[key]
-      }), keys);
+      }), this.members_keys);
     }
 
     listUsers = () => {
-      const keys = Object.keys(this.props.members.usersList);
       return _.map((key) => ({
         key,
         item: this.props.members.usersList[key]
-      }), keys);
+      }), this.users_keys);
     }
 
     render() {
@@ -59,10 +90,13 @@ export default connect({
 
           <section className="fields">
 
-            {this.props.members.adminsList && (
+            {!_.isEmpty(this.admins_keys) && (
               <div className="fieldGroup">
-                <div className="fieldGroupTitle">
+                <div style={styles.sectionTitle}>
                   Admins
+                </div>
+                <div style={styles.sectionSubTitle}>
+                  Manage Users and Global Configurations
                 </div>
                 {_.map(({key, item}) => (
                   <Admin data={item} key={key} />
@@ -70,10 +104,13 @@ export default connect({
               </div>
             )}
 
-            {this.props.members.membersList && (
+            {!_.isEmpty(this.members_keys) && (
               <div className="fieldGroup">
-                <div className="fieldGroupTitle">
+                <div style={styles.sectionTitle}>
                   Members
+                </div>
+                <div style={styles.sectionSubTitle}>
+                  Has private access
                 </div>
                 {_.map(({key, item}) => (
                   <Member data={item} key={key} />
@@ -81,10 +118,13 @@ export default connect({
               </div>
             )}
 
-            {this.props.members.usersList && (
+            {!_.isEmpty(this.users_keys) && (
               <div className="fieldGroup">
-                <div className="fieldGroupTitle">
+                <div style={styles.sectionTitle}>
                   Users
+                </div>
+                <div style={styles.sectionSubTitle}>
+                  Simple user
                 </div>
                 {_.map(({key, item}) => (
                   <User data={item} key={key} />

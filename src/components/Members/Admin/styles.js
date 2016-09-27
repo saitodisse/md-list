@@ -28,8 +28,9 @@ export default {
   button: {
     margin: '0 8px',
     cursor: 'pointer',
-    color: '#3e3654',
-    border: '1px solid #bda4fb',
+    color: '#862929',
+    border: '1px solid #ce6980',
+    backgroundColor: '#ecd2d2',
     fontSize: '16px',
   },
 

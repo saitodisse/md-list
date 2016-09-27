@@ -20,18 +20,18 @@ export default connect({
               {this.props.data.displayName}
             </div>
             <div style={styles.labelDescription} className="label">
-              {this.props.data.user_id}
+              Member
             </div>
           </div>
           <div style={styles.value} className="value">
             <input
-              style={styles.button}
+              style={styles.makeAdminButton}
               type="button"
               value="make admin"
               onClick={() => this.props.makeAdminClicked({user_id: this.props.data.user_id})}
             />
             <input
-              style={styles.button}
+              style={styles.removeMemberButton}
               type="button"
               value="remove member"
               onClick={() => this.props.removeMemberClicked({user_id: this.props.data.user_id})}
