@@ -19,18 +19,12 @@ export default connect({
       super(props);
 
       this.state = {
-        is_calculated: false
+        is_calculated: false,
       };
     }
 
     componentDidMount() {
       this.props.membersLoaded();
-    }
-
-    componentWillUnmount() {
-      if (this.props.members.is_listening_firebase) {
-        this.props.unlistened();
-      }
     }
 
     componentDidUpdate(prevProps) {
@@ -46,6 +40,10 @@ export default connect({
     }
 
     calculateLists = () => {
+      if (_.isEmpty(this.props.members.adminsList)) {
+        return;
+      }
+
       this.admins_keys = Object.keys(this.props.members.adminsList);
 
       const members_keys = Object.keys(this.props.members.membersList);

@@ -5,7 +5,6 @@ import removeUser from './chains/removeUser';
 import makeAdmin from './chains/makeAdmin';
 import removeMember from './chains/removeMember';
 import unmakeAdmin from './chains/unmakeAdmin';
-import stopListeningFirebase from './chains/stopListeningFirebase.js';
 
 // actions
 import firebaseMergeItem from './actions/firebaseMergeItem';
@@ -16,7 +15,6 @@ export default module => {
     usersList: null,
     membersList: null,
     adminsList: null,
-    is_listening_firebase: null,
   });
 
   module.addSignals({
@@ -26,7 +24,6 @@ export default module => {
     makeAdminClicked: makeAdmin,
     removeMemberClicked: removeMember,
     unmakeAdminClicked: unmakeAdmin,
-    unlistened: stopListeningFirebase,
 
     // call actions directly
     usersChildAdded: [firebaseMergeItem('members.usersList')],
