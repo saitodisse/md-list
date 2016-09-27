@@ -158,16 +158,19 @@
       // only list if is admin
       ".read": "root.child('admins/' + auth.uid).exists()",
       ".write": "root.child('admins/' + auth.uid).exists()",
+      ".indexOn": ["created_at"],
     },
     "members": {
       // only list if is admin
       ".read": "root.child('admins/' + auth.uid).exists()",
       ".write": "root.child('admins/' + auth.uid).exists()",
+      ".indexOn": ["created_at"],
     },
     "users": {
       // only list if is admin
       ".read": "root.child('admins/' + auth.uid).exists()",
       ".write": "root.child('admins/' + auth.uid).exists()",
+      ".indexOn": ["updated_at"],
       "$USER_ID": {
         ".read": "
              // must be logged in

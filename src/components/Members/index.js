@@ -11,10 +11,17 @@ export default connect({
   is_admin: 'login.user.is_admin',
 }, {
   membersLoaded: 'members.pageLoaded',
+  unlistened: 'members.unlistened',
 },
   class Members extends React.Component {
     componentDidMount() {
       this.props.membersLoaded();
+    }
+
+    componentWillUnmount() {
+      if (this.props.members.is_listening_firebase) {
+        this.props.unlistened();
+      }
     }
 
     render() {
