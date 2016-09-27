@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'cerebral-view-react';
 import styles from './styles';
-import R from 'ramda';
+import _ from 'lodash/fp';
 import marked from 'marked';
 import highlight from 'highlight.js';
 import emojify from 'emojify.js';
@@ -51,7 +51,7 @@ export default connect(_props => ({
       }
 
       const item_id = this.props.item.id;
-      const new_current_item_id = R.pathOr(null, ['id'], nextProps.current_item);
+      const new_current_item_id = _.getOr(null, ['id'], nextProps.current_item);
       const is_current_item = (item_id === new_current_item_id);
 
       // item was selected
@@ -60,7 +60,7 @@ export default connect(_props => ({
       }
 
       // item was deselected
-      const old_current_item_id = R.pathOr(null, ['id'], this.props.current_item);
+      const old_current_item_id = _.getOr(null, ['id'], this.props.current_item);
       const was_current_item = (
            old_current_item_id === item_id
         && (
@@ -82,8 +82,8 @@ export default connect(_props => ({
 
       // configurations changed
       function checkConfiguration(curr, next, path) {
-        const currConfig = R.pathOr(false, path, curr);
-        const nextConfig = R.pathOr(false, path, next);
+        const currConfig = _.getOr(false, path, curr);
+        const nextConfig = _.getOr(false, path, next);
         return currConfig !== nextConfig;
       }
       const configurations_changed = (
@@ -172,7 +172,7 @@ export default connect(_props => ({
 
     render() {
       // check if item exists
-      if ( !R.pathOr(false, ['item'], this.props)) {
+      if (!this.props.item) {
         console.error('\n%% ERROR: item is null \n');
         return null;
       }
@@ -188,7 +188,7 @@ export default connect(_props => ({
       // --------------
       // responsive: font-size
       function getConfiguration(curr, path, orValue) {
-        const currConfig = R.pathOr(orValue, path, curr);
+        const currConfig = _.getOr(orValue, path, curr);
         return currConfig;
       }
       if (this.props.window_size_is_mobile) {
@@ -229,7 +229,7 @@ export default connect(_props => ({
       const me_id = this.props.user_id;
       const item_uid = this.props.item.user_id;
       const is_my_item = (me_id === item_uid);
-      const edit_other_users_items = R.pathOr(false, ['app', 'edit_other_users_items'], this.props.configurations);
+      const edit_other_users_items = _.getOr(false, ['app', 'edit_other_users_items'], this.props.configurations);
 
       return (
         <div style={styles.messageContainer} id="messageContainer">
@@ -271,7 +271,7 @@ export default connect(_props => ({
 
             <div style={itemStyle}>
               <div
-                style={R.clone(valueStyle)}
+                style={_.clone(valueStyle)}
                 dangerouslySetInnerHTML={this.renderMarkdown()}
               / >
             </div>

@@ -35,6 +35,7 @@ function notificationItemAdd({ input, services, state }) {
 
     return {notificationOnClick: notif.onclick};
   }
+  return null;
 }
 
 export default notificationItemAdd;

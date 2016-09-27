@@ -12,7 +12,9 @@
   },
   "plugins": [
     "react",
+    "lodash-fp",
   ],
+  "extends": "plugin:lodash-fp/recommended",
   "ecmaFeatures": {
     "arrowFunctions": true,
     "blockBindings": true,

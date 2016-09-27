@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'cerebral-view-react';
-import R from 'ramda';
+import _ from 'lodash/fp';
 import autosize from 'autosize';
 import itemsListCountComputed from '~/computed/itemsListCountComputed';
 import Items from './Items';
@@ -81,13 +81,13 @@ export default connect({
     }
 
     _OnSubmit = () => {
-      const value = R.trim(this.textareaNode.value);
+      const value = _.trim(this.textareaNode.value);
 
       this.props.currentItemChanged({
         body: value
       });
 
-      const hasValue = !R.isEmpty(value);
+      const hasValue = !_.isEmpty(value);
       if (hasValue) {
         this.props.currentItemSubmitted({
           id: this.props.current_item_id

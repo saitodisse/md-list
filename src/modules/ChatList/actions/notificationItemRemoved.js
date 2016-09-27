@@ -28,6 +28,8 @@ function notificationItemRemoved({ input, services, state }) {
 
     return {notificationOnClick: notif.onclick};
   }
+
+  return null;
 }
 
 export default notificationItemRemoved;

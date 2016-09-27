@@ -4,6 +4,7 @@ import styles from './styles';
 import Admin from './Admin';
 import Member from './Member';
 import User from './User';
+import _ from 'lodash/fp';
 
 export default connect({
   members: 'members.*',
@@ -24,6 +25,30 @@ export default connect({
       }
     }
 
+    listAdmins = () => {
+      const keys = Object.keys(this.props.members.adminsList);
+      return _.map((key) => ({
+        key,
+        item: this.props.members.usersList[key]
+      }), keys);
+    }
+
+    listMembers = () => {
+      const keys = Object.keys(this.props.members.membersList);
+      return _.map((key) => ({
+        key,
+        item: this.props.members.usersList[key]
+      }), keys);
+    }
+
+    listUsers = () => {
+      const keys = Object.keys(this.props.members.usersList);
+      return _.map((key) => ({
+        key,
+        item: this.props.members.usersList[key]
+      }), keys);
+    }
+
     render() {
       return (
         <div style={styles.container} className="container">
@@ -39,7 +64,9 @@ export default connect({
                 <div className="fieldGroupTitle">
                   Admins
                 </div>
-                {Object.keys(this.props.members.adminsList).map((key) => <Admin data={this.props.members.usersList[key]} key={key} />)}
+                {_.map(({key, item}) => (
+                  <Admin data={item} key={key} />
+                ), this.listAdmins())}
               </div>
             )}
 
@@ -48,7 +75,9 @@ export default connect({
                 <div className="fieldGroupTitle">
                   Members
                 </div>
-                {Object.keys(this.props.members.membersList).map((key) => <Member data={this.props.members.usersList[key]} key={key} />)}
+                {_.map(({key, item}) => (
+                  <Member data={item} key={key} />
+                ), this.listMembers())}
               </div>
             )}
 
@@ -57,7 +86,9 @@ export default connect({
                 <div className="fieldGroupTitle">
                   Users
                 </div>
-                {Object.keys(this.props.members.usersList).map((key) => <User data={this.props.members.usersList[key]} key={key} />)}
+                {_.map(({key, item}) => (
+                  <User data={item} key={key} />
+                ), this.listUsers())}
               </div>
             )}
 

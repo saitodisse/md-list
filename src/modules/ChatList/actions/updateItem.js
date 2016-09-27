@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import R from 'ramda';
+import _ from 'lodash/fp';
 
 function updateItem({ input, state, output }) {
   // User info
@@ -13,7 +13,7 @@ function updateItem({ input, state, output }) {
   // Prepare data
   const current_item = state.get('chatList.current_item');
   const body = current_item.body;
-  const is_updating = !R.isNil(input.id);
+  const is_updating = !_.isNil(input.id);
 
   // Get a key for a new Post.
   let key = null;

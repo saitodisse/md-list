@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'cerebral-view-react';
 import styles from './styles';
 import ConfigurationField from './ConfigurationField';
-import R from 'ramda';
+import _ from 'lodash/fp';
 
 export default connect({
   configurations: 'configurations.*',
@@ -50,14 +50,14 @@ export default connect({
 
     render() {
       // wait prop
-      if (R.pathOr(
+      if (_.getOr(
           null,
           ['app', 'restricted_access_to_members'],
           this.props.configurations) === null) {
         return this.renderCreateInitialConfigurationsButton();
       }
 
-      const has_user_configuration = R.pathOr(
+      const has_user_configuration = _.getOr(
           null,
           ['desktop', 'font_size'],
           this.props.user_configurations) !== null;
@@ -87,7 +87,7 @@ export default connect({
                   title="Private"
                   description="Only members can read and post items"
                   only_admin={true}
-                  value={R.pathOr(false, ['app', 'restricted_access_to_members'], this.props.configurations)}
+                  value={_.getOr(false, ['app', 'restricted_access_to_members'], this.props.configurations)}
                   path={'/configurations/app/restricted_access_to_members'}
                 />
 
@@ -95,7 +95,7 @@ export default connect({
                   title="Shared Itens"
                   description="User can edit others users items"
                   only_admin={true}
-                  value={R.pathOr(false, ['app', 'edit_other_users_items'], this.props.configurations)}
+                  value={_.getOr(false, ['app', 'edit_other_users_items'], this.props.configurations)}
                   path={'/configurations/app/edit_other_users_items'}
                 />
 

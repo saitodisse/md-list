@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'cerebral-view-react';
 import styles from './styles';
-import R from 'ramda';
+import _ from 'lodash/fp';
 
 export default connect({
   is_admin: 'login.user.is_admin',
@@ -12,7 +12,7 @@ export default connect({
     render() {
       // set background if not admin
       const adminFieldContainer = !this.props.is_admin && this.props.only_admin ?
-        R.merge(styles.fieldContainer, {
+        _.merge(styles.fieldContainer, {
           backgroundColor: 'antiquewhite',
         }) :
         styles.fieldContainer;

@@ -15,13 +15,6 @@ const valueStyle = {
   // fontSize: 14,
 };
 
-const noSelect = {
-  userSelect: 'none',
-  MozUserSelect: 'none',
-  WebkitUserSelect: 'none',
-  msUserSelect: 'none',
-};
-
 export default {
 
   messageContainer: {
