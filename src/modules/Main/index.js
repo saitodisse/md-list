@@ -2,6 +2,7 @@ import showLogin from './chains/showLogin';
 import showMain from './chains/showMain';
 import showChatList from './chains/showChatList';
 import showConfiguration from './chains/showConfiguration';
+import showMembers from './chains/showMembers';
 import bootstrap from './chains/bootstrap';
 import initFirebase from './chains/initFirebase';
 import unlistenFirebase from './chains/unlistenFirebase';
@@ -22,6 +23,7 @@ export default module => {
     redirectedToLogin: showLogin,
     redirectedToChatList: showChatList,
     redirectedToConfiguration: showConfiguration,
+    redirectedToMembers: showMembers,
     pageLoaded: bootstrap,
     userLoggedIn: initFirebase,
     userLoggedOut: unlistenFirebase,

@@ -4,6 +4,7 @@ import {connect} from 'cerebral-view-react';
 import Login from '~/components/Login';
 import ChatList from '~/components/ChatList';
 import Configuration from '~/components/Configuration';
+import Members from '~/components/Members';
 import screenfull from 'screenfull';
 import NotificationSystem from 'react-notification-system';
 
@@ -12,6 +13,7 @@ import {
   PAGE_LOGIN,
   PAGE_CHAT_LIST,
   PAGE_CONFIGURATION,
+  PAGE_MEMBERS,
 } from '~/constants';
 
 function getPages() {
@@ -19,6 +21,7 @@ function getPages() {
   pages[PAGE_LOGIN] = <Login />;
   pages[PAGE_CHAT_LIST] = <ChatList />;
   pages[PAGE_CONFIGURATION] = <Configuration />;
+  pages[PAGE_MEMBERS] = <Members />;
   pages[PAGE_EMPTY] = null;
   return pages;
 }
@@ -43,6 +46,7 @@ export default connect({
   redirectedToLogin: 'main.redirectedToLogin',
   redirectedToChatList: 'main.redirectedToChatList',
   redirectedToConfiguration: 'main.redirectedToConfiguration',
+  redirectedToMembers: 'main.redirectedToMembers',
 
   signOutClicked: 'login.signOutClicked',
 
@@ -169,6 +173,12 @@ export default connect({
               onClick={() => this.props.redirectedToConfiguration()}
             >
               config
+            </a>
+            <a
+              style={styles.topLink}
+              onClick={() => this.props.redirectedToMembers()}
+            >
+              members
             </a>
             <span style={styles.topSeparator}>
               |

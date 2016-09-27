@@ -32,7 +32,7 @@
 
         ".validate": "
           // must have admin role
-          root.child('roles/admins/' + auth.uid).exists()
+          root.child('admins/' + auth.uid).exists()
         ",
       }
     },
@@ -49,7 +49,7 @@
                  || !root.child('configurations/app/restricted_access_to_members').exists()
              )
           && auth.uid != $USER_KEY
-          && root.child('roles/admins/' + auth.uid).exists()
+          && root.child('admins/' + auth.uid).exists()
         ",
       }
     },
@@ -154,9 +154,17 @@
         "$other": { ".validate": false },
       }
     },
+    "admins": {
+      // only list if is admin
+      ".read": "root.child('admins/' + auth.uid).exists()",
+    },
+    "members": {
+      // only list if is admin
+      ".read": "root.child('admins/' + auth.uid).exists()",
+    },
     "users": {
-      // cannot list
-      ".read": "false",
+      // only list if is admin
+      ".read": "root.child('admins/' + auth.uid).exists()",
       "$USER_ID": {
         ".read": "
              // must be logged in
@@ -170,7 +178,8 @@
                  || !root.child('configurations/app/restricted_access_to_members').exists()
              )
              // must be his own user key
-          && auth.uid === $USER_ID
+          && (  auth.uid === $USER_ID
+             || root.child('admins/' + auth.uid).exists())
         ",
         ".write": "
              // is authenticated

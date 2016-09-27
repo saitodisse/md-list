@@ -130,6 +130,7 @@ section.fields input[type=text] {
   .labelContainer {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 }
 

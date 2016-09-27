@@ -9,6 +9,7 @@ import Main from './modules/Main';
 import Login from './modules/Login';
 import ChatList from './modules/ChatList';
 import Configuration from './modules/Configuration';
+import Members from './modules/Members';
 
 import FirebaseModule from 'cerebral-module-firebase';
 // import FirebaseModule from '../../cerebral-module-firebase/build/index.js';
@@ -25,6 +26,8 @@ controller.addModules({
   chatList: ChatList,
   configurations: Configuration,
 
+  members: Members,
+
   // services
   http: Http({
     baseUrl: '/api',
@@ -38,6 +41,7 @@ controller.addModules({
   router: Router({
     '/login': 'main.redirectedToLogin',
     '/config': 'main.redirectedToConfiguration',
+    '/members': 'main.redirectedToMembers',
     '/': 'main.redirectedToChatList',
   }, {
     onlyHash: true
