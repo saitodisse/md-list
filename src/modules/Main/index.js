@@ -16,6 +16,8 @@ export default module => {
     window_size_is_mobile: null,
     is_saving: false,
     error: null,
+    all_loaded: false,
+    loading_status: {},
   });
 
   module.addSignals({

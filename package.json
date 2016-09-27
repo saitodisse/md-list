@@ -38,6 +38,7 @@
     "html-webpack-plugin": "^2.22.0",
     "lodash": "^4.16.2",
     "marked": "^0.3.6",
+    "moment": "^2.15.1",
     "plantuml-encoder": "^1.2.3",
     "react": "^15.3.x",
     "react-dom": "^15.3.x",

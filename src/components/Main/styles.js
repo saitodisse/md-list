@@ -79,4 +79,48 @@ export default {
     cursor: 'pointer',
   },
 
+  loadingContainer: {
+    display: 'flex',
+    height: '100%',
+    flexDirection: 'column',
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    overflow: 'hide',
+    textAlign: 'center',
+    marginTop: 30,
+  },
+
+  loadingStatus: {
+    display: 'flex',
+    height: '100%',
+    flexDirection: 'column',
+    fontSize: 15,
+    marginLeft: '8%',
+    marginRight: '8%',
+    overflow: 'hide',
+    textAlign: 'left',
+    marginTop: 30,
+  },
+
+  loadingStatusContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  loadingStatusLogType: {
+    margin: '2px',
+    border: '1px solid #6a969a',
+    borderRadius: '6px',
+    padding: '1px 4px',
+  },
+  loadingStatusLogMessage: {
+
+  },
+  loadingStatusLogTime: {
+
+  },
+
 };

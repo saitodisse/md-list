@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'cerebral-view-react';
+import moment from 'moment';
+import _ from 'lodash/fp';
 
 import Login from '~/components/Login';
 import ChatList from '~/components/ChatList';
@@ -37,6 +39,8 @@ export default connect({
   window_size_is_mobile: 'main.window_size_is_mobile',
   error_message: 'main.error',
   is_admin: 'login.user.is_admin',
+  all_loaded: 'main.all_loaded',
+  loading_status: 'main.loading_status',
 }, {
   pageLoaded: 'main.pageLoaded',
 
@@ -154,7 +158,53 @@ export default connect({
       }
     }
 
+    _showLoading = () => {
+      return (
+        <ul style={styles.loadingStatus}>
+          {_.map((item) => {
+            if (item.logType === 'log') {
+              return (
+                <li key={item.id} style={styles.loadingStatusContainer}>
+                  <div style={styles.loadingStatusLogType}>
+                    {item.context}
+                  </div>
+                  <div style={styles.loadingStatusLogMessage}>
+                    {item.message}
+                  </div>
+                </li>
+              );
+            } else if (item.logType === 'start') {
+              this._startDate = item.created_at;
+            } else if (item.logType === 'end') {
+              return (
+                <li key={item.id} style={styles.loadingStatusContainer}>
+                  <div style={styles.loadingStatusLogType}>
+                    {item.context}
+                  </div>
+                  <div style={styles.loadingStatusLogTime}>
+                    {
+                      item.created_at - this._startDate
+                    }
+                  </div>
+                </li>
+              );
+            }
+            return null;
+          }, this.props.loading_status)}
+        </ul>
+      );
+    }
+
     render() {
+      if (!this.props.all_loaded) {
+        return (
+          <div style={styles.loadingContainer} id="loadingContainer">
+            Loading...
+            {this._showLoading()}
+          </div>
+        );
+      }
+
       const pages = getPages();
       return (
         <div style={styles.mainContainer} id="mainContainer">
