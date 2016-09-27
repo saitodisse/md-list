@@ -36,6 +36,7 @@ export default connect({
   page_is_visible: 'main.page_is_visible',
   window_size_is_mobile: 'main.window_size_is_mobile',
   error_message: 'main.error',
+  is_admin: 'login.user.is_admin',
 }, {
   pageLoaded: 'main.pageLoaded',
 
@@ -174,12 +175,16 @@ export default connect({
             >
               config
             </a>
-            <a
-              style={styles.topLink}
-              onClick={() => this.props.redirectedToMembers()}
-            >
-              members
-            </a>
+
+            {this.props.is_admin && (
+              <a
+                style={styles.topLink}
+                onClick={() => this.props.redirectedToMembers()}
+              >
+                members
+              </a>
+            )}
+
             <span style={styles.topSeparator}>
               |
             </span>

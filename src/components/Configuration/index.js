@@ -76,29 +76,31 @@ export default connect({
               Global App (Admin Only)
               /////////////
             */}
-            <div className="fieldGroup">
+            {this.props.is_admin && (
+              <div className="fieldGroup">
 
-              <div className="fieldGroupTitle">
-                Chat (admin only)
+                <div className="fieldGroupTitle">
+                  Chat (admin only)
+                </div>
+
+                <ConfigurationField
+                  title="Private"
+                  description="Only members can read and post items"
+                  only_admin={true}
+                  value={R.pathOr(false, ['app', 'restricted_access_to_members'], this.props.configurations)}
+                  path={'/configurations/app/restricted_access_to_members'}
+                />
+
+                <ConfigurationField
+                  title="Shared Itens"
+                  description="User can edit others users items"
+                  only_admin={true}
+                  value={R.pathOr(false, ['app', 'edit_other_users_items'], this.props.configurations)}
+                  path={'/configurations/app/edit_other_users_items'}
+                />
+
               </div>
-
-              <ConfigurationField
-                title="Private"
-                description="Only members can read and post items"
-                only_admin={true}
-                value={R.pathOr(false, ['app', 'restricted_access_to_members'], this.props.configurations)}
-                path={'/configurations/app/restricted_access_to_members'}
-              />
-
-              <ConfigurationField
-                title="Shared Itens"
-                description="User can edit others users items"
-                only_admin={true}
-                value={R.pathOr(false, ['app', 'edit_other_users_items'], this.props.configurations)}
-                path={'/configurations/app/edit_other_users_items'}
-              />
-
-            </div>
+            )}
 
             {/*
               /////////////
@@ -180,7 +182,7 @@ export default connect({
               Global User (Admin Only)
               /////////////
             */}
-            {this.props.configurations.user && this.props.configurations.user.desktop && (
+            {this.props.is_admin && this.props.configurations.user && this.props.configurations.user.desktop && (
               <div className="fieldGroup">
 
                 <div className="fieldGroupTitle">
@@ -213,7 +215,7 @@ export default connect({
               </div>
             )}
 
-            {this.props.configurations.user && this.props.configurations.user.mobile && (
+            {this.props.is_admin && this.props.configurations.user && this.props.configurations.user.mobile && (
               <div className="fieldGroup">
 
                 <div className="fieldGroupTitle">
