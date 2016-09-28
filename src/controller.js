@@ -5,6 +5,7 @@ import Devtools from 'cerebral-module-devtools';
 import Router from 'cerebral-module-router';
 
 import Notifications from './modules/Notifications';
+import ElasticSearch from './modules/ElasticSearch';
 import Main from './modules/Main';
 import Login from './modules/Login';
 import ChatList from './modules/ChatList';
@@ -29,13 +30,6 @@ controller.addModules({
   members: Members,
 
   // services
-  http: Http({
-    baseUrl: '/api',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  }),
-
   devtools: process.env.NODE_ENV === 'production' ? () => {} : Devtools(),
 
   router: Router({
@@ -55,6 +49,16 @@ controller.addModules({
       storageBucket: process.env.STORAGE_BUCKET,
     },
   }),
+
+  http: Http({
+    baseUrl: process.env.ELASTIC_SEARCH_URI,
+    cors: true,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  }),
+
+  elasticsearch: ElasticSearch,
 
   notifications: Notifications(),
 

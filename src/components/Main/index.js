@@ -60,9 +60,11 @@ export default connect({
   windowSizeIsMobileEmited: 'main.windowSizeIsMobileEmited',
   windowSizeIsDesktopEmited: 'main.windowSizeIsDesktopEmited',
 
+  elasticsearchHelthRequested: 'elasticsearch.elasticsearchHelthRequested',
 },
   class Main extends React.Component {
     componentDidMount() {
+      this.props.elasticsearchHelthRequested();
       this.props.pageLoaded();
       this.listenPageVisibilityChanges();
       this._resizeThrottler();

@@ -15,6 +15,7 @@ const plugins = [
       'AUTH_DOMAIN': JSON.stringify(process.env.AUTH_DOMAIN),
       'DATABASE_URL': JSON.stringify(process.env.DATABASE_URL),
       'STORAGE_BUCKET': JSON.stringify(process.env.STORAGE_BUCKET),
+      'ELASTIC_SEARCH_URI': JSON.stringify(process.env.ELASTIC_SEARCH_URI),
     }
   })
 ];

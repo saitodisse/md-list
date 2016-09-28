@@ -83,3 +83,36 @@ _You must make your facebook app public to allow others to login (https://develo
 ---------
 
 If you want a server/client example made with `express` and `JSON server` go to this branch: https://github.com/saitodisse/md-list/tree/json-server
+
+
+# Elastic Search
+
+Reff:
+
+- Fast tutorial: http://www.elasticsearchtutorial.com/elasticsearch-in-5-minutes.html
+- CORS: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html
+- Cluster Health: https://www.elastic.co/guide/en/elasticsearch/reference/current/_cluster_health.html
+- API otions: https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html
+
+### Arch linux install
+
+```sh
+sudo pacman -S elasticsearch
+
+# enable/ start
+sudo systemctl enable elasticsearch
+sudo systemctl start elasticsearch
+
+# info
+sudo systemctl show elasticsearch
+
+# configure: edit elasticsearch.yml
+sudo subl3 /etc/elasticsearch/elasticsearch.yml
+# enable CORS
+http.cors.enabled: true
+http.cors.allow-origin: /https?:\/\/localhost(:[0-9]+)?/
+
+# restart to enable changes
+sudo systemctl restart elasticsearch
+```
+
