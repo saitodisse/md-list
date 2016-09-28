@@ -3477,7 +3477,7 @@
 
 	var ReactComponentTreeHook;
 
-	if (typeof process !== 'undefined' && ({"NODE_ENV":"dev","API_KEY":"AIzaSyCVkP7zsVK8Q8KmzcvdTTklBU-Oy6_Q830","AUTH_DOMAIN":"md-list-dev.firebaseapp.com","DATABASE_URL":"https://md-list-dev.firebaseio.com","STORAGE_BUCKET":"md-list-dev.appspot.com","ELASTIC_SEARCH_URI":"http://localhost:9200"}) && ("dev") === 'test') {
+	if (typeof process !== 'undefined' && ({"NODE_ENV":"dev","API_KEY":"AIzaSyCVkP7zsVK8Q8KmzcvdTTklBU-Oy6_Q830","AUTH_DOMAIN":"md-list-dev.firebaseapp.com","DATABASE_URL":"https://md-list-dev.firebaseio.com","STORAGE_BUCKET":"md-list-dev.appspot.com","ELASTIC_SEARCH_URI":"https://n90oj70dju:4pl1tabv1u@julios-first-sandbox-1122379650.us-west-2.bonsai.io"}) && ("dev") === 'test') {
 	  // Temporary hack.
 	  // Inline requires don't work well with Jest:
 	  // https://github.com/facebook/react/issues/7240
@@ -14745,7 +14745,7 @@
 
 	var ReactComponentTreeHook;
 
-	if (typeof process !== 'undefined' && ({"NODE_ENV":"dev","API_KEY":"AIzaSyCVkP7zsVK8Q8KmzcvdTTklBU-Oy6_Q830","AUTH_DOMAIN":"md-list-dev.firebaseapp.com","DATABASE_URL":"https://md-list-dev.firebaseio.com","STORAGE_BUCKET":"md-list-dev.appspot.com","ELASTIC_SEARCH_URI":"http://localhost:9200"}) && ("dev") === 'test') {
+	if (typeof process !== 'undefined' && ({"NODE_ENV":"dev","API_KEY":"AIzaSyCVkP7zsVK8Q8KmzcvdTTklBU-Oy6_Q830","AUTH_DOMAIN":"md-list-dev.firebaseapp.com","DATABASE_URL":"https://md-list-dev.firebaseio.com","STORAGE_BUCKET":"md-list-dev.appspot.com","ELASTIC_SEARCH_URI":"https://n90oj70dju:4pl1tabv1u@julios-first-sandbox-1122379650.us-west-2.bonsai.io"}) && ("dev") === 'test') {
 	  // Temporary hack.
 	  // Inline requires don't work well with Jest:
 	  // https://github.com/facebook/react/issues/7240
@@ -16230,7 +16230,7 @@
 
 	var ReactComponentTreeHook;
 
-	if (typeof process !== 'undefined' && ({"NODE_ENV":"dev","API_KEY":"AIzaSyCVkP7zsVK8Q8KmzcvdTTklBU-Oy6_Q830","AUTH_DOMAIN":"md-list-dev.firebaseapp.com","DATABASE_URL":"https://md-list-dev.firebaseio.com","STORAGE_BUCKET":"md-list-dev.appspot.com","ELASTIC_SEARCH_URI":"http://localhost:9200"}) && ("dev") === 'test') {
+	if (typeof process !== 'undefined' && ({"NODE_ENV":"dev","API_KEY":"AIzaSyCVkP7zsVK8Q8KmzcvdTTklBU-Oy6_Q830","AUTH_DOMAIN":"md-list-dev.firebaseapp.com","DATABASE_URL":"https://md-list-dev.firebaseio.com","STORAGE_BUCKET":"md-list-dev.appspot.com","ELASTIC_SEARCH_URI":"https://n90oj70dju:4pl1tabv1u@julios-first-sandbox-1122379650.us-west-2.bonsai.io"}) && ("dev") === 'test') {
 	  // Temporary hack.
 	  // Inline requires don't work well with Jest:
 	  // https://github.com/facebook/react/issues/7240
@@ -21935,7 +21935,7 @@
 	  }),
 
 	  http: (0, _cerebralModuleHttp2.default)({
-	    baseUrl: ("http://localhost:9200"),
+	    baseUrl: ("https://n90oj70dju:4pl1tabv1u@julios-first-sandbox-1122379650.us-west-2.bonsai.io"),
 	    cors: true,
 	    headers: {
 	      'Content-Type': 'application/json'
