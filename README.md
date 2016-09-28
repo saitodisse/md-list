@@ -94,6 +94,12 @@ Reff:
 - Cluster Health: https://www.elastic.co/guide/en/elasticsearch/reference/current/_cluster_health.html
 - API otions: https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html
 
+Free:
+
+- https://bonsai.io/pricing (125MB)
+- http://www.searchly.com/#pricing (5MB)
+- https://www.slant.co/topics/170/~hosted-elasticsearch-services
+
 ### Arch linux install
 
 ```sh
