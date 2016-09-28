@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'cerebral-view-react';
-import moment from 'moment';
 import _ from 'lodash/fp';
+import screenfull from 'screenfull';
+import NotificationSystem from 'react-notification-system';
 
 import Login from '~/components/Login';
 import ChatList from '~/components/ChatList';
 import Configuration from '~/components/Configuration';
 import Members from '~/components/Members';
-import screenfull from 'screenfull';
-import NotificationSystem from 'react-notification-system';
+import Search from '~/components/Search';
 
 import {
   PAGE_EMPTY,
@@ -16,6 +16,7 @@ import {
   PAGE_CHAT_LIST,
   PAGE_CONFIGURATION,
   PAGE_MEMBERS,
+  PAGE_SEARCH,
 } from '~/constants';
 
 function getPages() {
@@ -24,6 +25,7 @@ function getPages() {
   pages[PAGE_CHAT_LIST] = <ChatList />;
   pages[PAGE_CONFIGURATION] = <Configuration />;
   pages[PAGE_MEMBERS] = <Members />;
+  pages[PAGE_SEARCH] = <Search />;
   pages[PAGE_EMPTY] = null;
   return pages;
 }
@@ -52,6 +54,7 @@ export default connect({
   redirectedToChatList: 'main.redirectedToChatList',
   redirectedToConfiguration: 'main.redirectedToConfiguration',
   redirectedToMembers: 'main.redirectedToMembers',
+  redirectedToSearch: 'main.redirectedToSearch',
 
   signOutClicked: 'login.signOutClicked',
 
@@ -60,7 +63,7 @@ export default connect({
   windowSizeIsMobileEmited: 'main.windowSizeIsMobileEmited',
   windowSizeIsDesktopEmited: 'main.windowSizeIsDesktopEmited',
 
-  elasticsearchHelthRequested: 'elasticsearch.elasticsearchHelthRequested',
+  elasticsearchHelthRequested: 'search.elasticsearchHelthRequested',
 },
   class Main extends React.Component {
     componentDidMount() {
@@ -226,6 +229,13 @@ export default connect({
               onClick={() => this.props.redirectedToConfiguration()}
             >
               config
+            </a>
+
+            <a
+              style={styles.topLink}
+              onClick={() => this.props.redirectedToSearch()}
+            >
+              search
             </a>
 
             {this.props.is_admin && (

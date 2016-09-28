@@ -2,21 +2,21 @@ import mergeItem from '../actions/mergeItem';
 import notificationItemAdd from '../actions/notificationItemAdd';
 import {debounce} from 'cerebral/operators';
 
-import elasticsearchPutData from '~/modules/ElasticSearch/actions/elasticsearchPutData';
+import elasticsearchPutData from '~/modules/Search/actions/elasticsearchPutData';
 import { when, copy } from 'cerebral/operators';
 
 const receiveDataFromFirebase = [
   mergeItem,
 
-  when('state:elasticsearch.enabled'), {
+  when('state:search.enabled'), {
     true: [
       elasticsearchPutData, {
         success: [
-          copy('input:status', 'state:elasticsearch.status'),
+          copy('input:status', 'state:search.status'),
         ],
         error: [
-          copy('input:status', 'state:elasticsearch.status'),
-          copy('input:result.error', 'state:elasticsearch.error'),
+          copy('input:status', 'state:search.status'),
+          copy('input:result.error', 'state:search.error'),
         ]
       },
     ],

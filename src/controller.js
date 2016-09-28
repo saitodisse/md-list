@@ -5,7 +5,7 @@ import Devtools from 'cerebral-module-devtools';
 import Router from 'cerebral-module-router';
 
 import Notifications from './modules/Notifications';
-import ElasticSearch from './modules/ElasticSearch';
+import Search from './modules/Search';
 import Main from './modules/Main';
 import Login from './modules/Login';
 import ChatList from './modules/ChatList';
@@ -26,6 +26,7 @@ controller.addModules({
   login: Login,
   chatList: ChatList,
   configurations: Configuration,
+  search: Search,
 
   members: Members,
 
@@ -36,6 +37,7 @@ controller.addModules({
     '/login': 'main.redirectedToLogin',
     '/config': 'main.redirectedToConfiguration',
     '/members': 'main.redirectedToMembers',
+    '/search': 'main.redirectedToSearch',
     '/': 'main.redirectedToChatList',
   }, {
     onlyHash: true
@@ -58,7 +60,6 @@ controller.addModules({
     },
   }),
 
-  elasticsearch: ElasticSearch,
 
   notifications: Notifications(),
 
