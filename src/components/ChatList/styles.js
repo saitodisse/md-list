@@ -41,7 +41,7 @@ export default {
   input: {
     overflowY: 'auto',
     textAlign: 'center',
-    marginBottom: 34,
+    marginBottom: 53,
     fontWeight: 'bold',
     color: '#777',
   },
