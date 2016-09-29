@@ -1,7 +1,5 @@
 import React from 'react';
 import {connect} from 'cerebral-view-react';
-import styles from './styles';
-import _ from 'lodash/fp';
 
 export default connect({
   // is_admin: 'login.user.is_admin',

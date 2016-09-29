@@ -10,6 +10,7 @@ import ChatListFooter from '~/components/ChatList/ChatListFooter';
 import Configuration from '~/components/Configuration';
 import Members from '~/components/Members';
 import Search from '~/components/Search';
+import itemsListCountComputed from '~/computed/itemsListCountComputed';
 
 import {
   PAGE_EMPTY,
@@ -62,6 +63,8 @@ export default connect({
   is_admin: 'login.user.is_admin',
   all_loaded: 'main.all_loaded',
   loading_status: 'main.loading_status',
+  scroll_requested: 'chatList.scroll_requested',
+  itemsCount: itemsListCountComputed(),
 }, {
   pageLoaded: 'main.pageLoaded',
 
@@ -83,6 +86,7 @@ export default connect({
   windowSizeIsDesktopEmited: 'main.windowSizeIsDesktopEmited',
 
   elasticsearchHelthRequested: 'search.elasticsearchHelthRequested',
+  scrollDone: 'chatList.scrollDone',
 },
   class Main extends React.Component {
     componentDidMount() {
@@ -115,6 +119,47 @@ export default connect({
         this._notificationSystem.addNotification({
           message: this.props.error_message,
           level: 'error'
+        });
+      }
+
+      if (   this.props.scroll_requested !== prevProps.scroll_requested
+          && !_.isNil(this.props.scroll_requested)) {
+        switch (this.props.scroll_requested) {
+        case 'UP':
+          window.requestAnimationFrame(() => {
+            this.sectionBody.scrollTop = this.sectionBody.scrollTop - 30;
+            this.props.scrollDone();
+          });
+          break;
+        case 'PAGE_UP':
+          window.requestAnimationFrame(() => {
+            this.sectionBody.scrollTop = this.sectionBody.scrollTop - this.sectionBody.offsetHeight;
+            this.props.scrollDone();
+          });
+          break;
+        case 'DOWN':
+          window.requestAnimationFrame(() => {
+            this.sectionBody.scrollTop = this.sectionBody.scrollTop + 30;
+            this.props.scrollDone();
+          });
+          break;
+        case 'PAGE_DOWN':
+          window.requestAnimationFrame(() => {
+            this.sectionBody.scrollTop = this.sectionBody.scrollTop + this.sectionBody.offsetHeight;
+            this.props.scrollDone();
+          });
+          break;
+        default:
+          break;
+        }
+      }
+
+      if (this.props.itemsCount > prevProps.itemsCount) {
+        window.requestAnimationFrame(() => {
+          this.sectionBody.scrollTop = this.sectionBody.scrollHeight;
+          if (this.sectionBody !== undefined) {
+            this.sectionBody.scrollTop = this.sectionBody.scrollHeight;
+          }
         });
       }
     }
@@ -312,7 +357,11 @@ export default connect({
           </header>
 
 
-          <section style={styles.bodySection}>
+          <section
+            id="sectionBody"
+            style={styles.bodySection}
+            ref={node => {this.sectionBody = node;}}
+          >
             {pages[this.props.current_page].body}
           </section>
 

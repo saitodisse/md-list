@@ -6,7 +6,6 @@ import itemsListCountComputed from '~/computed/itemsListCountComputed';
 import styles from './styles';
 
 export default connect({
-  is_logged: 'login.is_logged',
   is_saving: 'main.is_saving',
   current_item_id: 'chatList.current_item.id',
   current_item_body: 'chatList.current_item.body',
@@ -15,13 +14,11 @@ export default connect({
   all_loaded: 'main.all_loaded',
   user_configurations: 'login.user.configurations.*',
 }, {
-  redirectedToLogin: 'main.redirectedToLogin',
   currentUserRequested: 'login.currentUserRequested',
   currentItemChanged: 'chatList.currentItemChanged',
   currentItemSubmitted: 'chatList.currentItemSubmitted',
-
-  updateItemSubmitted: 'chatList.updateItemSubmitted',
   editCanceled: 'chatList.editCanceled',
+  scrollItemsRequested: 'chatList.scrollItemsRequested',
 },
   class ChatList extends React.Component {
 
@@ -74,6 +71,45 @@ export default connect({
     }
 
     _OnTextKeyDown = (event) => {
+      // ESC
+      if (event.keyCode === 27) {
+        this.props.editCanceled();
+      }
+
+      // SCROLL
+      if (this.textareaNode.value.length === 0) {
+        // UP
+        if (event.keyCode === 38 || event.keyCode === 104) {
+          this.props.scrollItemsRequested({direction: 'UP'});
+          // window.requestAnimationFrame(() => {
+          //   this.messagesNode.scrollTop = this.messagesNode.scrollTop - 30;
+          // });
+        }
+        // PAGE UP
+        if (event.keyCode === 33) {
+          this.props.scrollItemsRequested({direction: 'PAGE_UP'});
+          // window.requestAnimationFrame(() => {
+          //   this.messagesNode.scrollTop = this.messagesNode.scrollTop - this.messagesNode.offsetHeight;
+          // });
+        }
+
+        // DOWN
+        if (event.keyCode === 40 || event.keyCode === 98) {
+          this.props.scrollItemsRequested({direction: 'DOWN'});
+          // window.requestAnimationFrame(() => {
+          //   this.messagesNode.scrollTop = this.messagesNode.scrollTop + 30;
+          // });
+        }
+        // PAGE DOWN
+        if (event.keyCode === 34) {
+          this.props.scrollItemsRequested({direction: 'PAGE_DOWN'});
+          // window.requestAnimationFrame(() => {
+          //   this.messagesNode.scrollTop = this.messagesNode.scrollTop + this.messagesNode.offsetHeight;
+          // });
+        }
+      }
+
+      // SUBMIT
       const submit_on_enter = (
            this.send_on_enter
         && event.keyCode === 13
@@ -108,41 +144,6 @@ export default connect({
       // update textarea size
       this.textareaNode.value = '';
       autosize.update(this.textareaNode);
-    }
-
-    _onKeyDown = (e) => {
-      // ESC
-      if (e.keyCode === 27) {
-        this.props.editCanceled();
-      }
-      // FIXME: send signals do mainSection ChatList comonent
-      // if (this.textareaNode.value.length === 0) {
-      //   // UP
-      //   if (e.keyCode === 38 || e.keyCode === 104) {
-      //     window.requestAnimationFrame(() => {
-      //       this.messagesNode.scrollTop = this.messagesNode.scrollTop - 30;
-      //     });
-      //   }
-      //   // PAGE UP
-      //   if (e.keyCode === 33) {
-      //     window.requestAnimationFrame(() => {
-      //       this.messagesNode.scrollTop = this.messagesNode.scrollTop - this.messagesNode.offsetHeight;
-      //     });
-      //   }
-
-      //   // DOWN
-      //   if (e.keyCode === 40 || e.keyCode === 98) {
-      //     window.requestAnimationFrame(() => {
-      //       this.messagesNode.scrollTop = this.messagesNode.scrollTop + 30;
-      //     });
-      //   }
-      //   // PAGE DOWN
-      //   if (e.keyCode === 34) {
-      //     window.requestAnimationFrame(() => {
-      //       this.messagesNode.scrollTop = this.messagesNode.scrollTop + this.messagesNode.offsetHeight;
-      //     });
-      //   }
-      // }
     }
 
     render() {

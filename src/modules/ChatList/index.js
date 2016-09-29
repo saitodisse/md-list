@@ -7,6 +7,8 @@ import setBody from './chains/setBody';
 import submitItemBody from './chains/submitItemBody';
 import setCurrentItem from './chains/setCurrentItem';
 import cancelEdit from './chains/cancelEdit';
+import scrollItems from './chains/scrollItems';
+import clearScroll from './chains/clearScroll';
 
 export default module => {
   module.addState({
@@ -14,6 +16,7 @@ export default module => {
     current_item: {body: ''},
     first_item_key: null,
     limitToLast: 50,
+    scroll_requested: null,
   });
 
   module.addSignals({
@@ -29,5 +32,7 @@ export default module => {
     removeItemClicked: deleteItemChain,
     itemClicked: setCurrentItem,
     editCanceled: cancelEdit,
+    scrollItemsRequested: scrollItems,
+    scrollDone: clearScroll,
   });
 };
