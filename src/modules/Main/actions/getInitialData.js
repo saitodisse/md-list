@@ -1,12 +1,17 @@
 import firebase from 'firebase';
 
-function getInitialData({ output }) {
-  firebase.database().ref('items').limitToLast(10).once('value')
-  .then((result) => {
-    return {value: result.val()};
-  })
-  .then(output.success)
-  .catch(output.error);
+function getInitialData({ output, state }) {
+  firebase.database().ref('items')
+  .orderByKey()
+  .limitToLast(state.get('chatList.limitToLast'))
+  // .limitToLast(3)
+  // .endAt('-KSnz14NVJDxGCmShTce')
+  .once('value')
+    .then((result) => {
+      return {value: result.val()};
+    })
+    .then(output.success)
+    .catch(output.error);
 }
 
 getInitialData.async = true;

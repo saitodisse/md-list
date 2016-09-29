@@ -12,6 +12,8 @@ export default module => {
   module.addState({
     items: {},
     current_item: {body: ''},
+    first_item_key: null,
+    limitToLast: 50,
   });
 
   module.addSignals({
