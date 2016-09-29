@@ -114,7 +114,7 @@ export default connect({
       }
       if (   prevProps.error_message !== this.props.error_message
           && this.props.error_message !== null) {
-        this._notificationSystem.addNotification({
+        this._notificationSystem && this._notificationSystem.addNotification({
           message: this.props.error_message,
           level: 'error'
         });

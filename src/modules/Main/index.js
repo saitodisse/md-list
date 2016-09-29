@@ -7,6 +7,7 @@ import showSearch from './chains/showSearch';
 import bootstrap from './chains/bootstrap';
 import initFirebase from './chains/initFirebase';
 import unlistenFirebase from './chains/unlistenFirebase';
+import getMembersFromFirebase from '~/modules/Members/chains/getMembersFromFirebase';
 
 import {set} from 'cerebral/operators';
 
@@ -28,7 +29,10 @@ export default module => {
     redirectedToConfiguration: showConfiguration,
     redirectedToMembers: showMembers,
     redirectedToSearch: showSearch,
-    pageLoaded: bootstrap,
+    pageLoaded: [
+      ...bootstrap,
+      ...getMembersFromFirebase,
+    ],
     userLoggedIn: initFirebase,
     userLoggedOut: unlistenFirebase,
     pageBecameHidden: [set('state:main.page_is_visible', false)],
