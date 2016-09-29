@@ -106,7 +106,6 @@ export default connect({
       }
 
       // SUBMIT
-      /**/console.log({"this.send_on_enter": this.send_on_enter});/* -debug- */
       const submit_on_enter = (
            this.send_on_enter
         && event.keyCode === 13
