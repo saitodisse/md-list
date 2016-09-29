@@ -10,7 +10,6 @@ import ChatListFooter from '~/components/ChatList/ChatListFooter';
 import Configuration from '~/components/Configuration';
 import Members from '~/components/Members';
 import Search from '~/components/Search';
-import itemsListCountComputed from '~/computed/itemsListCountComputed';
 
 import {
   PAGE_EMPTY,
@@ -64,7 +63,6 @@ export default connect({
   all_loaded: 'main.all_loaded',
   loading_status: 'main.loading_status',
   scroll_requested: 'chatList.scroll_requested',
-  itemsCount: itemsListCountComputed(),
 }, {
   pageLoaded: 'main.pageLoaded',
 
@@ -123,7 +121,8 @@ export default connect({
       }
 
       if (   this.props.scroll_requested !== prevProps.scroll_requested
-          && !_.isNil(this.props.scroll_requested)) {
+          && !_.isNil(this.props.scroll_requested)
+          && this.sectionBody) {
         switch (this.props.scroll_requested) {
         case 'UP':
           window.requestAnimationFrame(() => {
@@ -149,18 +148,15 @@ export default connect({
             this.props.scrollDone();
           });
           break;
+        case 'BOTTOM':
+          window.requestAnimationFrame(() => {
+            this.sectionBody.scrollTop = this.sectionBody.scrollHeight;
+            this.props.scrollDone();
+          });
+          break;
         default:
           break;
         }
-      }
-
-      if (this.props.itemsCount > prevProps.itemsCount) {
-        window.requestAnimationFrame(() => {
-          this.sectionBody.scrollTop = this.sectionBody.scrollHeight;
-          if (this.sectionBody !== undefined) {
-            this.sectionBody.scrollTop = this.sectionBody.scrollHeight;
-          }
-        });
       }
     }
 

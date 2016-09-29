@@ -24,6 +24,10 @@ export default connect({
 
     static autosizeLoaded = false;
 
+    componentDidMount() {
+      this._setSendOnEnterConfiguration();
+    }
+
     componentDidUpdate(prevProps) {
       // focus after server actions
       if (prevProps.is_saving && !this.props.is_saving) {
@@ -43,25 +47,29 @@ export default connect({
       }
 
       if (prevProps.window_size_is_mobile !== this.props.window_size_is_mobile) {
-        // send_on_enter
-        const getConfiguration = (curr, path, orValue) => {
-          const currConfig = _.getOr(orValue, path, curr);
-          return currConfig;
-        };
-        let send_on_enter = null;
-        if (this.props.window_size_is_mobile) {
-          send_on_enter = getConfiguration(
-            this.props.user_configurations,
-            ['mobile', 'send_on_enter'],
-            true);
-        } else {
-          send_on_enter = getConfiguration(
-            this.props.user_configurations,
-            ['desktop', 'send_on_enter'],
-            true);
-        }
-        this.send_on_enter = send_on_enter;
+        this._setSendOnEnterConfiguration();
       }
+    }
+
+    _setSendOnEnterConfiguration() {
+      // send_on_enter
+      const getConfiguration = (curr, path, orValue) => {
+        const currConfig = _.getOr(orValue, path, curr);
+        return currConfig;
+      };
+      let send_on_enter = null;
+      if (this.props.window_size_is_mobile) {
+        send_on_enter = getConfiguration(
+          this.props.user_configurations,
+          ['mobile', 'send_on_enter'],
+          true);
+      } else {
+        send_on_enter = getConfiguration(
+          this.props.user_configurations,
+          ['desktop', 'send_on_enter'],
+          true);
+      }
+      this.send_on_enter = send_on_enter;
     }
 
     _setFocusOnTextArea() {
@@ -81,35 +89,24 @@ export default connect({
         // UP
         if (event.keyCode === 38 || event.keyCode === 104) {
           this.props.scrollItemsRequested({direction: 'UP'});
-          // window.requestAnimationFrame(() => {
-          //   this.messagesNode.scrollTop = this.messagesNode.scrollTop - 30;
-          // });
         }
         // PAGE UP
         if (event.keyCode === 33) {
           this.props.scrollItemsRequested({direction: 'PAGE_UP'});
-          // window.requestAnimationFrame(() => {
-          //   this.messagesNode.scrollTop = this.messagesNode.scrollTop - this.messagesNode.offsetHeight;
-          // });
         }
 
         // DOWN
         if (event.keyCode === 40 || event.keyCode === 98) {
           this.props.scrollItemsRequested({direction: 'DOWN'});
-          // window.requestAnimationFrame(() => {
-          //   this.messagesNode.scrollTop = this.messagesNode.scrollTop + 30;
-          // });
         }
         // PAGE DOWN
         if (event.keyCode === 34) {
           this.props.scrollItemsRequested({direction: 'PAGE_DOWN'});
-          // window.requestAnimationFrame(() => {
-          //   this.messagesNode.scrollTop = this.messagesNode.scrollTop + this.messagesNode.offsetHeight;
-          // });
         }
       }
 
       // SUBMIT
+      /**/console.log({"this.send_on_enter": this.send_on_enter});/* -debug- */
       const submit_on_enter = (
            this.send_on_enter
         && event.keyCode === 13

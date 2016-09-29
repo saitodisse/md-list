@@ -10,6 +10,9 @@ import cancelEdit from './chains/cancelEdit';
 import scrollItems from './chains/scrollItems';
 import clearScroll from './chains/clearScroll';
 
+// operators
+import {set} from 'cerebral/operators';
+
 export default module => {
   module.addState({
     items: {},
@@ -34,5 +37,8 @@ export default module => {
     editCanceled: cancelEdit,
     scrollItemsRequested: scrollItems,
     scrollDone: clearScroll,
+
+    pageMonted: [set('state:chatList.is_mount', true)],
+    pageReady: [set('state:chatList.is_ready', true)],
   });
 };
