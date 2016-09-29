@@ -13,6 +13,7 @@ export default connect({
   current_item_body: 'chatList.current_item.body',
   itemsCount: itemsListCountComputed(),
   window_size_is_mobile: 'main.window_size_is_mobile',
+  all_loaded: 'main.all_loaded',
 }, {
   redirectedToLogin: 'main.redirectedToLogin',
   currentUserRequested: 'login.currentUserRequested',
@@ -30,6 +31,7 @@ export default connect({
       if (!this.props.is_logged) {
         this.props.redirectedToLogin();
       }
+      this.messagesNode.scrollTop = this.messagesNode.scrollHeight;
     }
 
     componentDidUpdate(prevProps) {
