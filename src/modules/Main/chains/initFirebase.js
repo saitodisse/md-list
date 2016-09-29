@@ -8,9 +8,10 @@ const initFirebase = [
   addLoadingStatus('Started', 'initFirebase', 'start'),
   set('state:main.is_saving', true),
   set('state:main.error', null),
-  addLoadingStatus('getFirebaseUser', 'initFirebase', 'log'),
+  addLoadingStatus('getInitialData', 'initFirebase', 'log'),
   getInitialData, {
     success: [
+      addLoadingStatus('getInitialData:setItemsKeys', 'initFirebase', 'log'),
       setItemsKeys,
     ],
     error: [

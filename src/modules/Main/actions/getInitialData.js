@@ -1,7 +1,12 @@
-function getInitialData({ services, output }) {
-  services.firebase.value('items')
-    .then(output.success)
-    .catch(output.error);
+import firebase from 'firebase';
+
+function getInitialData({ output }) {
+  firebase.database().ref('items').limitToLast(10).once('value')
+  .then((result) => {
+    return {value: result.val()};
+  })
+  .then(output.success)
+  .catch(output.error);
 }
 
 getInitialData.async = true;
