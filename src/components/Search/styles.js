@@ -7,7 +7,6 @@ export default {
     fontSize: 12,
     marginLeft: 10,
     marginRight: 10,
-    overflowY: 'auto',
   },
 
   inputContainer: {

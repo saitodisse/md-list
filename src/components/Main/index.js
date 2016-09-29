@@ -6,6 +6,7 @@ import NotificationSystem from 'react-notification-system';
 
 import Login from '~/components/Login';
 import ChatList from '~/components/ChatList';
+import ChatListFooter from '~/components/ChatList/ChatListFooter';
 import Configuration from '~/components/Configuration';
 import Members from '~/components/Members';
 import Search from '~/components/Search';
@@ -21,12 +22,30 @@ import {
 
 function getPages() {
   const pages = {};
-  pages[PAGE_LOGIN] = <Login />;
-  pages[PAGE_CHAT_LIST] = <ChatList />;
-  pages[PAGE_CONFIGURATION] = <Configuration />;
-  pages[PAGE_MEMBERS] = <Members />;
-  pages[PAGE_SEARCH] = <Search />;
-  pages[PAGE_EMPTY] = null;
+  pages[PAGE_CHAT_LIST] = {
+    body: <ChatList />,
+    footer: <ChatListFooter />,
+  };
+  pages[PAGE_LOGIN] = {
+    body: <Login />,
+    footer: null,
+  };
+  pages[PAGE_CONFIGURATION] = {
+    body: <Configuration />,
+    footer: null,
+  };
+  pages[PAGE_MEMBERS] = {
+    body: <Members />,
+    footer: null,
+  };
+  pages[PAGE_SEARCH] = {
+    body: <Search />,
+    footer: null,
+  };
+  pages[PAGE_EMPTY] = {
+    body: null,
+    footer: null,
+  };
   return pages;
 }
 
@@ -213,93 +232,94 @@ export default connect({
       const pages = getPages();
       return (
         <div style={styles.mainContainer} id="mainContainer">
-
           <NotificationSystem ref="notificationSystem" />
 
-          <div style={styles.titleContainer} id="titleContainer">
-            <a
-              target="_blank"
-              style={styles.titleLink}
-              onClick={() => this.props.redirectedToChatList()}
-            >
-              md list {this.props.page_is_visible}
-            </a>
-            <a
-              style={styles.topLink}
-              onClick={() => this.props.redirectedToConfiguration()}
-            >
-              config
-            </a>
-
-            <a
-              style={styles.topLink}
-              onClick={() => this.props.redirectedToSearch()}
-            >
-              search
-            </a>
-
-            {this.props.is_admin && (
+          <header style={styles.header}>
+            <div style={styles.titleContainer} id="titleContainer">
               <a
-                style={styles.topLink}
-                onClick={() => this.props.redirectedToMembers()}
-              >
-                members
-              </a>
-            )}
-
-            <span style={styles.topSeparator}>
-              |
-            </span>
-            <a
-              style={styles.topLink}
-              target="_blank"
-              href="https://github.com/saitodisse/md-list"
-            >
-              github
-            </a>
-            <a
-              style={styles.topLink}
-              target="_blank"
-              href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
-            >
-              md
-            </a>
-            <a
-              style={styles.topLink}
-              target="_blank"
-              href="http://plantuml.com/"
-            >
-              puml
-            </a>
-            {this.props.window_size_is_mobile && (
-              <a
-                style={styles.topLink}
                 target="_blank"
-                onClick={this._goFullScreen}
+                style={styles.titleLink}
+                onClick={() => this.props.redirectedToChatList()}
               >
-                full screen
+                md list {this.props.page_is_visible}
               </a>
-            )}
-          </div>
-
-          <div style={styles.buttonsContainer} id="buttonsContainer">
-            {this.props.is_logged && (
-              <img style={styles.userPhoto} id="userPhoto" src={this.props.user.photoURL} alt="photo" />
-            )}
-
-            {this.props.is_logged && (
-              <div
-                style={styles.link} id="link"
-                onClick={this.props.signOutClicked}
+              <a
+                style={styles.topLink}
+                onClick={() => this.props.redirectedToConfiguration()}
               >
-                logout
-              </div>
-            )}
-          </div>
+                config
+              </a>
 
-          <div style={styles.bodyContainer} id="bodyContainer">
-            {pages[this.props.current_page]}
-          </div>
+              <a
+                style={styles.topLink}
+                onClick={() => this.props.redirectedToSearch()}
+              >
+                search
+              </a>
+
+              {this.props.is_admin && (
+                <a
+                  style={styles.topLink}
+                  onClick={() => this.props.redirectedToMembers()}
+                >
+                  members
+                </a>
+              )}
+
+              {!this.props.window_size_is_mobile && (
+                <div style={styles.reffsDiv}>
+                  <span style={styles.topSeparator}>
+                    |
+                  </span>
+                  <a
+                    style={styles.topLink}
+                    target="_blank"
+                    href="https://github.com/saitodisse/md-list"
+                  >
+                    github
+                  </a>
+                  <a
+                    style={styles.topLink}
+                    target="_blank"
+                    href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+                  >
+                    md
+                  </a>
+                  <a
+                    style={styles.topLink}
+                    target="_blank"
+                    href="http://plantuml.com/"
+                  >
+                    puml
+                  </a>
+                </div>
+              )}
+            </div>
+            <div style={styles.buttonsContainer} id="buttonsContainer">
+              {this.props.is_logged && (
+                <img style={styles.userPhoto} id="userPhoto" src={this.props.user.photoURL} alt="photo" />
+              )}
+
+              {this.props.is_logged && (
+                <div
+                  style={styles.link} id="link"
+                  onClick={this.props.signOutClicked}
+                >
+                  logout
+                </div>
+              )}
+            </div>
+          </header>
+
+
+          <section style={styles.bodySection}>
+            {pages[this.props.current_page].body}
+          </section>
+
+
+          <footer style={styles.footer}>
+            {pages[this.props.current_page].footer}
+          </footer>
 
         </div>
       );

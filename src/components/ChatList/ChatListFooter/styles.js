@@ -1,47 +1,8 @@
 export default {
-  container: {
-    // display: 'flex',
-    // height: '100%',
-    // flexGrow: 1,
-    // flexDirection: 'column',
-    // fontFamily: "'Roboto', sans-serif",
-    // fontSize: 16,
-    // marginLeft: 10,
-    // marginRight: 10,
-    // overflowY: 'none',
-  },
-
-  messages: {
-    // flexGrow: 1,
-    // textAlign: 'center',
-    // marginBottom: 10,
-    // fontWeight: 'bold',
-    // color: '#777',
-    // overflowY: 'auto',
-    // height: 0,
-
-    // borderStyle: 'solid',
-    // borderWidth: 2,
-    borderTopColor: 'rgb(200, 200, 258)',
-    borderTopStyle: 'solid',
-    borderTopWidth: '2px',
-    // borderRightColor: 'rgb(200, 200, 200)',
-    // borderRightStyle: 'solid',
-    // borderRightWidth: '2px',
-    borderBottomColor: 'rgb(200, 200, 258)',
-    borderBottomStyle: 'solid',
-    borderBottomWidth: '2px',
-    // borderLeftColor: 'rgb(200, 200, 200)',
-    // borderLeftStyle: 'solid',
-    // borderLeftWidth: '2px',
-
-    // borderColor: '#eee',
-  },
-
   input: {
     overflowY: 'auto',
     textAlign: 'center',
-    marginBottom: 53,
+    marginBottom: 6,
     fontWeight: 'bold',
     color: '#777',
   },

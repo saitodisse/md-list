@@ -10,12 +10,24 @@ export default {
     overflowY: 'hidden',
   },
 
+  header: {
+  },
+
+  bodySection: {
+    flex: '1 1 auto',
+    overflowY: 'auto',
+    minHeight: 0,
+  },
+
+  footer: {
+  },
+
   titleContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     marginTop: 9,
-    marginBottom: 35,
+    marginBottom: 14,
   },
   title: {
   },
@@ -42,6 +54,10 @@ export default {
     marginLeft: 10,
     textDecoration: 'underline',
     cursor: 'pointer',
+  },
+
+  reffsDiv: {
+    marginTop: 7,
   },
 
   bodyContainer: {
