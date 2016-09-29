@@ -14,6 +14,7 @@ export default connect({
   itemsCount: itemsListCountComputed(),
   window_size_is_mobile: 'main.window_size_is_mobile',
   all_loaded: 'main.all_loaded',
+  user_configurations: 'login.user.configurations.*',
 }, {
   redirectedToLogin: 'main.redirectedToLogin',
   currentUserRequested: 'login.currentUserRequested',
@@ -67,6 +68,27 @@ export default connect({
           }
         });
       }
+
+      if (prevProps.window_size_is_mobile !== this.props.window_size_is_mobile) {
+        // send_on_enter
+        const getConfiguration = (curr, path, orValue) => {
+          const currConfig = _.getOr(orValue, path, curr);
+          return currConfig;
+        };
+        let send_on_enter = null;
+        if (this.props.window_size_is_mobile) {
+          send_on_enter = getConfiguration(
+            this.props.user_configurations,
+            ['mobile', 'send_on_enter'],
+            true);
+        } else {
+          send_on_enter = getConfiguration(
+            this.props.user_configurations,
+            ['desktop', 'send_on_enter'],
+            true);
+        }
+        this.send_on_enter = send_on_enter;
+      }
     }
 
     _setFocusOnTextArea() {
@@ -76,7 +98,17 @@ export default connect({
     }
 
     _OnTextKeyDown = (event) => {
-      if (event.keyCode === 13 && event.ctrlKey) {
+      const submit_on_enter = (
+           this.send_on_enter
+        && event.keyCode === 13
+        && !event.shiftKey
+      );
+      const submit_on_ctrl_enter = (
+           !this.send_on_enter
+        && event.keyCode === 13
+        && event.ctrlKey
+      );
+      if (submit_on_enter || submit_on_ctrl_enter) {
         event.preventDefault();
         this._OnSubmit();
       }

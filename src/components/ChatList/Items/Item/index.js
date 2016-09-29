@@ -89,8 +89,8 @@ export default connect(_props => ({
       const configurations_changed = (
            this.props.user_configurations
         &&  (   checkConfiguration(
-                  this.props.user_configurations,
-                  nextProps.user_configurations,
+                  this.props.configurations,
+                  nextProps.configurations,
                   ['desktop', 'font_size']
                 )
               || checkConfiguration(
@@ -99,8 +99,8 @@ export default connect(_props => ({
                   ['mobile', 'font_size']
                 )
               || checkConfiguration(
-                  this.props.user_configurations,
-                  nextProps.user_configurations,
+                  this.props.configurations,
+                  nextProps.configurations,
                   ['desktop', 'show_edit_button']
                 )
               || checkConfiguration(
@@ -109,14 +109,24 @@ export default connect(_props => ({
                   ['mobile', 'show_edit_button']
                 )
               || checkConfiguration(
-                  this.props.user_configurations,
-                  nextProps.user_configurations,
+                  this.props.configurations,
+                  nextProps.configurations,
                   ['desktop', 'show_delete_button']
                 )
               || checkConfiguration(
                   this.props.user_configurations,
                   nextProps.user_configurations,
                   ['mobile', 'show_delete_button']
+                )
+              || checkConfiguration(
+                  this.props.configurations,
+                  nextProps.configurations,
+                  ['desktop', 'send_on_enter']
+                )
+              || checkConfiguration(
+                  this.props.user_configurations,
+                  nextProps.user_configurations,
+                  ['mobile', 'send_on_enter']
                 )
               || checkConfiguration(
                   this.props.configurations,

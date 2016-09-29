@@ -142,6 +142,14 @@ export default connect({
                   value={this.props.user_configurations.desktop.show_delete_button}
                   path={`users/${this.props.user_id}/configurations/desktop/show_delete_button`}
                 />
+
+                <ConfigurationField
+                  title="Send on ENTER"
+                  description="Submit on ENTER key"
+                  value={this.props.user_configurations.desktop.send_on_enter}
+                  path={`users/${this.props.user_id}/configurations/desktop/send_on_enter`}
+                />
+
               </div>
             )}
 
@@ -173,6 +181,14 @@ export default connect({
                   path={`users/${this.props.user_id}/configurations/mobile/show_delete_button`}
                 />
 
+
+                <ConfigurationField
+                  title="Send on ENTER"
+                  description="Submit on ENTER key"
+                  value={this.props.user_configurations.mobile.send_on_enter}
+                  path={`users/${this.props.user_id}/configurations/mobile/send_on_enter`}
+                />
+
               </div>
             )}
 
@@ -191,26 +207,34 @@ export default connect({
 
                 <ConfigurationField
                   title="Font Size"
-                  only_admin={true}
                   description="Items font size"
                   value={this.props.configurations.user.desktop.font_size}
                   path={'/configurations/user/desktop/font_size'}
+                  only_admin={true}
                 />
 
                 <ConfigurationField
                   title="Display Edit"
-                  only_admin={true}
                   description="Show edit button on each message"
                   value={this.props.configurations.user.desktop.show_edit_button}
                   path={'/configurations/user/desktop/show_edit_button'}
+                  only_admin={true}
                 />
 
                 <ConfigurationField
                   title="Display Delete"
-                  only_admin={true}
                   description="Show delete button on each message"
                   value={this.props.configurations.user.desktop.show_delete_button}
                   path={'/configurations/user/desktop/show_delete_button'}
+                  only_admin={true}
+                />
+
+                <ConfigurationField
+                  title="Send on ENTER"
+                  description="Submit on ENTER key"
+                  value={this.props.configurations.user.desktop.send_on_enter}
+                  path={'/configurations/user/desktop/send_on_enter'}
+                  only_admin={true}
                 />
               </div>
             )}
@@ -224,26 +248,34 @@ export default connect({
 
                 <ConfigurationField
                   title="Font Size"
-                  only_admin={true}
                   description="Items font size"
                   value={this.props.configurations.user.mobile.font_size}
                   path={'/configurations/user/mobile/font_size'}
+                  only_admin={true}
                 />
 
                 <ConfigurationField
                   title="Display Edit"
-                  only_admin={true}
                   description="Show edit button on each message"
                   value={this.props.configurations.user.mobile.show_edit_button}
                   path={'/configurations/user/mobile/show_edit_button'}
+                  only_admin={true}
                 />
 
                 <ConfigurationField
                   title="Display Delete"
-                  only_admin={true}
                   description="Show delete button on each message"
                   value={this.props.configurations.user.mobile.show_delete_button}
                   path={'/configurations/user/mobile/show_delete_button'}
+                  only_admin={true}
+                />
+
+                <ConfigurationField
+                  title="Send on ENTER"
+                  description="Submit on ENTER key"
+                  value={this.props.configurations.user.mobile.send_on_enter}
+                  path={'/configurations/user/mobile/send_on_enter'}
+                  only_admin={true}
                 />
 
               </div>

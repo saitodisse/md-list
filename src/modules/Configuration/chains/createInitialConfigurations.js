@@ -12,9 +12,11 @@ const createInitialConfigurations = [
     setFirebaseData('/configurations/user/desktop/font_size', 16), { success: [], error: [copy('input:code', 'state:main.error')]},
     setFirebaseData('/configurations/user/desktop/show_delete_button', true), { success: [], error: [copy('input:code', 'state:main.error')]},
     setFirebaseData('/configurations/user/desktop/show_edit_button', true), { success: [], error: [copy('input:code', 'state:main.error')]},
+    setFirebaseData('/configurations/user/desktop/send_on_enter', true), { success: [], error: [copy('input:code', 'state:main.error')]},
     setFirebaseData('/configurations/user/mobile/font_size', 18), { success: [], error: [copy('input:code', 'state:main.error')]},
     setFirebaseData('/configurations/user/mobile/show_delete_button', true), { success: [], error: [copy('input:code', 'state:main.error')]},
     setFirebaseData('/configurations/user/mobile/show_edit_button', true), { success: [], error: [copy('input:code', 'state:main.error')]},
+    setFirebaseData('/configurations/user/mobile/send_on_enter', true), { success: [], error: [copy('input:code', 'state:main.error')]},
   ]),
 
   saveInitialConfigurations, {
