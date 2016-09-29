@@ -38,7 +38,6 @@ export default module => {
     scrollItemsRequested: scrollItems,
     scrollDone: clearScroll,
 
-    pageMonted: [set('state:chatList.is_mount', true)],
     pageReady: [set('state:chatList.is_ready', true)],
   });
 };
