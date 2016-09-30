@@ -9,6 +9,7 @@ export default connect({
   itemsCount: itemsListCountComputed(),
   is_ready: 'chatList.is_ready',
   submiting_item: 'chatList.submiting_item',
+  last_operation_was_update: 'chatList.last_operation_was_update',
 }, {
   redirectedToLogin: 'main.redirectedToLogin',
   scrollItemsRequested: 'chatList.scrollItemsRequested',
@@ -37,7 +38,8 @@ export default connect({
       }
 
       if (   this.props.submiting_item !== prevProps.submiting_item
-          && this.props.submiting_item === true) {
+          && this.props.submiting_item === false
+          && !this.props.last_operation_was_update) {
         this.props.scrollItemsRequested({direction: 'BOTTOM'});
       }
     }

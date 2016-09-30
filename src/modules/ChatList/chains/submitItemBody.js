@@ -9,9 +9,18 @@ const submitItemBody = [
   set('state:chatList.submiting_item', true),
   // We post the item to the server
   updateItem, {
-    success: [
+    create_success: [
       // The app goes back into normal state,
       // enabling the input again
+      set('state:chatList.last_operation_was_update', false),
+      set('state:main.is_saving', false),
+      set('state:chatList.current_item', {body: ''}),
+      set('state:chatList.submiting_item', false),
+    ],
+    update_success: [
+      // The app goes back into normal state,
+      // enabling the input again
+      set('state:chatList.last_operation_was_update', true),
       set('state:main.is_saving', false),
       set('state:chatList.current_item', {body: ''}),
       set('state:chatList.submiting_item', false),

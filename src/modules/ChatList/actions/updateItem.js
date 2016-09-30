@@ -42,19 +42,19 @@ function updateItem({ input, state, output }) {
     updates[`/items/${key}/updated_at`] = firebase.database.ServerValue.TIMESTAMP;
 
     firebase.database().ref().update(updates)
-      .then(output.success)
+      .then(output.update_success)
       .catch(output.error);
   } else {
     itemData.created_at = firebase.database.ServerValue.TIMESTAMP;
 
     const itemsRef = firebase.database().ref().child('items').push();
     itemsRef.set(itemData)
-      .then(output.success)
+      .then(output.create_success)
       .catch(output.error);
   }
 }
 
 updateItem.async = true;
-updateItem.outputs = ['success', 'error'];
+updateItem.outputs = ['update_success', 'create_success', 'error'];
 
 export default updateItem;
