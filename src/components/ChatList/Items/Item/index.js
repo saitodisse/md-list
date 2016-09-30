@@ -242,7 +242,7 @@ export default connect(_props => ({
       const edit_other_users_items = _.getOr(false, ['app', 'edit_other_users_items'], this.props.configurations);
 
       return (
-        <div style={styles.messageContainer} id="messageContainer">
+        <div style={styles.messageContainer} id={this.props.item.id}>
 
           <div style={styles.userPhotoContainer} id="userPhotoContainer">
             <img style={styles.userPhoto} id="userPhoto" src={this.props.item.photoURL} alt="photo" />

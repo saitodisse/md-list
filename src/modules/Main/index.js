@@ -6,7 +6,9 @@ import showMembers from './chains/showMembers';
 import showSearch from './chains/showSearch';
 import bootstrap from './chains/bootstrap';
 import initFirebase from './chains/initFirebase';
+import getMoreItemsFromFirebase from './chains/getMoreItemsFromFirebase';
 import unlistenFirebase from './chains/unlistenFirebase';
+
 import getMembersFromFirebase from '~/modules/Members/chains/getMembersFromFirebase';
 
 import {set} from 'cerebral/operators';
@@ -39,5 +41,6 @@ export default module => {
     pageBecameVisible: [set('state:main.page_is_visible', true)],
     windowSizeIsMobileEmited: [set('state:main.window_size_is_mobile', true)],
     windowSizeIsDesktopEmited: [set('state:main.window_size_is_mobile', false)],
+    getMoreItemsRequested: getMoreItemsFromFirebase,
   });
 };

@@ -6,6 +6,7 @@ const submitItemBody = [
   set('state:main.is_saving', true),
   // We reset the error
   set('state:main.error', null),
+  set('state:chatList.submiting_item', true),
   // We post the item to the server
   updateItem, {
     success: [
@@ -13,6 +14,7 @@ const submitItemBody = [
       // enabling the input again
       set('state:main.is_saving', false),
       set('state:chatList.current_item', {body: ''}),
+      set('state:chatList.submiting_item', false),
     ],
     error: [
       // The app goes back into normal state,

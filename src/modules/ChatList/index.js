@@ -18,7 +18,7 @@ export default module => {
     items: {},
     current_item: {body: ''},
     first_item_key: null,
-    limitToLast: 50,
+    limitToLast: 5,
     scroll_requested: null,
   });
 

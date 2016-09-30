@@ -8,6 +8,7 @@ export default connect({
   is_logged: 'login.is_logged',
   itemsCount: itemsListCountComputed(),
   is_ready: 'chatList.is_ready',
+  submiting_item: 'chatList.submiting_item',
 }, {
   redirectedToLogin: 'main.redirectedToLogin',
   scrollItemsRequested: 'chatList.scrollItemsRequested',
@@ -35,7 +36,8 @@ export default connect({
         }
       }
 
-      if (this.props.itemsCount > prevProps.itemsCount) {
+      if (   this.props.submiting_item !== prevProps.submiting_item
+          && this.props.submiting_item === true) {
         this.props.scrollItemsRequested({direction: 'BOTTOM'});
       }
     }

@@ -19,6 +19,12 @@ export default connect({
       };
     }
 
+    _getSortedItems = () => {
+      const sorted = _.sortBy(['created_at'], this.props.items);
+      const sorted_keys = _.keyBy('id', sorted);
+      return Object.keys(sorted_keys);
+    }
+
     render() {
       let itemsContainerStyle;
       if (this.props.is_ready) {
@@ -28,7 +34,7 @@ export default connect({
       }
       return (
         <div style={itemsContainerStyle} id="itemsContainer">
-          {Object.keys(this.props.items).map((itemKey) => (
+          {this._getSortedItems().map((itemKey) => (
             <Item {...this.props} key={itemKey} item={this.props.items[itemKey]} />
           ))}
         </div>

@@ -63,6 +63,7 @@ export default connect({
   all_loaded: 'main.all_loaded',
   loading_status: 'main.loading_status',
   scroll_requested: 'chatList.scroll_requested',
+  first_item_key: 'chatList.first_item_key',
 }, {
   pageLoaded: 'main.pageLoaded',
 
@@ -85,6 +86,7 @@ export default connect({
 
   elasticsearchHelthRequested: 'search.elasticsearchHelthRequested',
   scrollDone: 'chatList.scrollDone',
+  getMoreItemsRequested: 'main.getMoreItemsRequested',
 },
   class Main extends React.Component {
     componentDidMount() {
@@ -94,6 +96,7 @@ export default connect({
       this._resizeThrottler();
       this._notificationSystem = this.refs.notificationSystem;
     }
+
     componentWillUnmount() {
       this.props.userLoggedOut();
     }
@@ -112,6 +115,7 @@ export default connect({
           this.props.redirectedToLogin();
         }
       }
+
       if (   prevProps.error_message !== this.props.error_message
           && this.props.error_message !== null) {
         this._notificationSystem && this._notificationSystem.addNotification({
@@ -157,6 +161,33 @@ export default connect({
         default:
           break;
         }
+      }
+
+      if (   prevProps.scroll_requested !== this.props.scroll_requested
+          && this.props.scroll_requested !== 'BOTTOM') {
+        this._listenScroll();
+      }
+
+      if (   prevProps.first_item_key !== this.props.first_item_key
+          && prevProps.first_item_key !== null) {
+        window.requestAnimationFrame(() => {
+          const itemBeforeOffsetTop = document.querySelector(`#${prevProps.first_item_key}`).offsetTop;
+          this.sectionBody.scrollTop = itemBeforeOffsetTop - 80;
+        });
+      }
+    }
+
+    _listenScroll = () => {
+      if (this.sectionBody.onscroll === null) {
+        this.sectionBody.onscroll = () => {
+          this._scrollChanged();
+        };
+      }
+    }
+
+    _scrollChanged = () => {
+      if (this.sectionBody.scrollTop === 0) {
+        this.props.getMoreItemsRequested();
       }
     }
 
