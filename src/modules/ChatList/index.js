@@ -37,7 +37,6 @@ export default module => {
     editCanceled: cancelEdit,
     scrollItemsRequested: scrollItems,
     scrollDone: clearScroll,
-
     pageReady: [set('state:chatList.is_ready', true)],
   });
 };

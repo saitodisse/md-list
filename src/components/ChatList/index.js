@@ -23,10 +23,10 @@ export default connect({
       if (!this.props.is_logged) {
         this.props.redirectedToLogin();
       }
-      setTimeout(() => {
+      window.requestAnimationFrame(() => {
         this.props.scrollItemsRequested({direction: 'BOTTOM'});
         this.props.pageReady();
-      }, 1000);
+      });
     }
 
     componentDidUpdate(prevProps) {

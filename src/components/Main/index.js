@@ -171,8 +171,11 @@ export default connect({
       if (   prevProps.first_item_key !== this.props.first_item_key
           && prevProps.first_item_key !== null) {
         window.requestAnimationFrame(() => {
-          const itemBeforeOffsetTop = document.querySelector(`#${prevProps.first_item_key}`).offsetTop;
-          this.sectionBody.scrollTop = itemBeforeOffsetTop - 80;
+          const el = document.querySelector(`#${prevProps.first_item_key}`);
+          if (el) {
+            const itemBeforeOffsetTop = el.offsetTop;
+            this.sectionBody.scrollTop = itemBeforeOffsetTop - 80;
+          }
         });
       }
     }
@@ -185,8 +188,13 @@ export default connect({
       }
     }
 
+    _unlistenScroll = () => {
+      this.sectionBody.onscroll = null;
+    }
+
     _scrollChanged = () => {
-      if (this.sectionBody.scrollTop === 0) {
+      if (   this.sectionBody.scrollTop === 0
+          && this.props.current_page === PAGE_CHAT_LIST) {
         this.props.getMoreItemsRequested();
       }
     }
