@@ -5,6 +5,7 @@ import Items from './Items';
 import styles from './styles';
 
 export default connect({
+  items: 'chatList.items.*',
   is_logged: 'login.is_logged',
   itemsCount: itemsListCountComputed(),
   is_ready: 'chatList.is_ready',
@@ -56,7 +57,7 @@ export default connect({
           )}
 
           {/* ITEMS */}
-          <Items />
+          <Items items={this.props.items} />
         </div>
       );
     }

@@ -6,7 +6,6 @@ import Item from './Item';
 import _ from 'lodash/fp';
 
 export default connect({
-  items: 'chatList.items.*',
   is_ready: 'chatList.is_ready',
   // itemsKeys: itensKeysComputed(),
 },

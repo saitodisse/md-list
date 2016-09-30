@@ -206,31 +206,36 @@ export default connect(_props => ({
       } else {
         valueStyle.fontSize = `${getConfiguration(this.props.user_configurations, ['desktop', 'font_size'], 16)}px`;
       }
-      // show edit button
+
       let show_edit_button = null;
-      if (this.props.window_size_is_mobile) {
-        show_edit_button = getConfiguration(
-          this.props.user_configurations,
-          ['mobile', 'show_edit_button'],
-          true);
-      } else {
-        show_edit_button = getConfiguration(
-          this.props.user_configurations,
-          ['desktop', 'show_edit_button'],
-          true);
-      }
-      // show delete button
       let show_delete_button = null;
-      if (this.props.window_size_is_mobile) {
-        show_delete_button = getConfiguration(
-          this.props.user_configurations,
-          ['mobile', 'show_delete_button'],
-          true);
-      } else {
-        show_delete_button = getConfiguration(
-          this.props.user_configurations,
-          ['desktop', 'show_delete_button'],
-          true);
+
+      if (!this.props.hideButtons) {
+        // show edit button
+        if (this.props.window_size_is_mobile) {
+          show_edit_button = getConfiguration(
+            this.props.user_configurations,
+            ['mobile', 'show_edit_button'],
+            true);
+        } else {
+          show_edit_button = getConfiguration(
+            this.props.user_configurations,
+            ['desktop', 'show_edit_button'],
+            true);
+        }
+
+        // show delete button
+        if (this.props.window_size_is_mobile) {
+          show_delete_button = getConfiguration(
+            this.props.user_configurations,
+            ['mobile', 'show_delete_button'],
+            true);
+        } else {
+          show_delete_button = getConfiguration(
+            this.props.user_configurations,
+            ['desktop', 'show_delete_button'],
+            true);
+        }
       }
 
       const $isNewItem = this.props.item.$isNew;

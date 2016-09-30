@@ -1,8 +1,9 @@
 import React from 'react';
-import {connect} from 'cerebral-view-react';
-import styles from './styles';
-import SearchResultItem from './SearchResultItem';
 import _ from 'lodash/fp';
+import {connect} from 'cerebral-view-react';
+import SearchResultItem from './SearchResultItem';
+import Items from '~/components/ChatList/Items';
+import styles from './styles';
 
 export default connect({
   is_admin: 'login.user.is_admin',
@@ -50,7 +51,8 @@ export default connect({
           </div>
 
           <div style={styles.resultsContainer} id="resultsContainer">
-            {this._renderResults()}
+            {/*this._renderResults()*/}
+            <Items items={this.props.results} hideButtons={true} />
           </div>
 
 
