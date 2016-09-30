@@ -89,10 +89,10 @@ If you want a server/client example made with `express` and `JSON server` go to 
 
 Reff:
 
-- Fast tutorial: http://www.elasticsearchtutorial.com/elasticsearch-in-5-minutes.html
+- Search by URL options: https://github.com/elastic/elasticsearch/blob/2.4/docs/reference/search/uri-request.asciidoc
+- API otions: https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html
 - CORS: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html
 - Cluster Health: https://www.elastic.co/guide/en/elasticsearch/reference/current/_cluster_health.html
-- API otions: https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html
 
 Free:
 

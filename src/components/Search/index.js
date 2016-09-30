@@ -19,10 +19,10 @@ export default connect({
       this.props.searchClicked();
     }
 
-    _renderResults = () => {
-      return _.map((item) => (
-        <SearchResultItem key={item.id} data={item}/>
-      ), this.props.results);
+    _OnKeyDown = (event) => {
+      if (event.keyCode === 13) {
+        this.props.searchClicked();
+      }
     }
 
     render() {
@@ -41,6 +41,7 @@ export default connect({
               ref={node => {this.inputNode = node;}}
               value={this.props.input_search}
               onChange={event => this.props.inputSearchChanged({query: event.target.value})}
+              onKeyDown={this._OnKeyDown}
             />
             <button
               style={styles.searchButton}
@@ -51,7 +52,6 @@ export default connect({
           </div>
 
           <div style={styles.resultsContainer} id="resultsContainer">
-            {/*this._renderResults()*/}
             <Items items={this.props.results} hideButtons={true} />
           </div>
 
