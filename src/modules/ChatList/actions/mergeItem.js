@@ -7,7 +7,7 @@ function mergeItem({state, output, input}) {
   state.merge('chatList.items', newItem);
   output({
     id: key,
-    path: 'chatlist/items',
+    path: 'items',
     key,
     data: value,
   });
