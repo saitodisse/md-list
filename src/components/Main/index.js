@@ -28,7 +28,7 @@ import {
 } from '../../constants';
 import styles from './styles';
 
-function getPages() {
+export function getPages() {
   const pages = {};
   pages[ PAGE_CHAT_LIST ] = {
     body: <ChatList />,
@@ -98,6 +98,19 @@ function getPages() {
   return pages;
 }
 
+export const redirections = {
+  redirectedToLogin: 'main.redirectedToLogin',
+  redirectedToChatList: 'main.redirectedToChatList',
+  redirectedToConfiguration: 'main.redirectedToConfiguration',
+  redirectedToMembers: 'main.redirectedToMembers',
+  redirectedToSearch: 'main.redirectedToSearch',
+  redirectedToJobs: 'main.redirectedToJobs',
+  redirectedToExecutions: 'main.redirectedToExecutions',
+  redirectedToBody_Results: 'main.redirectedToBody_Results',
+  redirectedToJSON_Extrations: 'main.redirectedToJSON_Extrations',
+  redirectedToMarkdown_Conversions: 'main.redirectedToMarkdown_Conversions',
+};
+
 export default connect({
     user: 'login.user',
     login_is_loading: 'login.is_loading',
@@ -118,16 +131,7 @@ export default connect({
 
     userLoggedOut: 'main.userLoggedOut',
     userDisconnected: 'main.userDisconnected',
-    redirectedToLogin: 'main.redirectedToLogin',
-    redirectedToChatList: 'main.redirectedToChatList',
-    redirectedToConfiguration: 'main.redirectedToConfiguration',
-    redirectedToMembers: 'main.redirectedToMembers',
-    redirectedToSearch: 'main.redirectedToSearch',
-    redirectedToJobs: 'main.redirectedToJobs',
-    redirectedToExecutions: 'main.redirectedToExecutions',
-    redirectedToBody_Results: 'main.redirectedToBody_Results',
-    redirectedToJSON_Extrations: 'main.redirectedToJSON_Extrations',
-    redirectedToMarkdown_Conversions: 'main.redirectedToMarkdown_Conversions',
+    ...redirections,
 
     signOutClicked: 'login.signOutClicked',
 
