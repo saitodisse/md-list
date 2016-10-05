@@ -46,8 +46,6 @@
     "uuid": "^2.0.2"
   },
   "devDependencies": {
-    "html-webpack-plugin": "^2.22.0",
-    "firebase-queue": "^1.5.0",
     "babel-core": "^6.14.x",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.x",
@@ -60,8 +58,11 @@
     "eslint": "^3.6.1",
     "eslint-plugin-lodash-fp": "^2.0.1",
     "eslint-plugin-react": "^6.2.2",
+    "firebase-queue": "^1.5.0",
+    "html-webpack-plugin": "^2.22.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.x",
-    "webpack-dev-server": "^1.15.2"
+    "webpack-dev-server": "^1.15.2",
+    "webpack-livereload-plugin": "^0.9.0"
   }
 }
