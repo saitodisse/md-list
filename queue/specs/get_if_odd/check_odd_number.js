@@ -5,8 +5,7 @@ const Queue = require('firebase-queue');
 const queue = new Queue(ref, {
   specId: 'check_odd_number',
   numWorkers: 3
-}, (data, progress, resolve, _reject) => {
-
+}, (data, progress, resolve) => {
   if (data.number % 2 === 1) {
     resolve({ number: data.number });
   } else {

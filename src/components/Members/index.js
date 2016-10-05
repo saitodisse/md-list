@@ -51,32 +51,31 @@ export default connect({
 
       const users_keys = Object.keys(this.props.members.usersList);
       const members_and_admins = _.union(members_keys, this.admins_keys);
-      const users_filtered = _.difference(users_keys, members_and_admins);
-      this.users_keys = users_filtered;
+      this.users_keys = _.difference(users_keys, members_and_admins);
 
       this.setState({is_calculated: true});
-    }
+    };
 
     listAdmins = () => {
       return _.map((key) => ({
         key,
         item: this.props.members.usersList[key]
       }), this.admins_keys);
-    }
+    };
 
     listMembers = () => {
       return _.map((key) => ({
         key,
         item: this.props.members.usersList[key]
       }), this.members_keys);
-    }
+    };
 
     listUsers = () => {
       return _.map((key) => ({
         key,
         item: this.props.members.usersList[key]
       }), this.users_keys);
-    }
+    };
 
     render() {
       return (

@@ -5,8 +5,7 @@ const Queue = require('firebase-queue');
 const queue = new Queue(ref, {
   specId: 'multiply_by_10',
   numWorkers: 10
-}, (data, progress, resolve, _reject) => {
-
+}, (data, progress, resolve) => {
   // Do some work
   let percentageComplete = 0;
   const interval = setInterval(() => {

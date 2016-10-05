@@ -7,7 +7,7 @@ function saveFirebaseUser({ input, output }) {
     // throw new Error('Cannot find user on input');
   }
 
-  let key = null;
+  var key = null;
   if (input.user.uid) {
     // update: reuse key
     key = input.user.user_id || input.user.uid;

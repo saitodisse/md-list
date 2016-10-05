@@ -7,7 +7,7 @@ import getFirebaseUserConfigurations from '../actions/getFirebaseUserConfigurati
 import checkAdminFirebaseUser from '../actions/checkAdminFirebaseUser.js';
 import checkPermissionDenied from '../actions/checkPermissionDenied.js';
 import saveFirebaseUser from '../actions/saveFirebaseUser.js';
-import { addLoadingStatus } from '~/helpers/operators.js';
+import { addLoadingStatus } from '../../../helpers/operators';
 
 const bootstrap = [
   set('state:login.is_loading', true),

@@ -1,16 +1,18 @@
 import React from 'react';
-import {connect} from 'cerebral-view-react';
+import { connect } from 'cerebral-view-react';
 import _ from 'lodash/fp';
-import screenfull from 'screenfull';
 import NotificationSystem from 'react-notification-system';
-
-import Login from '~/components/Login';
-import ChatList from '~/components/ChatList';
-import ChatListFooter from '~/components/ChatList/ChatListFooter';
-import Configuration from '~/components/Configuration';
-import Members from '~/components/Members';
-import Search from '~/components/Search';
-
+import Login from '../../components/Login';
+import ChatList from '../../components/ChatList';
+import ChatListFooter from '../../components/ChatList/ChatListFooter';
+import Configuration from '../../components/Configuration';
+import Members from '../../components/Members';
+import Search from '../../components/Search';
+import Jobs from '../../components/Jobs/index';
+import Executions from '../../components/Executions/index';
+import Body_Results from '../../components/Body_Results/index';
+import JSON_Extrations from '../../components/JSON_Extrations/index';
+import Markdown_Conversions from '../../components/Markdown_Conversions/index';
 import {
   PAGE_EMPTY,
   PAGE_LOGIN,
@@ -18,76 +20,126 @@ import {
   PAGE_CONFIGURATION,
   PAGE_MEMBERS,
   PAGE_SEARCH,
-} from '~/constants';
+  PAGE_JOBS,
+  PAGE_EXECUTIONS,
+  PAGE_BODY_RESULTS,
+  PAGE_JSON_EXTRATIONS,
+  PAGE_MARKDOWN_CONVERSIONS
+} from '../../constants';
+import styles from './styles';
 
 function getPages() {
   const pages = {};
-  pages[PAGE_CHAT_LIST] = {
+  pages[ PAGE_CHAT_LIST ] = {
     body: <ChatList />,
     footer: <ChatListFooter />,
   };
-  pages[PAGE_LOGIN] = {
+  pages[ PAGE_LOGIN ] = {
     body: <Login />,
     footer: null,
   };
-  pages[PAGE_CONFIGURATION] = {
+  pages[ PAGE_CONFIGURATION ] = {
     body: <Configuration />,
     footer: null,
   };
-  pages[PAGE_MEMBERS] = {
+  pages[ PAGE_MEMBERS ] = {
     body: <Members />,
     footer: null,
   };
-  pages[PAGE_SEARCH] = {
+  pages[ PAGE_SEARCH ] = {
     body: <Search />,
     footer: null,
   };
-  pages[PAGE_EMPTY] = {
+  pages[ PAGE_JOBS ] = {
+    body: <Jobs />,
+    footer: null,
+  };
+  pages[ PAGE_EXECUTIONS ] = {
+    body: <Executions />,
+    footer: null,
+  };
+  pages[ PAGE_BODY_RESULTS ] = {
+    body: <Body_Results />,
+    footer: null,
+  };
+  pages[ PAGE_JSON_EXTRATIONS ] = {
+    body: <JSON_Extrations />,
+    footer: null,
+  };
+  pages[ PAGE_MARKDOWN_CONVERSIONS ] = {
+    body: <Markdown_Conversions />,
+    footer: null,
+  };
+
+  pages[ PAGE_SEARCH ] = {
+    body: <Search />,
+    footer: null,
+  };
+  pages[ PAGE_SEARCH ] = {
+    body: <Search />,
+    footer: null,
+  };
+  pages[ PAGE_SEARCH ] = {
+    body: <Search />,
+    footer: null,
+  };
+  pages[ PAGE_SEARCH ] = {
+    body: <Search />,
+    footer: null,
+  };
+  pages[ PAGE_SEARCH ] = {
+    body: <Search />,
+    footer: null,
+  };
+  pages[ PAGE_EMPTY ] = {
     body: null,
     footer: null,
   };
   return pages;
 }
 
-import styles from './styles';
-
 export default connect({
-  user: 'login.user',
-  login_is_loading: 'login.is_loading',
-  is_logged: 'login.is_logged',
-  current_page: 'main.current_page',
-  page_is_visible: 'main.page_is_visible',
-  window_size_is_mobile: 'main.window_size_is_mobile',
-  error_message: 'main.error',
-  is_admin: 'login.user.is_admin',
-  all_loaded: 'main.all_loaded',
-  loading_status: 'main.loading_status',
-  scroll_requested: 'chatList.scroll_requested',
-  first_item_key: 'chatList.first_item_key',
-}, {
-  pageLoaded: 'main.pageLoaded',
+    user: 'login.user',
+    login_is_loading: 'login.is_loading',
+    is_logged: 'login.is_logged',
+    current_page: 'main.current_page',
+    page_is_visible: 'main.page_is_visible',
+    window_size_is_mobile: 'main.window_size_is_mobile',
+    error_message: 'main.error',
+    is_admin: 'login.user.is_admin',
+    all_loaded: 'main.all_loaded',
+    loading_status: 'main.loading_status',
+    scroll_requested: 'chatList.scroll_requested',
+    first_item_key: 'chatList.first_item_key',
+  }, {
+    pageLoaded: 'main.pageLoaded',
 
-  userLoggedIn: 'main.userLoggedIn',
+    userLoggedIn: 'main.userLoggedIn',
 
-  userLoggedOut: 'main.userLoggedOut',
-  userDisconnected: 'main.userDisconnected',
-  redirectedToLogin: 'main.redirectedToLogin',
-  redirectedToChatList: 'main.redirectedToChatList',
-  redirectedToConfiguration: 'main.redirectedToConfiguration',
-  redirectedToMembers: 'main.redirectedToMembers',
-  redirectedToSearch: 'main.redirectedToSearch',
+    userLoggedOut: 'main.userLoggedOut',
+    userDisconnected: 'main.userDisconnected',
+    redirectedToLogin: 'main.redirectedToLogin',
+    redirectedToChatList: 'main.redirectedToChatList',
+    redirectedToConfiguration: 'main.redirectedToConfiguration',
+    redirectedToMembers: 'main.redirectedToMembers',
+    redirectedToSearch: 'main.redirectedToSearch',
+    redirectedToJobs: 'main.redirectedToJobs',
+    redirectedToExecutions: 'main.redirectedToExecutions',
+    redirectedToBody_Results: 'main.redirectedToBody_Results',
+    redirectedToJSON_Extrations: 'main.redirectedToJSON_Extrations',
+    redirectedToMarkdown_Conversions: 'main.redirectedToMarkdown_Conversions',
 
-  signOutClicked: 'login.signOutClicked',
+    signOutClicked: 'login.signOutClicked',
 
-  pageBecameHidden: 'main.pageBecameHidden',
-  pageBecameVisible: 'main.pageBecameVisible',
-  windowSizeIsMobileEmited: 'main.windowSizeIsMobileEmited',
-  windowSizeIsDesktopEmited: 'main.windowSizeIsDesktopEmited',
+    pageBecameHidden: 'main.pageBecameHidden',
+    pageBecameVisible: 'main.pageBecameVisible',
+    windowSizeIsMobileEmited: 'main.windowSizeIsMobileEmited',
+    windowSizeIsDesktopEmited: 'main.windowSizeIsDesktopEmited',
 
-  elasticsearchHelthRequested: 'search.elasticsearchHelthRequested',
-  scrollDone: 'chatList.scrollDone',
-  getMoreItemsRequested: 'main.getMoreItemsRequested',
-},
+    elasticsearchHelthRequested: 'search.elasticsearchHelthRequested',
+    scrollDone: 'chatList.scrollDone',
+    getMoreItemsRequested: 'main.getMoreItemsRequested',
+  },
   class Main extends React.Component {
     componentDidMount() {
       this.props.elasticsearchHelthRequested();
@@ -100,6 +152,7 @@ export default connect({
     componentWillUnmount() {
       this.props.userLoggedOut();
     }
+
     componentDidUpdate(prevProps) {
       if (prevProps.login_is_loading !== this.props.login_is_loading) {
         if (!this.props.login_is_loading) {
@@ -116,17 +169,17 @@ export default connect({
         }
       }
 
-      if (   prevProps.error_message !== this.props.error_message
-          && this.props.error_message !== null) {
+      if (prevProps.error_message !== this.props.error_message
+        && this.props.error_message !== null) {
         this._notificationSystem && this._notificationSystem.addNotification({
           message: this.props.error_message,
           level: 'error'
         });
       }
 
-      if (   this.props.scroll_requested !== prevProps.scroll_requested
-          && !_.isNil(this.props.scroll_requested)
-          && this.sectionBody) {
+      if (this.props.scroll_requested !== prevProps.scroll_requested
+        && !_.isNil(this.props.scroll_requested)
+        && this.sectionBody) {
         switch (this.props.scroll_requested) {
         case 'UP':
           window.requestAnimationFrame(() => {
@@ -163,13 +216,13 @@ export default connect({
         }
       }
 
-      if (   prevProps.scroll_requested !== this.props.scroll_requested
-          && this.props.scroll_requested !== 'BOTTOM') {
+      if (prevProps.scroll_requested !== this.props.scroll_requested
+        && this.props.scroll_requested !== 'BOTTOM') {
         this._listenScroll();
       }
 
-      if (   prevProps.first_item_key !== this.props.first_item_key
-          && prevProps.first_item_key !== null) {
+      if (prevProps.first_item_key !== this.props.first_item_key
+        && prevProps.first_item_key !== null) {
         window.requestAnimationFrame(() => {
           const el = document.querySelector(`#${prevProps.first_item_key}`);
           if (el) {
@@ -186,18 +239,14 @@ export default connect({
           this._scrollChanged();
         };
       }
-    }
-
-    _unlistenScroll = () => {
-      this.sectionBody.onscroll = null;
-    }
+    };
 
     _scrollChanged = () => {
-      if (   this.sectionBody.scrollTop === 0
-          && this.props.current_page === PAGE_CHAT_LIST) {
+      if (this.sectionBody.scrollTop === 0
+        && this.props.current_page === PAGE_CHAT_LIST) {
         this.props.getMoreItemsRequested();
       }
-    }
+    };
 
     listenPageVisibilityChanges() {
       // Set the name of the hidden property and the change event for visibility
@@ -218,7 +267,7 @@ export default connect({
       }
 
       function handleVisibilityChange() {
-        if (document[hidden]) {
+        if (document[ hidden ]) {
           this.props.pageBecameHidden();
         } else {
           this.props.pageBecameVisible();
@@ -226,7 +275,7 @@ export default connect({
       }
 
       // Warn if the browser doesn't support addEventListener or the Page Visibility API
-      if (typeof document.addEventListener === 'undefined' || typeof document[hidden] === 'undefined') {
+      if (typeof document.addEventListener === 'undefined' || typeof document[ hidden ] === 'undefined') {
         console.warn('Page Visibility API: requires a compatible browser, such as Google Chrome or Firefox.');
       } else {
         // Handle page visibility change
@@ -237,30 +286,23 @@ export default connect({
       }
     }
 
-    static resizeTimeout;
     _resizeThrottler = () => {
       // ignore resize events as long as an actualResizeHandler execution is in the queue
-      if ( !this.resizeTimeout ) {
+      if (!this.resizeTimeout) {
         this.resizeTimeout = setTimeout(() => {
           this.resizeTimeout = null;
           if (window.innerWidth < 700
-              && (   this.props.window_size_is_mobile === null
-                  || this.props.window_size_is_mobile === false)) {
+            && (   this.props.window_size_is_mobile === null
+            || this.props.window_size_is_mobile === false)) {
             this.props.windowSizeIsMobileEmited();
           } else if (window.innerWidth >= 700
-                     && (   this.props.window_size_is_mobile === null
-                     || this.props.window_size_is_mobile === true)) {
+            && (   this.props.window_size_is_mobile === null
+            || this.props.window_size_is_mobile === true)) {
             this.props.windowSizeIsDesktopEmited();
           }
         }, 300);
       }
-    }
-
-    _goFullScreen = () => {
-      if (screenfull.enabled) {
-        screenfull.toggle();
-      }
-    }
+    };
 
     _showLoading = () => {
       return (
@@ -297,7 +339,7 @@ export default connect({
           }, this.props.loading_status)}
         </ul>
       );
-    }
+    };
 
     render() {
       if (!this.props.all_loaded) {
@@ -312,7 +354,7 @@ export default connect({
       const pages = getPages();
       return (
         <div style={styles.mainContainer} id="mainContainer">
-          <NotificationSystem ref="notificationSystem" />
+          <NotificationSystem ref="notificationSystem"/>
 
           <header style={styles.header}>
             <div style={styles.titleContainer} id="titleContainer">
@@ -338,12 +380,45 @@ export default connect({
               </a>
 
               {this.props.is_admin && (
-                <a
-                  style={styles.topLink}
-                  onClick={() => this.props.redirectedToMembers()}
-                >
-                  members
-                </a>
+                <div>
+                  <a
+                    style={styles.topLink}
+                    onClick={() => this.props.redirectedToMembers()}
+                  >
+                    members
+                  </a>
+
+                  <a
+                    style={styles.topLink}
+                    onClick={() => this.props.redirectedToJobs()}
+                  >
+                    Jobs
+                  </a>
+                  <a
+                    style={styles.topLink}
+                    onClick={() => this.props.redirectedToExecutions()}
+                  >
+                    Executions
+                  </a>
+                  <a
+                    style={styles.topLink}
+                    onClick={() => this.props.redirectedToBody_Results()}
+                  >
+                    Body_Results
+                  </a>
+                  <a
+                    style={styles.topLink}
+                    onClick={() => this.props.redirectedToJSON_Extrations()}
+                  >
+                    JSON_Extrations
+                  </a>
+                  <a
+                    style={styles.topLink}
+                    onClick={() => this.props.redirectedToMarkdown_Conversions()}
+                  >
+                    Markdown_Conversions
+                  </a>
+                </div>
               )}
 
               {!this.props.window_size_is_mobile && (
@@ -377,7 +452,7 @@ export default connect({
             </div>
             <div style={styles.buttonsContainer} id="buttonsContainer">
               {this.props.is_logged && (
-                <img style={styles.userPhoto} id="userPhoto" src={this.props.user.photoURL} alt="photo" />
+                <img style={styles.userPhoto} id="userPhoto" src={this.props.user.photoURL} alt="photo"/>
               )}
 
               {this.props.is_logged && (
@@ -395,14 +470,16 @@ export default connect({
           <section
             id="sectionBody"
             style={styles.bodySection}
-            ref={node => {this.sectionBody = node;}}
+            ref={node => {
+              this.sectionBody = node;
+            }}
           >
-            {pages[this.props.current_page].body}
+            {pages[ this.props.current_page ].body}
           </section>
 
 
           <footer style={styles.footer}>
-            {pages[this.props.current_page].footer}
+            {pages[ this.props.current_page ].footer}
           </footer>
 
         </div>

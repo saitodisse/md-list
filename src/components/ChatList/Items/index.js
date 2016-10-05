@@ -1,13 +1,11 @@
 import React from 'react';
 import {connect} from 'cerebral-view-react';
-// import itensKeysComputed from '~/computed/itensKeysComputed';
 import styles from './styles';
 import Item from './Item';
 import _ from 'lodash/fp';
 
 export default connect({
   is_ready: 'chatList.is_ready',
-  // itemsKeys: itensKeysComputed(),
 },
   class Items extends React.Component {
     constructor(props) {
@@ -22,7 +20,7 @@ export default connect({
       const sorted = _.sortBy(['created_at'], this.props.items);
       const sorted_keys = _.keyBy('id', sorted);
       return Object.keys(sorted_keys);
-    }
+    };
 
     render() {
       let itemsContainerStyle;

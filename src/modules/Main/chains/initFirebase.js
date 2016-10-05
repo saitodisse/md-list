@@ -2,7 +2,7 @@ import { set, copy } from 'cerebral/operators';
 import getInitialData from '../actions/getInitialData';
 import listenChanges from '../actions/listenChanges';
 import setItemsKeys from '../actions/setItemsKeys';
-import { addLoadingStatus } from '~/helpers/operators.js';
+import { addLoadingStatus } from '../../../helpers/operators';
 
 const initFirebase = [
   addLoadingStatus('Started', 'initFirebase', 'start'),

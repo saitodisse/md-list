@@ -1,5 +1,5 @@
 import {set, copy} from 'cerebral/operators';
-import {PAGE_CHAT_LIST} from '~/constants';
+import {PAGE_CHAT_LIST} from '../../../constants';
 import facebookLogin from '../actions/facebookLogin.js';
 
 const loginFacebook = [

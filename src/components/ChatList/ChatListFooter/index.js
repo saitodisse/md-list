@@ -1,25 +1,25 @@
 import React from 'react';
-import {connect} from 'cerebral-view-react';
+import { connect } from 'cerebral-view-react';
 import _ from 'lodash/fp';
 import autosize from 'autosize';
-import itemsListCountComputed from '~/computed/itemsListCountComputed';
 import styles from './styles';
+import itemsListCountComputed from '../../../computed/itemsListCountComputed';
 
 export default connect({
-  is_saving: 'main.is_saving',
-  current_item_id: 'chatList.current_item.id',
-  current_item_body: 'chatList.current_item.body',
-  itemsCount: itemsListCountComputed(),
-  window_size_is_mobile: 'main.window_size_is_mobile',
-  all_loaded: 'main.all_loaded',
-  user_configurations: 'login.user.configurations.*',
-}, {
-  currentUserRequested: 'login.currentUserRequested',
-  currentItemChanged: 'chatList.currentItemChanged',
-  currentItemSubmitted: 'chatList.currentItemSubmitted',
-  editCanceled: 'chatList.editCanceled',
-  scrollItemsRequested: 'chatList.scrollItemsRequested',
-},
+    is_saving: 'main.is_saving',
+    current_item_id: 'chatList.current_item.id',
+    current_item_body: 'chatList.current_item.body',
+    itemsCount: itemsListCountComputed(),
+    window_size_is_mobile: 'main.window_size_is_mobile',
+    all_loaded: 'main.all_loaded',
+    user_configurations: 'login.user.configurations.*',
+  }, {
+    currentUserRequested: 'login.currentUserRequested',
+    currentItemChanged: 'chatList.currentItemChanged',
+    currentItemSubmitted: 'chatList.currentItemSubmitted',
+    editCanceled: 'chatList.editCanceled',
+    scrollItemsRequested: 'chatList.scrollItemsRequested',
+  },
   class ChatList extends React.Component {
 
     static autosizeLoaded = false;
@@ -54,19 +54,18 @@ export default connect({
     _setSendOnEnterConfiguration() {
       // send_on_enter
       const getConfiguration = (curr, path, orValue) => {
-        const currConfig = _.getOr(orValue, path, curr);
-        return currConfig;
+        return _.getOr(orValue, path, curr);
       };
       let send_on_enter = null;
       if (this.props.window_size_is_mobile) {
         send_on_enter = getConfiguration(
           this.props.user_configurations,
-          ['mobile', 'send_on_enter'],
+          [ 'mobile', 'send_on_enter' ],
           true);
       } else {
         send_on_enter = getConfiguration(
           this.props.user_configurations,
-          ['desktop', 'send_on_enter'],
+          [ 'desktop', 'send_on_enter' ],
           true);
       }
       this.send_on_enter = send_on_enter;
@@ -88,31 +87,31 @@ export default connect({
       if (this.textareaNode.value.length === 0) {
         // UP
         if (event.keyCode === 38 || event.keyCode === 104) {
-          this.props.scrollItemsRequested({direction: 'UP'});
+          this.props.scrollItemsRequested({ direction: 'UP' });
         }
         // PAGE UP
         if (event.keyCode === 33) {
-          this.props.scrollItemsRequested({direction: 'PAGE_UP'});
+          this.props.scrollItemsRequested({ direction: 'PAGE_UP' });
         }
 
         // DOWN
         if (event.keyCode === 40 || event.keyCode === 98) {
-          this.props.scrollItemsRequested({direction: 'DOWN'});
+          this.props.scrollItemsRequested({ direction: 'DOWN' });
         }
         // PAGE DOWN
         if (event.keyCode === 34) {
-          this.props.scrollItemsRequested({direction: 'PAGE_DOWN'});
+          this.props.scrollItemsRequested({ direction: 'PAGE_DOWN' });
         }
       }
 
       // SUBMIT
       const submit_on_enter = (
-           this.send_on_enter
+        this.send_on_enter
         && event.keyCode === 13
         && !event.shiftKey
       );
       const submit_on_ctrl_enter = (
-           !this.send_on_enter
+        !this.send_on_enter
         && event.keyCode === 13
         && event.ctrlKey
       );
@@ -120,7 +119,7 @@ export default connect({
         event.preventDefault();
         this._OnSubmit();
       }
-    }
+    };
 
     _OnSubmit = () => {
       const value = _.trim(this.textareaNode.value);
@@ -140,7 +139,7 @@ export default connect({
       // update textarea size
       this.textareaNode.value = '';
       autosize.update(this.textareaNode);
-    }
+    };
 
     render() {
       return (
@@ -154,10 +153,12 @@ export default connect({
                 style={this.props.error ? styles.textareaError : styles.textarea}
                 autoFocus
                 type="text"
-                ref={node => {this.textareaNode = node;}}
+                ref={node => {
+                  this.textareaNode = node;
+                }}
                 disabled={this.props.is_saving}
                 value={this.props.current_item_body}
-                onChange={event => this.props.currentItemChanged({body: event.target.value})}
+                onChange={event => this.props.currentItemChanged({ body: event.target.value })}
                 onKeyDown={this._OnTextKeyDown}
                 rows={1}
               />

@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'cerebral-view-react';
+import { connect } from 'cerebral-view-react';
 import styles from './styles';
 import _ from 'lodash/fp';
 import marked from 'marked';
@@ -8,16 +8,16 @@ import emojify from 'emojify.js';
 import plantumlEncoder from 'plantuml-encoder';
 
 export default connect(_props => ({
-  // item: `chatList.items.${props.itemId}`,
-  current_item: 'chatList.current_item',
-  user_id: 'login.user.uid',
-  window_size_is_mobile: 'main.window_size_is_mobile',
-  configurations: 'configurations.*',
-  user_configurations: 'login.user.configurations.*',
-}), {
-  itemClicked: 'chatList.itemClicked',
-  removeItemClicked: 'chatList.removeItemClicked',
-},
+    // item: `chatList.items.${props.itemId}`,
+    current_item: 'chatList.current_item',
+    user_id: 'login.user.uid',
+    window_size_is_mobile: 'main.window_size_is_mobile',
+    configurations: 'configurations.*',
+    user_configurations: 'login.user.configurations.*',
+  }), {
+    itemClicked: 'chatList.itemClicked',
+    removeItemClicked: 'chatList.removeItemClicked',
+  },
   class Item extends React.Component {
     constructor(props) {
       super(props);
@@ -41,7 +41,7 @@ export default connect(_props => ({
     }
 
     // optimizations
-    shouldComponentUpdate(nextProps, _nextState) {
+    shouldComponentUpdate(nextProps) {
       // body changed
       const body_changed = (
         this.props.item.body !== nextProps.item.body
@@ -51,7 +51,7 @@ export default connect(_props => ({
       }
 
       const item_id = this.props.item.id;
-      const new_current_item_id = _.getOr(null, ['id'], nextProps.current_item);
+      const new_current_item_id = _.getOr(null, [ 'id' ], nextProps.current_item);
       const is_current_item = (item_id === new_current_item_id);
 
       // item was selected
@@ -60,13 +60,13 @@ export default connect(_props => ({
       }
 
       // item was deselected
-      const old_current_item_id = _.getOr(null, ['id'], this.props.current_item);
+      const old_current_item_id = _.getOr(null, [ 'id' ], this.props.current_item);
       const was_current_item = (
-           old_current_item_id === item_id
+        old_current_item_id === item_id
         && (
-               old_current_item_id !== new_current_item_id
-            || new_current_item_id === null
-           )
+          old_current_item_id !== new_current_item_id
+          || new_current_item_id === null
+        )
       );
       if (!is_current_item && was_current_item) {
         return true;
@@ -86,66 +86,62 @@ export default connect(_props => ({
         const nextConfig = _.getOr(false, path, next);
         return currConfig !== nextConfig;
       }
+
       const configurations_changed = (
-           this.props.user_configurations
-        &&  (   checkConfiguration(
-                  this.props.configurations,
-                  nextProps.configurations,
-                  ['desktop', 'font_size']
-                )
-              || checkConfiguration(
-                  this.props.user_configurations,
-                  nextProps.user_configurations,
-                  ['mobile', 'font_size']
-                )
-              || checkConfiguration(
-                  this.props.configurations,
-                  nextProps.configurations,
-                  ['desktop', 'show_edit_button']
-                )
-              || checkConfiguration(
-                  this.props.user_configurations,
-                  nextProps.user_configurations,
-                  ['mobile', 'show_edit_button']
-                )
-              || checkConfiguration(
-                  this.props.configurations,
-                  nextProps.configurations,
-                  ['desktop', 'show_delete_button']
-                )
-              || checkConfiguration(
-                  this.props.user_configurations,
-                  nextProps.user_configurations,
-                  ['mobile', 'show_delete_button']
-                )
-              || checkConfiguration(
-                  this.props.configurations,
-                  nextProps.configurations,
-                  ['desktop', 'send_on_enter']
-                )
-              || checkConfiguration(
-                  this.props.user_configurations,
-                  nextProps.user_configurations,
-                  ['mobile', 'send_on_enter']
-                )
-              || checkConfiguration(
-                  this.props.configurations,
-                  nextProps.configurations,
-                  ['app', 'edit_other_users_items']
-                )
-            )
+        this.props.user_configurations
+        && (   checkConfiguration(
+            this.props.configurations,
+            nextProps.configurations,
+            [ 'desktop', 'font_size' ]
+          )
+          || checkConfiguration(
+            this.props.user_configurations,
+            nextProps.user_configurations,
+            [ 'mobile', 'font_size' ]
+          )
+          || checkConfiguration(
+            this.props.configurations,
+            nextProps.configurations,
+            [ 'desktop', 'show_edit_button' ]
+          )
+          || checkConfiguration(
+            this.props.user_configurations,
+            nextProps.user_configurations,
+            [ 'mobile', 'show_edit_button' ]
+          )
+          || checkConfiguration(
+            this.props.configurations,
+            nextProps.configurations,
+            [ 'desktop', 'show_delete_button' ]
+          )
+          || checkConfiguration(
+            this.props.user_configurations,
+            nextProps.user_configurations,
+            [ 'mobile', 'show_delete_button' ]
+          )
+          || checkConfiguration(
+            this.props.configurations,
+            nextProps.configurations,
+            [ 'desktop', 'send_on_enter' ]
+          )
+          || checkConfiguration(
+            this.props.user_configurations,
+            nextProps.user_configurations,
+            [ 'mobile', 'send_on_enter' ]
+          )
+          || checkConfiguration(
+            this.props.configurations,
+            nextProps.configurations,
+            [ 'app', 'edit_other_users_items' ]
+          )
+        )
       );
-      if (configurations_changed) {
-        return true;
-      }
-
-
-      return false;
+      return configurations_changed;
     }
 
     _emojiReplacer = (emoji, name) => {
       return `![${emoji}](https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/images/basic/${name}.png#emoji-img)`;
-    }
+    };
 
     _plantUML_image = (content) => {
       const puml_regex = /```puml\n([\s\S]*?)\n```/g;
@@ -153,32 +149,30 @@ export default connect(_props => ({
       let match_result = puml_regex.exec(content);
       while (match_result !== null) {
         puml_matches.push({
-          full: match_result[0],
-          content: match_result[1]
+          full: match_result[ 0 ],
+          content: match_result[ 1 ]
         });
         match_result = puml_regex.exec(content);
       }
 
-      const result = puml_matches.reduce((prev, curr) => {
+      return puml_matches.reduce((prev, curr) => {
         const puml_code = curr.content;
         const encoded = plantumlEncoder.encode(puml_code);
         const img_url = 'https://www.plantuml.com/plantuml/img/' + encoded;
         return prev.split(curr.full).join(`![puml_code](${img_url})`);
       }, content);
-
-      return result;
-    }
+    };
 
     renderMarkdown = () => {
       const md_with_puml = this._plantUML_image(String(this.props.item.body));
       const md_with_emoji = emojify.replace(String(md_with_puml), this._emojiReplacer);
       const mdHtml = marked(md_with_emoji);
-      return {__html: mdHtml};
-    }
+      return { __html: mdHtml };
+    };
 
     _onEdit = () => {
-      this.props.itemClicked({id: this.props.item.id});
-    }
+      this.props.itemClicked({ id: this.props.item.id });
+    };
 
     render() {
       // check if item exists
@@ -198,13 +192,13 @@ export default connect(_props => ({
       // --------------
       // responsive: font-size
       function getConfiguration(curr, path, orValue) {
-        const currConfig = _.getOr(orValue, path, curr);
-        return currConfig;
+        return _.getOr(orValue, path, curr);
       }
+
       if (this.props.window_size_is_mobile) {
-        valueStyle.fontSize = `${getConfiguration(this.props.user_configurations, ['mobile', 'font_size'], 20)}px`;
+        valueStyle.fontSize = `${getConfiguration(this.props.user_configurations, [ 'mobile', 'font_size' ], 20)}px`;
       } else {
-        valueStyle.fontSize = `${getConfiguration(this.props.user_configurations, ['desktop', 'font_size'], 16)}px`;
+        valueStyle.fontSize = `${getConfiguration(this.props.user_configurations, [ 'desktop', 'font_size' ], 16)}px`;
       }
 
       let show_edit_button = null;
@@ -215,12 +209,12 @@ export default connect(_props => ({
         if (this.props.window_size_is_mobile) {
           show_edit_button = getConfiguration(
             this.props.user_configurations,
-            ['mobile', 'show_edit_button'],
+            [ 'mobile', 'show_edit_button' ],
             true);
         } else {
           show_edit_button = getConfiguration(
             this.props.user_configurations,
-            ['desktop', 'show_edit_button'],
+            [ 'desktop', 'show_edit_button' ],
             true);
         }
 
@@ -228,12 +222,12 @@ export default connect(_props => ({
         if (this.props.window_size_is_mobile) {
           show_delete_button = getConfiguration(
             this.props.user_configurations,
-            ['mobile', 'show_delete_button'],
+            [ 'mobile', 'show_delete_button' ],
             true);
         } else {
           show_delete_button = getConfiguration(
             this.props.user_configurations,
-            ['desktop', 'show_delete_button'],
+            [ 'desktop', 'show_delete_button' ],
             true);
         }
       }
@@ -244,13 +238,13 @@ export default connect(_props => ({
       const me_id = this.props.user_id;
       const item_uid = this.props.item.user_id;
       const is_my_item = (me_id === item_uid);
-      const edit_other_users_items = _.getOr(false, ['app', 'edit_other_users_items'], this.props.configurations);
+      const edit_other_users_items = _.getOr(false, [ 'app', 'edit_other_users_items' ], this.props.configurations);
 
       return (
         <div style={styles.messageContainer} id={this.props.item.id}>
 
           <div style={styles.userPhotoContainer} id="userPhotoContainer">
-            <img style={styles.userPhoto} id="userPhoto" src={this.props.item.photoURL} alt="photo" />
+            <img style={styles.userPhoto} id="userPhoto" src={this.props.item.photoURL} alt="photo"/>
           </div>
 
           <div style={styles.bodyContainer} id="bodyContainer">
@@ -262,7 +256,7 @@ export default connect(_props => ({
                 {`${(new Date(this.props.item.created_at)).toLocaleDateString()} ${(new Date(this.props.item.created_at)).toLocaleTimeString()}`}
               </div>
 
-                {(is_my_item || edit_other_users_items) && (
+              {(is_my_item || edit_other_users_items) && (
                 <div style={styles.buttonsContainer} id="buttonsContainer">
                   {show_edit_button && (
                     <div
@@ -275,20 +269,20 @@ export default connect(_props => ({
                   {show_delete_button && (
                     <div
                       style={styles.deleteButton} id="deleteButton"
-                      onClick={() => this.props.removeItemClicked({id: this.props.item.id})}
+                      onClick={() => this.props.removeItemClicked({ id: this.props.item.id })}
                     >
                       delete
                     </div>
                   )}
                 </div>
-                )}
+              )}
             </div>
 
             <div style={itemStyle}>
               <div
                 style={_.clone(valueStyle)}
                 dangerouslySetInnerHTML={this.renderMarkdown()}
-              / >
+              />
             </div>
 
           </div>
@@ -296,6 +290,5 @@ export default connect(_props => ({
         </div>
       );
     }
-
   }
 );

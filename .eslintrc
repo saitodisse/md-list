@@ -12,7 +12,7 @@
   },
   "plugins": [
     "react",
-    "lodash-fp",
+    "lodash-fp"
   ],
   "extends": "plugin:lodash-fp/recommended",
   "ecmaFeatures": {
