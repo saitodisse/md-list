@@ -9,6 +9,7 @@ export default (controller) => module => {
       initial_spec_state: 'initial_spec_state',
       url: 'url',
     }),
+    set('state:main.all_loaded', true),
   ];
 
   module.addSignals({

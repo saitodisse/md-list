@@ -7,14 +7,19 @@ require('!style!css!./styles.css');
 export default connect({
     job_name: 'jobs.job_name',
     initial_spec_state: 'jobs.initial_spec_state',
+    url: 'jobs.url',
+    all_loaded: 'main.all_loaded',
   }, {
     inputJobNameChanged: 'jobs.inputJobNameChanged',
     inputInitialSpecStateChanged: 'jobs.inputInitialSpecStateChanged',
     inputUrlChanged: 'jobs.inputUrlChanged',
   },
   class Jobs extends React.Component {
-    //noinspection JSMethodCanBeStatic
     render() {
+      if (!this.props.all_loaded) {
+        return null;
+      }
+
       return (
         <div id="jobs">
           <section className="title">
