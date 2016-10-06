@@ -6,6 +6,8 @@ import marked from 'marked';
 import highlight from 'highlight.js';
 import emojify from 'emojify.js';
 import plantumlEncoder from 'plantuml-encoder';
+//noinspection JSFileReferences
+//noinspection JSFileReferences
 
 export default connect(_props => ({
     // item: `chatList.items.${props.itemId}`,

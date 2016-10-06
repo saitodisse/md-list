@@ -5,7 +5,7 @@ function deleteItem({ input, output }) {
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};
-  updates['/items/' + itemToDelete] = null;
+  updates[ '/items/' + itemToDelete ] = null;
 
   firebase.database().ref().update(updates)
     .then(output.success)
@@ -13,6 +13,6 @@ function deleteItem({ input, output }) {
 }
 
 deleteItem.async = true;
-deleteItem.outputs = ['success', 'error'];
+deleteItem.outputs = [ 'success', 'error' ];
 
 export default deleteItem;

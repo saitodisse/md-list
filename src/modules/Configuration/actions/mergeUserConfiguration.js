@@ -1,4 +1,4 @@
-function mergeItem({state, input}) {
+function mergeItem({ state, input }) {
   state.set(`login.user.configurations.${input.key}`, input.value);
 }
 

@@ -1,4 +1,4 @@
-import {set, copy} from 'cerebral/operators';
+import { set, copy } from 'cerebral/operators';
 import signOut from '../actions/signOut.js';
 
 const userSignOut = [

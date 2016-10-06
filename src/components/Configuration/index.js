@@ -1,18 +1,18 @@
 import React from 'react';
-import {connect} from 'cerebral-view-react';
+import { connect } from 'cerebral-view-react';
 import styles from './styles';
 import ConfigurationField from './ConfigurationField';
 import _ from 'lodash/fp';
 
 export default connect({
-  configurations: 'configurations.*',
-  user_configurations: 'login.user.configurations.*',
-  user_id: 'login.user.uid',
-  is_admin: 'login.user.is_admin',
-}, {
-  pageLoaded: 'configurations.pageLoaded',
-  createInitialConfigurationsClicked: 'configurations.createInitialConfigurationsClicked',
-},
+    configurations: 'configurations.*',
+    user_configurations: 'login.user.configurations.*',
+    user_id: 'login.user.uid',
+    is_admin: 'login.user.is_admin',
+  }, {
+    pageLoaded: 'configurations.pageLoaded',
+    createInitialConfigurationsClicked: 'configurations.createInitialConfigurationsClicked',
+  },
   class Configuration extends React.Component {
     componentDidMount() {
       this.props.pageLoaded();
@@ -52,14 +52,14 @@ export default connect({
       // wait prop
       if (_.getOr(
           null,
-          ['app', 'restricted_access_to_members'],
+          [ 'app', 'restricted_access_to_members' ],
           this.props.configurations) === null) {
         return this.renderCreateInitialConfigurationsButton();
       }
 
       const has_user_configuration = _.getOr(
           null,
-          ['desktop', 'font_size'],
+          [ 'desktop', 'font_size' ],
           this.props.user_configurations) !== null;
 
       return (
@@ -72,10 +72,10 @@ export default connect({
           <section className="fields">
 
             {/*
-              /////////////
-              Global App (Admin Only)
-              /////////////
-            */}
+             /////////////
+             Global App (Admin Only)
+             /////////////
+             */}
             {this.props.is_admin && (
               <div className="fieldGroup">
 
@@ -87,7 +87,7 @@ export default connect({
                   title="Private"
                   description="Only members can read and post items"
                   only_admin={true}
-                  value={_.getOr(false, ['app', 'restricted_access_to_members'], this.props.configurations)}
+                  value={_.getOr(false, [ 'app', 'restricted_access_to_members' ], this.props.configurations)}
                   path={'/configurations/app/restricted_access_to_members'}
                 />
 
@@ -95,7 +95,7 @@ export default connect({
                   title="Shared Itens"
                   description="User can edit others users items"
                   only_admin={true}
-                  value={_.getOr(false, ['app', 'edit_other_users_items'], this.props.configurations)}
+                  value={_.getOr(false, [ 'app', 'edit_other_users_items' ], this.props.configurations)}
                   path={'/configurations/app/edit_other_users_items'}
                 />
 
@@ -103,18 +103,18 @@ export default connect({
             )}
 
             {/*
-              /////////////
-              Create Configurations
-              /////////////
-            */}
+             /////////////
+             Create Configurations
+             /////////////
+             */}
             {this.renderCreateInitialConfigurationsButton()}
 
 
             {/*
-              /////////////
-              Current User
-              /////////////
-            */}
+             /////////////
+             Current User
+             /////////////
+             */}
             {has_user_configuration && this.props.user_configurations.desktop && (
               <div className="fieldGroup">
 
@@ -194,10 +194,10 @@ export default connect({
 
 
             {/*
-              /////////////
-              Global User (Admin Only)
-              /////////////
-            */}
+             /////////////
+             Global User (Admin Only)
+             /////////////
+             */}
             {this.props.is_admin && this.props.configurations.user && this.props.configurations.user.desktop && (
               <div className="fieldGroup">
 

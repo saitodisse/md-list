@@ -5,6 +5,6 @@ function getFirebaseGlobalConfigurations({ services, output }) {
 }
 
 getFirebaseGlobalConfigurations.async = true;
-getFirebaseGlobalConfigurations.outputs = ['error', 'success'];
+getFirebaseGlobalConfigurations.outputs = [ 'error', 'success' ];
 
 export default getFirebaseGlobalConfigurations;

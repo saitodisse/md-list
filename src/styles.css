@@ -1,12 +1,12 @@
 pre {
-  border-left: 1px dashed #eee;
+  border-left: 1px dashed #EEEEEE;
   margin-left: 5px;
   padding-left: 10px;
 }
 
-pre code{
+pre code {
   font-family: 'Anonymous Pro', monospace;
-  border-bottom: 1px dashed #d7d7d7;
+  border-bottom: 1px dashed #D7D7D7;
 }
 
 th {
@@ -17,7 +17,7 @@ th {
 
 td {
   padding: 7px;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #DCDCDC;
 }
 
 img[src$='#emoji-img'] {
@@ -25,13 +25,12 @@ img[src$='#emoji-img'] {
   vertical-align: bottom;
 }
 
-
 .userNameMe {
-  color: #437b58;
+  color: #437B58;
 }
 
 .userNameOther {
-  color: #4f58d8;
+  color: #4F58D8;
 }
 
 #bodyContainer {
@@ -39,12 +38,13 @@ img[src$='#emoji-img'] {
   flex-grow: 1;
   font-size: 14px;
 }
+
 #editButton, #deleteButton {
   font-size: 12px;
   margin-left: 7px;
   cursor: pointer;
   text-decoration: underline;
-  color: #777;
+  color: #777777;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -56,17 +56,17 @@ section.title {
   align-self: center;
   margin: 17px 0 0 0;
   font-weight: bold;
-  color: #5f9ea0;
+  color: #5F9EA0;
 }
 
 section.fields {
   font-size: 16px;
   margin: 23px 10% 67px 10%;
-  border: 5px solid #d9cadc;
+  border: 5px solid #D9CADC;
 }
 
 section.fields .fieldGroup {
-  border: 3px solid #bda4fb;
+  border: 3px solid #BDA4FB;
   padding: 20px;
   margin: 17px;
 }
@@ -74,17 +74,17 @@ section.fields .fieldGroup {
 section.fields .fieldGroupTitle {
   font-size: 21px;
   margin: 0 0 15px 0;
-  color: #7c5fc9;
+  color: #7C5FC9;
   font-weight: bold;
 }
 
-section.fields .fieldContainer{
+section.fields .fieldContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
-  border-bottom: 1px solid #d9cadc;
+  border-bottom: 1px solid #D9CADC;
 }
 
 .labelContainer {
@@ -115,12 +115,13 @@ section.fields input[type=text] {
     flex-grow: 1;
     font-size: 18px;
   }
+
   #editButton, #deleteButton {
     font-size: 18px;
     margin-left: 7px;
     cursor: pointer;
     text-decoration: underline;
-    color: #777;
+    color: #777777;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -139,26 +140,40 @@ section.fields input[type=text] {
   width: 100%;
   position: relative;
   overflow: hidden;
-  background-color: #ddd;
+  background-color: #DDDDDD;
 }
-.loader:before{
+
+.loader:before {
   display: block;
   position: absolute;
   content: "";
   left: -200px;
   width: 200px;
   height: 11px;
-  background-color: #2980b9;
+  background-color: #2980B9;
   animation: loading 1s linear infinite;
 }
 
 @keyframes loading {
-  from {left: -200px; width: 30%;}
-  50% {width: 30%;}
-  70% {width: 70%;}
-  80% { left: 50%;}
-  95% {left: 120%;}
-  to {left: 100%;}
+  from {
+    left: -200px;
+    width: 30%;
+  }
+  50% {
+    width: 30%;
+  }
+  70% {
+    width: 70%;
+  }
+  80% {
+    left: 50%;
+  }
+  95% {
+    left: 120%;
+  }
+  to {
+    left: 100%;
+  }
 }
 
 /*

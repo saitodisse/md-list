@@ -1,4 +1,4 @@
-import {set, copy} from 'cerebral/operators';
+import { set, copy } from 'cerebral/operators';
 import deleteItem from '../actions/deleteItem';
 import removeItem from '../actions/removeItem';
 

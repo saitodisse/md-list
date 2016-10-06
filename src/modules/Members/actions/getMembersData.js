@@ -5,6 +5,6 @@ function getMembersData({ services, output }) {
 }
 
 getMembersData.async = true;
-getMembersData.outputs = ['success', 'error'];
+getMembersData.outputs = [ 'success', 'error' ];
 
 export default getMembersData;

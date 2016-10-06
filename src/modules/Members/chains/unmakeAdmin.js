@@ -1,4 +1,4 @@
-import {set, copy} from 'cerebral/operators';
+import { set, copy } from 'cerebral/operators';
 import unmakeAdminInFirebase from '../actions/unmakeAdminInFirebase.js';
 
 const unmakeAdmin = [

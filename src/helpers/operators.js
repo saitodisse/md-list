@@ -1,4 +1,4 @@
-import {set} from 'cerebral/operators';
+import { set } from 'cerebral/operators';
 import uuid from 'uuid';
 
 export const addLoadingStatus = (message, context, logType) => {

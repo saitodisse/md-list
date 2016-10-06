@@ -10,8 +10,7 @@ export default {
     overflowY: 'hidden',
   },
 
-  header: {
-  },
+  header: {},
 
   bodySection: {
     flex: '1 1 auto',
@@ -19,8 +18,7 @@ export default {
     minHeight: 0,
   },
 
-  footer: {
-  },
+  footer: {},
 
   titleContainer: {
     display: 'flex',
@@ -29,8 +27,7 @@ export default {
     marginTop: 9,
     marginBottom: 14,
   },
-  title: {
-  },
+  title: {},
   titleLink: {
     fontSize: 22,
     color: '#777',
@@ -132,11 +129,7 @@ export default {
     borderRadius: '6px',
     padding: '1px 4px',
   },
-  loadingStatusLogMessage: {
-
-  },
-  loadingStatusLogTime: {
-
-  },
+  loadingStatusLogMessage: {},
+  loadingStatusLogTime: {},
 
 };

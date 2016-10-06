@@ -1,4 +1,4 @@
-import {set, copy} from 'cerebral/operators';
+import { set, copy } from 'cerebral/operators';
 import addMemberToFirebase from '../actions/addMemberToFirebase.js';
 
 const addMember = [

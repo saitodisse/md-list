@@ -34,12 +34,12 @@ function updateItem({ input, state, output }) {
 
   if (is_updating) {
     const updates = {};
-    updates[`/items/${key}/id`] = itemData.id;
-    updates[`/items/${key}/user_id`] = itemData.user_id;
-    updates[`/items/${key}/displayName`] = itemData.displayName;
-    updates[`/items/${key}/photoURL`] = itemData.photoURL;
-    updates[`/items/${key}/body`] = itemData.body;
-    updates[`/items/${key}/updated_at`] = firebase.database.ServerValue.TIMESTAMP;
+    updates[ `/items/${key}/id` ] = itemData.id;
+    updates[ `/items/${key}/user_id` ] = itemData.user_id;
+    updates[ `/items/${key}/displayName` ] = itemData.displayName;
+    updates[ `/items/${key}/photoURL` ] = itemData.photoURL;
+    updates[ `/items/${key}/body` ] = itemData.body;
+    updates[ `/items/${key}/updated_at` ] = firebase.database.ServerValue.TIMESTAMP;
 
     firebase.database().ref().update(updates)
       .then(output.update_success)
@@ -55,6 +55,6 @@ function updateItem({ input, state, output }) {
 }
 
 updateItem.async = true;
-updateItem.outputs = ['update_success', 'create_success', 'error'];
+updateItem.outputs = [ 'update_success', 'create_success', 'error' ];
 
 export default updateItem;

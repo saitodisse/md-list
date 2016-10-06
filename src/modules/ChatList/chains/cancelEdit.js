@@ -1,4 +1,4 @@
-import {set} from 'cerebral/operators';
+import { set } from 'cerebral/operators';
 
 const cancelEdit = [
   set('state:chatList.current_item', { body: '' }),

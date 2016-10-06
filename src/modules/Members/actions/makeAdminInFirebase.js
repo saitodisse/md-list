@@ -2,7 +2,7 @@ import firebase from 'firebase';
 
 function makeAdminInFirebase({ input, output }) {
   const updates = {};
-  updates[`admins/${input.user_id}`] = {
+  updates[ `admins/${input.user_id}` ] = {
     user_id: input.user_id,
     created_at: firebase.database.ServerValue.TIMESTAMP,
   };
@@ -12,6 +12,6 @@ function makeAdminInFirebase({ input, output }) {
     .catch(output.error);
 }
 makeAdminInFirebase.async = true;
-makeAdminInFirebase.outputs = ['success', 'error'];
+makeAdminInFirebase.outputs = [ 'success', 'error' ];
 
 export default makeAdminInFirebase;

@@ -10,6 +10,6 @@ function getFirebaseUser({ input, services, output }) {
 }
 
 getFirebaseUser.async = true;
-getFirebaseUser.outputs = ['exist', 'not_exist', 'error'];
+getFirebaseUser.outputs = [ 'exist', 'not_exist', 'error' ];
 
 export default getFirebaseUser;

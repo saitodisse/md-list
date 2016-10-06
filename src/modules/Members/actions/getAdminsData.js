@@ -5,6 +5,6 @@ function getAdminsData({ services, output }) {
 }
 
 getAdminsData.async = true;
-getAdminsData.outputs = ['success', 'error'];
+getAdminsData.outputs = [ 'success', 'error' ];
 
 export default getAdminsData;

@@ -3,8 +3,8 @@ function facebookLogin({ services, output }) {
     redirect: true,
     scopes: [], // Facebook scopes to access
   })
-  .then(output.success)
-  .catch(output.error);
+    .then(output.success)
+    .catch(output.error);
 }
 facebookLogin.async = true;
 

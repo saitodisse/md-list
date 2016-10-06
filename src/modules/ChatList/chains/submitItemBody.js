@@ -1,4 +1,4 @@
-import {set, copy} from 'cerebral/operators';
+import { set, copy } from 'cerebral/operators';
 import updateItem from '../actions/updateItem.js';
 
 const submitItemBody = [
@@ -14,7 +14,7 @@ const submitItemBody = [
       // enabling the input again
       set('state:chatList.last_operation_was_update', false),
       set('state:main.is_saving', false),
-      set('state:chatList.current_item', {body: ''}),
+      set('state:chatList.current_item', { body: '' }),
       set('state:chatList.submiting_item', false),
     ],
     update_success: [
@@ -22,7 +22,7 @@ const submitItemBody = [
       // enabling the input again
       set('state:chatList.last_operation_was_update', true),
       set('state:main.is_saving', false),
-      set('state:chatList.current_item', {body: ''}),
+      set('state:chatList.current_item', { body: '' }),
       set('state:chatList.submiting_item', false),
     ],
     error: [

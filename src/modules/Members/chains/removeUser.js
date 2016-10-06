@@ -1,4 +1,4 @@
-import {set, copy} from 'cerebral/operators';
+import { set, copy } from 'cerebral/operators';
 import removeUserFromFirebase from '../actions/removeUserFromFirebase.js';
 
 const removeUser = [

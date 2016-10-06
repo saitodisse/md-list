@@ -1,4 +1,4 @@
-import {set, copy} from 'cerebral/operators';
+import { set, copy } from 'cerebral/operators';
 import setConfigurationData from '../actions/setConfigurationData.js';
 
 const toggleConfiguration = [

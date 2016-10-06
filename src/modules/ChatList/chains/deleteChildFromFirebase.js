@@ -1,6 +1,5 @@
 import notificationItemRemoved from '../actions/notificationItemRemoved';
 import removeItem from '../actions/removeItem';
-
 import elasticsearchDeleteData from '../../../modules/Search/actions/elasticsearchDeleteData';
 import { when, copy } from 'cerebral/operators';
 

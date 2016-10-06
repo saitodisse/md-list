@@ -1,4 +1,3 @@
 export default module => {
-  module.addSignals({
-  });
+  module.addSignals({});
 };

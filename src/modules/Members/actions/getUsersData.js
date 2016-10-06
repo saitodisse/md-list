@@ -5,6 +5,6 @@ function getUsersData({ services, output }) {
 }
 
 getUsersData.async = true;
-getUsersData.outputs = ['success', 'error'];
+getUsersData.outputs = [ 'success', 'error' ];
 
 export default getUsersData;

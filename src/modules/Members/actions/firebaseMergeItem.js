@@ -1,11 +1,11 @@
 function firebaseMergeItem(path) {
-  return function mergeItem({state, output, input}) {
-    const {key, value} = input;
+  return function mergeItem({ state, output, input }) {
+    const { key, value } = input;
     const newItem = {};
-    newItem[key] = value;
+    newItem[ key ] = value;
 
     state.merge(path, newItem);
-    output({key});
+    output({ key });
   };
 }
 

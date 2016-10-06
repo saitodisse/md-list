@@ -7,6 +7,6 @@ function elasticsearchSearchItems({ services, state, output }) {
 }
 
 elasticsearchSearchItems.async = true;
-elasticsearchSearchItems.outputs = ['success', 'error'];
+elasticsearchSearchItems.outputs = [ 'success', 'error' ];
 
 export default elasticsearchSearchItems;

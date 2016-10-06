@@ -1,13 +1,13 @@
 import React from 'react';
-import {connect} from 'cerebral-view-react';
+import { connect } from 'cerebral-view-react';
 import styles from './styles';
 import _ from 'lodash/fp';
 
 export default connect({
-  is_admin: 'login.user.is_admin',
-}, {
-  toggleConfigurationClicked: 'configurations.toggleConfigurationClicked',
-},
+    is_admin: 'login.user.is_admin',
+  }, {
+    toggleConfigurationClicked: 'configurations.toggleConfigurationClicked',
+  },
   class ConfigurationField extends React.Component {
     render() {
       // set background if not admin

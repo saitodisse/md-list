@@ -5,6 +5,6 @@ function checkAdminFirebaseUser({ input, services, output }) {
 }
 
 checkAdminFirebaseUser.async = true;
-checkAdminFirebaseUser.outputs = ['success', 'error'];
+checkAdminFirebaseUser.outputs = [ 'success', 'error' ];
 
 export default checkAdminFirebaseUser;

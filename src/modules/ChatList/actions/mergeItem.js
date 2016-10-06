@@ -1,8 +1,8 @@
-function mergeItem({state, output, input}) {
-  const {key, value} = input;
+function mergeItem({ state, output, input }) {
+  const { key, value } = input;
   const newItem = {};
-  newItem[key] = value;
-  newItem[key].id = key;
+  newItem[ key ] = value;
+  newItem[ key ].id = key;
 
   state.merge('chatList.items', newItem);
   output({

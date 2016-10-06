@@ -1,9 +1,7 @@
 import mergeItem from '../actions/mergeItem';
 import notificationItemAdd from '../actions/notificationItemAdd';
-import {debounce} from 'cerebral/operators';
-
+import { debounce, when, copy } from 'cerebral/operators';
 import elasticsearchPutData from '../../../modules/Search/actions/elasticsearchPutData';
-import { when, copy } from 'cerebral/operators';
 
 const receiveDataFromFirebase = [
   mergeItem,

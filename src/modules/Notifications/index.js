@@ -10,7 +10,7 @@ export default (_options = {}) => module => {
       return Notification.requestPermission();
     },
 
-    sendNotification({title, body, icon_url, close_in_seconds}) {
+    sendNotification({ title, body, icon_url, close_in_seconds }) {
       if (!('Notification' in window)) {
         console.log('This browser does not support desktop notification');
         return null;

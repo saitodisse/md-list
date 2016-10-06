@@ -6,6 +6,6 @@ function getFirebaseUserConfigurations({ input, services, output }) {
 }
 
 getFirebaseUserConfigurations.async = true;
-getFirebaseUserConfigurations.outputs = ['error', 'success'];
+getFirebaseUserConfigurations.outputs = [ 'error', 'success' ];
 
 export default getFirebaseUserConfigurations;

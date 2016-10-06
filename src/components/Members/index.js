@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'cerebral-view-react';
+import { connect } from 'cerebral-view-react';
 import styles from './styles';
 import Admin from './Admin';
 import Member from './Member';
@@ -7,13 +7,13 @@ import User from './User';
 import _ from 'lodash/fp';
 
 export default connect({
-  members: 'members.*',
-  user_id: 'login.user.uid',
-  is_admin: 'login.user.is_admin',
-}, {
-  membersLoaded: 'members.pageLoaded',
-  unlistened: 'members.unlistened',
-},
+    members: 'members.*',
+    user_id: 'login.user.uid',
+    is_admin: 'login.user.is_admin',
+  }, {
+    membersLoaded: 'members.pageLoaded',
+    unlistened: 'members.unlistened',
+  },
   class Members extends React.Component {
     constructor(props) {
       super(props);
@@ -53,27 +53,27 @@ export default connect({
       const members_and_admins = _.union(members_keys, this.admins_keys);
       this.users_keys = _.difference(users_keys, members_and_admins);
 
-      this.setState({is_calculated: true});
+      this.setState({ is_calculated: true });
     };
 
     listAdmins = () => {
       return _.map((key) => ({
         key,
-        item: this.props.members.usersList[key]
+        item: this.props.members.usersList[ key ]
       }), this.admins_keys);
     };
 
     listMembers = () => {
       return _.map((key) => ({
         key,
-        item: this.props.members.usersList[key]
+        item: this.props.members.usersList[ key ]
       }), this.members_keys);
     };
 
     listUsers = () => {
       return _.map((key) => ({
         key,
-        item: this.props.members.usersList[key]
+        item: this.props.members.usersList[ key ]
       }), this.users_keys);
     };
 
@@ -95,8 +95,8 @@ export default connect({
                 <div style={styles.sectionSubTitle}>
                   Manage Users and Global Configurations
                 </div>
-                {_.map(({key, item}) => (
-                  <Admin data={item} key={key} />
+                {_.map(({ key, item }) => (
+                  <Admin data={item} key={key}/>
                 ), this.listAdmins())}
               </div>
             )}
@@ -109,8 +109,8 @@ export default connect({
                 <div style={styles.sectionSubTitle}>
                   Has private access
                 </div>
-                {_.map(({key, item}) => (
-                  <Member data={item} key={key} />
+                {_.map(({ key, item }) => (
+                  <Member data={item} key={key}/>
                 ), this.listMembers())}
               </div>
             )}
@@ -123,8 +123,8 @@ export default connect({
                 <div style={styles.sectionSubTitle}>
                   Simple user
                 </div>
-                {_.map(({key, item}) => (
-                  <User data={item} key={key} />
+                {_.map(({ key, item }) => (
+                  <User data={item} key={key}/>
                 ), this.listUsers())}
               </div>
             )}

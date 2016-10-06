@@ -4,7 +4,7 @@ function getResults({ input, state }) {
   const hits = input.result.hits.hits;
   const hitsObj = _.reduce((prev, curr) => {
     const item = curr._source;
-    prev[item.id] = item;
+    prev[ item.id ] = item;
     return prev;
   }, {}, hits);
 

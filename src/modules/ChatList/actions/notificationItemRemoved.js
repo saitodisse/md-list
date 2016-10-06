@@ -26,7 +26,7 @@ function notificationItemRemoved({ input, services, state }) {
       notif.close();
     };
 
-    return {notificationOnClick: notif.onclick};
+    return { notificationOnClick: notif.onclick };
   }
 
   return null;

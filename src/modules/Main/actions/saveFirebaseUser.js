@@ -23,7 +23,7 @@ function saveFirebaseUser({ input, output }) {
     updated_at: firebase.database.ServerValue.TIMESTAMP,
   };
   const updates = {};
-  updates['/users/' + key] = user_data;
+  updates[ '/users/' + key ] = user_data;
 
   // Send to firebase
   return firebase.database().ref().update(updates)
@@ -32,6 +32,6 @@ function saveFirebaseUser({ input, output }) {
 }
 
 saveFirebaseUser.async = true;
-saveFirebaseUser.outputs = ['success', 'error'];
+saveFirebaseUser.outputs = [ 'success', 'error' ];
 
 export default saveFirebaseUser;

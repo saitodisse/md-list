@@ -1,4 +1,4 @@
-function toggleCurrentItem({input, state}) {
+function toggleCurrentItem({ input, state }) {
   const itemPath = `chatList.items.${input.id}`;
   const selectedItem = state.get(itemPath);
 
@@ -8,7 +8,7 @@ function toggleCurrentItem({input, state}) {
   if (isEmpty || !hasSameId) {
     state.set('chatList.current_item', selectedItem);
   } else if (hasSameId) {
-    state.set('chatList.current_item', {body: ''});
+    state.set('chatList.current_item', { body: '' });
   }
 }
 

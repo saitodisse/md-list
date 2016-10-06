@@ -1,4 +1,4 @@
-import {set, copy} from 'cerebral/operators';
+import { set, copy } from 'cerebral/operators';
 import getConfigurationData from '../actions/getConfigurationData.js';
 import getUserConfigurationData from '../actions/getUserConfigurationData.js';
 

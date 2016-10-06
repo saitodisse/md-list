@@ -7,6 +7,6 @@ function elasticsearchGetHelth({ services, output }) {
 }
 
 elasticsearchGetHelth.async = true;
-elasticsearchGetHelth.outputs = ['success', 'error'];
+elasticsearchGetHelth.outputs = [ 'success', 'error' ];
 
 export default elasticsearchGetHelth;

@@ -8,6 +8,6 @@ function elasticsearchPutData({ services, input, output }) {
 }
 
 elasticsearchPutData.async = true;
-elasticsearchPutData.outputs = ['success', 'error'];
+elasticsearchPutData.outputs = [ 'success', 'error' ];
 
 export default elasticsearchPutData;

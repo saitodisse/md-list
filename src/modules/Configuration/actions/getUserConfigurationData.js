@@ -6,6 +6,6 @@ function getUserConfigurationData({ services, state, output }) {
 }
 
 getUserConfigurationData.async = true;
-getUserConfigurationData.outputs = ['success', 'error'];
+getUserConfigurationData.outputs = [ 'success', 'error' ];
 
 export default getUserConfigurationData;

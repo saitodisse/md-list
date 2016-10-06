@@ -7,6 +7,6 @@ function elasticsearchDeleteData({ services, input, output }) {
 }
 
 elasticsearchDeleteData.async = true;
-elasticsearchDeleteData.outputs = ['success', 'error'];
+elasticsearchDeleteData.outputs = [ 'success', 'error' ];
 
 export default elasticsearchDeleteData;

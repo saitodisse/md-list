@@ -40,7 +40,8 @@ controller.addModules({
   members: Members,
 
   // services
-  devtools: process.env.NODE_ENV === 'production' ? () => {} : Devtools(),
+  devtools: process.env.NODE_ENV === 'production' ? () => {
+  } : Devtools(),
 
   router: Router({
     '/login': 'main.redirectedToLogin',

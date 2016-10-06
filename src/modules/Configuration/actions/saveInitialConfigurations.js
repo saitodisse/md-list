@@ -5,7 +5,7 @@ function saveInitialConfigurations({ state, output }) {
   const global_configurations = state.get('configurations.user');
 
   const updates = {};
-  updates[`users/${user_id}/configurations`] = global_configurations;
+  updates[ `users/${user_id}/configurations` ] = global_configurations;
 
   firebase.database().ref().update(updates)
     .then(output.success)
@@ -13,6 +13,6 @@ function saveInitialConfigurations({ state, output }) {
 }
 
 saveInitialConfigurations.async = true;
-saveInitialConfigurations.outputs = ['success', 'error'];
+saveInitialConfigurations.outputs = [ 'success', 'error' ];
 
 export default saveInitialConfigurations;

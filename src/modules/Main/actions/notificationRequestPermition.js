@@ -5,7 +5,7 @@ function notificationRequestPermition({ services, output }) {
 
   const requestPermitionAsync = services.notifications.requestPermitionAsync();
 
-  if ( typeof requestPermitionAsync === 'undefined'
+  if (typeof requestPermitionAsync === 'undefined'
     || typeof requestPermitionAsync.then !== 'function') {
     return output.error();
   }
@@ -14,13 +14,13 @@ function notificationRequestPermition({ services, output }) {
     .then((result) => {
       switch (result) {
       case DEFAULT:
-        output.default({notification_result: result});
+        output.default({ notification_result: result });
         break;
       case GRANTED:
-        output.granted({notification_result: result});
+        output.granted({ notification_result: result });
         break;
       case DENIED:
-        output.denied({notification_result: result});
+        output.denied({ notification_result: result });
         break;
       default:
         break;
