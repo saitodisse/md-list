@@ -5,7 +5,9 @@ export default (controller) => module => {
   const jobs = {};
   jobs[ `${PAGE_JOBS}_init_state` ] = [
     set('state:jobs', {
-      foo: 'bar',
+      job_name: 'job_name',
+      initial_spec_state: 'initial_spec_state',
+      url: 'url',
     }),
   ];
 

@@ -10,11 +10,11 @@ import Login from './modules/Login';
 import ChatList from './modules/ChatList';
 import Configuration from './modules/Configuration';
 import Members from './modules/Members';
-import Jobs from './modules/Jobs';
-import Executions from './modules/Executions';
-import Body_Results from './modules/Body_Results';
-import JSON_Extrations from './modules/JSON_Extrations';
-import Markdown_Conversions from './modules/Markdown_Conversions';
+import Jobs from './modules/Crawler/Jobs';
+import Executions from './modules/Crawler/Executions';
+import Body_Results from './modules/Crawler/Body_Results';
+import JSON_Extrations from './modules/Crawler/JSON_Extrations';
+import Markdown_Conversions from './modules/Crawler/Markdown_Conversions';
 import SetStates from './modules/SetStates';
 import FirebaseModule from 'cerebral-module-firebase';
 
