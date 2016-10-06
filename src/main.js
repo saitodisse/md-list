@@ -9,6 +9,8 @@ require('!style!css!highlight.js/styles/github.css');
 require('!style!css!highlight.js/styles/default.css');
 require('!style!css!./styles.css');
 
+window.cc = controller;
+
 render((
   <Container controller={controller} style={{ height: '100%', overflowY: 'hidden' }} strict>
     <Main />

@@ -15,6 +15,7 @@ import Executions from './modules/Executions';
 import Body_Results from './modules/Body_Results';
 import JSON_Extrations from './modules/JSON_Extrations';
 import Markdown_Conversions from './modules/Markdown_Conversions';
+import SetStates from './modules/SetStates';
 import FirebaseModule from 'cerebral-module-firebase';
 
 const modelOptions = process.env.NODE_ENV === 'production' ? {
@@ -37,6 +38,9 @@ controller.addModules({
   json_extrations: JSON_Extrations,
   markdown_conversions: Markdown_Conversions,
 
+  // for debugging components
+  set_states: SetStates(controller),
+
   members: Members,
 
   // services
@@ -53,6 +57,7 @@ controller.addModules({
     '/body_results': 'main.redirectedToBody_Results',
     '/json_extrations': 'main.redirectedToJSON_Extrations',
     '/markdown_conversions': 'main.redirectedToMarkdown_Conversions',
+    '/set_states': 'main.redirectedToSetStates',
     '/': 'main.redirectedToChatList',
   }, {
     onlyHash: true

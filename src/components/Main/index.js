@@ -13,6 +13,7 @@ import Executions from '../../components/Executions/index';
 import Body_Results from '../../components/Body_Results/index';
 import JSON_Extrations from '../../components/JSON_Extrations/index';
 import Markdown_Conversions from '../../components/Markdown_Conversions/index';
+import SetStates from '../../components/SetStates/index';
 import {
   PAGE_EMPTY,
   PAGE_LOGIN,
@@ -27,6 +28,7 @@ import {
   PAGE_MARKDOWN_CONVERSIONS
 } from '../../constants';
 import styles from './styles';
+import { PAGE_SET_STATES } from '../../constants/index';
 
 export function getPages() {
   const pages = {};
@@ -70,25 +72,8 @@ export function getPages() {
     body: <Markdown_Conversions />,
     footer: null,
   };
-
-  pages[ PAGE_SEARCH ] = {
-    body: <Search />,
-    footer: null,
-  };
-  pages[ PAGE_SEARCH ] = {
-    body: <Search />,
-    footer: null,
-  };
-  pages[ PAGE_SEARCH ] = {
-    body: <Search />,
-    footer: null,
-  };
-  pages[ PAGE_SEARCH ] = {
-    body: <Search />,
-    footer: null,
-  };
-  pages[ PAGE_SEARCH ] = {
-    body: <Search />,
+  pages[ PAGE_SET_STATES ] = {
+    body: <SetStates />,
     footer: null,
   };
   pages[ PAGE_EMPTY ] = {
@@ -259,15 +244,21 @@ export default connect({
       if (typeof document.hidden !== 'undefined') { // Opera 12.10 and Firefox 18 and later support
         hidden = 'hidden';
         visibilityChange = 'visibilitychange';
-      } else if (typeof document.mozHidden !== 'undefined') {
-        hidden = 'mozHidden';
-        visibilityChange = 'mozvisibilitychange';
-      } else if (typeof document.msHidden !== 'undefined') {
-        hidden = 'msHidden';
-        visibilityChange = 'msvisibilitychange';
-      } else if (typeof document.webkitHidden !== 'undefined') {
-        hidden = 'webkitHidden';
-        visibilityChange = 'webkitvisibilitychange';
+      } else { //noinspection JSUnresolvedVariable
+        if (typeof document.mozHidden !== 'undefined') {
+          hidden = 'mozHidden';
+          visibilityChange = 'mozvisibilitychange';
+        } else { //noinspection JSUnresolvedVariable
+          if (typeof document.msHidden !== 'undefined') {
+            hidden = 'msHidden';
+            visibilityChange = 'msvisibilitychange';
+          } else { //noinspection JSUnresolvedVariable
+            if (typeof document.webkitHidden !== 'undefined') {
+              hidden = 'webkitHidden';
+              visibilityChange = 'webkitvisibilitychange';
+            }
+          }
+        }
       }
 
       function handleVisibilityChange() {

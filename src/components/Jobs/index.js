@@ -21,6 +21,54 @@ export default connect({
             Jobs
           </section>
 
+          <section className="tableListContainer">
+            <table className="tableList">
+              <thead>
+              <tr>
+                <th>id</th>
+                <th>initial_state</th>
+                <th>url</th>
+                <th>user</th>
+                <th>created_at</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>id</td>
+                <td>initial_state</td>
+                <td>url</td>
+                <td>user</td>
+                <td>created_at</td>
+              </tr>
+              <tr>
+                <td>id</td>
+                <td>initial_state</td>
+                <td>url</td>
+                <td>user</td>
+                <td>created_at</td>
+              </tr>
+              <tr>
+                <td>id</td>
+                <td>initial_state</td>
+                <td>url</td>
+                <td>user</td>
+                <td>created_at</td>
+              </tr>
+              </tbody>
+            </table>
+          </section>
+
+
+          <section className="actionsButtonsContainer">
+            <button
+              className="actionButton"
+              onClick={() => {
+              }}
+            >
+              Create new Job
+            </button>
+          </section>
+
           <section className="inputsContainer">
             <InputField
               label="Job name"
@@ -41,9 +89,23 @@ export default connect({
             />
           </section>
 
-          <section className="jobsContainer">
-
+          <section className="actionsButtonsContainer">
+            <button
+              className="actionButton"
+              onClick={() => {
+              }}
+            >
+              Save
+            </button>
+            <button
+              className="actionButton"
+              onClick={() => {
+              }}
+            >
+              Run
+            </button>
           </section>
+
 
           <div className="resultsContainer">
             {/*<Items items={this.props.results} hideButtons={true}/>*/}
