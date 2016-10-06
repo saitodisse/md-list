@@ -5,6 +5,7 @@ require('./multiply/multiply_by_10');
 require('./multiply/print_number');
 require('./get_if_odd/check_odd_number');
 require('./get_if_odd/show_odd_number');
+require('./crawler/scrap');
 
 ref.child('specs').set({
 
@@ -31,6 +32,13 @@ ref.child('specs').set({
   show_odd_number: {
     start_state: 'check_odd_number_finished',
     in_progress_state: 'show_odd_number_in_progress',
+    timeout: 10000
+  },
+
+  // Crawler
+  crawler_web_page: {
+    start_state: 'crawler_web_page',
+    in_progress_state: 'crawler_web_page_in_progress',
     timeout: 10000
   },
 });

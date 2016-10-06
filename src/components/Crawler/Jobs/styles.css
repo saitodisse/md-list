@@ -17,15 +17,6 @@
   color: #5F9EA0;
 }
 
-.tableListContainer {
-  display: flex;
-  margin: 10px 20px;
-}
-
-.tableList {
-  width: 100%;
-}
-
 .actionsButtonsContainer {
   display: flex;
   align-items: center;
@@ -39,6 +30,24 @@
   font-size: 15px;
   color: #406a6b;
   margin: 0 0 0 10px;
+}
+
+.tableListContainer {
+  display: flex;
+  margin: 10px 20px;
+}
+
+.tableListContainer .tableList {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableListContainer .tableListClicable td {
+  cursor: pointer;
+}
+
+.selectedItem {
+  background-color: lightcyan;
 }
 
 @media all and (max-width: 700px) {

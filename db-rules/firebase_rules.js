@@ -265,6 +265,107 @@
         "$other": { ".validate": false },
       }
     },
-  }
-}
+    "queue": {
+      "tasks": {
+        ".read": "
+        	// auth.canProcessTasks
+        	root.child('admins/' + auth.uid).exists()",
+        ".write": "
+        	// auth.canAddTasks || auth.canProcessTasks
+        	root.child('admins/' + auth.uid).exists()
+        ",
+        ".indexOn": "_state",
+        "$taskId": {
+//           ".validate": "
+//           	// newData.hasChildren(['property_1', ..., 'property_n'])
+//             // || (auth.canProcessTasks
+//             // && newData.hasChildren(['_state', '_state_changed', '_progress']))
+//           ",
+          "_state": {
+            ".validate": "newData.isString()"
+          },
+          "_state_changed": {
+            ".validate": "newData.isNumber() && (newData.val() === now
+                          || data.val() === newData.val())"
+          },
+          "_owner": {
+            ".validate": "newData.isString()"
+          },
+          "_progress": {
+            ".validate": "newData.isNumber()
+                          && newData.val() >= 0
+                          && newData.val() <= 100"
+          },
+          "_error_details": {
+              "error": {
+                ".validate": "newData.isString()"
+              },
+              "error_stack": {
+                ".validate": "newData.isString()"
+              },
+              "previous_state": {
+                ".validate": "newData.isString()"
+              },
+              "original_task": {
+                /* This space intentionally left blank, for malformed tasks */
+              },
+              "attempts": {
+                ".validate": "newData.isNumber() && newData.val() > 0"
+              },
+              "$other": {
+                ".validate": false
+              }
+          },
+//           "_id": {
+//             ".validate": "newData.isString()"
+//           },
+//           "property_1": {
+//             ".validate": "/* Insert custom data validation code here */"
+//           },
+//           ...
+//           "property_n": {
+//             ".validate": "/* Insert custom data validation code here */"
+//           }
+        }
+      }, // tasks
 
+      "specs" : {
+        ".read": "
+        	// auth.canAddSpecs || auth.canProcessTasks
+        	root.child('admins/' + auth.uid).exists()
+        ",
+        ".write": "
+        	// auth.canAddSpecs
+        	root.child('admins/' + auth.uid).exists()
+      	",
+        "$specId": {
+          ".validate": "newData.hasChild('in_progress_state')",
+          "start_state": {
+            ".validate": "newData.isString()"
+          },
+          "in_progress_state": {
+            ".validate": "newData.isString()"
+          },
+          "finished_state": {
+            ".validate": "newData.isString()"
+          },
+          "error_state": {
+            ".validate": "newData.isString()"
+          },
+          "timeout": {
+            ".validate": "newData.isNumber() && newData.val() > 0"
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
+      }
+  	}, // specs
+
+    "crawler": {
+      ".read": "root.child('admins/' + auth.uid).exists()",
+      ".write": "root.child('admins/' + auth.uid).exists()",
+    },
+
+  }, // rules
+}

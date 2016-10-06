@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'cerebral-view-react';
 import InputField from '../../InputField';
+import LabelField from '../../LabelField/index';
+import JobsTable from './JobsTable';
+import BodyResultsTable from './BodyResultsTable/index';
 require('!style!css!./styles.css');
 
 //noinspection JSUnusedLocalSymbols
@@ -8,11 +11,16 @@ export default connect({
     job_name: 'jobs.job_name',
     initial_spec_state: 'jobs.initial_spec_state',
     url: 'jobs.url',
+    jobs_list: 'jobs.jobs_list',
+    body_results: 'jobs.body_results',
+    selected_job_id: 'jobs.job_id',
     all_loaded: 'main.all_loaded',
   }, {
     inputJobNameChanged: 'jobs.inputJobNameChanged',
     inputInitialSpecStateChanged: 'jobs.inputInitialSpecStateChanged',
     inputUrlChanged: 'jobs.inputUrlChanged',
+    createNewJobClicked: 'jobs.createNewJobClicked',
+    runJobClicked: 'jobs.runJobClicked',
   },
   class Jobs extends React.Component {
     render() {
@@ -26,51 +34,23 @@ export default connect({
             Jobs
           </section>
 
-          <section className="tableListContainer">
-            <table className="tableList">
-              <thead>
-              <tr>
-                <th>name</th>
-                <th>initial_state</th>
-                <th>url</th>
-                <th>created_at</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>name</td>
-                <td>initial_state</td>
-                <td>url</td>
-                <td>created_at</td>
-              </tr>
-              <tr>
-                <td>name</td>
-                <td>initial_state</td>
-                <td>url</td>
-                <td>created_at</td>
-              </tr>
-              <tr>
-                <td>name</td>
-                <td>initial_state</td>
-                <td>url</td>
-                <td>created_at</td>
-              </tr>
-              </tbody>
-            </table>
-          </section>
-
+          <JobsTable obj_list={this.props.jobs_list} />
 
           <section className="actionsButtonsContainer">
             <button
               className="actionButton"
-              onClick={() => {
-              }}
+              onClick={() => this.props.createNewJobClicked()}
             >
               Create new Job
             </button>
           </section>
 
           <section className="inputsContainer">
+            <LabelField
+              label="id"
+              value={this.props.selected_job_id}
+            />
+
             <InputField
               label="Job name"
               value={this.props.job_name}
@@ -100,13 +80,13 @@ export default connect({
             </button>
             <button
               className="actionButton"
-              onClick={() => {
-              }}
+              onClick={() => this.props.runJobClicked()}
             >
               Run
             </button>
           </section>
 
+          <BodyResultsTable obj_list={this.props.body_results} />
 
           <div className="resultsContainer">
             {/*<Items items={this.props.results} hideButtons={true}/>*/}

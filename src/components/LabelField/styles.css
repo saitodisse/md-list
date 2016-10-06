@@ -1,18 +1,12 @@
-#inputField {
+#labelField {
   display: flex;
   flex-direction: row;
   align-content: center;
   margin: 10px 25px;
 }
 
-.field_label {
-  font-size: 16px;
+.field_value {
+  font-size: 120%;
   margin: 0 5px 0 0;
   align-self: center;
-}
-
-#inputField .input {
-  flex-grow: 1;
-  padding: 3px;
-  font-size: 120%;
 }

@@ -50,6 +50,16 @@ function listenChanges({ services, state }) {
     });
     services.firebase.onChildRemoved('admins', 'members.adminsChildRemoved', {});
     services.firebase.onChildChanged('admins', 'members.adminsChildChanged', {});
+
+    // Admins
+    // ------
+    services.firebase.onChildAdded('crawler.body_results', 'jobs.bodyResultChildAdded', {
+      orderByChild: 'created_at',
+      startAt: (new Date()).getTime(),
+      // startAt: _.last(_.keys(state.get('jobs.bodyResultList'))).created_at
+    });
+    services.firebase.onChildRemoved('crawler.body_results', 'jobs.bodyResultChildRemoved', {});
+    services.firebase.onChildChanged('crawler.body_results', 'jobs.bodyResultChildChanged', {});
   }
 }
 

@@ -10,21 +10,13 @@ export default connect({
   class InputField extends React.Component {
     render() {
       return (
-        <div id="inputField">
+        <div id="labelField">
           <label className="field_label">
             {this.props.label}:
           </label>
-          <input
-            id={this.props.id}
-            type="text"
-            className="input"
-            ref={node => {
-              this.inputNode = node;
-            }}
-            value={this.props.value}
-            onChange={this.props.onChange}
-            onKeyDown={this.props.onKeyDown}
-          />
+          <label className="field_value">
+            {this.props.value}
+          </label>
         </div>
       );
     }

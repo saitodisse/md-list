@@ -9,10 +9,12 @@ export default connect({
     current_page: 'main.current_page',
   }, {
     ...redirections,
+    userLoggedIn: 'main.userLoggedIn',
   },
   class Main extends React.Component {
     componentDidMount() {
       this._get_initial_state();
+      this.props.userLoggedIn();
     }
 
     componentDidUpdate(prevProps) {
