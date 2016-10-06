@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'cerebral-view-react';
-import InputField from '../InputField';
+import InputField from '../../InputField';
 require('!style!css!./styles.css');
 
 //noinspection JSUnusedLocalSymbols

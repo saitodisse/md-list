@@ -43,7 +43,6 @@ export default module => {
     redirectedToBody_Results: [ set('state:main.current_page', PAGE_BODY_RESULTS) ],
     redirectedToJSON_Extrations: [ set('state:main.current_page', PAGE_JSON_EXTRATIONS) ],
     redirectedToMarkdown_Conversions: [ set('state:main.current_page', PAGE_MARKDOWN_CONVERSIONS) ],
-    redirectedToSetStates: [ set('state:main.current_page', PAGE_SET_STATES) ],
 
     pageLoaded: [
       ...bootstrap,

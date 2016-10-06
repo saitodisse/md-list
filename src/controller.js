@@ -57,7 +57,6 @@ controller.addModules({
     '/body_results': 'main.redirectedToBody_Results',
     '/json_extrations': 'main.redirectedToJSON_Extrations',
     '/markdown_conversions': 'main.redirectedToMarkdown_Conversions',
-    '/set_states': 'main.redirectedToSetStates',
     '/': 'main.redirectedToChatList',
   }, {
     onlyHash: true

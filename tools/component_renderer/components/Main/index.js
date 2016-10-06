@@ -9,7 +9,6 @@ export default connect({
     current_page: 'main.current_page',
   }, {
     ...redirections,
-    redirectedToSetStates: 'main.redirectedToSetStates',
   },
   class Main extends React.Component {
     componentDidMount() {
@@ -44,13 +43,6 @@ export default connect({
               >
                 md list {this.props.page_is_visible}
               </a>
-              <a
-                style={styles.topLink}
-                onClick={() => this.props.redirectedToSetStates()}
-              >
-                SET_STATES
-              </a>
-
               <a
                 style={styles.topLink}
                 onClick={() => this.props.redirectedToConfiguration()}

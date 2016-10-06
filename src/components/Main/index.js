@@ -8,12 +8,11 @@ import ChatListFooter from '../../components/ChatList/ChatListFooter';
 import Configuration from '../../components/Configuration';
 import Members from '../../components/Members';
 import Search from '../../components/Search';
-import Jobs from '../../components/Jobs/index';
-import Executions from '../../components/Executions/index';
-import Body_Results from '../../components/Body_Results/index';
-import JSON_Extrations from '../../components/JSON_Extrations/index';
-import Markdown_Conversions from '../../components/Markdown_Conversions/index';
-import SetStates from '../../components/SetStates/index';
+import Jobs from '../Crawler/Jobs/index';
+import Executions from '../Crawler/Executions/index';
+import Body_Results from '../Crawler/Body_Results/index';
+import JSON_Extrations from '../Crawler/JSON_Extrations/index';
+import Markdown_Conversions from '../Crawler/Markdown_Conversions/index';
 import {
   PAGE_EMPTY,
   PAGE_LOGIN,
@@ -28,7 +27,6 @@ import {
   PAGE_MARKDOWN_CONVERSIONS
 } from '../../constants';
 import styles from './styles';
-import { PAGE_SET_STATES } from '../../constants/index';
 
 export function getPages() {
   const pages = {};
@@ -70,10 +68,6 @@ export function getPages() {
   };
   pages[ PAGE_MARKDOWN_CONVERSIONS ] = {
     body: <Markdown_Conversions />,
-    footer: null,
-  };
-  pages[ PAGE_SET_STATES ] = {
-    body: <SetStates />,
     footer: null,
   };
   pages[ PAGE_EMPTY ] = {
