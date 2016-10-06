@@ -1,25 +1,23 @@
 import React from 'react';
 import { connect } from 'cerebral-view-react';
-import styles from './styles';
+require('!style!css!./styles.css');
 
-//noinspection JSUnusedLocalSymbols
 export default connect({
     // is_admin: 'login.user.is_admin',
   }, {
     // toggleConfigurationClicked: 'configurations.toggleConfigurationClicked',
   },
-  class SearchResultItem extends React.Component {
-    //noinspection JSMethodCanBeStatic
+  class InputField extends React.Component {
     render() {
       return (
-        <div style={styles.inputContainer} id="inputContainer">
-          <label style={styles.label}>
+        <div id="inputField">
+          <label className="label">
             {this.props.label}:
           </label>
           <input
             id={this.props.id}
             type="text"
-            style={styles.input}
+            className="input"
             ref={node => {
               this.inputNode = node;
             }}

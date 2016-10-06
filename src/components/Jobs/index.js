@@ -1,30 +1,51 @@
 import React from 'react';
 import { connect } from 'cerebral-view-react';
-import styles from './styles';
-import InputField from './InputField/index';
+import InputField from '../InputField';
+require('!style!css!./styles.css');
 
 //noinspection JSUnusedLocalSymbols
 export default connect({
     job_name: 'jobs.job_name',
+    initial_spec_state: 'jobs.initial_spec_state',
   }, {
     inputJobNameChanged: 'jobs.inputJobNameChanged',
+    inputInitialSpecStateChanged: 'jobs.inputInitialSpecStateChanged',
+    inputUrlChanged: 'jobs.inputUrlChanged',
   },
   class Jobs extends React.Component {
     //noinspection JSMethodCanBeStatic
     render() {
       return (
-        <div style={styles.container} className="container">
+        <div id="jobs">
           <section className="title">
             Jobs
           </section>
 
-          <InputField
-            label="Job name"
-            value={this.props.job_name}
-            onChange={event => this.props.inputJobNameChanged({ query: event.target.value })}
-          />
+          <section className="inputsContainer">
+            <InputField
+              label="Job name"
+              value={this.props.job_name}
+              onChange={event => this.props.inputJobNameChanged({ job_name: event.target.value })}
+            />
 
-          <div style={styles.resultsContainer} id="resultsContainer">
+            <InputField
+              label="Initial spec state (firebase queue)"
+              value={this.props.initial_spec_state}
+              onChange={event => this.props.inputInitialSpecStateChanged({ initial_spec_state: event.target.value })}
+            />
+
+            <InputField
+              label="Initial URL"
+              value={this.props.url}
+              onChange={event => this.props.inputUrlChanged({ url: event.target.value })}
+            />
+          </section>
+
+          <section className="jobsContainer">
+
+          </section>
+
+          <div className="resultsContainer">
             {/*<Items items={this.props.results} hideButtons={true}/>*/}
           </div>
         </div>
