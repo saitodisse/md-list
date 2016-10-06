@@ -3,6 +3,7 @@ import { connect } from 'cerebral-view-react';
 import NotificationSystem from 'react-notification-system';
 import styles from './styles';
 import { redirections, getPages } from '../../../../src/components/Main';
+import { PAGE_JOBS } from '../../../../src/constants/index';
 
 export default connect({
     current_page: 'main.current_page',
@@ -11,6 +12,24 @@ export default connect({
     redirectedToSetStates: 'main.redirectedToSetStates',
   },
   class Main extends React.Component {
+    componentDidMount() {
+      this._get_initial_state();
+    }
+
+    componentDidUpdate(prevProps) {
+      if (prevProps.current_page !== this.props.current_page) {
+        this._get_initial_state();
+      }
+    }
+
+    _get_initial_state() {
+      window.requestAnimationFrame(() => {
+        const initial_signal_path = `set_states.${this.props.current_page}_init_state`;
+        const init_state = window.controller.getSignals(initial_signal_path);
+        init_state && init_state();
+      });
+    }
+
     render() {
       const pages = getPages();
       return (
