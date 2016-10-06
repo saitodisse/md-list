@@ -30,33 +30,29 @@ export default connect({
             <table className="tableList">
               <thead>
               <tr>
-                <th>id</th>
+                <th>name</th>
                 <th>initial_state</th>
                 <th>url</th>
-                <th>user</th>
                 <th>created_at</th>
               </tr>
               </thead>
               <tbody>
               <tr>
-                <td>id</td>
+                <td>name</td>
                 <td>initial_state</td>
                 <td>url</td>
-                <td>user</td>
                 <td>created_at</td>
               </tr>
               <tr>
-                <td>id</td>
+                <td>name</td>
                 <td>initial_state</td>
                 <td>url</td>
-                <td>user</td>
                 <td>created_at</td>
               </tr>
               <tr>
-                <td>id</td>
+                <td>name</td>
                 <td>initial_state</td>
                 <td>url</td>
-                <td>user</td>
                 <td>created_at</td>
               </tr>
               </tbody>

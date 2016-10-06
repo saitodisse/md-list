@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Container} from 'cerebral-view-react';
 import Main from './components/Main';
-import controller from '../../src/controller';
+import controller from './controller';
 
 require('!style!css!highlight.js/styles/github.css');
 require('!style!css!highlight.js/styles/default.css');

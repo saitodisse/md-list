@@ -15,15 +15,9 @@ import Executions from './modules/Crawler/Executions';
 import Body_Results from './modules/Crawler/Body_Results';
 import JSON_Extrations from './modules/Crawler/JSON_Extrations';
 import Markdown_Conversions from './modules/Crawler/Markdown_Conversions';
-import SetStates from './modules/SetStates';
 import FirebaseModule from 'cerebral-module-firebase';
 
-const modelOptions = process.env.NODE_ENV === 'production' ? {
-  immutable: false // Do not set this to false when using the Recorder
-} : {};
-const controller = Controller(Model({}, modelOptions));
-
-controller.addModules({
+export const modules = {
   // app modules
   main: Main,
   login: Login,
@@ -38,14 +32,10 @@ controller.addModules({
   json_extrations: JSON_Extrations,
   markdown_conversions: Markdown_Conversions,
 
-  // for debugging components
-  set_states: SetStates(controller),
-
   members: Members,
 
   // services
-  devtools: process.env.NODE_ENV === 'production' ? () => {
-  } : Devtools(),
+  devtools: process.env.NODE_ENV === 'production' ? () => {} : Devtools(),
 
   router: Router({
     '/login': 'main.redirectedToLogin',
@@ -79,9 +69,16 @@ controller.addModules({
     },
   }),
 
-
   notifications: Notifications(),
+};
 
-});
+const init_controller = () => {
+  const modelOptions = process.env.NODE_ENV === 'production' ? {
+    immutable: false // Do not set this to false when using the Recorder
+  } : {};
+  const controller = Controller(Model({}, modelOptions));
+  controller.addModules(modules);
+  return controller;
+};
 
-export default controller;
+export default init_controller;

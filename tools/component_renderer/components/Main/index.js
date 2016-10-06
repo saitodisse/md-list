@@ -23,9 +23,14 @@ export default connect({
 
     _get_initial_state() {
       window.requestAnimationFrame(() => {
+        // dinamically get init state
         const initial_signal_path = `set_states.${this.props.current_page}_init_state`;
         const init_state = window.controller.getSignals(initial_signal_path);
-        init_state && init_state();
+        if (init_state) {
+          init_state();
+          // set all loaded on main
+          window.controller.getSignals('set_states.page_loaded')();
+        }
       });
     }
 
