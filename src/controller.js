@@ -11,10 +11,6 @@ import ChatList from './modules/ChatList';
 import Configuration from './modules/Configuration';
 import Members from './modules/Members';
 import Jobs from './modules/Crawler/Jobs';
-import Executions from './modules/Crawler/Executions';
-import Body_Results from './modules/Crawler/Body_Results';
-import JSON_Extrations from './modules/Crawler/JSON_Extrations';
-import Markdown_Conversions from './modules/Crawler/Markdown_Conversions';
 import FirebaseModule from 'cerebral-module-firebase';
 
 export const modules = {
@@ -27,10 +23,6 @@ export const modules = {
 
   // Crawler
   jobs: Jobs,
-  executions: Executions,
-  body_results: Body_Results,
-  json_extrations: JSON_Extrations,
-  markdown_conversions: Markdown_Conversions,
 
   members: Members,
 
@@ -43,10 +35,6 @@ export const modules = {
     '/members': 'main.redirectedToMembers',
     '/search': 'main.redirectedToSearch',
     '/jobs': 'main.redirectedToJobs',
-    '/executions': 'main.redirectedToExecutions',
-    '/body_results': 'main.redirectedToBody_Results',
-    '/json_extrations': 'main.redirectedToJSON_Extrations',
-    '/markdown_conversions': 'main.redirectedToMarkdown_Conversions',
     '/': 'main.redirectedToChatList',
   }, {
     onlyHash: true

@@ -3,22 +3,22 @@ import { connect } from 'cerebral-view-react';
 import _ from 'lodash/fp';
 
 export default connect({
-    selected_job_id: 'jobs.job_id',
+    selected_id: 'jobs.job.selected.id',
   }, {
     rowClicked: 'jobs.rowClicked',
   },
   class JobsTable extends React.Component {
     _renderRow = (obj_list) => {
-      return _.map((job) => (
+      return _.map((item) => (
         <tr
-          key={job.job_id}
-          onClick={() => this.props.rowClicked({ job_id: job.job_id })}
-          className={this._getSelectedClass(job.job_id)}
+          key={item.id}
+          onClick={() => this.props.rowClicked({ id: item.id })}
+          className={this._getSelectedClass(item.id)}
         >
-          <td>{job.job_name}</td>
-          <td>{job.initial_spec_state}</td>
-          <td>{job.url}</td>
-          <td>{job.created_at}</td>
+          <td>{item.job_name}</td>
+          <td>{item.initial_spec_state}</td>
+          <td>{item.url}</td>
+          <td>{item.created_at}</td>
         </tr>
       ), obj_list);
     };
@@ -43,8 +43,8 @@ export default connect({
       );
     }
 
-    _getSelectedClass(job_id) {
-      if (this.props.selected_job_id === job_id) {
+    _getSelectedClass(id) {
+      if (this.props.selected_id === id) {
         return 'selectedItem';
       } else {
         return null;

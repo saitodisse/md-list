@@ -1,90 +1,38 @@
-import firebase from 'firebase';
 import { copy } from 'cerebral/operators';
 import firebaseMergeItem from '../../Members/actions/firebaseMergeItem';
 import firebaseRemoveItem from '../../Members/actions/firebaseRemoveItem';
-
-function setCurrentItem({ input, state }) {
-  const job_id = state.get('jobs.job_id');
-  const jobs_list_item = state.get(`jobs.jobs_list.${job_id}`);
-  state.set('jobs.job_name', jobs_list_item.job_name);
-  state.set('jobs.initial_spec_state', jobs_list_item.initial_spec_state);
-  state.set('jobs.url', jobs_list_item.url);
-}
-
-function clearCurrentItem({ state }) {
-  state.set('jobs.job_id', null);
-  state.set('jobs.job_name', '');
-  state.set('jobs.initial_spec_state', '');
-  state.set('jobs.url', '');
-}
-
-function setBodyResultCurrentItem({ input, state }) {
-  const body_result_id = state.get('jobs.body_result_id');
-  const body_results_item = state.get(`jobs.body_results.${body_result_id}`);
-  state.set('jobs.body_result_body', body_results_item.body);
-}
-
-function clearBodyResultCurrentItem({ state }) {
-  state.set('jobs.job_id', null);
-  state.set('jobs.job_name', '');
-  state.set('jobs.initial_spec_state', '');
-  state.set('jobs.url', '');
-}
-
-function addFirebaseQueueJob({ input, state, output }) {
-  const job_id = state.get('jobs.job_id');
-  const job_name = state.get('jobs.job_name');
-  const initial_spec_state = state.get('jobs.initial_spec_state');
-  const url = state.get('jobs.url');
-
-  const key = firebase.database().ref('queue/tasks').push().key;
-  const updates = {};
-  updates[ `queue/tasks/${key}` ] = {
-    _state: 'crawler_web_page',
-    url: 'http://jsonplaceholder.typicode.com/users',
-    created_at: firebase.database.ServerValue.TIMESTAMP,
-  };
-
-  firebase.database().ref().update(updates)
-    .then(output.success)
-    .catch(output.error);
-}
-addFirebaseQueueJob.async = true;
-addFirebaseQueueJob.outputs = [ 'success', 'error' ];
-
+import setCurrentItem from './actions/setCurrentItem';
+import setBodyResultCurrentItem from './actions/setBodyResultCurrentItem';
+import setJsonExtractionFieldsSelected from './actions/setJsonExtractionFieldsSelected';
+import clearCurrentItem from './actions/clearCurrentItem';
+import addFirebaseQueueJob from './actions/addFirebaseQueueJob';
 
 export default module => {
   module.addState({
     crawler: {
-      body_results: {
-
-      }
+      body_results: {}
     }
   });
 
   module.addSignals({
     inputJobNameChanged: {
-      chain: [ copy('input:job_name', 'state:jobs.job_name') ],
+      chain: [ copy('input:job_name', 'state:jobs.job.selected.job_name') ],
       immediate: true
     },
     inputInitialSpecStateChanged: {
-      chain: [ copy('input:initial_spec_state', 'state:jobs.initial_spec_state') ],
+      chain: [ copy('input:initial_spec_state', 'state:jobs.job.selected.initial_spec_state') ],
       immediate: true
     },
     inputUrlChanged: {
-      chain: [ copy('input:url', 'state:jobs.url') ],
+      chain: [ copy('input:url', 'state:jobs.job.selected.url') ],
       immediate: true
     },
     rowClicked: [
-      copy('input:job_id', 'state:jobs.job_id'),
+      copy('input:id', 'state:jobs.job.selected.id'),
       setCurrentItem,
     ],
-    body_results_rowClicked: [
-      copy('input:body_result_id', 'state:jobs.body_result_id'),
-      setBodyResultCurrentItem,
-    ],
     createNewJobClicked: [
-      clearBodyResultCurrentItem,
+      clearCurrentItem,
     ],
     runJobClicked: [
       addFirebaseQueueJob, {
@@ -93,9 +41,19 @@ export default module => {
       }
     ],
 
-    bodyResultChildAdded: [ firebaseMergeItem('jobs.body_results') ],
-    bodyResultChildChanged: [ firebaseMergeItem('jobs.body_results') ],
-    bodyResultChildRemoved: [ firebaseRemoveItem('jobs.body_results') ],
+    body_results_rowClicked: [
+      copy('input:id', 'state:jobs.body_results.selected.id'),
+      setBodyResultCurrentItem,
+    ],
+
+    json_extraction_fields_rowClicked: [
+      copy('input:id', 'state:jobs.json_extraction_fields.selected.id'),
+      setJsonExtractionFieldsSelected,
+    ],
+
+    bodyResultChildAdded: [ firebaseMergeItem('jobs.body_results.list') ],
+    bodyResultChildChanged: [ firebaseMergeItem('jobs.body_results.list') ],
+    bodyResultChildRemoved: [ firebaseRemoveItem('jobs.body_results.list') ],
 
   });
 };

@@ -32,7 +32,7 @@ const db = {
           created_at,
           body_results: {
             $BODY_RESULT_ID: {
-              body_result_id,
+              id,
               crawler_job_id,
               created_at,
             },
@@ -44,7 +44,7 @@ const db = {
 
   body_results: {
     $BODY_RESULT_ID: {
-      body_result_id,
+      id,
       crawler_job_id,
     }
   },

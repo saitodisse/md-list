@@ -50,6 +50,14 @@
   background-color: lightcyan;
 }
 
+.bodyResultContainer {
+  overflow-y: auto;
+  max-height: 300px;
+  padding: 4px;
+  border: 1px solid cadetblue;
+  margin: 0 20px;
+}
+
 @media all and (max-width: 700px) {
   #jobs {
     display: flex;

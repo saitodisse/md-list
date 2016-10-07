@@ -9,10 +9,6 @@ import Configuration from '../../components/Configuration';
 import Members from '../../components/Members';
 import Search from '../../components/Search';
 import Jobs from '../Crawler/Jobs/index';
-import Executions from '../Crawler/Executions/index';
-import Body_Results from '../Crawler/Body_Results/index';
-import JSON_Extrations from '../Crawler/JSON_Extrations/index';
-import Markdown_Conversions from '../Crawler/Markdown_Conversions/index';
 import {
   PAGE_EMPTY,
   PAGE_LOGIN,
@@ -21,15 +17,15 @@ import {
   PAGE_MEMBERS,
   PAGE_SEARCH,
   PAGE_JOBS,
-  PAGE_EXECUTIONS,
-  PAGE_BODY_RESULTS,
-  PAGE_JSON_EXTRATIONS,
-  PAGE_MARKDOWN_CONVERSIONS
 } from '../../constants';
 import styles from './styles';
 
 export function getPages() {
   const pages = {};
+  pages[ PAGE_EMPTY ] = {
+    body: null,
+    footer: null,
+  };
   pages[ PAGE_CHAT_LIST ] = {
     body: <ChatList />,
     footer: <ChatListFooter />,
@@ -52,26 +48,6 @@ export function getPages() {
   };
   pages[ PAGE_JOBS ] = {
     body: <Jobs />,
-    footer: null,
-  };
-  pages[ PAGE_EXECUTIONS ] = {
-    body: <Executions />,
-    footer: null,
-  };
-  pages[ PAGE_BODY_RESULTS ] = {
-    body: <Body_Results />,
-    footer: null,
-  };
-  pages[ PAGE_JSON_EXTRATIONS ] = {
-    body: <JSON_Extrations />,
-    footer: null,
-  };
-  pages[ PAGE_MARKDOWN_CONVERSIONS ] = {
-    body: <Markdown_Conversions />,
-    footer: null,
-  };
-  pages[ PAGE_EMPTY ] = {
-    body: null,
     footer: null,
   };
   return pages;
@@ -382,30 +358,6 @@ export default connect({
                     onClick={() => this.props.redirectedToJobs()}
                   >
                     Jobs
-                  </a>
-                  <a
-                    style={styles.topLink}
-                    onClick={() => this.props.redirectedToExecutions()}
-                  >
-                    Executions
-                  </a>
-                  <a
-                    style={styles.topLink}
-                    onClick={() => this.props.redirectedToBody_Results()}
-                  >
-                    Body_Results
-                  </a>
-                  <a
-                    style={styles.topLink}
-                    onClick={() => this.props.redirectedToJSON_Extrations()}
-                  >
-                    JSON_Extrations
-                  </a>
-                  <a
-                    style={styles.topLink}
-                    onClick={() => this.props.redirectedToMarkdown_Conversions()}
-                  >
-                    Markdown_Conversions
                   </a>
                 </div>
               )}

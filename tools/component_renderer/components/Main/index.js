@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'cerebral-view-react';
 import NotificationSystem from 'react-notification-system';
-import styles from './styles';
+import styles from '../../../../src/components/Main/styles';
 import { redirections, getPages } from '../../../../src/components/Main';
 import { PAGE_JOBS } from '../../../../src/constants/index';
 
@@ -77,30 +77,6 @@ export default connect({
                   onClick={() => this.props.redirectedToJobs()}
                 >
                   Jobs
-                </a>
-                <a
-                  style={styles.topLink}
-                  onClick={() => this.props.redirectedToExecutions()}
-                >
-                  Executions
-                </a>
-                <a
-                  style={styles.topLink}
-                  onClick={() => this.props.redirectedToBody_Results()}
-                >
-                  Body_Results
-                </a>
-                <a
-                  style={styles.topLink}
-                  onClick={() => this.props.redirectedToJSON_Extrations()}
-                >
-                  JSON_Extrations
-                </a>
-                <a
-                  style={styles.topLink}
-                  onClick={() => this.props.redirectedToMarkdown_Conversions()}
-                >
-                  Markdown_Conversions
                 </a>
               </div>
             </div>

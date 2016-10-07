@@ -3,19 +3,19 @@ import { connect } from 'cerebral-view-react';
 import _ from 'lodash/fp';
 
 export default connect({
-    selected_id: 'jobs.body_results.selected.id',
+    selected_id: 'jobs.json_extraction_id',
   }, {
-    body_results_rowClicked: 'jobs.body_results_rowClicked',
+    json_extractions_rowClicked: 'jobs.json_extractions_rowClicked',
   },
-  class BodyResultsTable extends React.Component {
+  class JsonExtractionsTable extends React.Component {
     _renderRow = (obj_list) => {
       return _.map((item) => (
         <tr
-          key={item.id}
-          onClick={() => this.props.body_results_rowClicked({ id: item.id })}
+          key={item.json_extraction_id}
+          onClick={() => this.props.json_extractions_rowClicked({ json_extraction_id: item.json_extraction_id })}
           className={this._getSelectedClass(item.id)}
         >
-          <td>{item.id}</td>
+          <td>{item.json_extraction_id}</td>
           <td>{item.created_at}</td>
         </tr>
       ), obj_list);
@@ -27,7 +27,7 @@ export default connect({
           <table className="tableList tableListClicable">
             <thead>
             <tr>
-              <th>body_result_selected_id</th>
+              <th>id</th>
               <th>created_at</th>
             </tr>
             </thead>
