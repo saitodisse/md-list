@@ -22,12 +22,24 @@ export default connect({
     // Json extraction fields
     json_extraction_fields: 'jobs.json_extraction_fields.list',
     json_extraction_fields_Selected: 'jobs.json_extraction_fields.selected.*',
+
+    // Json extraction fields
+    json_results: 'jobs.json_results.list',
+    json_results_Selected: 'jobs.json_results.selected.*',
   }, {
     inputJobNameChanged: 'jobs.inputJobNameChanged',
     inputInitialSpecStateChanged: 'jobs.inputInitialSpecStateChanged',
     inputUrlChanged: 'jobs.inputUrlChanged',
+
     createNewJobClicked: 'jobs.createNewJobClicked',
     runJobClicked: 'jobs.runJobClicked',
+    extractJsonClicked: 'jobs.extractJsonClicked',
+
+    input_name_changed: 'jobs.input_name_changed',
+    input_selector_changed: 'jobs.input_selector_changed',
+    input_data_type_changed: 'jobs.input_data_type_changed',
+    input_js_type_changed: 'jobs.input_js_type_changed',
+
   },
   class Jobs extends React.Component {
     render() {
@@ -37,9 +49,11 @@ export default connect({
 
       return (
         <div id="jobs">
-          {/* *****
-           * Jobs
-           ** *****/}
+          {
+            /**************************
+             * Jobs
+             **************************/
+          }
           <section className="title">
             Jobs
           </section>
@@ -97,9 +111,11 @@ export default connect({
           </section>
 
 
-          {/* *****
-           * Body Results
-           ** *****/}
+          {
+            /**************************
+             * Body Results
+             **************************/
+          }
           <section className="title">
             Body Results
           </section>
@@ -113,9 +129,11 @@ export default connect({
           </div>
 
 
-          {/* *****
-           * JSON Extractions Fields
-           ** *****/}
+          {
+            /**************************
+             * JSON Extractions Fields
+             **************************/
+          }
           <section className="title">
             JSON Extractions Fields
           </section>
@@ -131,42 +149,42 @@ export default connect({
             <InputField
               label="Name"
               value={this.props.json_extraction_fields_Selected.name}
-              onChange={event => this.props.inputJobNameChanged({ name: event.target.value })}
+              onChange={event => this.props.input_name_changed({ value: event.target.value })}
             />
 
             <InputField
               label="CSS Selector"
               value={this.props.json_extraction_fields_Selected.selector}
-              onChange={event => this.props.inputInitialSpecStateChanged({ selector: event.target.value })}
+              onChange={event => this.props.input_selector_changed({ value: event.target.value })}
             />
 
             <InputField
               label="Data Type"
               value={this.props.json_extraction_fields_Selected.data_type}
-              onChange={event => this.props.inputUrlChanged({ data_type: event.target.value })}
+              onChange={event => this.props.input_data_type_changed({ value: event.target.value })}
             />
 
             <InputField
               label="JS Type"
               value={this.props.json_extraction_fields_Selected.js_type}
-              onChange={event => this.props.inputUrlChanged({ js_type: event.target.value })}
+              onChange={event => this.props.input_js_type_changed({ value: event.target.value })}
             />
           </section>
 
-          {/*
+          <section className="actionsButtonsContainer">
+            <button
+              className="actionButton"
+              onClick={() => this.props.extractJsonClicked()}
+            >
+              Run Selected
+            </button>
+          </section>
 
-           <section className="title">
-           JSON Extractions Results
-           </section>
-
-           <JsonExtractionsTable obj_list={this.props.json_extractions}/>
-
-           <div className="bodyResultContainer">
-           <pre>
-           {this.props.id && this.props.json_extractions[ this.props.id ]}
-           </pre>
-           </div>*/}
-
+          <div className="bodyResultContainer">
+            <pre>
+              {JSON.stringify(this.props.json_results, null, 2)}
+            </pre>
+          </div>
         </div>
       );
     }
